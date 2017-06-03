@@ -1,0 +1,105 @@
+;MAND M - побитовое И акумулятора с ячейкой памяти с записью результата в ячейку памяти и установкой C/N/ZERO
+
+ORG 210
+NUMT:       WORD    0005    ;Количество тестов
+
+ORG 008
+RZS:       WORD    0010    ;Адрес начала массива промежуточных результатов
+
+ORG 015
+RZULT:      WORD    0000    ;Конечный результат   
+TWORD1:     WORD    FACE    ;Первое тестовое слово    
+TWORD2:     WORD    FADE    ;Второе тестовое слово
+BUFF:       WORD    ?       ;Буфер для временного хранения данных при тестировании
+NUL:        WORD    0000    ;Ячейка содержащая одни нули
+FUL:        WORD    FFFF    ;Ячейка содержащая одни единицы
+TW2ADR:     WORD    0017    ;Адрес второго тестового слова
+COUNTR:     WORD    ?       ;Счетчик
+
+ORG     020             ;Основная программа
+BEGIN:  JSR CHK_C1      ;Проверка сохранения нулевого состояния бита С
+        JSR CHK_C0      ;Проверка сброса бита С если он был установлен в единицу
+        JSR VAL_NUL     ;Проверка логического умножения на нулевую ячейку
+        JSR VAL_FUL     ;Проверка логического умножения на ячейку, в которой все единицы
+        JSR VAL_CUR     ;Проверка логического умножения ячейки с использованием косвенной адресации
+        JSR ALL_OK      ;Выдача конечного результата тестирования
+
+                        ;Проверка сохранения нулеового состояния бита С
+CHK_C0: WORD    ?       ;Адрес возврата
+        CLA
+        CMA
+        AND     TWORD1
+        MAND    TWORD2
+        BCS     WRT1      
+        CLA
+WRT1:   WRTRZS
+        BR      (CHK_C0)   
+        
+                        ;Проверка сброса бита С если он был установлен в единицу
+CHK_C1: WORD    ?       ;Адрес возврата
+        CLA
+        CMA
+        AND     TWORD1
+        ADD     TWORD2
+        MAND    TWORD2
+        BCS     WRT2
+        CLA
+WRT2:   WRTRZS
+        BR      (CHK_C1)   
+        
+                        ;Проверка логического умножения на нулевую ячейку
+VALNUL: WORD    ?       ;Адрес возврата
+        ADD     TWORD1
+        MAND    ZERO
+        CLA
+        ADD     TWORD1
+        WRTRZS
+        BR      (VALNUL)
+        
+                        ;Проверка логического умножения на нулевую ячейку
+VALFUL: WORD    ?       ;Адрес возврата
+        ADD     TWORD1
+        MOV     BUFF
+        MAND    FULL
+        CLA
+        ADD     TWORD1
+        SUB     BUFF     
+        WRTRZS
+        BR      (VALFUL)
+        
+                        ;Проверка логического умножения ячейки с использованием косвенной адресации
+VALCUR: WORD    ?       ;Адрес возврата
+        ADD     TWORD1
+        AND     (TW2ADR)
+        MOV     BUFF
+        CLA
+        ADD     TWORD1
+        MAND    (TW2ADR)
+        CLA
+        ADD     (TW2ADR)
+        SUB     BUFF     
+        WRTRZS
+        BR      (VALCUR)
+
+WRTRZS: WORD    ?       ;Запись успешности прохождения теста
+        BEQ     NOERR   ;Если в аккумуляторе 0, то ошибки не возникло
+        CLA
+        MOV     (RZS)
+        BR      (WRTRZS)
+NOERR:  CLA
+        INC
+        MOV     (RZS)
+        BR      (WRTRZS)
+        
+ALLOK:  WORD    ?       ;Запись успешности прохождения теста
+        CLA
+        SUB     NUMT
+        MOV     COUNTR
+        ADD     RZS
+        MOV     RZS
+LOOP:   ADD     (RZS)
+        ISZ     COUNTR
+        BR      LOOP
+        SUB     NUMT
+        WRTRZS
+        BR      (ALLOK)

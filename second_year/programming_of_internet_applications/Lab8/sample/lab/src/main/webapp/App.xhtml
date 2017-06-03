@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      <h:head>
+        <title>Silhouette checker</title>
+        <link href="#{request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"></link>
+      </h:head>
+      <h:body>
+        <h:outputScript library="primefaces" name="primefaces.js" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h1>Silhouette checker</h1>
+        <h:outputStylesheet name="styles.css"  />
+        <h:form id="gui">
+          <h:panelGroup id="image">
+          <h:panelGroup layout = "block" id="graph">
+            <p:selectOneMenu id="menuFunction">
+              <p:ajax event="click" update="graph,:manual:tabledata"/>
+            </p:selectOneMenu>
+            <h:panelGroup id="projects">
+              <ui:repeat  value = "#{pontoBean.previous}" var = "c">
+                <h:panelGroup layout="block" styleClass="positivedot" style="margin-left:#{c.x*80/pontoBean.actualR+101}px;margin-top:#{-c.y*80/pontoBean.actualR+105}px;" rendered="#{c.inside}"></h:panelGroup>
+                <h:panelGroup layout="block" styleClass="negativedot" style="margin-left:#{c.x*80/pontoBean.actualR+101}px;margin-top:#{-c.y*80/pontoBean.actualR+105}px;" rendered="#{not c.inside}"></h:panelGroup>
+              </ui:repeat>
+            </h:panelGroup>
+          </h:panelGroup>
+        </h:panelGroup>
+          <h:inputText id="x" style="display:none" value="#{pontoBean.actualX}" />
+          <h:inputText id="y" style="display:none" value="#{pontoBean.actualY}" />
+          <h:commandButton style="display:none" id="gui_submit" value="Submit" action="#{pontoBean.checkPonto}" />
+        </h:form>
+        <h:form id="manual">
+          <h:inputHidden id="txt2" value="#{pontoBean.actualX}" />
+          <p:panel>
+            <h:panelGrid columns="1">
+              <h:outputText id="outputX" value="X : "/>
+              <p:slider for="txt2" minValue="-2" maxValue="2" step="1" display="outputX" style="width: 200px" displayTemplate="X : {value}" />
+              <h:outputText value="Y : "/>
+              <h:inputText id="ordinate" value="#{pontoBean.actualY}">
+                <f:validator validatorId="ru.jsf.YValidator" />
+              </h:inputText>
+              <h:outputText value="R : "/>
+              <p:spinner label="radius" id="radius" value="#{pontoBean.actualR}" min="1" max="3" stepFactor="0.5">
+                <p:ajax event="change" listener="#{pontoBean.updateData()}" update=":gui:image:graph,tabledata"/>
+              </p:spinner>
+            </h:panelGrid>
+            <h:message for="ordinate" style="color:red" />
+            <h:commandButton value="Submit" action="#{pontoBean.checkPonto}" />
+            <h:commandButton styleClass="bigBlueButton" id="back" value="BACK" action="showStart"/>
+          </p:panel>
+          <h:dataTable id="tabledata" value = "#{pontoBean.previous}" var = "c">
+            <h:column>
+              <f:facet name = "header">X</f:facet>
+              #{c.x}
+           </h:column>
+           <h:column>
+              <f:facet name = "header">Y</f:facet>
+              #{c.y}
+           </h:column>
+           <h:column>
+              <f:facet name = "header">R</f:facet>
+              #{c.r}
+           </h:column>
+           <h:column>
+              <f:facet name = "header">Inside</f:facet>
+              #{c.inside}
+           </h:column>
+        </h:dataTable>
+        </h:form>
+        <h:outputScript>
+          var deletingCounter = 0;
+          $("span[id$=':image']")
+          console.log($("input[id$=':radius_input']"));
+          $("span[id$=':image']").bind("DOMSubtreeModified",function(){
+            if ((deletingCounter > 0) &amp;&amp; (($("div.negativedot").length + $("div.negativedot").length) > 0)){
+              deletingCounter--;
+              $("div.negativedot").remove();
+              $("div.positivedot").remove();
+            }
+          });
+          $("input[id$=':radius_input']").on("change", function(event){
+            console.log("--");
+            if (($("div.negativedot").length + $("div.negativedot").length) > 0){
+              $("div.negativedot").remove();
+              $("div.positivedot").remove();
+            } else {
+              deletingCounter++;
+            }
+          });
+          $("span[id$=':image']").on("mousedown", function(event) {
+            console.log("ok");
+
+            $form = $("form#gui");
+            $formtwo = $("form#manual");
+            console.log($form);
+            console.log((event.pageX - event.target.offsetLeft - 103)*($formtwo.find("input[id$=':radius_input']").val()/80));
+            $form.find("input[id$=':x']").val((event.pageX - event.target.offsetLeft - 103)*($formtwo.find("input[id$=':radius_input']").val()/80));
+            $form.find("input[id$=':y']").val((-(event.pageY - event.target.offsetTop) + 107)*($formtwo.find("input[id$=':radius_input']").val()/80));
+            $("input[id$=':gui_submit']").click();
+          });
+        </h:outputScript>
+      </h:body>
+</html>

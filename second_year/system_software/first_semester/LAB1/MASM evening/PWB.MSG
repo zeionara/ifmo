@@ -1,0 +1,7 @@
++++ PWB  [F:\] Compile firstapp.asm
+
+	ml /c /Cx /W2 /WX /Zi /Fofirstapp.obj firstapp.asm
+Microsoft (R) Macro Assembler Version 6.00     
+Copyright (C) Microsoft Corp 1981-1991.  All rights reserved.
+
+ Assembling: firstapp.asm

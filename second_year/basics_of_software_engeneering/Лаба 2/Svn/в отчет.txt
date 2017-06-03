@@ -1,0 +1,28 @@
+cd opilab2
+svn checkout https://svn.riouxsvn.com/opilab2svn
+cd opilab2svn
+
+svn copy https://svn.riouxsvn.com/opilab2svn/trunk https://svn.riouxsvn.com/opilab2svn/branches/zeio -m "Created new branch"
+
+svn update
+cd trunk
+
+svn switch https://svn.riouxsvn.com/opilab2svn/branches/zeio
+
+svn add *
+svn commit -m "r5"
+
+svn add *
+svn commit -m "r7"
+
+svn add *
+svn commit -m "r8"
+
+svn add *
+svn commit -m "r10"
+
+svn add *
+svn commit -m "r13"
+
+svn add *
+svn commit -m "r15"

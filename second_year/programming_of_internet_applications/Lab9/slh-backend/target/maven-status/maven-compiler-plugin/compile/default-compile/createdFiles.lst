@@ -1,0 +1,16 @@
+nara\zeio\beans\Ponto.class
+nara\zeio\authorization\AuthorizationResult.class
+nara\zeio\authorization\AuthorizationDetails.class
+nara\zeio\mail\Sender.class
+nara\zeio\conf\RestConfiguration.class
+nara\zeio\controllers\LoginController$1.class
+nara\zeio\StartApplication.class
+nara\zeio\controllers\LogoutController.class
+nara\zeio\authentication\PasswordAuthentication.class
+nara\zeio\mail\Sender$1.class
+nara\zeio\controllers\LoginController$2.class
+nara\zeio\authorization\Key.class
+nara\zeio\beans\PontoShort.class
+nara\zeio\controllers\LoginController.class
+nara\zeio\storages\PontoRepository.class
+nara\zeio\controllers\PontoAddingController.class

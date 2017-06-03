@@ -1,0 +1,10 @@
+public class C extends null {
+
+    java.util.Set<Integer> ll();
+
+    void aa();
+
+    public long dd() {
+        return 33;
+    }
+}

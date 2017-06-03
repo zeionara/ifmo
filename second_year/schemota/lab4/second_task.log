@@ -1,0 +1,79 @@
+Circuit: * C:\Users\Zerbs\Documents\Study\Shemota\lab4\second_task.asc
+
+WARNING: Node X3:N002 is floating.
+WARNING: Node X3:N001 is floating.
+WARNING: Node X4:N002 is floating.
+WARNING: Node X4:N001 is floating.
+WARNING: Node X5:N002 is floating.
+WARNING: Node X5:N001 is floating.
+WARNING: Node X6:N002 is floating.
+WARNING: Node X6:N001 is floating.
+WARNING: Node X7:N002 is floating.
+WARNING: Node X7:N001 is floating.
+WARNING: Node X8:N002 is floating.
+WARNING: Node X8:N001 is floating.
+WARNING: Node X9:N002 is floating.
+WARNING: Node X9:N001 is floating.
+
+WARNING: Less than two connections to node X3:N002.  This node is used by M:X3:1.
+WARNING: Less than two connections to node X3:N001.  This node is used by M:X3:2.
+WARNING: Less than two connections to node X4:N002.  This node is used by M:X4:1.
+WARNING: Less than two connections to node X4:N001.  This node is used by M:X4:2.
+WARNING: Less than two connections to node X5:N002.  This node is used by M:X5:1.
+WARNING: Less than two connections to node X5:N001.  This node is used by M:X5:2.
+WARNING: Less than two connections to node X6:N002.  This node is used by M:X6:1.
+WARNING: Less than two connections to node X6:N001.  This node is used by M:X6:2.
+WARNING: Less than two connections to node X7:N002.  This node is used by M:X7:1.
+WARNING: Less than two connections to node X7:N001.  This node is used by M:X7:2.
+WARNING: Less than two connections to node X8:N002.  This node is used by M:X8:1.
+WARNING: Less than two connections to node X8:N001.  This node is used by M:X8:2.
+WARNING: Less than two connections to node X9:N002.  This node is used by M:X9:1.
+WARNING: Less than two connections to node X9:N001.  This node is used by M:X9:2.
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+Direct Newton iteration for .op point succeeded.
+Ignoring empty pin current: Ix(u1:s)
+Ignoring empty pin current: Ix(u1:j)
+Ignoring empty pin current: Ix(u1:c)
+Ignoring empty pin current: Ix(u1:k)
+Ignoring empty pin current: Ix(u1:r)
+Ignoring empty pin current: Ix(u1:q)
+Ignoring empty pin current: Ix(u1:qn)
+Ignoring empty pin current: Ix(u1:vcc)
+Ignoring empty pin current: Ix(u1:vgnd)
+Ignoring empty pin current: Ix(x1:clk)
+Ignoring empty pin current: Ix(x1:q)
+Ignoring empty pin current: Ix(x2:clk)
+Ignoring empty pin current: Ix(x2:q)
+Ignoring empty pin current: Ix(u1:s)
+Ignoring empty pin current: Ix(u1:j)
+Ignoring empty pin current: Ix(u1:c)
+Ignoring empty pin current: Ix(u1:k)
+Ignoring empty pin current: Ix(u1:r)
+Ignoring empty pin current: Ix(u1:q)
+Ignoring empty pin current: Ix(u1:qn)
+Ignoring empty pin current: Ix(u1:vcc)
+Ignoring empty pin current: Ix(u1:vgnd)
+Ignoring empty pin current: Ix(x1:clk)
+Ignoring empty pin current: Ix(x1:q)
+Ignoring empty pin current: Ix(x2:clk)
+Ignoring empty pin current: Ix(x2:q)
+
+Date: Sun May 28 14:59:03 2017
+Total elapsed time: 46.024 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 202437
+traniter = 202406
+tranpoints = 100825
+accept = 100721
+rejected = 104
+matrix size = 195
+fillins = 14
+solver = Normal
+Thread vector: 138.3/84.2[4] 19.5/15.7[4] 7.8/4.9[4] 2.0/5.5[1]  2592/500
+Matrix Compiler1: 13.40 KB object code size  12.5/8.9/[4.7]
+Matrix Compiler2: 15.08 KB object code size  7.2/10.6/[4.1]
+

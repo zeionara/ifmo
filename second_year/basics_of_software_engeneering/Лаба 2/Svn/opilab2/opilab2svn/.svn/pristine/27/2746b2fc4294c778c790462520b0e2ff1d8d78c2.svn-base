@@ -1,0 +1,6 @@
+public class B extends null {
+
+    double ee();
+
+    int hh();
+}

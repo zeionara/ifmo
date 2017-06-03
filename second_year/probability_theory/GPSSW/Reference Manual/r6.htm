@@ -1,0 +1,2618 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+<blockquote>
+  <blockquote>
+    <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="6">6</a> - GPSS Commands<!--mstheme--></font></h1>
+    <p ALIGN="left">You use Commands to define entities and to control the
+    running of simulations. Commands may be part of the Initial Model
+    Translation, or they may be sent as Interactive Statements to an existing
+    simulation.</p>
+    <p ALIGN="left">As part of the Initial Model Translation, Commands are
+    sent to the Simulation Object as a group, after all the Blocks have been
+    sent. Otherwise, they are sent when you enter them. These are called
+    Interactive Commands.</p>
+    <p ALIGN="left">To send a Command to an existing simulation use the
+    Command menu in the Model Window. This will Translate a Command and send it
+    to the Simulation Object for execution.</p>
+    <p ALIGN="left">Every simulation has a Command Queue associated with it.
+    The Simulation Object performs each Command on the queue one after the
+    other, until it is HALTed or until it runs out of things to do. Even
+    Commands in the Model File, other than HALT and SHOW, are placed on the
+    Command Queue before they are performed.</p>
+    <p ALIGN="left">Commands are either <i>Immediate</i> or <i>Queued</i>.
+    Immediate Commands, such as HALT and SHOW, are performed as soon as they are
+    received by the Simulation Object Other Commands are queued. They are placed
+    at the end of a list of Commands which have not yet been completed. When a
+    Simulation Object has no more Immediate Commands to do on behalf of a
+    simulation, it performs the next Command on the simulation’s Command
+    Queue. If a simulation is running when an Immediate Command is received, the
+    simulation is temporarily suspended while the Immediate Command is
+    performed.</p>
+    <p ALIGN="left">The HALT Command is a special case. Not only is it an
+    Immediate Command, but it also deletes any remaining Commands still on the
+    Command Queue. After a HALT Command is performed, the Simulation Object has
+    nothing more to do on behalf of that simulation.</p>
+    <p ALIGN="left">It is often convenient to put a list of frequently used
+    Commands in a small text file. You can then use an INCLUDE Command to send
+    the whole sequence to the Simulation Object. Even easier, you can load a
+    function key with an INCLUDE Command, and have the whole Command list
+    performed by a single keystroke. Chapter 2 shows you how to do this.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">The Commands are:</p>
+    <b>
+    <p align="left">BVARIABLE</b> - Define a Boolean Variable Entity.</p>
+    <b>
+    <p align="left">CLEAR</b> - Reset statistics and remove Transaction.</p>
+    <b>
+    <p align="left">CONTINUE</b> - Resume the simulation.</p>
+    <b>
+    <p align="left">EQU</b> - Assign a value to a User Variable.</p>
+    <b>
+    <p align="left">EXIT</b> - End the GPSS World Session.</p>
+    <b>
+    <p align="left">FUNCTION</b> - Define a Function Entity.</p>
+    <b>
+    <p align="left">FVARIABLE</b> - Define an Fvariable Entity.</p>
+    <b>
+    <p align="left">HALT</b> - Stop the simulation and delete all Queued Commands.</p>
+    <b>
+    <p align="left">INCLUDE</b> - Read and Translate a secondary Model File.</p>
+    <b>
+    <p align="left">INITIAL</b> - Initialize or modify a Logicswitch, Savevalue, or Matrix
+    Entity.</p>
+    <b>
+    <p align="left">INTEGRATE</b> - Automatically integrate a time differential in a User
+    Variable.</p>
+    <b>
+    <p align="left">MATRIX</b> - Define a Matrix Entity.</p>
+    <b>
+    <p align="left">QTABLE</b> - Define a Qtable Entity.</p>
+    <b>
+    <p align="left">REPORT</b> - Set the name of the Report File or request an immediate
+    report.</p>
+    <b>
+    <p align="left">RESET</b> - Reset the statistics of the simulation.</p>
+    <b>
+    <p align="left">RMULT</b> - Set the seeds of the first 7 Random Number Generators</p>
+    <b>
+    <p align="left">SHOW</b> - Evaluate and display Expression.</p>
+    <b>
+    <p align="left">START</b> - Set the Termination Count and begin a simulation.</p>
+    <b>
+    <p align="left">STEP</b> - Attempt a limited number of Block entries.</p>
+    <b>
+    <p align="left">STOP</b> - Set a Stop Condition based on Block entry attempts.</p>
+    <b>
+    <p align="left">STORAGE</b> - Define a Storage Entity.</p>
+    <b>
+    <p align="left">TABLE</b> - Define a Table Entity.</p>
+    <b>
+    <p align="left">VARIABLE</b> - Define a Variable Entity.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Operands</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Statements usually have one or more operands which you must
+  fill in. Most operands have several different forms which are valid. In the
+  descriptions which follow, a valid class of operands may be described by an
+  italicized word. You must choose a member of the class and type it into the
+  Operand field. For example, if one of the valid forms of an operand is given
+  as <i>PosInteger</i>, you could type:</p>
+  </font><b><font FACE="Courier New" SIZE="4">
+  <p ALIGN="CENTER">21</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The italicized words are usually suggestive, but you may
+  need to refer to the formal definition in the Appendix.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Windows</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A wide variety of windows are available for you to observe
+  the effects of Commands on your simulations. In general, windows are
+  specialized by the entity type.</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Model Window -
+  Text View — Full screen textual model editor.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Journal Window -
+  Record session events.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Blocks Window -
+  Online view of Block dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Expressions
+  Window - Online view of values of Expressions.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Facilities
+  Window - Online view of Facility Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Logicswitches
+  Window - Online view of Logicswitch Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Matrix Window -
+  Online view of the dynamics of a Matrix cross-section.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Plot Window -
+  Online view of a plot of up to 8 Expressions.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Queues Window -
+  Online view of Queue Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Savevalues
+  Window - Online view of Savevalue Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Storages Window
+  - Online view of Storage Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Table Window -
+  Online view of Table Entity dynamics.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Transaction
+  Snapshot - Picture of the state of a Transaction in the simulation.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CEC Snapshot -
+  Picture of the state of the Current Events Chain in the simulation.</p>
+  </font><font FACE="Arial">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2"> &nbsp;FEC Snapshot -
+  Picture of the state of the Future Events Chain in the simulation.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Numeric Groups
+  Snapshot - Picture of the state of the Numeric Groups in the simulation.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Userchains
+  Snapshot - Picture of the state of the Userchain Entities in the simulation.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Transaction
+  Groups Snapshot - Picture of the state of the Transaction Groups in the
+  simulation.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+  <blockquote>
+    <blockquote>
+    </font><font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="BVARIABLE">BVARIABLE</a><!--mstheme--></font></h1>
+    <p align="left">A BVARIABLE Command defines a Bvariable Entity.</p>
+    <p ALIGN="CENTER">NAME BVARIABLE X</p>
+    <p align="left">Label/Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">X</b>&nbsp;-&nbsp;Expression. Required. Must be <i>Expression</i>.
+  Expressions are discussed in Section 3.4.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">LINE11 BVARIABLE (BV$CLK’AND’BV$PHASE2)</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This example defines a Bvariable Entity which is to be
+evaluated when a BV$LINE11 SNA is encountered. When it is evaluated, the result
+is 1 (&quot;TRUE&quot;) if the CLK and the PHASE2 Bvariable Entities are TRUE
+when evaluated. Otherwise, the LINE11 Bvariable returns a 0 (&quot;FALSE&quot;).</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The BVARIABLE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When a BVARIABLE Command is performed, the Simulation Object
+creates or redefines a GPSS Bvariable Entity. The Bvariable Entity so created is
+evaluated when a System Numerical Attribute in the BV class, referring to this
+particular entity, is encountered by the Simulation Object.</p>
+  <p ALIGN="left">The Expression contained in a BVARIABLE Command is evaluated
+according to the rules in Chapter 3, and may include calls to PLUS Procedures or
+to Library Procedures. The final result is converted to integer 0, if 0, or to
+integer 1 if the result was not zero. The evaluation proceeds differently in
+GPSS/PC Compatibility Mode.</p>
+  <p ALIGN="left">Expressions must be well-formed according to the rules of
+elementary algebra. A formal definition can be found in the Appendix. You may
+use any of the arithmetic and logic operators listed in Section 3.4. If SNAs are
+used in the Expression field, they are evaluated with respect to the Active
+Transaction. A Named Value which has not been explicitly assigned a value cannot
+be used as an item in an Expression. To do so, you must assign a value to it
+before the Expression is evaluated. Assignments to User Variables are done by
+EQU Commands or in PLUS Procedures.</p>
+  <p ALIGN="left">Expressions in BVARIABLE Command are not limited to logical
+operators. They may include arithmetic operators and calls to Library
+Procedures. The truth values of TRUE and FALSE are treated internally as integer
+1 and 0, respectively.</p>
+  <p ALIGN="left">Once a Bvariable Entity is created in a simulation, it is
+never destroyed. However, it may be redefined later by an interactive BVARIABLE
+Command.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">GPSS/PC Compatibility</p>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All SNAs are
+truncated in GPSS/PC Compatibility Mode.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;In Bvariable
+Entity evaluation in GPSS/PC Compatibility Mode, the intermediate results are
+truncated.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;BV<i>Entnum</i>&nbsp;-&nbsp;Result
+of evaluating Bvariable Entity <i>Entnum</i>.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="CLEAR">CLEAR</a> <!--mstheme--></font></h1>
+    <p align="left">A CLEAR Command returns the simulation to the unused state.</p>
+    <p ALIGN="CENTER">CLEAR A</p>
+    <p align="left">Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2">&nbsp;-&nbsp;ON or
+  OFF. If the A Operand is omitted, ON is assumed. Optional. The operand must be
+  ON, OFF or <i>Null</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The CLEAR Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The CLEAR Command resets all statistics accumulators, clears
+all Transactions from the simulation, then primes each GENERATE Block with its
+first Transaction.</p>
+  <p ALIGN="left">The state of all Facility Entities and Storage Entities is
+reset to show an unoccupied condition. The contents of all Blocks become 0.</p>
+  <p ALIGN="left">When a CLEAR or CLEAR ON Command is performed:</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All Transactions
+are removed from the simulation.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Current counts are
+set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;System clock is
+set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Facilities are
+made idle and available.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Tables are set to
+0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Storages are set
+to full availability.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Space-time
+products of Facilities, Storages, Queues, and User Chains are set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Total counts are
+set equal to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Minimum and
+maximum values are set equal to current content in Queues Entities, Userchain
+Entities, and Storage Entities.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Random number
+generators are not reset.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The local count of
+generated Transactions in a GENERATE Block is set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Members are
+removed from all numeric Groups.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Savevalue Entities
+are set to zero.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Logicswitch
+Entities are reset.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Matrix elements
+are set to 0.</p>
+  </blockquote>
+  <p ALIGN="left">If a CLEAR OFF is used, all of the above occur except the
+last three items. When Operand A is off, Savevalue Entities, Logicswitch
+Entities, and Matrix Elements are left unchanged.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="CONDUCT">CONDUCT</a> <!--mstheme--></font></h1>
+    <p align="left">A CONDUCT Command begins an experiment.</p>
+    <p ALIGN="CENTER">CONDUCT A</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2">&nbsp;-&nbsp;PLUS
+  Experiment Procedure Call. Optional. The operand must be <i>ProcedureCall</i>.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b>
+  <p ALIGN="left"><font face="Arial" size="2">The CONDUCT Command is an <i>Immediate</i> <i>Command</i>.that
+can only be sent to a HALTed Simulation Object.</font></p>
+  <font FACE="Arial">
+  <p ALIGN="left"><font size="2">The CONDUCT Command begins and passes arguments to a
+pre-registered PLUS Experiment in a Simulation Object. If the Simulation Object
+has only a a single Experiment with no arguments, operand A is not required in
+the CONDUCT Command.</font></p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">CONDUCT MyExperiment( NumberOfTellers, StartingReplicateNumber
+)</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this example, the PLUS Experiment MyExperiment is started
+just like any other Procedure. The global User Variables NumberOfTellers and
+StartingReplicateNumber are used to tell the experiment where to begin or resume
+the simulation runs. The arguments are evaluated in the global context and
+passed to the invoked Experiment.</p>
+  <p ALIGN="left">Once you have begun an Experiment with a CONDUCT Command,
+your ability to interact with the simulation is limited. You can always display
+the running Simulation System Clock ( <b>View / Clock</b> ), but generally you
+will have to HALT the Experiment in order to interact with the Simulation
+Object.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A CONDUCT Command cannot be issued by a DoCommand invocation.</p>
+  <p ALIGN="left">Only HALT Commands are available during an Experiment.</p>
+  <p ALIGN="left">The DoCommand Library Procedure can be invoked only during an
+Experiment.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="CONTINUE">CONTINUE</a> <!--mstheme--></font></h1>
+    <p align="left">A CONTINUE Command causes a halted simulation to resume.</p>
+    <p ALIGN="CENTER">CONTINUE</p>
+    <p align="left">Operands</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">CONTINUE</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command is used to resume the execution of a simulation.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The CONTINUE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The CONTINUE Command causes a halted simulation to resume. A
+simulation is halted when it encounters a Stop Condition, is issued a HALT
+Command, encounters an Error Stop. Stop, or ends normally. Conditions can be set
+by a STOP or STEP Command.</p>
+  <p ALIGN="left">If the simulation had encountered a Stop Condition, the
+CONTINUE Command skips the original Stop Condition but does not remove it. If
+the same condition occurs again, the simulation will stop again. Stop Conditions
+must be removed explicitly by the OFF option in a STOP Command, or in the Blocks
+Window. When a model is Translated, all Stop Conditions are removed. This is
+discussed in Chapter 2 in the Section, <u>Setting Stop Conditions</u>.</p>
+  <p ALIGN="left">A CONTINUE can be used when a simulation has been interrupted
+by a HALT Command. Since a HALT command removes all Commands from the simulation’s
+Command Queue, only the simulation, and not succeeding Commands, will be
+resumed.</p>
+  <p ALIGN="left">When the Simulation Object processes a CONTINUE Command, it
+first determines if a positive Termination Count exists. This means that a
+previous START Command has not been completed. If the Termination Count is not
+strictly positive, CONTINUE causes the optional standard report to be written
+but does not schedule any Transactions. Otherwise, the Simulation Object calls
+the Transaction scheduler to begin processing Transactions again.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Hot Key</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A CONTINUE Command can be sent to the simulation by pressing
+the <b>[Ctrl] + [Alt] + [C] </b>key combination. A GPSS World window must have the input focus.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="EQU">EQU</a> <!--mstheme--></font></h1>
+    <p align="left">An EQU Command evaluates an Expression and assigns the result to a Named
+Value.</p>
+    <p ALIGN="CENTER">NAME EQU X</p>
+    <p align="left">Label/Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Named Value
+  to receive a value. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">X</b>&nbsp;-&nbsp;Expression. Required. Must be <i>Expression</i>.
+  Expressions are discussed in Section 3.4.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Examples</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">Price EQU 19.95</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command defines the name Price and assigns the value
+19.95 to it. Future references to the Named Value Price will use a numeric value
+of 19.95.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The EQU Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When the Simulation Object processes an EQU Command, it
+creates or redefines a Named Variable and evaluates the Expression in the
+Command. The name so created is associated with a value equal to the result of
+the evaluated Expression. This value replaces references to the defined name
+when an operand or Expression is evaluated later.</p>
+  <p ALIGN="left">Named Values may be used for their intrinsic value as User
+Variables, or they may be used as entity specifiers as Entity Labels. Normally,
+you will not assign a value to a name used as an Entity Label. System defined
+names, i.e. names which have not yet appeared in an EQU Command, are not valid
+by themselves in Expressions or operands. However, they may be used as an entity
+specifier in an SNA. The Simulation Object will automatically assign a distinct
+value to such a name.</p>
+  <p ALIGN="left">The Expression contained in a EQU Command is evaluated
+according to the rules in Chapter 3, and may include calls to PLUS Procedures or
+to Library Procedures. Expressions must be well-formed according to the rules of
+elementary algebra. A formal definition can be found in the Appendix. You may
+use any of the arithmetic and logic operators listed in Section 3.4. If SNAs are
+used in the Expression field, they are evaluated with respect to the Active
+Transaction. A Named Value which has not been explicitly assigned a value cannot
+be used as an item in an Expression. To do so, you must assign a value to it
+before the Expression is evaluated. Assignments to User Variables are done by
+EQU Commands or in PLUS Procedures.</p>
+  <p ALIGN="left">Once a Named Value is created in a simulation, it is never
+destroyed. However, User Variables may change values as a result of later EQU
+Commands, assignments in PLUS Procedures, or integration. The numerical
+integration of User Variables is discussed in Chapter 1, and below under the
+INTEGRATE Command.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The values of
+Block labels may not be changed in an EQU Command.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SNAs are evaluated
+with respect to the Active Transaction.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;If a name used as
+an entity specifier is changed after the entity is defined, you will not be able
+to access the original entity by using that name.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FVARIABLE and
+BVARIABLE entities share the same name space.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;If you wish to
+assign a numeric value to an entity name for use in a SELECT Block, make sure
+the name/number assignments in the EQU Commands precede the entity definitions.
+For example:</p>
+  </font><b><font FACE="Arial">
+  <p ALIGN="left">100 Stor1 EQU 1</p>
+  <p ALIGN="left">200 Stor1 STORAGE 10000</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In SNAs and operands, this STORAGE may now be referred to by
+the number 1 or the name Stor1.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="EXIT">EXIT</a> <!--mstheme--></font></h1>
+    <p align="left">An EXIT Command concludes the GPSS World Session.</p>
+    <p ALIGN="CENTER">EXIT</p>
+    <p align="left">Operands</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <b>
+      <font SIZE="2">
+      <p ALIGN="left">A</font></b><font SIZE="2">&nbsp;-&nbsp;Exit Code.
+      Optional. The operand must be <b>-1</b>, <b>0</b>, <b>1</b>, or <i>Null</i>.</p>
+      <p ALIGN="left">&nbsp;</p>
+    </font><b><font SIZE="4">
+    <p align="left">Action</p>
+    </font></b><font SIZE="2">
+    <p ALIGN="left">The EXIT Command ends the session immediately.</p>
+    <p ALIGN="left">The A Operand can be used to control the writing of Model
+    Objects and Simulation Objects to files. If Operand a is <b>0</b> or not
+    specified, all modified files bring up a message box inquiring as to whether
+    or not each object should be saved. If Operand A is <b>1</b>, all Objects
+    are saved. If Operand A is <b>-1</b>, no Objects are saved.</p>
+    <p ALIGN="left">The EXIT Command can be used in Batch Mode, so that an
+    &quot;invisible Session&quot; can be run and terminated without window
+    operations. Batch Mode is discussed in Section 2.3.2.</p>
+    <p ALIGN="left">The Exit Operation is also available as a library
+    procedure and can therefore be initiated in a PLUS Procedure.</p>
+    </font><b><font SIZE="4">
+    <p align="left">Special Restrictions</p>
+    </font></b><font SIZE="2">
+    <p ALIGN="left">None.</p>
+    </font><b><font SIZE="4">
+    <p align="left">Related SNAs</p>
+    </font></b><font SIZE="2">
+    <p ALIGN="left">None.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font>
+  </font><b>
+  </blockquote>
+  </blockquote>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="FUNCTION">FUNCTION</a> <!--mstheme--></font></h1>
+    <p align="left">A FUNCTION Command defines the rules for a table lookup.</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">There are several types of Function Entities. Each has its
+own rules pertaining to the table lookup. For each, the lookup table is
+specified in one or more Function Follower Statements. Type C Functions are a
+special case. They use a table lookup, followed by a linear interpolation.</p>
+  <p ALIGN="left">The use of Function Commands to define probability
+distributions has been largely supplanted by the built-in distributions in the
+Procedure Library. This is discussed in Chapter 8. The old Function Types are
+still supported by GPSS World.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p ALIGN="left">NAME FUNCTION A,B</p>
+  <p align="left">Label / Operands</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+this entity. Required. The field must be <i>Name</i>.</p>
+  <b>
+  <p ALIGN="left">A</b>&nbsp;-&nbsp;Function argument. Required. The operand
+must be <i>Name</i>, <i>PosInteger</i>, <i>String</i>, <i>ParenthesizedExpression,
+SNA</i>, or <i>SNA*Parameter</i>.</p>
+  <b>
+  <p ALIGN="left">B</b>&nbsp;-&nbsp;Function type (one letter) followed
+immediately by the number of data pairs in the Function Follower Statements.
+Required.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The FUNCTION Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">A FUNCTION Command together with one or more Function
+Follower Statements defines a GPSS Function Entity. Later references to an SNA
+of the class FN can evaluate the Function and return the result. Operand A of
+the FUNCTION Command is evaluated numerically. There are several types of
+Functions which must be considered individually. The type is specified in
+Operand B of the FUNCTION Command.</p>
+  <p ALIGN="left">Each FUNCTION Command must be followed immediately by a list
+of data pairs, separated by slashes, which define a table. The text lines that
+contain the list are called Function Follower Statements. Each data pair has an
+X value and a Y value (or SNA) separated by a comma. Function Follower
+Statements create tables in the simulation which allow a mathematical function
+of one variable to be evaluated. When the Simulation Object encounters a
+reference to an FN<i>Entnum</i> SNA, it evaluates the Function Entity and
+returns the result. The tables and the manner in which they are referenced
+depends on the Function type.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Function Modifiers</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">FN class SNAs used in Operand B of GENERATE or ADVANCE
+Statements are called Function Modifiers. When a Transaction enters a GENERATE
+or ADVANCE Block with a Function Modifier, the result of the Function is
+multiplied by Operand A of the Block and used as the time increment.</p>
+  <p ALIGN="left">Operand C of an ASSIGN Statements is also called a Function
+Modifier, although it is specified differently. In this case, only the entity
+specifier, not the FN class SNA, is used in the ASSIGN Statement. When a
+Transaction enters an ASSIGN Block with a Function Modifier, Operand C is used
+to determine the Function Entity number. Then the result of evaluating that
+Function is multiplied by Operand B of the ASSIGN Block and the result is used
+as the ASSIGN value.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Function Types</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">There are 5 different type of Function Entities:</p>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p align="left">Type C Functions</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Type C&nbsp;-&nbsp;&quot;Continuous&quot; valued Function.
+Given an X value, after a linear interpolation, the Function returns a Y value.
+A random argument is a special case.</p>
+  <p ALIGN="left">In Function Follower Statements of C type Functions, the X
+and Y Values must be <i>Integer</i>, or <i>Real</i>.</p>
+  <p ALIGN="left">In a C type Function, without a random argument, the data
+pairs in the Function Follower Statements define a piecewise linear Function of
+the argument. The first data pair defines the left end point and the last data
+pair defines the rightmost end point. The X and Y values are stored as double
+precision floating point numbers.</p>
+  <p ALIGN="left">The Function evaluation begins with the evaluation of the
+argument. The result is used to identify the line segment of the Function. The
+argument is then used in a double precision linear interpolation to arrive at
+the double precision result of the Function. If the argument falls outside the
+end points of the Function definition, the value at the nearest end point is
+returned.</p>
+  <p ALIGN="left">When Operand A of the FUNCTION Command is an RN class SNA,
+the Function is said to have a random argument. A type C Function with a random
+argument is used to define a &quot;continuous&quot; probability distribution.
+This is a special case. The Function is specified as the cumulative distribution
+function (CDF) with 0 as the value of the left end point and 1 the value of the
+right end point. As before, the CDF is specified as a piece wise linear
+function. A random number between 0 and .999999, inclusively, is taken from the
+random number stream and is used in a linear interpolation to arrive at the
+double precision value of the Function.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2">
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">Output FUNCTION V$Input,C3<br>
+  1.1,10.1/20.5,98.7/33.3,889.2</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This example defines a piece wise linear function with two
+line segments. When the Function Entity is evaluated for a FN$Output SNA, first
+the Function argument V$Input is evaluated. If the argument result is outside
+the defined range, 1.1 to 33.3, the nearest endpoint is returned. For example,
+if V$Input returns 1 or less, FN$Output returns 10.1.</p>
+  <p ALIGN="left">If the argument result falls within a defined line segment, a
+linear interpolation is performed. For example, if V$Input returns 25, then
+FN$Output returns the result of the following calculation:</p>
+  <p ALIGN="center">98.7 + (889.2-98.7) # (25-20.5)/(33.3-20.5)</p>
+  <p ALIGN="left">Therefore, FN$Output returns 376.6101563.</p>
+  </font><font SIZE="2">
+  <blockquote>
+    <blockquote>
+    </font><b><u><font FACE="Arial" SIZE="2">
+    <p align="left">Example</p>
+    </font></u></b><font SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+    </blockquote>
+  </blockquote>
+  </font>
+  <p ALIGN="left"><font size="2">Xpdis FUNCTION RN200,C24<br>
+  0,0/.1,.104/.2,.222/.3,.355/.4,.509/.5,.69/.6,.915/.7,1.2/.75,1.38<br>
+  .8,1.6/.84,1.83/.88,2.12/.9,2.3/.92,2.52/.94,2.81/.95,2.99/.96,3.2<br>
+  .97,3.5/.98,3.9/.99,4.6/.995,5.3/.998,6.2/.999,7/.9998,8</font></p>
+  <font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this example we define the Function Entity named Xpdis.
+The FUNCTION Command names the Function, used random number generator 200, and
+tells GPSS World that it is to be a type C Function Entity with 24 data pairs to
+follow in one or more Function Follower Statements.</p>
+  <p ALIGN="left">This is an example of an approximation to a negative
+exponential distribution with mean of 1. You can use a built in probability
+distribution from the Procedure Library, which is slightly more accurate, but
+Function Entities are generally more efficient.</p>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p align="left">Type D Functions</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Type &nbsp;D -&nbsp;Discrete valued function. Each argument
+value or probability mass is assigned an numeric value. A random argument is a
+special case.</p>
+  <p ALIGN="left">In Function Follower Statements of D type Functions, the X
+Values must be <i>Expression</i>, and the Y Values must be <i>Integer</i>, <i>Real,
+  </i>or<i> Name</i>.</p>
+  <p ALIGN="left">In a D type Function, without a random argument, the data
+pairs in the Function Follower Statements define a set of argument values which
+are associated with specific Function values. The X values in the Function
+Follower Statements must be non decreasing. They are stored internally in double
+precision. When the Function is evaluated, the X values from the Function
+Follower Statements are searched from lowest to highest value. When an X value
+is found which is greater than or equal to the argument value, the corresponding
+Y value is returned. If there is no such X value, the Y value or named value
+associated with the largest X value is returned.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2">
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">DIis1 FUNCTION X$A2,D5<br>
+  1.1,6.9/2.1,7/6.33,9.4/7,10/9.9,12.01</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A D type Function with a random argument is used to define a
+discrete probability distribution. The Function is specified as a cumulative
+distribution function (CDF) with 0 as the value of the left end point and 1 the
+value of the right end point. When such a Function is evaluated, a random number
+between 0 and .999999 is taken from the random number stream and is used. The
+smallest X value in the Function Follower Statement that is greater than or
+equal to the random number is selected. The associated Y value is returned as
+the value of the Function.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2">
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">Ran1 FUNCTION RN1,D5<br>
+  0,0/.2,7.2/.4,6.667/.8,9.92/1.0,10</p>
+  </font><b>
+  <blockquote>
+    <font FACE="Arial">
+    <p align="left">Type E Functions</p>
+    </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Type E&nbsp;-&nbsp;Discrete, &quot;attribute valued&quot;
+function. Each argument value or probability mass is assigned an SNA to be
+evaluated. A random argument is a special case.</p>
+  <p ALIGN="left">In Function Follower Statements of E type Functions, the X
+Values must be <i>Expression</i>, and the Y Values must be <i>Integer</i>, <i>Real,
+Name</i>, <i>SNA</i>, or <i>ParenthesizedExpression</i>.</p>
+  <p ALIGN="left">A type E Function is evaluated in the same way as a type D
+Function, except that a type E Function requires one more step. After the
+appropriate X value is chosen, the associated SNA (Y value) is evaluated and
+returned as the result of the Function.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2"><b>
+    </blockquote>
+    </blockquote>
+  </b>
+  <p ALIGN="left">Edisc FUNCTION X$QRA,E5<br>
+  1,S$Stor1/3,S$Stor2/5,S$Stor3/9,S$Stor5/10,S$Stor6</p>
+  </font><b>
+  <blockquote>
+    <font FACE="Arial">
+    <p align="left">Type L Functions</p>
+    </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Type L&nbsp;-&nbsp;List valued function. The argument value
+is used to determine the list position of the value to be returned.</p>
+  <p ALIGN="left">In Function Follower Statements of L type Functions, the X
+Values must be <i>Integer</i>, and the Y Values must be <i>Integer</i>, <i>Real,
+  </i>or<i> Name</i>.</p>
+  <p ALIGN="left">The Function Follower Statements define a list of values from
+which the result is chosen. When the Function is evaluated, the argument is
+evaluated and used as the ordinal number (X value) of the list member. The Y
+value with that position within the list is returned as the result. If the
+argument is too large or less than 1, an Error Stop occurs. X values must begin
+with 1 and be incremented by 1 for each successive data pair. X values may not
+be omitted in Function Follower Statements.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2"><b>
+    </blockquote>
+    </blockquote>
+  </b>
+  <p ALIGN="left">Listtype FUNCTION Q$Barber,L5<br>
+  1,PAR1/2,PAR2/3,PAR3/4,PAR4/5,PAR5</p>
+  <b>
+  <blockquote>
+  </b></font><b><font FACE="Arial">
+  <p align="left">Type M Functions</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Type M&nbsp;-&nbsp;Attribute list valued function. The
+argument value is used to determine the list position of the SNA to be evaluated
+and returned as the result.</p>
+  <p ALIGN="left">In Function Follower Statements of M type Functions, the X
+Values must be <i>Expression</i>, and the Y Values must be <i>Integer</i>, <i>Real,
+Name</i>, <i>SNA</i>, or <i>ParenthesizedExpression</i>.</p>
+  <p ALIGN="left">A type M Function is evaluated in the same way as a type L
+Function, except that a type M Function requires one more step. After the list
+position is chosen, the associated SNA is evaluated and returned as the Y value.</p>
+  <blockquote>
+    <blockquote>
+      <b><u>
+      <p align="left">Example</p>
+      </u></b></font><font SIZE="2"><b>
+    </blockquote>
+    </blockquote>
+  </b>
+  <p ALIGN="left">Mlist FUNCTION X$Name1,M5<br>
+  1,Q$Nnam1/2,Q$NamX/3,Q$Nam4/4,Q$Nam6/5,F$Tan1</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Rules For Functions</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You must obey several rules when you create a Function. They
+apply to both FUNCTION Commands and/or Function Follower Statements.</p>
+  <blockquote>
+    <blockquote>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The X values of
+  Function Follower Statements must be non decreasing.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Function
+  Follower Statements are NEVER line numbered.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;A Function which
+  has a random argument must describe a valid cumulative probability
+  distribution in the Function Follower Statements.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All fields in a
+  Function Command are required.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All X values and
+  Y values in Function Follower Statements are required.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The number of
+  data pairs stated in the B Operand of the FUNCTION Commands must correspond to
+  pairs separated by slashes, [/], in the Function Follower Statements.</p>
+    </font><font FACE="Arial">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="1">&nbsp;</font><font FACE="Arial" SIZE="2">X</font><font FACE="Arial" SIZE="1">1</font><font FACE="Arial" SIZE="2">,
+  the first probability value specifying a random continuous Function must be 0.
+  CDF values must be nonnegative, nondecreasing, and may not exceed 1.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Function
+  Follower Statements have no comments field.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;In a Function
+  Follower Statement, an X value is followed by [,], [,] is followed by a Y
+  value, a Y value is followed by [/] or [CR], and [/] is followed by an X
+  value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CDFs must be
+  nondecreasing between 0 and 1, inclusively. Any missing probability in C type
+  Functions is given to the rightmost interval, otherwise missing probability is
+  an error.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;C,D, and L type
+  Functions cannot have SNAs for Y values.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;E and M type
+  Functions must have SNAs, or parenthesized Expressions, for Y values.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;L and M type
+  Functions may not have random arguments.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The Function
+  Follower Statements of L and M type Functions must have sequential X values
+  starting with 1.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">The special rules applied when running in GPSS/PC
+Compatibility Mode are discussed in Chapter 3.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FN<i>Entnum</i>&nbsp;-&nbsp;Function.
+Result of evaluating Function <i>Entnum</i>.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="FVARIABLE">FVARIABLE</a> <!--mstheme--></font></h1>
+    <p align="left">An FVARIABLE Command defines a &quot;floating point arithmetic&quot; Variable
+Entity.</p>
+    <p ALIGN="CENTER">NAME FVARIABLE X</p>
+    <p align="left">Label / Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">X</b>&nbsp;-&nbsp;Expression. Required. Expressions are
+  discussed in Section 3.4.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">VAR1 FVARIABLE 5#LOG(Q$WAITINGLINE)</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command defines a &quot;floating point&quot; type
+Variable Entity which is to be evaluated when a V$VAR1 is encountered. Variables
+defined by both VARIABLE and FVARIABLE Commands are accessed by SNAs of class V.
+When the V$VAR1 SNA is evaluated, the Expression defining the Variable Entity
+named VAR1 must be evaluated. It begins with the evaluation of the Q$WAITINGLINE
+SNA. The logarithm of the double precision result is calculated and multiplied
+by 5. The result is truncated and returned as the value of the SNA.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The FVARIABLE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When an FVARIABLE Command is performed, the Simulation Object
+creates or redefines a GPSS Variable Entity. The Variable Entity so created is
+evaluated when a System Numerical Attribute in the V class, referring to this
+particular entity, is encountered by the Simulation Object.</p>
+  <p ALIGN="left">The Expression contained in an FVARIABLE Command is evaluated
+according to the rules in Chapter 3, and may include calls to PLUS Procedures or
+to Library Procedures. The evaluation proceeds differently in GPSS/PC
+Compatibility Mode.</p>
+  <p ALIGN="left">Expressions must be well-formed according to the rules of
+elementary algebra. A formal definition can be found in the Appendix. You may
+use any of the arithmetic and logic operators listed in Section 3.4. If SNAs are
+used in the Expression field, they are evaluated with respect to the Active
+Transaction. A Named Value which has not been explicitly assigned a value cannot
+be used as an item in an Expression. To do so, you must assign a value to it
+before the Expression is evaluated. Assignments to User Variables are done by
+EQU Commands or in PLUS Procedures.</p>
+  <p ALIGN="left">Once a Variable Entity is created in a simulation, it is
+never destroyed. However, it may be redefined later by an interactive FVARIABLE
+Command.</p>
+  <p ALIGN="left">If the simulation is not run in GPSS/PC Compatibility Mode,
+FVARIABLE and VARIABLE Commands are treated the same.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">GPSS/PC Compatibility</p>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All SNAs are
+truncated in GPSS/PC Compatibility Mode.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Arial">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="1">&nbsp;</font><font FACE="Arial" SIZE="2">V<i>Entnum</i>&nbsp;-&nbsp;Result
+of evaluating a Variable Entity <i>Entnum</i>.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="HALT">HALT</a> <!--mstheme--></font></h1>
+    <p align="left">A HALT Command interrupts the simulation and purges the Command Queue.</p>
+    <p ALIGN="CENTER">HALT</p>
+    <p align="left">&nbsp;</p>
+    <p align="left">Operands</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A HALT Command is an Immediate Command, and therefore is not
+placed on the Command Queue by the Simulation Object. Instead, it is performed
+immediately, causing the simulation to be placed in the Halted State, and
+removing any remaining Commands from the Command Queue. The simulation may be
+resumed by a later CONTINUE Command.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="CENTER">HALT</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This in the only way to use the GROUPS Command.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Hot Key</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A HALT Command can be sent to the simulation by pressing the <b>[Ctrl]
+  + [Alt] + [H] </b>key combination. A GPSS World simulation window must have the input focus.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="INCLUDE">INCLUDE</a> <!--mstheme--></font></h1>
+    <p align="left">The INCLUDE Command Translates a file of Model Statements.</p>
+    <p ALIGN="CENTER">INCLUDE A</p>
+    <p align="left">Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2">&nbsp;-&nbsp;Filespec.
+  A string representing the file specification of the Secondary Model File or
+  Command List to be Translated. Required. Operand must be <i>String</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">INCLUDE &quot;SAMPLE1.TXT&quot;</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this example, when the Translator encounters the INCLUDE
+Command, it will include the statements from the SAMPLE1.TXT Text Object in the
+created simulation. Since no file path is given, GPSS World assumes the file is
+in the Model Directory.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The INCLUDE Command is an <i>Immediate</i> <i>Command</i>. It
+  causes statements from a Text Object to be retrieved and Translated. Text
+  Objects are plain text files. When they are used in an INCLUDE Statement they
+  are also called Secondary Model Files.</p>
+  <p ALIGN="left">Operand A is used as the file specification of a Command List
+or a Secondary Model File. If a path is not included in the filespec, the
+location of the model file that contains the INCLUDE command will be used.</p>
+  <p ALIGN="left">When an INCLUDE Command is Translated, it causes the GPSS
+World Translator to replace it with a Text Object, and to Translate that in place
+of the INCLUDE Command. The Translator opens the Secondary Model File and
+Translates each Model Statement one at a time.</p>
+  <p ALIGN="left">Model Statements in a Command File or Secondary Model File
+are treated as if they occurred in line, in place of the INCLUDE Command.
+Nesting is allowed to a depth of 5. When all Model Statements have been
+Translated, they are sent to the Simulation Object for processing.</p>
+  <p ALIGN="left">If any errors are detected, GPSS World sounds an audio
+signal, generates a syntax error message and attempts to find additional errors.
+The error message contains the offending line number in the Secondary Model
+File. Handling errors is discussed in Chapter 2. Audio sounds can be suppressed
+by selecting Silence in the Options page of the Configuration Notebook.</p>
+  <p ALIGN="left">For testing purposes, it may be more convenient to Translate
+each Secondary Model File by itself, before using it in an INCLUDE Command. Here’s
+how:</p>
+  <blockquote>
+    <blockquote>
+      <p align="left">1. Read the Secondary Model File in a Model Window.</p>
+      <p align="left">2. Translate the partial model represented in the Model Window.</p>
+      <p align="left">3. Correct Syntax Errors.</p>
+      <p align="left">4. Save the Secondary Model File.</p>
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">INCLUDE Commands can be entered interactively, or loaded into
+Function Keys, just like any other GPSS Statement. This is discussed in Chapter
+2.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Model File Numbers</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Model File Numbers are used in the Blocks Window and in Error
+Stop messages to identify the Block Statement that created a given Block Entity.</p>
+  <p ALIGN="left">As the Translator encounters Model Files, it assigns an
+integer to be used later to identify the file. The Model Object is assigned the
+number 0, and succeeding INCLUDE Files are assigned succeeding integers as they
+are encountered by the Translator. Thereafter, Block Entities can be associated
+to the appropriate text line in the Model File.</p>
+  <p ALIGN="left">Each occurrence of a file causes a distinct Model File Number
+to be assigned. Multiple occurrences of a single file are also assigned distinct
+numbers. Since each occurrence causes a distinct set of Blocks to be created,
+distinct Model File Numbers are required for unique identification.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;You may use
+INCLUDE Commands to nest Model Files to a maximum depth of 5.</p>
+  </font><b>
+    </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;You cannot place an INCLUDE
+Command inside a PLUS Procedure.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="INITIAL">INITIAL</a> <!--mstheme--></font></h1>
+    <p align="left">An INITIAL Command initializes a Matrix Entity, Logicswitch Entity, Savevalue Entity, or an
+element of a Matrix Entity.</p>
+    <p ALIGN="CENTER">INITIAL A,B</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2">&nbsp;-&nbsp;Logicswitch,
+  Savevalue, or Matrix element specified as SNA, or the name of a Matrix Entity.
+    Operand A must have the form of
+  an LS, X, or MX class SNA or a Matrix Name. Required. The operand must be <i>Name</i>,
+    LS<i>PosInteger</i>,
+  LS$<i>Name</i>, X<i>PosInteger</i>, X$<i>Name</i>, MX<i>PosInteger</i>(<i>m,n</i>)
+  or MX$<i>Name</i>(<i>m,n</i>). Coordinates (<i>m,n</i>) must be <i>Name</i> or
+    <i>PosInteger</i>.</p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Value to be assigned, or
+    &quot;UNSPECIFIED&quot;. The default is 1.
+  Optional. The operand must be <i>Null</i>, <i>Number, String</i>, <i>Name</i>,
+    or UNSPECIFIED.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The INITIAL Command is a <i>Queued</i> <i>Command</i>. When
+  the Simulation Object receives one, it places it at the end of the simulation’s
+  Command Queue.</p>
+  <p ALIGN="left">The INITIAL Command causes a value, specified by Operand B,
+  <font SIZE="2">to be assigned to the Logicswitch, Savevalue, or Matrix Entity
+  as specified by Operand A</font>. If Operand B is not used, a value of 1 is
+  assigned to the entity, or element.&nbsp;</p>
+  <p ALIGN="left">If Operand B is the keyword UNSPECIFIED, the Savevalue or
+  Matrix, or Matrix element is placed in the unassigned &quot;Unspecified&quot;
+  state. This can be used to indicate missing data in a Results Matrix which is
+  to be analyzed by the ANOVA Library Subroutine.&nbsp;</p>
+  <p ALIGN="left">If Operand A specifies a Logicswitch Entity, only the value
+  of 0 or 1 is assigned. If Operand B is explicitly specified as 0, the value of
+  0 is assigned. Otherwise, the value 1 is assigned. The UNSPECIFIED option
+  cannot be used with an LS class SNA, because Logicswitch Entities do not have
+  an unspecified state.</p>
+  <p ALIGN="left">If Operand A specifies the name of a Matrix Entity, all
+  elements in the matrix are placed in the state indicated by the B operand. The
+  default is a value of 1. The MX SNA can be used in Operand A to assign
+  elements in 2 dimensional matrices, but you will need to use a PLUS Language
+  assignment for matrices of more than 2 dimensions. To place such elements in
+  the UNSPECIFIED state, you can INITIALize a Savevalue Entity to UNSPECIFIED
+  and use PLUS to complete the assignment.</p>
+  <p ALIGN="left">The INITIAL Command can be used when there is no Active
+  Transaction, or when Transaction Parameter contents cannot be relied upon.
+  However, a fuller range of operands are available using LOGICSWITCH, SAVEVALUE,
+  and MSAVEVALUE Block Statements interactively.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Examples</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">INITIAL X$Quote,&quot;Now is the time ... &quot;</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command assigns a string constant to the Savevalue
+  Entity, QUOTE.</p>
+  </font><b><font SIZE="2">
+  <p ALIGN="CENTER">INITIAL MX$Inventory(Part_39,Stocklevel),200</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command assigns the value 200 to the element of Matrix
+  Entity named Inventory with row number of Part_39, and column number of
+  Stocklevel. The names Part_39 and Stocklevel must have previously been
+  assigned the appropriate integers in EQU Commands.</p>
+  <b><font SIZE="2">
+  <p ALIGN="CENTER">INITIAL MainResult,UNSPECIFIED</p>
+  </font></b>
+  <p ALIGN="left">This Command prepares the previously defined Matrix Entity
+  named MainResult for use in an experiment which may have missing data.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Operand A must
+  have the form of an LS, X, or MX class SNA, or the name of a Matrix Entity.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;You cannot use
+  Transaction Parameters in any part of Operand A.
+  </font></p>
+  <font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;You cannot use
+  UNSPECIFIED to initialize a Logicswitch.</p>
+  </font>
+  <p ALIGN="left">&nbsp;</p>
+  </blockquote>
+  <b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LS<i>Entnum</i>&nbsp;-&nbsp;Logicswitch.
+The value of Logicswitch Entity <i>Entnum</i> is returned.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MX<i>Entnum</i>(m,n)&nbsp;-&nbsp;Matrix
+element value. The value in row m, column n of Matrix Entity <i>Entnum</i> is
+returned.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;X<i>Entnum</i>&nbsp;-&nbsp;Savevalue.
+the value of Savevalue Entity <i>Entnum</i> is returned.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Blocks</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LOGIC&nbsp;-&nbsp;assign
+a value to a Logicswitch Entity.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MSAVEVALUE&nbsp;-&nbsp;assign
+a value to or increment an element of a Matrix Entity.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SAVEVALUE&nbsp;-&nbsp;assign
+a value to or increment a Savevalue Entity.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="INTEGRATE">INTEGRATE</a> <!--mstheme--></font></h1>
+    <p align="left">An INTEGRATE Command sets up the integration and thresholds of a continuous
+variable.</p>
+    <p ALIGN="CENTER">NAME INTEGRATE A,B,C,D,E</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - User
+  Variable. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">A</b>&nbsp;-&nbsp;Derivative. Required. The operand must be
+    <i>Name</i>, <i>Number</i>, <i>String</i>, <i>ParenthesizedExpression, or SNA</i>.</p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Threshold 1. Optional. The operand must
+  be <i>Null, Name</i>, <i>Number</i>, <i>String</i>, <i>ParenthesizedExpression,
+  or SNA</i>.</p>
+    <b>
+    <p ALIGN="left">C</b>&nbsp;-&nbsp;Arrival Block 1. Optional. The operand
+  must be <i>Null, Name</i>, <i>PosInteger</i>, <i>ParenthesizedExpression, or
+  SNA</i>.</p>
+    <b>
+    <p ALIGN="left">D</b>&nbsp;-&nbsp;Threshold 2. Optional. The operand must
+  be <i>Null, Name</i>, <i>Number</i>, <i>String</i>, <i>ParenthesizedExpression,
+  or SNA</i>.</p>
+    <b>
+    <p ALIGN="left">E</b>&nbsp;-&nbsp;Arrival Block 2. Optional. The operand
+  must be <i>Null, Name</i>, <i>PosInteger</i>, <i>ParenthesizedExpression, or
+  SNA</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Examples</p>
+  <blockquote>
+    <blockquote>
+    </font><font SIZE="2">
+    <p align="left">Rabbits INTEGRATE (a_ # Rabbits) - ( b_ # Rabbits # Foxes)</p>
+    <p align="left">Foxes INTEGRATE ( - c_ # Foxes) + ( d_ # Rabbits # Foxes)</p>
+    <p align="left">Rabbits EQU 10000</p>
+    <p align="left">Foxes EQU 1500</p>
+    <p align="left">a_ EQU 0.9</p>
+    <p align="left">b_ EQU 0.4</p>
+    <p align="left">c_ EQU 0.2</p>
+    <p align="left">d_ EQU 0.1</p>
+    </blockquote>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This example defines a &quot;Predator-Prey&quot; model
+relating a rabbit population to a fox population. The Expressions in the
+INTEGRATE Commands are used as the derivatives with respect to time. The values
+of the constants in the Expressions, and the initial values of the populations
+are set by the EQU Commands. When the simulation runs, the integrations are
+performed automatically when the clock advances.</p>
+  <blockquote>
+    <blockquote>
+    </font><b><font SIZE="2">
+    <p align="left">X_ INTEGRATE (Y_),0.707,Wake_Up</p>
+    <p align="left">Y_ INTEGRATE (-X_)</p>
+    <p align="left">X_ EQU 1.0</p>
+    <p align="left">Y_ EQU 0.0</p>
+    </blockquote>
+    </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This example defines a coupled system of ordinary
+differential equations (ODEs) whose solution is X_=cos(Y_VAR) and Y_=-sin(X_VAR).
+The expressiions in the INTEGRATE Commands are used as the derivatives with
+respect to time. The initial values of the continuous variables are set by the
+EQU Commands. When the simulation runs, the integrations are performed
+automatically between discrete time instants.</p>
+  <p ALIGN="left">A threshold is used for the User Variable X_. When this
+variable crosses the value 0.707, from either direction, a new Transaction is
+created and scheduled for the Block labeled WAKE_UP.</p>
+  <p ALIGN="left">X is an SNA Class, and therefore cannot be used as a Named
+Value. Here we use X_. It’s always safe to create names if they include an
+underscore character.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The INTEGRATE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When an INTEGRATE Command is performed, the data structures
+are set up so that a User Variable will be integrated automatically when the
+system clock advances. Integrations are done using a modified fifth order Runge
+Kutta Fehlberg method (RK4(5)), with a variable step size.</p>
+  <p ALIGN="left">All User Variables involved in an integration must be given
+initial values before the simulation runs. You can do this with EQU Commands or
+by Assignment Statements in PLUS Procedures.</p>
+  <p ALIGN="left">Operand A of the INTEGRATE Command is used for the derivative
+of the User Variable with respect to time. It can be very simple or quite
+complex. In the latter case you may want to define a PLUS Procedure and place a
+Procedure Call in the parenthesized Expression used for Operand A.</p>
+  <p ALIGN="left">Each INTEGRATE Command may have zero, one, or two numeric
+thresholds. Operands B and C can be used to specify threshold 1, and/or operands
+D and E can be used to specify threshold 2. In either case, the first operand of
+the pair determines the value of the threshold, the second indicates the Block
+which will receive generated Transactions.</p>
+  <p ALIGN="left">During the integration, if the value of the integrated
+variable crosses the value of a threshold, from either direction, a new
+Transaction is created. It is given a priority of 0, and is scheduled to enter
+the Block associated with that threshold in the INTEGRATE Command. The
+Transaction’s time of entry into the model is estimated by a linear
+interpolation. To improve accuracy, the integration ministep is decreased when a
+threshold is imminent.</p>
+  <p ALIGN="left">Thresholds may be constants, parenthesized Expressions, or
+even Procedure Calls. In addition, the Transactions generated by a threshold
+crossing may be used to move the threshold.</p>
+  <p ALIGN="left">Integrations are automatically begun in the active, or
+&quot;enabled&quot; state. However, you can turn an integration on or off while
+a simulation is running by using one or more INTEGRATION Blocks. This is
+discussed in Chapter 7.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Phases</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Simulations run in alternate continuous and discrete phases.
+At any instant where events are scheduled, the simulation runs in a discrete
+phase. The clock does not advance within an instant in a discrete phase. Between
+instants, the simulation runs in a continuous phase, during which the
+integrations proceed in small time increments called ministeps. Plotted
+integration variables report intermediate values at the end of ministeps.</p>
+  <p ALIGN="left">When a threshold crossing generates a Transaction, the
+simulation goes into a discrete phase. In this manner, the continuous and the
+discrete phases can be closely interrelated. Conversely, User Variables can be
+assigned new values in a discrete phase even if they are being integrated. You
+can do so using an EQU Command, or a PLUS Assignment Statement. If you want such
+assignments to occur within the running of the simulation, you must define a
+PLUS Procedure that makes the assignment. For example, if you defined a PLUS
+Procedure as</p>
+  </font><font FACE="Arial">
+  <b>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PROCEDURE SetPop(PopLevel) BEGIN<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Foxes = PopLevel ;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+  </font> <font FACE="Arial">
+  <b>END ;</p>
+  </b>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">you could reinitialize the Foxes User Variable by entering a
+PLUS Block, such as</p>
+  </font><b><font FACE="Arial">
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PLUS (SetPop(200))</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">or by using a parenthesized Expression that invokes SetPop()
+in some other kind of Block.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Integration Error</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A Model Setting called the Integration Tolerance is used to
+limit the local truncation error of each individual integration. If you make the
+tolerance smaller, the integrations will take longer, but will be more accurate.
+This is set in the Simulate Page of the Model Settings Notebook.</p>
+  </blockquote>
+</blockquote>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CHOOSE</font><b><font FACE="Arial"> View / Settings / Model</p>
+<blockquote>
+  <blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">then select the </font><b><font FACE="Arial">Simulate </font></b><font FACE="Arial" SIZE="2">page.
+Then fill in the desired value in the entry box marked </font><b><font FACE="Arial">Integration
+Tolerance</font></b><font FACE="Arial" SIZE="2">. The installation default is 10</font><font FACE="Arial" SIZE="1">-6</font><font FACE="Arial" SIZE="2">.</p>
+<p ALIGN="left">Continuous state modeling is also discussed in Chapter 2.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Related Block</p>
+<blockquote>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;INTEGRATION&nbsp;-&nbsp;Enables
+or disables the integration of a User Variable.</p>
+</blockquote>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Related Windows</p>
+<blockquote>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Expressions Window
+- Online view of values of Expressions.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Plot Window -
+Online view of a plot of up to 8 Expressions.</p>
+</blockquote>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Restrictions</p>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;If either Operand
+B or Operand C is used, both must be used.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;If either Operand
+D or Operand E is used, both must be used.</p>
+</font><b><font FACE="Arial" SIZE="5">
+<p align="left">&nbsp;</p>
+</blockquote>
+</blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="MATRIX">MATRIX</a> <!--mstheme--></font></h1>
+    <p align="left">A MATRIX Command defines a GPSS Matrix Entity.</p>
+    <p ALIGN="CENTER">NAME MATRIX A,B,C,D,E,F,G</p>
+    <p align="left">Label / Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">A</b>&nbsp;-&nbsp;Unused field (for compatibility with
+  older GPSS implementations).</p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Required. Maximum count of elements in
+    first dimension. Number of matrix rows. The
+  operand must be <i>PosInteger</i>.</p>
+    <p ALIGN="left">
+    <b>
+    C</b>&nbsp;-&nbsp;Required. Maximum count of elements in second dimension. Number of matrix
+    columns. The
+  operand must be <i>PosInteger</i>.</p>
+    <p ALIGN="left"><b>D</b>&nbsp;-&nbsp;Optional. Maximum count of elements
+    in third dimension.The
+  operand can be <i>PosInteger</i>.</p>
+    <p ALIGN="left"><b>E</b>&nbsp;-&nbsp;Optional. Maximum count of elements
+    in fourth dimension. The
+  operand can be <i>PosInteger</i>.</p>
+    <p ALIGN="left"><b>F</b>&nbsp;-&nbsp;Optional. Maximum count of elements
+    in fifth dimension. The
+  operand can be <i>PosInteger</i>.</p>
+    <p ALIGN="left"><b>G</b>&nbsp;-&nbsp;Optional. Maximum count of elements
+    in sixth dimension. The
+  operand can be <i>PosInteger</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">Inventory MATRIX ,1000,5</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command defines a Matrix Entity named Inventory with
+1000 rows and 5 columns.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The MATRIX Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">A MATRIX Command causes a Matrix Entity to be created in the
+simulation. A Matrix Entity must be defined specifically in a MATRIX Command
+before it can be referenced.</p>
+  <p ALIGN="left">The A Operand serves no purpose in GPSS World because there
+is no need to specify the precision of the Matrix elements. This operand is
+retained only for compatibility with older GPSS versions.</p>
+  <p ALIGN="left">A Matrix Entity can have up to 6 dimensions. However, only
+the first two dimensions can be accessed in an MSAVEVALUE Block. In this case,
+all missing coordinates are presumed to be 1.</p>
+  <p ALIGN="left">PLUS Procedures can access all elements of any matrix. If you
+need to use matrices of more than 2 dimensions, you will have to create one or
+more PLUS Procedures to access them. Matrices defined in a MATRIX Command have
+global scope and are known to all PLUS Procedures. In addition, temporary
+matrices with local scope can be created for the duration of a PLUS Procedure
+invocation. This is discussed further in Chapter 8.</p>
+  <p ALIGN="left">Matrix Entities are never deleted from the simulation.
+However, a Matrix Entity may be redefined by another MATRIX Command.</p>
+  <p ALIGN="left">When a Matrix Entity is first created, or when a CLEAR ON
+  Command is used, all elements are given the value of 0. However, you can use
+  the INITIAL Command to give elements the state of UNSPECIFIED. This is useful
+  when you are using a Matrix Entity to hold the results of an experiment. When
+  you pass such a Result Matrix to the ANOVA Library Procedure, the UNSPECIFIED
+  elements will be treated as missing data, instead of results of 0.0.</p>
+  <p ALIGN="left">&nbsp;&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Memory Restriction</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Matrix Entities
+are limited to the maximum memory request in the Model Setting Notebook. This is
+discussed in Chapter 2.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MX<i>entnum(m,n)</i>&nbsp;-&nbsp;Matrix
+Entity element. The value in row m, column n of matrix <i> entnum</i> is returned. Only
+names, integers or P class SNAs can be used for row and column values.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Block</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MSAVEVALUE -
+assign or increment an element of a Matrix Entity.</p>
+  </blockquote>
+  </font><font FACE="Arial" SIZE="4">
+  <b>
+  <p align="left">Related Commands</p>
+  <blockquote>
+  <font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;</font></b></font><font face="Arial" SIZE="2">INITIAL</font><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="4">
+  -
+  </font><font face="Arial">initialize a Matrix Entity</font><font face="Arial">
+  to 0 or UNSPECIFIED</font><font FACE="Arial" SIZE="4">.
+  </font></font></p>
+  <b><font FACE="Arial" SIZE="4">
+  <font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;</font></font></b><font FACE="Arial" size="2">CLEAR
+  <font FACE="Arial" SIZE="4">-
+  </font><font face="Arial">initialize </font>a Matrix Entity to 0..</p>
+  </font><font FACE="Arial" SIZE="4">
+  </blockquote>
+  <b>
+  <p align="left">Related Windows</p>
+  </b>
+  </font>
+  <blockquote>
+  <font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;A Matrix Entity
+can be viewed in an online Matrix Window. This window shows a 2 dimensional
+cross section of any matrix.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any SNA can be
+viewed in an Expressions or Plot Window.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="QTABLE">QTABLE</a> <!--mstheme--></font></h1>
+    <p align="left">A QTABLE Command initializes a queue time frequency distribution table.</p>
+    <p ALIGN="CENTER">NAME QTABLE A,B,C,D</p>
+    <p align="left">Label/Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">A</b>&nbsp;-&nbsp;Name of Queue Entity. Required. The
+  operand must be <i>PosInteger</i> or <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Upper limit of first frequency class. The
+  maximum argument which causes the first frequency class to be updated.
+  Required. The operand must be <i>Number</i> or <i>String.</p>
+    </i><b>
+    <p ALIGN="left">C</b>&nbsp;-&nbsp;Size of frequency classes. The difference
+  between the upper limit and lower limit of each frequency class. Required. The
+  operand must be <i>Number</i> or <i>String</i>.</p>
+    <b>
+    <p ALIGN="left">D</b>&nbsp;-&nbsp;Number of frequency classes. The operand
+  must be <i>PosInteger</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The QTABLE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">By using a QTABLE Command, statistics will be kept
+automatically for Transactions which enter QUEUE and DEPART Blocks. The Queue
+Entity being measured is specified in the A Operand of the QTABLE definition
+Command.</p>
+  <p ALIGN="left">When a Transaction enters a QUEUE Block which refers to a
+Queue Entity which has one or more Qtables, a special timestamp is created and
+kept with the Transaction. To collect a data item, a Transaction must enter a
+DEPART Block which refers to this same Queue Entity. When such a DEPART Block is
+entered, a table argument is calculated by subtracting the old saved timestamp
+from the current system time. If the calculated table argument is less than or
+equal to the B Operand of the QTABLE Command, the first frequency class of the
+table is chosen. If the table argument does not fit into the first frequency
+class, the class is chosen by dividing the argument value by the C Operand of
+the QTABLE Command. The lower limit of a frequency class is included in the
+previous class. If the table is not large enough to accommodate this value, the
+last frequency class in the table is chosen.</p>
+  <p ALIGN="left">Then the integer in the chosen frequency class and the total
+count for all classes is incremented by the B Operand of the DEPART Block.
+Finally, accumulators for the mean and standard deviation of the Qtable argument
+are updated.</p>
+  <p ALIGN="left">A Qtable Entity can be redefined by a second QTABLE Command
+with the same label as the first.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">WaitTimes QTABLE WaitingLine,100,100,10</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this simple example, the distribution of the QUEUE-DEPART
+intervals is entered into the table named WaitTimes. The QTABLE Command creates
+a table with a total of 10 frequency classes.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">All time intervals at or below 100 cause the first frequency
+class of the table to be updated. Normally this means that the integer for the
+first frequency class is increased by 1, However, a weighting factor is
+available in the B Operand of the DEPART Block. This has the effect of adding
+the weighting factor to the integer for the frequency class. The weighting
+factor applies to the mean and standard deviation as well, having the same
+effect as multiple entries into the DEPART Block.</p>
+  <p ALIGN="left">If the time interval of the Transaction is greater than 900,
+it will be placed in the tenth, and last, frequency class. If the time interval
+falls in neither the first nor the last frequency class, it is used to choose
+from the equally spaced frequency classes from the second to the ninth.</p>
+  <p ALIGN="left">For example, if the time interval is 290, the third frequency
+class would be updated.</p>
+  <p ALIGN="left">The statistics collected in a Qtable Entity are printed in
+the standard report. A sample report is in Chapter 11.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Q<i>Entnum</i>&nbsp;-&nbsp;Current
+queue content. The current count value of queue <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QA<i>Entnum</i>&nbsp;-&nbsp;Average
+queue content. The time weighted average count for queue <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QC<i>Entnum</i>&nbsp;-&nbsp;Total
+queue entries. The sum of all queue entry counts for queue <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QM<i>Entnum</i>&nbsp;-&nbsp;Maximum
+queue contents. The maximum count (high water mark) of queue <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QT<i>Entnum</i>&nbsp;-&nbsp;Average
+queue residence time. The time weighted average of the count for queue <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QX<i>Entnum</i>&nbsp;-&nbsp;Average
+queue residence time excluding zero entries. The time weighted average of the
+count for queue <i>Entnum</i> not counting entries wit a zero residence time.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QZ<i>Entnum</i>&nbsp;-&nbsp;Queue
+zero entry count. The number of entries of queue <i>Entnum</i> with a zero
+residence time.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Memory Restriction</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Qtable Entities
+are limited to the maximum memory request in the Model Setting Notebook. This is
+discussed in Chapter 2.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Blocks</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QUEUE&nbsp;-&nbsp;register
+statistics from the beginning of a waiting time.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;DEPART&nbsp;-&nbsp;register
+statistics for the end of a waiting time using an optional weighting factor.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;A Qtable Entity
+can be viewed in an online Table Window.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any SNA can be
+viewed in an Expressions or Plot Window.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="REPORT">REPORT</a> <!--mstheme--></font></h1>
+    <p align="left">A REPORT Command causes a report to be created immediately.</p>
+    <p ALIGN="CENTER">REPORT A,B</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2"> - Must be <i>Null</i>.</p>
+    <b>
+    <p ALIGN="left">B</b> - NOW, to write a Standard Report, immediately.
+  Optional. the operand must be NOW or <i>Null</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">REPORT</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command directs GPSS World to create a Standard Report
+immediately.</p>
+  </font><b><font SIZE="2">
+  <p ALIGN="CENTER">REPORT ,NOW</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command is kept for campatibility purposes. As in the
+previous example, it causes a Standard Report to be created immeditely.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The REPORT Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When a Simulation Object encounteres a REPORT command it
+immediately creaets a Standard Report according to the &quot;In Windows&quot;
+Setting of the Simulation Object. This can be found on the Reports page of the
+Settings Notebook.</p>
+  <p ALIGN="left">If the &quot;In Windows&quot; option is set, the Simulation
+Object creates a new Report Object containing the new Standard Report. It may
+then be saved in a file or discarded. If &quot;In Window&quot; is not set, the
+Standard Report is created, given a sequential serial number, and placed in a
+file.</p>
+  <p ALIGN="left">REPORT no longer uses operand A, and always assumes the NOW
+Operand is used in Operand B. It ignores the &quot;Create Standard Report&quot;
+Setting, which is used for automatic Standard Report creation, and it ignores
+operand B of the START Command used for the current simulation.</p>
+  <p ALIGN="left">You do not normally need to use the REPORT Command. Reports
+are managed automatically according to the Configuration Settings. This is
+discussed in Chapter 11.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Setting</p>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Standard Reports
+are normally sent to Report Windows but can be sent directly to file. This is
+controlled by the &quot;In Window&quot; setting in the Reports Page of the
+Settings Notebook.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="RESET">RESET</a> <!--mstheme--></font></h1>
+    <p align="left">A RESET Command marks the beginning of a measurement period.</p>
+    <p ALIGN="CENTER">RESET</p>
+    <p align="left">Operands</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">None.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The RESET Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">A RESET Command initializes the statistics accumulators
+without removing Transactions from the simulation. This is useful for
+replication of simulation experiments, and for throwing away data representing a
+transient startup period.</p>
+  <p ALIGN="left">RESET sets the measurement period start time to equal the
+current system clock, and then initializes the statistics accumulators for
+Facilities, Queues, and Storage Entities. This provides for the start of a new
+time window used in the gathering of statistics.</p>
+  <p ALIGN="left">A RESET Command does not remove Transactions form the
+simulation, whereas a CLEAR Command does</p>
+  <p ALIGN="left">RESET has no effect on the random number generators, the
+system clock or the numbering of Transactions.</p>
+  <p ALIGN="left">When a RESET Command is performed.</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Space-time
+products of Facilities, Storages, Queues, and Userchain Entities are set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Total counts are
+set equal to current counts.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Minimum and
+maximum values are set equal to current content in Queues, Userchains, and
+Storage Entities.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Random number
+generators are not reset.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The Relative Clock
+(time since last RESET) is set to 0.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Table statistics
+are reset to 0.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="RMULT">RMULT</a> <!--mstheme--></font></h1>
+    <p align="left">An RMULT Command sets the seeds for random number generators.</p>
+    <p ALIGN="CENTER">RMULT A,B,C,D,E,F,G</p>
+    <p align="left">&nbsp;</p>
+    <p align="left">Operands</p>
+    </font></b><font FACE="Arial" SIZE="2"><b>
+  <p ALIGN="left">A</b>&nbsp;-&nbsp;Seed for random number generator number 1.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">B</b>&nbsp;-&nbsp;Seed for random number generator number 2.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">C</b>&nbsp;-&nbsp;Seed for random number generator number 3.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">D</b>&nbsp;-&nbsp;Seed for random number generator number 4.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">E</b>&nbsp;-&nbsp;Seed for random number generator number 5.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">F</b>&nbsp;-&nbsp;Seed for random number generator number 6.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <b>
+  <p ALIGN="left">G</b>&nbsp;-&nbsp;Seed for random number generator number 7.
+Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">RMULT ,,111</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this example, random number generator 3 is initialized
+with a seed of 111.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The RMULT Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The RMULT Command initializes up to 7 random number
+generators with new seeds. Only random number generators numbered 7 or below can
+be controlled by an RMULT Command. However, since the default seed of a random
+number generator is its entity number, you can in fact have any number of random
+number generators, and you can choose the initial seed of each. After the first
+simulation run the seeds can only be controlled easily with the RMULT Command on
+generators 1-7.</p>
+  <p ALIGN="left">You can select which random number stream GPSS World uses it
+to calculate random time increments in ADVANCE and GENERATE Blocks, in
+Fractional Mode TRANSFER and TRANSFER PICK Blocks and to resolve the scheduling
+of time ties. This is set in the &quot;Random&quot; page of the Model Settings
+Notebook.</p>
+  </blockquote>
+</blockquote>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CHOOSE</font><b><font FACE="Arial"> View / Settings / Model</p>
+<blockquote>
+  <blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">then select the </font><b><font FACE="Arial">Random</font></b><font FACE="Arial" SIZE="2">
+page. Then fill in the desired Random Number Stream Entity number in the
+corresponding entry boxes. The installation default is to use Random Number
+Stream number 1 in each case.</p>
+<p ALIGN="left">Since GPSS World uses multiplicative congruential random
+number generators, it is possible to control pairs of random number streams for
+variance reduction purposes. This is done by matching the seeds of the random
+number generators. If <i>s</i> is the seed for the first random number
+generator, then a choice of 2147483647-<i>s</i> for the seed of the second
+random number generator will generate a stream of random numbers with antithetic
+properties.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Special Restriction</p>
+<blockquote>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Random number
+seeds must be positive integers.</p>
+</blockquote>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Related SNA</p>
+<blockquote>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;RN<i>Entnum</i>&nbsp;-&nbsp;Random
+number. RN<i>Entnum</i> returns a random integer 0-999 from the random number
+generator <i>Entnum.</p>
+</blockquote>
+</i></font><b><font FACE="Arial" SIZE="4">
+<p align="left">Related Window</p>
+<blockquote>
+</font></b><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The ANOVA Window
+can perform Analysis of Variance and calculate confidence intervals.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="5">
+<p align="left">&nbsp;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="SHOW">SHOW</a> <!--mstheme--></font></h1>
+    <p align="left">A SHOW Command sends an Expression for evaluation by the Simulation Object,
+and writes the result in the Status Line.</p>
+    <p align="center">SHOW X</p>
+    <p align="left">Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">X</font></b><font FACE="Arial" SIZE="2"> - Expression.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">SHOW 2#LOG(Q$Barber)</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command finds the natural logarithm of the SNA Q$Barber,
+doubles it, and writes the result in the Status Line of the Model Window.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The SHOW Command is an <i>Immediate</i> <i>Command</i>. It is
+performed when received by the Simulation Object.</p>
+  <p ALIGN="left">The SHOW Command evaluates an Expression in the context of
+the simulation, and writes the result in the Status Line of the Model Window.
+Additional messages are sent to any open Journal Windows.</p>
+  <p ALIGN="left">The rules for evaluating Expressions may be found in Section
+3.4. Expressions must be well-formed according to the rules of elementary
+algebra. You may used any of the arithmetic and logic operators listed in
+Section 3.4.</p>
+  <p ALIGN="left">If SNAs are used in the Expression field, they are evaluated
+with respect to the Active Transaction. If there is no Active Transaction
+because no simulation has been started, an error message will be written. Names
+which have not been explicitly assigned values cannot be used in Expressions. To
+do so you must assign a value by an EQU Command before the Expression is
+evaluated.</p>
+  </font><b><font SIZE="2">
+  <p ALIGN="left">Examples</p>
+  <p ALIGN="CENTER">SHOW C1</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">shows the system clock in the Status Line.</p>
+  </font><font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <b>
+  <p ALIGN="CENTER">SHOW 4#(SQR(2)+SIN(C1))</p>
+  </b></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">shows the result of 4 times the sum of the square root of 2
+and the sine of the system clock.</p>
+  </font><font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <b>
+  <p ALIGN="CENTER">SHOW N1^W$Chair</p>
+  </b></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">shows the result of raising the number of Transactions to
+have entered Block 1 to the power of the number of Transactions waiting at the
+Block named Chair.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Special Restrictions</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Some SNAs cannot
+be evaluated unless there is an Active Transaction.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SHOW displays up
+to 38 characters or digits.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any valid
+Expression can be viewed in an Expressions or Plot Window.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="START">START</a> <!--mstheme--></font></h1>
+    <p align="left">A START Command begins a simulation.</p>
+    <p ALIGN="CENTER">START A,B,C,D</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2">&nbsp;-&nbsp;Termination
+  count. Required. The operand must be <i>PosInteger</i>.</p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Printout operand. NP for &quot;no
+  printout&quot;. Default is to print a standard report. Optional. The operand
+  must be NP or <i>Null</i>.</p>
+    <b>
+    <p ALIGN="left">C</b>&nbsp;-&nbsp;Not used. Kept for compatibility with
+  older dialects of GPSS.</p>
+    <b>
+    <p ALIGN="left">D</b>&nbsp;-&nbsp;Chain printout. 1 to include the CEC and
+  FEC in the standard report. Optional. The operand must be <i>Null</i>, or <i>PosInteger</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The START Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The START Command is used to set up and begin the actual
+simulation. The simulation does not end until the termination count, which is
+set by Operand A, reaches zero or becomes negative. TERMINATE Blocks are used to
+reduce the termination count.</p>
+  <p ALIGN="left">The simulation may stop short if a HALT Command is issued, or
+if a Stop Condition is detected.</p>
+  <p ALIGN="left">Operands B and D are used to control automatic report
+generation. If Operand B is not used, an standard report is written. If Operand
+B is NP, which stands for &quot;no printout&quot;, no standard report is
+written. If Operand D is nonzero, the Current Events Chain (CEC) and the Future
+Events Chain (FEC) are reported. Otherwise they are not reported. A further
+discussion of the control and contents of the standard report may be found in
+Chapters 11 and 12.</p>
+  <p ALIGN="left">Operand C is kept for compatibility with older versions of
+GPSS. It was used as a &quot;snap&quot; count to put out a report periodically.
+This Function is available by using more than one START and REPORT Command.</p>
+  <p ALIGN="left">When a START Command is performed:</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The Termination
+Count is set.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any generate
+Blocks marked &quot;not started&quot; are primed with a single Transaction.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Random number
+generators are not reset.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;If time is 0, a
+RESET of the statistics accumulators is performed. See the discussion of the
+RESET Command in this chapter.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">START 1000,,,1</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this example, the Termination Count is set to 1000 and the
+simulation is started. When the Termination Count reaches zero or becomes
+negative (by reduction due to TERMINATE Blocks in the simulation), a standard
+report is written which includes information on the Current Events Chain (CEC)
+and the Future Events Chain (FEC).</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TG1&nbsp;-&nbsp;Termination
+count.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Blocks</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TERMINATE&nbsp;-&nbsp;destroy
+Transaction and optionally reduce the termination count.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="STEP">STEP</a> <!--mstheme--></font></h1>
+    <p align="left">A STEP Command causes the simulation to proceed a specified number of Block
+entries.</p>
+    <p ALIGN="CENTER">STEP A</p>
+    <p align="left">Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2"> - Block entry
+  count. Required. A must be a positive integer, more formally, <i>PosInteger</i>.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">STEP 1</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command causes the simulation to proceed exactly one
+Block entry and then to stop. The simulation is then said to be in the
+&quot;Halted&quot; state.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The STEP Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The STEP Command causes the Simulation Object to simulate the
+specified number of Block entries. When a simulation reaches the required number
+of Block entries, the Simulation Object sends a message to the Status Line, and
+any Journal Windows that are open. The message gives the time, the Active
+Transaction number, the current Block of the Active Transaction, and the next
+scheduled Block of the Active Transaction.</p>
+  <p ALIGN="left">A simulation started by a STEP Command does not end when the
+termination count goes to zero, it ends when the required number of Block
+entries have occurred.</p>
+  <p ALIGN="left">When a STEP Command is performed:</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The termination
+count is not set.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any generate
+Blocks marked &quot;not started&quot; are primed.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Random number
+generators are not reset.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Hot Key</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A STEP 1 Command can be sent to the simulation by pressing
+the <b>[Ctrl] + [Alt] + [1]&nbsp;</b> key combination. A GPSS World window must have the input focus.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The stepping of
+simulations can be viewed dynamically in the Blocks Window.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="STOP">STOP</a> <!--mstheme--></font></h1>
+    <p align="left">A STOP Command sets or removes a Stop Condition.</p>
+    <p ALIGN="CENTER">STOP A,B,C</p>
+    <p align="left">Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A</font></b><font FACE="Arial" SIZE="2"> - Transaction
+  number. A must be a positive integer. If the A Operand is omitted, any
+  Transaction number will satisfy the condition. Optional. The operand must be <i>Null</i>,
+  or <i>PosInteger</i>.</p>
+    <b>
+    <p ALIGN="left">B</b> - Block number. If the B Operand is omitted, any
+  Block will satisfy the condition. Optional. The operand must be <i>Null</i>, <i>Name</i>,
+  or <i>PosInteger</i>.</p>
+    <b>
+    <p ALIGN="left">C</b> - ON or OFF. If the C Operand is omitted, ON is
+  assumed. Optional. The operand must be ON, OFF or <i>Null</i>.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">STOP 100,52</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command inserts a Stop Condition which will cause a
+running simulation to stop when Transaction number 100 attempts to enter Block
+number 52.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The STOP Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">The STOP Command with the ON option inserts a Stop Condition
+into the simulation but does not cause the simulation to start. A subsequent
+START, STEP, or CONTINUE must be entered.</p>
+  <p ALIGN="left">When a simulation reaches a Stop Condition, the Simulation
+Object sends a message to the Status Line, and any Journal Windows that are
+open. The message gives the time, the Active Transaction number, the current
+Block of the Active Transaction, and the next scheduled Block of the Active
+Transaction.</p>
+  <p ALIGN="left">When a Stop Condition is detected, established Stop
+Conditions remain in force. If a CONTINUE Command is issued, the CONTINUE
+Command skips the original Stop Condition but does not remove it. If the same
+condition occurs again, the simulation will stop again. Stop Conditions must be
+removed explicitly by entering a new STOP Command containing the OFF option.
+They are also removed when a model is Translated.</p>
+  <p ALIGN="left">STOP Commands can be sent by using mousing operations in the
+Blocks Window. This is discussed in more detail in Chapter 5.</p>
+  <p ALIGN="left">If you skip the A Operand, any Transaction will satisfy the
+Stop Condition. If you skip the B Operand, any Block will satisfy the Stop
+Condition. A STOP Command with no operands will cause the simulation to stop
+immediately.</p>
+  <p ALIGN="left">Any number of Stop Conditions may be established.</p>
+  <p ALIGN="left">The STOP Command with the OFF option removes any existing
+Stop Conditions that satisfy the Transaction and Block conditions specified by
+operands A and B.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Examples</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">STOP</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">With no operands, the STOP Command will cause any subsequent
+simulation to stop immediately.</p>
+  <p ALIGN="center"></font><font SIZE="2"><b>STOP ,,OFF</p>
+  </b></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command removes all Stop Conditions from the simulation.</p>
+  </font><b><font SIZE="2">
+  <p ALIGN="CENTER">STOP 2</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command will cause the simulation to stop when
+Transaction 2 becomes the Active Transaction.</p>
+  </font><font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <b>
+  <p ALIGN="CENTER">STOP ,Chair</p>
+  </b></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command will cause the simulation to stop when any
+Transaction attempts to enter the Block at location CHAIR.</p>
+  </font><font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <b>
+  <p ALIGN="CENTER">STOP ,Chair,OFF</p>
+  </b></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command will remove all Stop Conditions that specify
+Chair as the Block name.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Mouse operations
+can be used in the Blocks Window to place and remove Stop Conditions.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="STORAGE">STORAGE</a> <!--mstheme--></font></h1>
+    <p align="left">A STORAGE Command defines a Storage Entity.</p>
+    <p ALIGN="CENTER">NAME STORAGE A</p>
+    <p align="left">Label / Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">A</b>&nbsp;-&nbsp;Total storage capacity. Required. The
+  operand must be <i>PosInteger</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">MotorPool STORAGE 20</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command defines a Storage Entity named MotorPool with a
+total capacity of 20 units.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The STORAGE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">A STORAGE Command defines a Storage Entity in the simulation.
+When a Transaction attempts to enter an ENTER Block, its storage demand is
+compared with the available storage at the Storage Entity. If the demand can be
+granted, the Transaction is allowed to enter the ENTER Block and the available
+storage capacity of the Storage Entity is reduced. If the Transaction’s demand
+cannot be satisfied, the Transaction comes to rest in the simulation on the
+Delay Chain of the Storage Entity. Storage Entities are explained in more detail
+in Chapter 4.</p>
+  <p ALIGN="left">A Storage Entity may be redefined by entering a new STORAGE
+Command with the same label as the old one.</p>
+  <p ALIGN="left">If you must refer to Storage Entities by number, not name, an
+EQU Command should precede the STORAGE definition. This is necessary if you wish
+to reference a range of STORAGES in a SELECT or COUNT Block.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;R<i>Entnum</i>&nbsp;-&nbsp;Unused
+storage capacity. The storage content (or &quot;token&quot; spaces) available
+for use by entering Transactions at storage <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;S<i>Entnum</i>&nbsp;-&nbsp;Storage
+in use. S<i>Entnum</i> returns the amount of storage content (or
+&quot;token&quot; spaces) currently in use by entering Transactions at storage <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SA<i>Entnum</i>&nbsp;-&nbsp;Average
+storage in use. SA<i>Entnum</i> returns the time weighted average of storage
+capacity (or &quot;token&quot; spaces) in use at storage <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SC<i>Entnum</i>&nbsp;-&nbsp;Storage
+use count. Total number of storage units that have been entered in (or
+&quot;token&quot; spaces that have been used at) storage <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SE<i>Entnum</i>&nbsp;-&nbsp;Storage
+empty. SE<i>Entnum</i> returns 1 if storage <i>Entnum</i> is completely unused,
+0 otherwise.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SF<i>Entnum</i>&nbsp;-&nbsp;Storage
+full. SFentnum returns 1 if storage <i>Entnum</i> is completely used, 0
+otherwise.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SR<i>Entnum</i>&nbsp;-&nbsp;Storage
+utilization. The fraction of total usage represented by the average storage in
+use at storage <i>Entnum</i>. SR<i>Entnum</i> is expressed in parts-per-thousand
+and therefore returns an real value 0-1000, inclusively.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SM<i>Entnum</i>&nbsp;-&nbsp;Maximum
+storage in use at storage <i>Entnum</i>. The &quot;high water mark&quot;.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ST<i>Entnum</i>&nbsp;-&nbsp;Average
+holding time per unit at storage <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SV<i>Entnum</i>&nbsp;-&nbsp;Storage
+in available state. SV<i>Entnum</i> returns 1 if storage <i>Entnum</i> is in the
+available state, 0 otherwise.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Blocks</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ENTER&nbsp;-&nbsp;take
+or wait for available storage space.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LEAVE&nbsp;-&nbsp;release
+storage space for use by other Transactions.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;GPSS storage
+entities are visible in the Storages Window.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any SNA can be
+viewed in an Expressions or Plot Window.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="TABLE">TABLE</a> <!--mstheme--></font></h1>
+    <p align="left">A TABLE Command initializes a frequency distribution table.</p>
+    <p ALIGN="CENTER">NAME TABLE A,B,C,D</p>
+    <p align="left">Label / Operands</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>. The length of a
+  Table name is limited to 32 characters.</p>
+    <b>
+    <p ALIGN="left">A</b>&nbsp;-&nbsp;Table argument. Optional. The data item
+    whose frequency distribution is to be tabulated. The operand must be
+    <i>Name</i>, <i>Number</i>, <i>String</i>, <i>ParenthesizedExpression, or SNA</i>.
+    Ignored by ANOVA, but must be specified when used by TABULATE Blocks.   
+    </p>
+    <b>
+    <p ALIGN="left">B</b>&nbsp;-&nbsp;Upper limit of first frequency class. The
+  maximum argument which causes the first frequency class to be updated.
+  Required. The operand must be <i>Number</i> or <i>String</i>.</p>
+    <b>
+    <p ALIGN="left">C</b>&nbsp;-&nbsp;Size of frequency classes. The difference
+  between the upper limit and lower limit of each frequency class. Required. The
+  operand must be <i>Number</i> or <i>String</i>.</p>
+    <b>
+    <p ALIGN="left">D</b>&nbsp;-&nbsp;Number of frequency classes. Required.
+  The operand must be <i>PosInteger</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The TABLE Command is a <i>Queued</i> <i>Command</i>. When the
+Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">A TABLE Command is used to define a GPSS Table Entity for
+collecting a frequency distribution, its cumulative relative frequencies, its
+mean, and its standard deviation.&nbsp;</p>
+  <p ALIGN="left">In addition to general purpose data collection, a Table
+  Entity can be used to tabulate the residuals in an Analysis of Variance. This
+  specialized use is discussed below.&nbsp;&nbsp;</p>
+  <p ALIGN="left">To collect a data item, a Transaction must enter a TABULATE
+Block which refers to this TABLE. When a TABULATE Block is entered, the table
+argument (Operand A in the TABLE Command) is evaluated. If it is less than or
+equal to the B Operand of the TABLE Command, the first frequency class of the
+table is chosen. If the table argument does not fit into the first frequency
+class, the class is chosen by dividing the argument value by the C Operand of
+the TABLE Command. The lower limit of a frequency class is included in the
+previous class. If the table is not large enough to accommodate this value, the
+last frequency class in the table is chosen.</p>
+  <p ALIGN="left">Then the integer in the chosen frequency class and the
+accumulated count is incremented by the B Operand of the TABULATE Command. The
+default increment is 1.</p>
+  <p ALIGN="left">Finally, accumulators for the mean and standard deviation of
+the table are updated.</p>
+  <p ALIGN="left">A Table Entity can be redefined or reinitialized by a second
+TABLE Command with the same label as the first.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">SalesTable TABLE P$Price,9.95,10,10</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In this simple example, the distribution of the Price
+Parameter of Transactions is entered into the table named SalesTable. The TABLE
+Command creates a table with a total of 10 frequency classes.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">All Price values at or below 9.95 cause the first frequency
+class of the table to be updated. Normally, this means that the integer for the
+first frequency class is increased by 1. However, a weighting factor is
+available in the B Operand of the TABULATE Block. This has the effect of adding
+the weighting factor to the current integer value in the appropriate frequency
+class. The weighting factor applies to the mean and standard deviation as well,
+having the same effect as multiple entries into the TABULATE Block.</p>
+  <p ALIGN="left">If the value of the Price Parameter is greater than 89.95,
+the tenth, and last, frequency class will be updated. If the value of the Price
+Parameter falls in neither the first nor the last frequency class, it is used to
+choose from the equally spaced frequency classes from the second to the ninth.</p>
+  <p ALIGN="left">For example, if the Price value is 29.49, the third frequency
+class would be updated.</p>
+  <p ALIGN="left">The statistics collected in a GPSS Table Entity are printed
+in the standard report. An example is in Chapter 11.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><p ALIGN="left"><b><font face="Arial" size="4">ANOVA Residuals</font></b></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;When you pass a named Results Matrix to the ANOVA
+  Library Procedure, you can cause residuals of the Analysis to be tabulated
+  automatically. All that you need to do is to have defined a Table Entity with
+  the same name as the Matrix Entity with a suffix of &quot; _RESIDUALS&quot;.
+  For example, if you intend to use</p>
+  <b><font SIZE="2">
+  <p ALIGN="CENTER"><font FACE="Arial" SIZE="2">
+  ANOVA( MainResult, 3, 1 )</font></p>
+  </font></b><p ALIGN="left">you can have the residuals tabulated
+  automatically by defining a Table Entity such as</p>
+  <b><font SIZE="2">
+  <p ALIGN="CENTER"><font FACE="Arial" SIZE="2">MainResult_Residuals TABLE
+  ,-5,.5.20</font></p>
+  </font></b>
+  <p ALIGN="left">prior to the invocation of ANOVA.&nbsp;</p>
+  <p ALIGN="left">When you do this, the ANOVA Procedure ignores Operand A of
+  TABLE and tabulates residuals arising from the analysis of the Result Matrix.
+  The ANOVA Table and the descriptive cell statistics appear in the Journal
+  Window. Then, you can examine the residuals by opening a Table Window on the
+  MainResult_Residuals Table.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Memory Restriction</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Table Entities are
+limited to the maximum memory request in the Model Settings Notebook. This is
+discussed in Chapter 2.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNAs</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TB<i>Entnum</i>&nbsp;-&nbsp;Nonweighted
+average of entries in table <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TC<i>Entnum</i>&nbsp;-&nbsp;Count
+of nonweighted table entries in table <i>Entnum</i>.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TD<i>Entnum</i>&nbsp;-&nbsp;Standard
+deviation of nonweighted table entries in table <i>Entnum</i>.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Blocks</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TABULATE&nbsp;-&nbsp;register
+statistics for a data item in a Table Entity.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;A Table can be
+viewed in the online Table Window.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any SNA can be
+viewed in an Expressions or Plot Window.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+  </blockquote>
+</font>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="4">
+    <h1 align="left"><!--mstheme--><font color="#336666"><a name="VARIABLE">VARIABLE</a> <!--mstheme--></font></h1>
+    <p align="left">A VARIABLE Command defines an arithmetic Variable Entity.</p>
+    <p ALIGN="CENTER">NAME VARIABLE X</p>
+    <p align="left">Label / Operand</p>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">NAME</font></b><font FACE="Arial" SIZE="2"> - Entity Label
+  for this entity. Required. The field must be <i>Name</i>.</p>
+    <b>
+    <p ALIGN="left">X</b>&nbsp;-&nbsp;Expression. Required. Expressions are
+  discussed in Section 3.4.</p>
+    <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Example</p>
+  </font><font SIZE="2">
+  <p ALIGN="CENTER">Var1 VARIABLE 5#LOG(Q$WaitingLine)</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This Command defines a Variable Entity which is to be
+evaluated when a V$Var1 is encountered. When this SNA is evaluated, the
+Expression defining the Variable Entity named Var1 is evaluated and returned as
+the result.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Action</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The VARIABLE Command is a <i>Queued</i> <i>Command</i>. When
+the Simulation Object receives one, it places it at the end of the simulation’s
+Command Queue.</p>
+  <p ALIGN="left">When a VARIABLE Command is performed, the Simulation Object
+creates or redefines a GPSS Variable Entity. The Variable Entity so created is
+evaluated when a System Numerical Attribute in the V class, referring to this
+particular entity, is encountered by the Simulation Object.</p>
+  <p ALIGN="left">The Expression in a VARIABLE Command is evaluated according
+to the rules in Chapter 3, and may include calls to PLUS Procedures or to
+Library Procedures. The evaluation proceeds differently in GPSS/PC Compatibility
+Mode.</p>
+  <p ALIGN="left">Expressions must be well-formed according to the rules of
+elementary algebra. A formal definition can be found in the Appendix. You may
+use any of the arithmetic and logic operators listed in Section 3.4. If SNAs are
+used in the Expression field, they are evaluated with respect to the Active
+Transaction. A Named Value which has not been explicitly assigned a value cannot
+be used as an item in an Expression. To do so, you must assign a value to it
+before the Expression is evaluated. Assignments to User Variables are done by
+EQU Commands or in PLUS Procedures.</p>
+  <p ALIGN="left">Once a Variable Entity is created in a simulation, it is
+never destroyed. However, it may be redefined later by an interactive VARIABLE
+Command.</p>
+  <p ALIGN="left">If the simulation is not run in GPSS/PC Compatibility Mode,
+FVARIABLE and VARIABLE Commands are treated the same.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">GPSS/PC Compatibility</p>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;All SNAs are
+truncated in GPSS/PC Compatibility Mode.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;In Variable Entity
+evaluation in GPSS/PC Compatibility Mode, the intermediate results are
+truncated.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related SNA</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;V<i>Entnum</i>&nbsp;-&nbsp;Returns
+the result of evaluating an arithmetic Variable Entity <i>Entnum</i>.</p>
+  </blockquote>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Related Windows</p>
+  <blockquote>
+  </font></b><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Any SNA can be
+viewed in an Expressions or Plot Window.</font></p>
+  <p ALIGN="left">&nbsp;</p>
+  <p align="center">&nbsp;<a href="reference_manual.htm"><font FACE="Arial" SIZE="2">[Table
+of Contents]</font></a><font FACE="Arial" SIZE="2">&nbsp;</p>
+  </font>
+  <p ALIGN="left">&nbsp;</p>
+  <font SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">&nbsp;</p>
+  </blockquote>
+  </blockquote>
+</blockquote>
+</font><!--mstheme--></font></body>
+
+</html>

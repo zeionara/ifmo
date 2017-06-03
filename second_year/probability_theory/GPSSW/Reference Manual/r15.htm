@@ -1,0 +1,590 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial">
+<p ALIGN="left">&nbsp;</p>
+  </font>
+  <font FACE="Arial" SIZE="2"> <font FACE="Arial"><b>
+  <blockquote>
+    <blockquote>
+      <h1 ALIGN="left"><!--mstheme--><font color="#336666">Appendix<!--mstheme--></font></h1>
+    </blockquote>
+  </blockquote>
+  </b>
+  <blockquote>
+    <blockquote>
+    </font><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This chapter presents a formal description of the
+    commands and GPSS statements to be used with GPSS World. The first section
+    contains the definitions of the elements of the language used in GPSS
+    Statements the second contains the grammar for PLUS, the <u>P</u>rogramming <u>L</u>anguage
+    <u>U</u>nder <u>S</u>imulation, and the third a glossary of commonly used
+    terms.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font>
+</font>
+    <h2 ALIGN="left"><font face="Arial" size="5"><a name="15.1"></a>&nbsp;&nbsp;&nbsp;
+    1.1. GPSS Grammar</font></h2>
+  <font FACE="Arial" SIZE="2"> <i><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Null</font></i><font FACE="Arial" SIZE="2"> :== [ ]0,0</p>
+    <p ALIGN="left">No entry. May be skipped.</p>
+    <i>
+    <p ALIGN="left">Uppercase</i> :==A | B | C | D | E | F | G | H | I | J |
+    K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z</p>
+    <p ALIGN="left">Capital letters A through Z.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Lowercase</i> :== a | b | c | d | e | f | g | h | i | j |
+    k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z</p>
+    <p ALIGN="left">Lower case letters a through z.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Alphabetic </i>:==<i>Uppercase </i>|<i>Lowercase</p>
+    </i>
+    <p ALIGN="left">Either capital or lower case letters.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Digit</i> :== 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9</p>
+    <p ALIGN="left">Numerals 0 through 9.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Comma</i> :== ,</p>
+    <p ALIGN="left">The comma symbol.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Blank</i> :== [ ]1,1</p>
+    <p ALIGN="left">Blank. A space containing no printable character.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Delimiter</i> :== ; | <i>Comma</i> | <i>Blank</p>
+    </i>
+    <p ALIGN="left">A semicolon, comma, or blank. Delimiters are used to
+    define the end of a field.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">NonnegInteger</i> :== [<i>Digit </i>]1,15</p>
+    <p ALIGN="left">Number of between 1 and 15 digits, inclusively.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">PosInteger</i> :== [ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+    ]1,1 [<i>Digit </i>]0,15</p>
+    <p ALIGN="left">Number of between 1 and 15 digits, inclusively. First
+    digit may not be 0.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Fraction</i> :== .[<i>Digit</i> ]1,15</p>
+    <p ALIGN="left">Decimal point followed by 1 to 15 digits inclusively.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Sign</i> :== <i>Null</i> | + | -</p>
+    <p ALIGN="left">A plus or minus sign. If omitted, plus is assumed.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Integer</i> :== <i>Sign NonnegInteger</p>
+    </i>
+    <p ALIGN="left">An integer with an optional sign.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">NonnegNumber</i> :==[<i>Null</i> | <i>NonnegInteger</i>
+    ]1,1 [<i>nul</i> |<i> fraction</i> ]1,1</p>
+    <p ALIGN="left">A nonnegative number which may include a fractional part.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Exponent</i> :==E <i>Sign</i> [<i>Digit</i> ]1,3</p>
+    <p ALIGN="left">E and an optional sign followed by 1, 2, or 3 digits.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Number</i> :==<i>NonnegInteger</i> [<i>Exponent</i> ]0,1</p>
+    <p ALIGN="left">A nonnegative number with an optional fractional part and
+    optional exponent.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">SignedNumber</i> :==<i>Sign Number</p>
+    </i>
+    <p ALIGN="left">A number which may be positive or negative, may have a
+    fractional part, and may have an exponent. the sign need not be present.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Name </i>:==<i> Alphabetic </i>[ _|<i>Alphabetic</i> |<i>
+    Digit</i> ]1,250 - [ <i>Keyword</i> | <i>SNA</i> | <i>EntitySNAclass</i> ]</p>
+    <p ALIGN="left">An underscore, alphabetic character, or digit occurring 1
+    to 250 times and excluding reserved keywords. A name cannot be a verb or a
+    valid SNA or SNA class. Lower case letters are automatically converted to
+    upper case.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">StatementLabel </i>:==<i> Name</p>
+    </i>
+    <p ALIGN="left">A statement label is a name used in the label field of a
+    GPSS statement to give a name to a GPSS entity like a STORAGE or TABLE or to
+    give a location name to a BLOCK.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">ResultMatrixName </i>:==<i> Name</p>
+    </i>
+    <p ALIGN="left">A Result Matrix Name is passed to the ANOVA procedure to
+    identify a Matrix Entity with special properties.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">AtomicSNA</i> :== A1 | AC1 | C1 | M1 | PR | TG1 | XN1 |
+    Z1</p>
+    <p ALIGN="left">Atomic SNAs are System Numeric Attributes which do not
+    need an entity specifier. For example, C1 is the relative system clock.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">EntitySNAclass</i> :==[BV | CA | CC | CH | CM | CT | F |
+    FC | FI | FN | FR | FT | FV | GN | GT | LS | MB | MP | MX | N | P | PR | Q |
+    QA | QC | QM | QT | QX | QZ | R | RN | S | SA | SC | SE | SF | SR | SM | ST
+    | SV | TB | TC | TD | V | W | X]1,1</p>
+    <p ALIGN="left">Entity SNAs must be followed by an entity specifier in
+    order to build a valid SNA. The entity specifier is the name or number of
+    the entity, or when preceded by [*], is the name or number of the parameter
+    of the Active Transaction containing the entity number. SNA class MX is
+    excluded since it must also contain row and column specifiers (see <i>directmatrixSNA</i>
+    and <i>indirectmatrixSNA</i> below).</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">SimpleSNA</i> :==<i> EntitySNAclass</i> [<i>PosInteger</i>
+    | <i>$Name</i> ]1,1</p>
+    <p ALIGN="left">A simple SNA is an entity SNA which does not use indirect
+    addressing. The entity specifier must be a positive integer or a<b> </b>name
+    preceded by [$]. SNA class MX is excluded since it must also contain row and
+    column specifiers (see <i>directmatrixSNA</i> and <i>indirectmatrixSNA</i>
+    below).</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">DirectMatrixSNA</i> :==MX[<i>PosInteger</i> | <i>$Name</i>
+    ]1,1 ([[P]0,1 <i>Posinteger</i> | [P$]0,1<i>Name </i>]1,1,[[P]0,1 <i>Posinteger</i>
+    [P$]0,1 <i>Name</i>]1,1)</p>
+    <p ALIGN="left">The MX is followed by a matrix entity specifier followed,
+    in parentheses, by a row specifier and a column specifier. The row and
+    column specifiers are positive integers, names or P class SNAs, separated by
+    a comma. Indirect addressing is described below. The [$] is used as a
+    separator when referencing a parameter by name in a row or column specifier.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">DirectSNA</i> :==<i>AtomicSNA</i> |<i> SimpleSNA</i> | <i>DirectMatrixSNA</p>
+    </i>
+    <p ALIGN="left">A direct SNA is any SNA which doesn’t use indirect
+    addressing.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">IndirectMatrixSNA</i> :==MX[[<i>PosInteger</i> | $<i>Name</i>
+    | *[<i>PosInteger</i> | [$]0,1 <i>Name </i>]1,1]1,1 ([[P]0,1 <i>PosInteger</i>
+    | [P$]0,1 <i>Name</i> | *[<i>PosInteger</i> | [$]0,1 <i>Name</i> ]1,1 <i>Comma</i>
+    [[P]0,1 <i>PosInteger</i> | [P$]0,1 <i>Name</i> | *[<i>Posinteger</i> |
+    [$]0,1 <i>Name</i>]1,1)]1,1[<i>DirectMatrixSNA</i>]</p>
+    <p ALIGN="left">The MX is followed by a matrix entity specifier followed,
+    in parentheses, by a row specifier and a column specifier. The row and
+    column specifiers are separated by a comma. At least one item must be
+    specified using indirect addressing. If row and column specifiers are SNAs,
+    they must be P class SNAs. A Setting is available for using the # character
+    instead of the *.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">SNA*Parameter</i> :==[BV | CA | CC | CH | CM | CT | F |
+    FC | FI | FN | FR | FT | FV | GN | GT | LS | MB | MP | MX | N | P | PR | Q |
+    QA | QC | QM | QT | QX | QZ | R | RN | S | SA | SC | SE | SF | SR | SM | ST
+    | SV | TB | TC | TD | V | W | X]1,1 *[<i>PosInteger</i> | [$]0,1 <i>Name</i>
+    ]1,1</p>
+    <p ALIGN="left">This is indirect addressing. The entity number is in a
+    Transaction Parameter. The entity SNA class is followed by * followed by the
+    name or number of a parameter of the Active Transaction containing the
+    entity number. A Setting is available for using the # character instead of
+    the *.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">IndirectSNA</i> :==<i>SNA*Parameter</i> | <i>IndirectMatrixSNA</p>
+    </i>
+    <p ALIGN="left">An SNA where the entity, row or column is specified by
+    indirect addressing. A Setting is available for using the # character
+    instead of the *.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">MatrixSNA</i> :==<i>DirectMatrixSNA</i> | <i>IndirectMatrixSNA</p>
+    </i>
+    <p ALIGN="left">Any MX class SNA.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">SNA</i> :==<i>DirectSNA</i> | <i>IndirectSNA
+    </i>
+  </p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Simpleterm</i> :==<i>Name</i> | <i>SNA</i> | <i>SignedNumber</p>
+    </i>
+    <p ALIGN="left">Simplest items in an expression.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">MathFunction</i> :== ABS | ATN | COS | EXP | INT | LOG |
+    RND | SIN | SQR | TAN</p>
+    <p ALIGN="left">Mathematical routines in the math library. these may be
+    used to build expressions.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">MathFunctionTerm</i> :==<i>MathFunction</i>(<i>Expression</i>)</p>
+    <p ALIGN="left">A call to a math library subroutine with an expression as
+    the argument.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">BinaryOperator</i> :== + | - | # | / | \ | ^</p>
+    <p ALIGN="left">Addition, subtraction, multiplication, division, integer
+    division, and exponentiation. The [*] symbol is reserved for indirect
+    addressing. ]#] represents multiplication and ^ represents exponentiation.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">BlockName</i> :==ADOPT | ADVANCE | ALTER | ASSEMBLE |
+    ASSIGN | BUFFER | CLOSE | COUNT | DEPART | ENTER | EXAMINE | EXECUTE |
+    FAVAIL | FUNAVAIL | GATE | GATHER | GENERATE | INDEX | INTEGRATION | JOIN |
+    LEAVE | LINK | LOGIC | LOOP | OPEN | MARK | MATCH | MSAVEVALUE | OPEN | PLUS
+    | PREEMPT | PRIORITY | QUEUE | READ | RELEASE | REMOVE | RETURN | SAVAIL |
+    SAVEVALUE | SCAN | SEEK | SEIZE | SELECT | SPLIT | SUNAVAIL | TABULATE |
+    TERMINATE | TEST | TRACE | TRANSFER | UNLINK | UNTRACE | WRITE</p>
+    <p ALIGN="left">GPSS block names.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">LogicSwitchOp</i> :== I | R | S</p>
+    <p ALIGN="left">The operators used in the operator field of LOGIC blocks:
+    I (invert), R (reset), or S (set).</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">RelationalOp</i> :== E | G | GE | L | LE | NE</p>
+    <p ALIGN="left">The relational operators used in the operator field of
+    certain GPSS blocks: E (equal), G (greater than), GE (greater than or equal
+    to), L (less than), LE (less than or equal to), NE (not equal to).</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">ConditionalOp</i> :== E | G | GE | L | LE | MAX | MIN |
+    NE</p>
+    <p ALIGN="left">The conditional operators used in the operator field of
+    certain GPSS blocks: E (equal), G (greater than), GE (greater than or equal
+    to), L (less than), LE (less than or equal to), MAX (maximum), MIN
+    (minimum), NE (not equal to).</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">GateOp </i>:== FNV | FV | I | LS | LR | M | NI | NM | NU
+    | SE | SF | SNE | SNF | SNV | SV | U</p>
+    <p ALIGN="left">The operators used in the operator field of GATE blocks.
+    The operators specify a test condition and an entity type. The operators
+    are:<br>
+    <br>
+  </font><font FACE="Symbol" SIZE="2">· </font><font FACE="Arial" SIZE="2">FNV Facility must
+    be not available.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">FV Facility must be
+    available.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">I Facility must be
+    preempted.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">LS logicswitch must
+    be set.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">LR logicswitch must
+    be reset.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">M MATCH block must
+    have a Transaction of the same assembly set</p>
+    <p ALIGN="left">as the Active Transaction.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">NI Facility must
+    not be currently preempted.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">NM MATCH block must
+    NOT have a Transaction of the same as</p>
+    <p ALIGN="left">sembly set as the Active Transaction.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">NU Facility must
+    not be in use.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SE Storage must be
+    empty.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SF Storage must be
+    full.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SNE Storage must be
+    not empty.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SNF Storage must be
+    not full.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SNV Storage must be
+    not available.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">SV Storage must be
+    available.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">· </font><font FACE="Arial" SIZE="2">U Facility must be
+    in use.
+    </font></p>
+    <p ALIGN="left"><font FACE="Arial" SIZE="2"></p>
+    <i>
+    <p ALIGN="left">LineNumber</i> :== <i>Number</p>
+    </i>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">CommandName</i> :==BVARIABLE | CLEAR | CONDUCT | CONTINUE
+    | EQU | EXIT | FUNCTION | FVARIABLE | HALT | INCLUDE | INITIAL | INTEGRATE |
+    MATRIX | QTABLE | REPORT | RESET | RMULT | SHOW | START | STEP | STOP |
+    STORAGE | TABLE | VARIABLE</p>
+    <p ALIGN="left">GPSS Commands do not define block entities. They set the
+    conditions of the simulation and define other GPSS entities.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <i>
+    <p ALIGN="left">Verb </i>:== <i>BlockName</i> | <i>CommandName</p>
+    </i>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">Statement specific syntax is discussed in Chapters 3, 6,
+    7, and 8.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font>
+</font>
+  <b>
+    <h2 align="left"><font face="Arial" size="5"><a name="15.2"></a>&nbsp;&nbsp;&nbsp; 1.2.
+    PLUS Grammar</font></h2>
+  </b>
+  <font FACE="Arial" SIZE="2"> <i><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Procedure</font></i><font FACE="Arial" SIZE="2"> :==<b>
+    PROCEDURE </b><i>ProcedureName </i><b>( </b><i>FormalArgumentList </i><b>) </b><i>Statement</p>
+    <p ALIGN="left">Experiment</i> :==<b> EXPERIMENT </b><i>ProcedureName </i><b>(
+    </b><i>FormalArgumentList </i><b>) </b><i>Statement</p>
+    </i>
+    <p ALIGN="left">Statement := CompoundStatement | IfStatement |
+    IfElseStatement | WhileStatement | AssignStatement | GotoStatement |
+    ReturnStatement |ProcedureCallStatement|LabeledStatement |
+    TempDeclarationStatement</p>
+    <i>
+    <p ALIGN="left">LabeledStatement </i>:== <i>Label Statement</p>
+    <p ALIGN="left">Label</i> :== <i>Name</p>
+    <p align="left">TempDeclarationStatement </i>:==<i> TempVarDeclareStatement |
+    TempMatrixDeclareStatement</i></p>
+    <i>
+    <p ALIGN="left">TemporaryVarDeclareStatement</i> :== <b>TEMPORARY</b> <i>NameList</i>
+    <b>;</p>
+    </b><i>
+    <p align="left">TempMatrixDeclareStatement</i> :== <b>TEMPORARY</b> <b>MATRIX </b><i>Name</i><b>[
+    </b><i>IntegerList</i> <b>] ;</p>
+    </b><i>
+    <p ALIGN="left">CompoundStatement</i> := <b>BEGIN </b><i>StatementSequence</i>
+    <b>END ;</p>
+    </b>
+    <i>
+    <p ALIGN="left">FormalArgumentList</i> := <i>Name</i> [ <b>, </b><i>Name</i>
+    ] ... | NULL</p>
+    <i>
+    <p ALIGN="left">StatementSequence</i> := <i>Statement</i> [ <i>Statement </i>]
+    ... | NULL</p>
+    <i>
+    <p ALIGN="left">AssignStatement</i> := <i>Lvalue</i> <b>= </b><i>Expression</i>
+    <b>;</p>
+    </b>
+    <i>
+    <p ALIGN="left">IfStatement</i> := <b>IF ( </b><i>Expression</i> <b>)
+    THEN </b><i>Statement</i></p>
+    <i>
+    <p ALIGN="left">IfElseStatement</i> :=</p>
+    <p ALIGN="left"><b>IF ( </b><i>Expression</i> <b>) THEN </b><i>Statement</i>
+    <b>ELSE</b> <i>Statement</p>
+    </i>
+    <i>
+    <p ALIGN="left">WhileStatement</i>: <b>WHILE ( </b><i>Expression</i> <b>)
+    DO </b><i>Statement</p>
+    </i>
+    <i>
+    <p ALIGN="left">GotoStatement</i> := <b>GOTO </b><i>LabelName</i> <b>;</p>
+    </b>
+    <i>
+    <p ALIGN="left">ReturnStatement</i> := <b>RETURN</b> [ <i>Expression</i>
+    ] <b>;</p>
+    </b>
+    <i>
+    <p ALIGN="left">ProcedureCallStatement</i> := <i>ProcedureCall</i> <b>;</p>
+    </b>
+    <i>
+    <p ALIGN="left">ProcedureCall</i> := <i>ProcedureName</i><b>( </b><i>ExpressionList</i>
+    <b>)</p>
+    </b>
+    <i>
+    <p ALIGN="left">ProcedureName</i> := <i>LibraryProcedureName</i> | <i>Name</p>
+    </i>
+    <i>
+    <p ALIGN="left">FormalArgumentList</i> := <i>Name</i> [ <b>, </b><i>Name</i>
+    ] ... | NULL</p>
+    <i>
+    <p ALIGN="left">StatementSequence</i> := <i>Statement</i> [ <i>Statement </i>]
+    ... | NULL</p>
+    <i>
+    <p ALIGN="left">ExpressionList</i> := <i>Expression</i> [ <b>, </b><i>Expression
+    </i>] ...</p>
+    <i>
+    <p ALIGN="left">ExperimentName</i> := <i>Name</p>
+    </i>
+    <i>
+    <p ALIGN="left">ModelName</i> := <i>Name</p>
+    <p ALIGN="left">StringConstant </i>:= <b>&quot;</b> [<i>Character</i>
+    ]...<b>&quot;</p>
+    </b>
+    <i>
+    <p ALIGN="left">ParenthesizedExpression </i>:=<i> </i><b>( </b><i>Expression
+    </i><b>)</p>
+    </b>
+    <i>
+    <p ALIGN="left">Expression </i>:=<i> Expression </i><b>| </b><i>SuperResult</p>
+    <p ALIGN="left"></i>:=<i> SuperResult</p>
+    <p ALIGN="left">SuperResult </i>:= <i>SuperResult </i><b>&amp; </b><i>InterResult</p>
+    <p ALIGN="left"></i>:=<i> InterResult</p>
+    <p ALIGN="left">InterResult </i>:= <i>InterResult </i><b>= </b><i>SubResult</p>
+    <p ALIGN="left"></i>:=<i> InterResult <b>/=</b> SubResult</p>
+    <p ALIGN="left"></i>:=<i> SubResult</p>
+    </i>
+    <i>
+    <p ALIGN="left">SubResult </i>:= <i>SubResult <b>&lt;</b></i><b> </b><i>Comparator</p>
+    <p ALIGN="left"></i>:=<i> SubResult <b>&gt;</b></i><b> </b><i>Comparator</p>
+    <p ALIGN="left"></i>:=<i> SubResult </i><b>&lt;=</b><i> Comparator</p>
+    <p ALIGN="left"></i>:= <i>SubResult </i><b>&gt;= </b><i>Comparator</p>
+    <p ALIGN="left"></i>:=<i> Comparator</p>
+    </i>
+    <i>
+    <p ALIGN="left">Comparator </i>:=<i> Comparator </i><b>+ </b><i>Term</p>
+    <p ALIGN="left"></i>:=<i> Comparator <b>- </b>Term</p>
+    <p ALIGN="left"></i>:=<i> Term</p>
+    </i>
+    <i>
+    <p ALIGN="left">Term </i>:=<i> Term <b>#</b></i><b> </b><i>Factor</p>
+    <p ALIGN="left"></i>:=<i> Term <b>/</b></i><b> </b><i>Factor</p>
+    <p ALIGN="left"></i>:= <i>Term <b>\</b></i><b> </b><i>Factor</p>
+    <p ALIGN="left"></i>:=<i> Term <b>@</b></i><b> </b><i>Factor</p>
+    <p ALIGN="left"></i>:=<i> Factor</p>
+    </i>
+    <p ALIGN="left">A Setting is available for using the * character instead
+    of the #.</p>
+    <i>
+    <p ALIGN="left">Factor </i>:=<i> Factor </i><b>^ </b><i>Factor</p>
+    <p ALIGN="left">:= </i><b>- </b><i>Factor</p>
+    <p ALIGN="left">:= </i><b>+</b><i> Factor</p>
+    <p ALIGN="left"></i>:=<i> Number</p>
+    <p ALIGN="left"></i>:= <i>GeneriicDatum</p>
+    <p ALIGN="left"></i>:=<i> TextString</p>
+    <p ALIGN="left"></i>:= <i>ParenthesizedExpression</p>
+    <p ALIGN="left"></i>:=<i> ProcedureCall</p>
+    <p ALIGN="left"></i>:=<i> FunctionCall</p>
+    </i>
+    <p ALIGN="left">:= SNA</p>
+    <i>
+    <p ALIGN="left">GenericDatum </i>:=<i> Name</p>
+    <p ALIGN="left"></i>:=<i> ArrayElement</p>
+    </i>
+    <i>
+    <p ALIGN="left">ArrayElement </i>:=<i> Name </i><b>[ </b><i>ExpressionList
+    </i><b>]</p>
+    </b>
+    <i>
+    <p ALIGN="left">LValue </i>:=<i> Name</p>
+    <p ALIGN="left"></i>:= <i>Name </i><b>[ </b><i>ExpressionList </i><b>]</p>
+    </b></font><b><font FACE="Arial" SIZE="5">
+    <p align="left">&nbsp;</p>
+    </font>
+</font>
+    <h2 align="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="15.3"></a>Glossary</font></h2>
+  <font FACE="Arial" SIZE="2"> <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Active Transaction</font></b><font FACE="Arial" SIZE="2">
+    - That GPSS Transaction in a simulation which is at the Head of the Current
+    Events Chain and is the next to attempt entry into a GPSS Block.</p>
+    <b>
+    <p ALIGN="left">Command File</b> - A Secondary Model File intended for
+    interactive use. A Function Key loaded with an INCLUDE Statement can run a
+    Control File with a single keystroke.</p>
+    <b>
+    <p ALIGN="left">Data Stream</b> - A sequence of text lines identified by
+    a unique positive integer.</p>
+    <b>
+    <p ALIGN="left">Entity Label</b> - A Named Value used in the Label field
+    of a GPSS Statement.</p>
+    <b>
+    <p ALIGN="left">GPSS Statement</b> - A GPSS Block Statement or a Command
+    occurring in a single Text Line.</p>
+    <b>
+    <p ALIGN="left">Immediate Command </b>- A Command which when sent to a
+    Simulation Object is performed immediately and is not placed on the Command
+    Queue. HALT and SHOW are the only Immediate Commands. A HALT Command
+    interrupts any running simulation and deletes all remaining Commands from
+    the Command Queue.</p>
+    <b>
+    <p ALIGN="left">Internal Model File Number</b> - the 0-relative ordinal
+    of the Model File in the order encountered by the Translator. The Model
+    Object is assigned Model File Number 0.</p>
+    <b>
+    <p ALIGN="left">Interactive Statement</b> - A Model Statement sent to an
+    existing simulation.</p>
+    <b>
+    <p ALIGN="left">Manual Simulation Statement</b> - an Interactive Block
+    Statement, causing a temporary Block to be created, and causing the Active
+    Transaction to attempt entry.</p>
+    <b>
+    <p ALIGN="left">Model</b> - A sequence of Model Statements.</p>
+    <b>
+    <p ALIGN="left">Model File</b> - A file containing Model Statements.</p>
+    <b>
+    <p ALIGN="left">Model Statement</b> - A GPSS Statement or a PLUS
+    Procedure definition.</p>
+    <b>
+    <p ALIGN="left">Named Value</b> - A user created name used in a model.</p>
+    <b>
+    <p ALIGN="left">PLUS Procedure</b> - A PLUS PROCEDURE or EXPERIMENT
+    Statement obeying the Syntax rules of the PLUS Language.</p>
+    <b>
+    <p ALIGN="left">Primary Model File</b> - A Model File brought into a
+    Model Window of a GPSS World Session.</p>
+    <b>
+    <p ALIGN="left">Queued Command</b> - A Command which when sent to a
+    Simulation Object is placed on a Command Queue behind all other Commands
+    waiting to be performed. All Commands except HALT and SHOW are Queued
+    Commands.</p>
+    <b>
+    <p ALIGN="left">Secondary Model File</b> - A Text Object Translated as a
+    result of an INCLUDE Command.</p>
+    <b>
+    <p ALIGN="left">Session</b> - The Sequence of Events from the Opening to
+    the Closing of the GPSS World process.</p>
+    <b>
+    <p ALIGN="left">Simulation</b> - The Result of Translation of a model,
+    whose state can be advanced by a Simulation Object.</p>
+    <b>
+    <p ALIGN="left">Statement</b> - A GPSS Statement or a PLUS Statement.</p>
+    <b>
+    <p ALIGN="left">String</b> - A sequence of characters.</p>
+    <b>
+    <p ALIGN="left">Termination Count</b> - The state variable in each
+    simulation that, when it becomes nonpositive, causes the simulation to end.</p>
+    <b>
+    <p ALIGN="left">Text Line</b> - A Sequence of up to 250 print characters,
+    including blanks and tabs, terminated by, but not including, a CR LF
+    sequence.</p>
+    <b>
+    <p ALIGN="left">Trace Indicator</b> - A Transaction state variable that
+    causes a Trace Message to be created by each Block entry.</p>
+    <b>
+    <p ALIGN="left">Translator</b> - That part of the GPSS World Control
+    Process which converts a model into a simulation.</p>
+    <b>
+    <p ALIGN="left">User Variable</b> - A Named Value not occurring in any
+    GPSS Statement Label field.</p>
+    </blockquote>
+    </blockquote>
+  </font>
+  <p ALIGN="left">&nbsp;</p>
+  <p align="center">&nbsp;
+  <a href="reference_manual.htm">[Table of Contents]</a></p>
+</font>
+<!--mstheme--></font></body>
+
+</html>

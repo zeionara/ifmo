@@ -1,0 +1,5 @@
+C:\Users\P31175PDB\Desktop\FivethLab\FivethLab\obj\x86\Debug\FivethLab.csprojResolveAssemblyReference.cache
+C:\Users\P31175PDB\Desktop\FivethLab\FivethLab\bin\Debug\FivethLab.exe
+C:\Users\P31175PDB\Desktop\FivethLab\FivethLab\bin\Debug\FivethLab.pdb
+C:\Users\P31175PDB\Desktop\FivethLab\FivethLab\obj\x86\Debug\FivethLab.exe
+C:\Users\P31175PDB\Desktop\FivethLab\FivethLab\obj\x86\Debug\FivethLab.pdb

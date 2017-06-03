@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+<blockquote>
+  <blockquote>
+    <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="10">10</a> - Performance Tips<!--mstheme--></font></h1>
+    <p ALIGN="left">This chapter contains a few tips that may enhance the
+    performance of your simulations. Debugging and troubleshooting are treated
+    in Chapter 13.</p>
+    <p ALIGN="left">Simulations always proceed slowly when one or more online
+    windows are open upon them. If speed is important, keep the dynamic windows
+    closed as much as possible.</p>
+    <p ALIGN="left">GPSS World is designed for multitasking operation.
+    However, the message related task switching can sometimes cause window
+    update delays. You can alleviate this by opening fewer online windows, by
+    Halting the simulation before opening multiple views, and by running one
+    simulation at a time.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="10.1">10.1</a>. Memory
+    Allocations</h2>
+    <p ALIGN="left">No entity allocations are required by GPSS World. All are
+    automatic. For this reason there is no REALLOCATE statement.</p>
+    <p ALIGN="left">Since GPSS World utilizes virtual memory, you can use
+    more memory for your simulations than exists in your computer. This
+    generally causes extra disk accesses to occur. If you find that your
+    simulations are taking longer to run because of this, you can remedy the
+    situation by adding more physical memory to your computer.</p>
+    <p ALIGN="left">For safety sake there is a limit to the size of virtual
+    memory requests which occur during a simulation. This prevents the
+    inadvertent access to a large amount of virtual memory causing performance
+    degradation. If you need to change this limit, you can do so in the Simulate
+    Page of the Model Settings Notebook.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="10.2">10.2</a>. Identifying
+    Congestion Points</h2>
+    <p ALIGN="left">A common cause of performance problems is an unlimited
+    creation of Transactions inside your simulation.</p>
+    <p ALIGN="left">It may be useful to view the simulation through each of
+    the graphics windows. This will often show you the reason that your
+    simulation is growing. Look in the Blocks window for congestion points where
+    Transactions are accumulating. Look at the details view of each of the other
+    entity windows and check the size of the Retry Chain. This indicate the
+    number of Transactions blocked on a state change of each entity.</p>
+    <p ALIGN="left">You may want to produce a Standard Report to study the
+    state of the simulation. To force GPSS World to produce a report, you can
+    simply type:</p>
+    <b>
+    <p ALIGN="left">REPORT</p>
+    </b>
+    <p ALIGN="left">A buildup of Transactions may be an indication of what
+    would really happen under the conditions you have simulated. For example, if
+    your arrival rates exceed the capacity of the simulated resources, queues
+    will build up indefinitely. In this case, you would expect to run out of
+    memory eventually. Your simulation is telling you that a system so designed
+    would be inadequate to handle the simulated load</p>
+    <h2 ALIGN="left">&nbsp;</h2>
+    <h2 ALIGN="left"><a name="10.3">10.3</a>. Operating Tips.</h2>
+          <p align="left">1. Simulations run MUCH slower when one or more dynamic windows are
+          open. A large number of messages must be sent continually to update
+          the windows. You can speed performance immensely by closing all online
+          windows.</p>
+          <p align="left">2. Generally, simulations without Data Stream I/O run faster when
+          only one simulation is run at a time. This avoids additional task
+          switching overhead.</p>
+          <p align="left">3. If performance is important, be sure that you have a hardware
+          math coprocessor capability. You may be able to find a coprocessor
+          which runs on a faster clock than exists on the motherboard of your
+          personal computer.</p>
+          <p align="left">4. If all these methods fail to improve performance satisfactorily,
+          you should consider a CPU upgrade. Be sure to get hardware math
+          coprocessor capabilities. All GPSS World products can benefit from
+          symmetric multiprocessing. The Intel variants are optimized for
+          Pentium.</p>
+          <p align="left">&nbsp;</p>
+     <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="10.4">10.4</a>. Modeling
+    Tips</h2>
+    <p ALIGN="left">The following changes to your models may speed up the
+    running of your simulations.</p>
+           <p align="left">1. If your simulation is behaving in an unexpected manner, you
+          should HALT the simulation and determine if Transactions are building
+          up anywhere. Start with the Blocks Window and look for red Blocks
+          which indicate a blocking condition. More information is available in
+          the Detailed view. Begin STEPping through the simulation so you can
+          see the dynamics of the Transaction flow. Open the Detailed View of
+          each Window type and look for large Retry Chains. That would indicate
+          an unsatisfied blocking condition.</p>
+          <p align="left">2. A performance problem can result from retesting blocked
+          Transactions. Several of the most powerful GPSS blocks carry with them
+          the danger that much computer time will be wasted on unsuccessful
+          testing. When a Transaction is blocked, the Simulation Object places
+          it on one or more Retry Chains so that a retest may be scheduled when
+          conditions change. If you use GATE, TEST, TRANSFER BOTH, or TRANSFER
+          ALL blocks and there are large Retry Chains , chances are that a lot
+          of computer time is spent in unsuccessful tests. You should arrange
+          your model to minimize unsuccessful testing in these Blocks.</p>
+          <p align="left">3. If you have Transactions waiting for a specific condition and
+          there is no chance of a successful test, it is more efficient to place
+          blocked Transactions on a User Chain until there is a possibility of
+          success.</p>
+          <p align="left">4. GPSS is a powerful simulation language unlike FORTRAN and other
+          programming languages. Transactions do not have to be GENERATEd on
+          every clock tick. GPSS schedules future events and unblocks
+          Transactions automatically, you do not have to keep testing.</p>
+          <p align="left">5. Replace Refuse Mode GATE and TEST Blocks with alternate
+          constructs. If this is not possible, test conditions which change
+          infrequently.</p>
+          <p align="left">6. Use a GPSS FUNCTION statement to define probability
+          distributions instead of a complex expression using library functions.</p>
+          <p align="left">7. COUNT and SELECT blocks can generate a lot of testing. Try to
+          replace these with less powerful Blocks closely matched to your model.</p>
+          <p align="left">8. You can force the Simulation Object to use a one-day calendar
+          for implementation of the Future Events Chain. This is a performance
+          tuning option that may improved the performance of simulation with a
+          small FEC.</p>
+          <p align="left">9. You can set aside a block of contiguous Transaction Parameter
+          numbers and cause Simulation Object to allocate them all at once and
+          to access them by direct addressing. This eliminates a serial search
+          for Transaction Parameters. Such allocations are called Parameter
+          Blocks, and are specified in the Simulate Page of the Model Settings
+          Notebook, and are discussed in Chapter 2. You can use the EQU Command
+          to cause named Parameters to reside in a Parameter Block.</p>
+          <p align="left">10. Data Stream Blocks can be computationally expensive. You can
+          speed processing by using a large amount of data on a small number of
+          text lines. For example, use text lines that contain many data items.
+          You can parse these structures using the string procedures in the
+          Procedure Library.</p>
+          <p align="left">11. You should keep Transaction Priorities contiguous. Use 1, 2, 3,
+          not 12789, -30977, 22. This speeds up the overhead related to priority
+          queues. Zero is the default.</p>
+          <p align="left">12. At the expense of some interactivity, the simulation Poll count
+          can be increased to reduce the polling overhead in the Simulation
+          Object. This causes message polling to be less frequent. To do so
+          enter a higher number in the Simulate Page of the Model Settings
+          Notebook.</p>
+          <p align="left">13. Integrations are generally slow. If you know the analytic
+          solution to the ordinary differential equation, using it in an
+          FVARIABLE, or PLUS Procedure, is much faster than actually playing out
+          the integration numerically using one or more INTEGRATE Statements.</p>
+          <p align="left">14. A larger Integration Error Tolerance will make integrations run
+          faster, at the expense of some accuracy. The Integration Tolerance is
+          set in the Simulate Page of the Model Settings Notebook. The default
+          is 10</font><font FACE="Arial" SIZE="1">-6</font><font FACE="Arial" SIZE="2">.</p>
+          <p align="left">15. Using parts-per-thousand in Fractional Mode TRANSFER blocks
+          instead of a decimal fraction is a little faster.</p>
+          <p align="left">16. MIN and MAX operators in GPSS Blocks are time consuming. It may
+          be faster to create a PLUS Procedure to select entities.</p>
+          <p align="left">17. Turn off sections of the Standard Report that you do not need.
+          You can do this in the Report page of the Model Settings Notebook.</p>
+          <p align="left">18. Real numbers in Numeric Groups are searched much more slowly
+          than integers. If real numbers must be used, consider using a coding
+          algorithm so that only integers are actually used as Group members.</p>
+          <p align="left">&nbsp;</p>
+          <p align="center">&nbsp;
+  <a href="reference_manual.htm">[Table of Contents]</a></p>
+          <p align="center">&nbsp;</p>
+        </font>
+  </blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

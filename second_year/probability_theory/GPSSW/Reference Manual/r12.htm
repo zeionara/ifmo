@@ -1,0 +1,227 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><b>
+<blockquote>
+  <blockquote>
+  </b><font FACE="Helvetica" SIZE="2">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="12">12</a> - GPSS World Statistics<!--mstheme--></font></h1>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial"><font SIZE="2">
+  </font><font size="5"><a name="12.1">12.1</a>. Introduction</font></font></h2>
+      <font FACE="Helvetica" SIZE="2">
+      <font FACE="Helvetica" SIZE="2">
+      <p ALIGN="left">GPSS World has a versatile statistics collection
+      capability. For uncomplicated simulations, the statistics in the Standard
+      Report and that reported by the ANOVA library procedure will meet the
+      needs of most users. In these cases, GPSS World will collect and report
+      the simulation statistics automatically. This is discussed in Chapters 11
+      and 8.</p>
+      <p ALIGN="left">If you need more detailed statistics, the use of
+      variable entities and PLUS Procedures provides excellent control. In these
+      cases, the power of the mathematical library functions is at your
+      disposal. You then define statistics tables in one or more TABLE or QTABLE
+      Statements. The actual recording of data is triggered by one or more
+      TABULATE Blocks in the simulation. Each time a TABULATE is entered, a
+      datum is registered in the table. This can be viewed dynamically in one or
+      more Tables Windows. Alternately, you could record values in Savevalue or
+      Matrix Entities just prior to the completion of the simulation. Tables,
+      Qtables, Savevalues, and Matrices are all reported automatically in the
+      Standard Report, if you have checked them in the Report Page of the Model
+      Settings Notebook.</p>
+      <p ALIGN="left">QTABLE Commands provide an easier way to collect
+      statistics based on Queue Entities. In this case, the tabulations are
+      triggered by entry into DEPART Blocks instead of TABULATE Blocks.</p>
+      <p ALIGN="left">Normally, you should arrange your simulation so that
+      control values are taken from User Variables and the results are in User
+      Variables when the simulation terminates. The reason for this is that this
+      is how the PLUS Experiments created by the Automatic Experiment Generators
+      work. If there is any chance you will want to use them, you will need to
+      make these accommodations.</p>
+      <p ALIGN="left">For more in-depth analysis, you can accumulate
+      simulation results in a Result File by using Open, Close, Read, Write,
+      Seek in the form of GPSS Blocks or procedure calls. This can accumulate
+      simulation results in an historical database that can be used with
+      advanced third party statistical analysis software. For analysis of data
+      in a Result Matrix, the built in Multiway ANOVA Procedure is available.</p>
+      <p ALIGN="left">&nbsp;</p>
+  </font>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5"><a name="12.2"></a>&nbsp;&nbsp;&nbsp;
+      12.2 ANOVA</font></h2>
+  <font FACE="Helvetica" SIZE="2">
+      <font FACE="Helvetica" SIZE="2">
+      <p ALIGN="left">If you are new to simulation, you will notice that when
+      you repeat a simulation in the same session you may get different results
+      due to random effects. Such effects must be carefully distinguished from
+      the real effects caused by new designs in your simulated systems. The
+      ANOVA library procedure provides you with a simple and yet powerful
+      technique for establishing that your results do or do not emerge above the
+      noise level caused by randomness.</p>
+      <p ALIGN="left">In order to measure the amount of random noise, you
+      must repeat your simulations changing nothing except the random number
+      seeds. These repeat runs are called replications and are important for
+      measuring the statistical noise, i.e. the Standard Error, in your
+      experiment. In the simplest scheme, each different design you choose to
+      simulate would be replicated several times. Then the ANOVA library
+      procedure will use the data to detect if the effects of changing the
+      factors of your experiment were significantly greater than the statistical
+      noise level. The results of this analysis will appear automatically in the
+      Simulation Object's Journal Window.</p>
+      </font><font FACE="Helv" SIZE="2">
+      <p ALIGN="left">The ANOVA Procedure provides for push button data
+      analysis. It calculates Confidence Intervals and an Analysis of Variance
+      of simulation results. Normally, during an experiment, you fill a special
+      global Matrix Entity called a Result Matrix with the results of the
+      simulations and then pass it as an argument to the ANOVA Procedure. The
+      details of the use of GPSS World's Multiway ANOVA library procedure are
+      discussed in detail in the next chapter in Section 13.5.3.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Helv" SIZE="5">
+      <h2 align="left">&nbsp;&nbsp;&nbsp;
+      </font> <font face="Arial" size="5"><a name="12.3"></a>12.</font></font><font face="Arial" size="5">3.&nbsp;<font FACE="Helvetica" SIZE="2">
+      </font></font><font face="Arial" size="5">RESET</font></h2>
+  </b><font FACE="Helvetica" SIZE="2"><font FACE="Helvetica" SIZE="2">
+      <p ALIGN="left">If you wish to exclude the effects of starting
+      conditions from your final simulation, you should use the RESET Command to
+      begin the measurement period after transient effects have disappeared. The
+      RESET Command is discussed in Chapter 6. Plot Windows are useful for
+      observing the convergence of a simulation to steady state conditions.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+ 
+<h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="12.4"></a>12.4. Space-Time
+Products</h2>
+<p ALIGN="left">A space-time product is a time duration multiplied by a
+count. Space-time products are used in the calculation of several kinds of
+useful statistics. For example, to calculate the wages due to a labor force you
+could use the number of people who worked each given number of hours. To
+calculate the total hours worked, you could multiply the hours times the number
+of people to form a space-time product for each number of hours worked. You
+could then add up all the space time products in order to calculate the total
+person-hours. Similarly, many statistics reported in the Standard Reports are
+accumulations of space-time products.</p>
+<p ALIGN="left">Facility, Queue, Storage, and Userchain entities have SNAs
+which require space-time products in their evaluation. For example, the average
+storage in use is a time weighted average which gives more weight to those
+numbers which have the longest durations.&nbsp; The accumulated space-time
+product is divided by the simulated time duration in order to calculate the
+average storage in use.</p>
+<p ALIGN="left">Facility, Queue and Userchain entities also have space-time
+products. They are used to calculate average content via a corresponding SNA.
+The Facility space-time product is the accumulation of total busy time. The
+other space-time products are equal to the area under the graph of Queue content
+or Userchain content.</p>
+<p ALIGN="left">The RESET command may be used to begin a new measurement
+period. A RESET command sets the space-time product to zero and the total count
+equal to the current count. This allows new space-time products to be
+accumulated. In the SNAs based on space-time product calculations, this method
+of initialization may introduce a small bias on the low side.</p>
+  </blockquote>
+</blockquote>
+<b>
+<p ALIGN="JUSTIFY"></b>
+  </font><b><font FACE="Arial" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+The following table shows the SNAs calculated from space-time products.</font></b></p>
+<p ALIGN="JUSTIFY"><b><font FACE="Arial" SIZE="2"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Table 12—5. Space-Time System Numeric Attributes</font></b><font FACE="Courier" SIZE="1"></p>
+</font><b><font FACE="Helvetica" SIZE="2">
+<p ALIGN="JUSTIFY">&nbsp;</p>
+</font><font FACE="Courier New" SIZE="1">
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SNA
+ENTITY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CALCULATION</p>
+<p>&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FR UTILIZATION (ppt)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Facility
+1000 times (Space-time product)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+divided by (Total Simulated Time)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FT AVERAGE HOLDING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Facility
+(Space-time-product) divided</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TIME PER
+CAPTURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+by (Total capture count)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+QA AVERAGE CONTENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Queue
+(Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Elapsed time)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+QT AVERAGE RESIDENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Queue
+(Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Total count)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QX AVERAGE
+RESIDENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Queue (Space-time product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TIME
+EXCLUDING
+ZEROS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Total Count)-(Count finding zero)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SA AVERAGE
+CONTENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Storage (Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Elapsed time)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SR
+FRACTIONAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Storage 1000 times (Space-time product)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UTILIZATION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Capacity) times (Elapsed time)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ST AVERAGE
+HOLDING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Storage (Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Sum of storage requirements)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CA AVERAGE
+CONTENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Userchain (Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Elapsed time)</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CT AVERAGE
+RESIDENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Userchain
+(Space-time-product) divided by</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Total count)</p>
+<p>&nbsp;</p>
+<font FACE="Arial" SIZE="2">
+<p align="center">&nbsp;&nbsp;
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reference_manual.htm"><font FACE="Arial" SIZE="2">
+[Table of Contents]</font></a></p>
+</font>
+<font FACE="Courier" SIZE="1">
+<p>&nbsp;</p>
+</font><font FACE="Helvetica" SIZE="2">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</font></b><!--mstheme--></font></body>
+
+</html>

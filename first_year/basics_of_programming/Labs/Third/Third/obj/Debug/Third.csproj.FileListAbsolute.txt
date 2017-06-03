@@ -1,0 +1,6 @@
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\bin\Debug\Third.exe.config
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\bin\Debug\Third.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\bin\Debug\Third.pdb
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\obj\Debug\Third.csprojResolveAssemblyReference.cache
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\obj\Debug\Third.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Third\Third\obj\Debug\Third.pdb

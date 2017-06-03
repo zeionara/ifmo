@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+      <h:head>
+        <h:outputStylesheet name="styles/style.css" library="styles"/>
+      </h:head>
+      <h:body>
+        <h:outputText value="Выполнил студент группы P3217 Плюхин Дмитрий Алексеевич вариант 2911"/>
+        <h:form>
+          <p:panel>
+            <h:panelGrid columns="2">
+              <h:outputText value="Login"/>
+              <h:inputText value="#{mainBean.user}"/>
+              <h:outputText value="Password"/>
+              <h:inputText value="#{mainBean.password}"/>
+            </h:panelGrid>
+            <h:commandButton value="Entet" action="#{mainBean.checkUser}"/>
+          </p:panel>
+        </h:form>
+      </h:body>
+</html>

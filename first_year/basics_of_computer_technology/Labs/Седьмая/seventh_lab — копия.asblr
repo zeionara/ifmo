@@ -1,0 +1,124 @@
+ORG 210
+NUMT:       WORD    0005    ;Количество тестов
+
+ORG 008
+RZS:       WORD    0010    ;Адрес начала массива промежуточных результатов
+
+ORG 015
+RZULT:      WORD    0000    ;Конечный результат   
+TWORD1:     WORD    FACE    ;Первое тестовое слово    
+TWORD2:     WORD    FEED    ;Второе тестовое слово
+BUFF:       WORD    ?       ;Буфер для временного хранения данных при тестировании
+TW2ADR:     WORD    0017    ;Адрес второго тестового слова
+COUNTR:     WORD    ?       ;Счетчик
+
+ORG     020            ;Основная программа
+BEGIN:  JSR CHK_C0     ;Проверка сохранения нулевого состояния бита С
+	JSR CHK_C1         ;Проверка сброса бита С если он был установлен в единицу
+	JSR VALNUL         ;Проверка логического умножения на 16 нулей
+	JSR VALFUL         ;Проверка логического умножения на 16 единиц
+	JSR VALCUR         ;Проверка логического умножения ячейки с использованием косвенной адресации
+	JSR ALLOK          ;Выдача конечного результата тестирования
+	HLT
+
+SVTW2:  WORD ?          ;Сохранение второго тестового слова
+        CLA
+        ADD	    TWORD2
+	    MOV     BUFF
+        BR      (SVTW2)
+        
+RETW2:  WORD ?          ;Восстановление второго тестового слова
+        CLA
+	    ADD     BUFF
+	    MOV     TWORD2
+        BR      (RETW2) 
+    
+                        ;Проверка сохранения нулевого состояния бита С
+CHK_C0: WORD    ?       ;Адрес возврата
+	    JSR     SVTW2
+	    CLA
+        CMA
+        AND     TWORD1  
+        WORD	7017    ;MAND TWORD2
+        BCS     WRT1      
+        CLA
+WRT1:   JSR      WRTRZS
+	    JSR      RETW2
+	    BR      (CHK_C0)   
+        
+                        ;Проверка сброса бита С если он был установлен в единицу
+CHK_C1: WORD    ?       ;Адрес возврата
+        JSR SVTW2
+	    CLA
+	    CMA
+        AND     TWORD1
+        ADD     TWORD2  ;Подбираем такие тестовые слова, чтобы при их сумме происходил перенос
+        WORD    7017    ;MAND TWORD2
+        BCS     WRT2    ;Если бит С оказался сброшен после команды MAND то такой результат корректен
+        CLA
+WRT2:   JSR      WRTRZS
+	    JSR      RETW2
+        BR       (CHK_C1)   
+        
+                        ;Проверка логического умножения на 16 нулей
+VALNUL: WORD    ?       ;Адрес возврата
+        JSR SVTW2
+	    CLA
+        WORD    7017    ;MAND TWORD2
+        CLA
+        ADD     TWORD2  ;Должны были получить 0 в ячейке TWORD2
+        JSR     WRTRZS
+	    JSR     RETW2
+        BR      (VALNUL)
+        
+                        ;Проверка логического умножения на 16 единиц
+VALFUL: WORD    ?       ;Адрес возврата
+        JSR     SVTW2
+	    CLA
+	    CMA
+        WORD    7017    ;MAND TWORD2
+	    CLA
+        ADD     TWORD2  ;Значение TWORD2 не должно было измениться
+        SUB     BUFF     
+        JSR     WRTRZS
+	    JSR     RETW2
+        BR      (VALFUL)
+        
+                        ;Проверка логического умножения ячейки с использованием косвенной адресации
+VALCUR: WORD    ?       ;Адрес возврата
+        CLA
+	    ADD     TWORD1
+	    AND     (TW2ADR)
+        MOV     BUFF    ;Запишем результат побитового И
+	    CLA
+        ADD     TWORD1
+        WORD    7819    ;MAND (TW2ADR)
+        CLA
+        ADD     (TW2ADR)
+        SUB     BUFF    ;Побитовое И и команда MAND должны были одинаково преобразовать аргументы
+        JSR     WRTRZS
+        BR      (VALCUR)
+
+WRTRZS: WORD    ?       ;Запись успешности прохождения теста
+	    BEQ     NOERR   ;Если в аккумуляторе 0, то ошибки не возникло
+        CLA
+        MOV     (RZS)
+        BR      (WRTRZS)
+NOERR:  CLA
+        INC
+        MOV     (RZS)
+        BR      (WRTRZS)
+        
+ALLOK:  WORD    ?       ;Запись успешности прохождения теста
+        CLA
+        SUB     NUMT
+        MOV     COUNTR
+        ADD     RZS
+        MOV     RZS
+	    CLA
+LOOP:   ADD     (RZS)
+        ISZ     COUNTR
+        BR      LOOP
+	    SUB     NUMT
+        JSR     WRTRZS
+        BR      (ALLOK)

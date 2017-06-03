@@ -1,0 +1,6 @@
+public class J extends null {
+
+    long dd();
+
+    float ff();
+}

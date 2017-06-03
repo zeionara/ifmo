@@ -1,0 +1,1762 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial">
+<blockquote>
+<blockquote>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a name="11. ROBOTFMS.GPS">11. ROBOTFMS.GPS</a><!--mstheme--></font></h1>
+
+  
+  </font>
+<p align="left">&nbsp;</p>
+  <b><font FACE="Arial">
+  
+    
+      <p ALIGN="center"><font size="4">Simulation of a robot operated FMS.</font></p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">An experimental, robot operated, flexible manufacturing
+  system has two computer numerical control machine tools, an arrival area, and
+  a finished parts area. Components arrive every 150 seconds, exponentially
+  distributed, and are machined on both machines in sequence. The robot takes
+  8±1 seconds to grip or release components, and 6 seconds to move components
+  from the arrival area to the first machine. Processing time, on the first
+  machine is normally distributed, with a mean of 60 seconds and a standard
+  deviation of 10 seconds. The robot takes 7 seconds, to move from the first
+  machine to the second machine. Machining time on the second machine is 100
+  seconds, exponentially distributed. Finally, the robot takes 5 seconds, to
+  move components from the second machine, to the finished parts storage area.</p>
+  <p ALIGN="left">Simulate the manufacturing cell operation, for 75 completed
+  parts.</p>
+  <p ALIGN="left">1.&nbsp;Find the distribution of transit times of jobs.</p>
+  <p ALIGN="left">2.&nbsp;Find the utilization of the robot, and the machine
+  tools.</p>
+  <p ALIGN="left">3.&nbsp;Find the maximum storage areas required, in the
+  cell.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+  </b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - ROBOTFMS.GPS, by Gerard F. Cummings<br>
+*******************************************************************<br>
+* Experimental Manufacturing Cell&nbsp;<br>
+* Two CNC machines and one Robot<br>
+* One arrival area and one finished parts area<br>
+*******************************************************************<br>
+RMULT 78863<br>
+Transit TABLE M1,100,100,20 ;Record lead time<br>
+*******************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE (Exponential(1,0,150)) ;A job arrives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Arrival queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot grips the job<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot moves to machine 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot place the job<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Two&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait in next queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get first machine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Two&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(1,60,10)) ;Process time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free machine 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Three&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue for machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Three&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot grips part<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot moves to machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot places the part<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Four&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Four&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Exponential(1,0,100)) ;Process 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Five&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for exit station<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Five&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot grips the part<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot moves to exit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 8,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot places the part<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Job is completed<br>
+*******************************************************************</font></p>
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Transactions represent jobs, which pass serially through
+  each step in the operation.</p>
+  <p ALIGN="left">The Table Transit collects the distribution of job
+  completion times.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run a simulation and create a Standard Report,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Robotfms</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, create the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">75</p></font>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p></font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The simulation will end when 75 Transactions have entered
+    the TERMINATE 1 Block. This represents the completion of 75 jobs.</p>
+    <p ALIGN="left">When the simulation ends, GPSS World writes a report to
+    the default report file, RobotFMS.1.1. As discussed in Chapter 1, the Report
+    extension will vary depending on saved simulations and previously existing
+    reports. For our purposes, we will assume that this is the first time the
+    simulation has been created and run giving an extension of 1.1.</p>
+    <p ALIGN="left">This report will be automatically displayed in a window.
+    If you close the window, you can reopen it by using the GPSS World <b>File /
+    Open</b> in the Main Menu. Then you should choose Report in the &quot;Files
+    of type&quot; drop-down box at the bottom of the window. GPSS World reports
+    are written in a special format. If you wish to edit the report, you will
+    have to copy its contents to the clipboard and from there into a word
+    processor. You will not be able to open the file directly in a word
+    processor.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Discussion of Results</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">From the Standard Report, we see that the Robot,
+    Machine1, and Machine2 Facilities had utilizations of 36%, 33% and 64%,
+    respectively. The Queue Entity Four registered a notably long average
+    waiting time of 179.7 seconds. This queue represents jobs waiting for
+    Machine2.</p>
+    <p ALIGN="left">The order completion times are represented in the Table
+    Transit. The mean was<b> </b>451.8 seconds, with a standard deviation of
+    around 250.8.</p>
+    <p ALIGN="left">The maximum storage requirements required for each Queue
+    Entity totals 13<b> </b>for this simulation. This is the total of all Queue
+    Entity Maximum values. Maximum values can vary widely from run to run.
+    Therefore, we would want to complete several more simulations before
+    reporting a space requirement, in the form of a confidence interval.
+    Confidence intervals are provided by the ANOVA Command, which is discussed
+    in Lesson 13 of this manual and Chapter 6 of the <i>GPSS World Reference
+    Manual</i>.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Inside the Simulation</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Let's now explore the ending condition of the simulation,
+    which generated the Standard Report above. If you are not at the end of the
+    simulation, please Retranslate the model and run it again.</p>
+    <p ALIGN="left">Now, let’s open some graphics windows.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+  </font>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This is the Facilities Window. It gives information on
+    machine usage. Machine2 has the highest utilization.</p>
+    <p ALIGN="left">To view the histogram of job completion times,</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and since the TRANSIT Table is the only one in this model</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Close the Table and Facilities Windows once you have
+    examined them.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Occasionally, you may find it desirable to rerun
+  simulations after adding Tables, Qtables, or other automatic data collection
+  Entities. It is always possible to create and report your own statistics using
+  Variable, Fvariable, Bvariable, Matrix, and Savevalue Entities. They, and
+  other simulation related values could be viewed via the Expression Window as
+  well. Also, the I/O Stream Blocks and String Commands can be used to create
+  reports that are formatted as you wish with the selected information from your
+  simulation.</p>
+  <p ALIGN="left">Let’s take a look at where Transactions are.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Blocks Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and look at the history of Transactions in the
+    simulation. Look at the total Block entry counts. This model is rather
+    simple with no TRANSFER Blocks or alternate destinations. Let’s watch the
+    dynamics. Often, a new Active Transaction is chosen when the current
+    Transaction enters an ADVANCE Block. Open an Expression Window on the Active
+    Transaction number.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Expression Window</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The Edit Expression Window opens. When you enter the
+    value in the second box in this dialog box, you should place the mouse
+    pointer in the small box and click once. Do not press <b>[Enter]</b>
+    to go from the first to the second box as GPSS World then assumes that all
+    values have been entered. You can, instead, use <b>[Tab]</b>
+    to move from box to box. Now, in the dialog box for the Label field</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Active Transaction Number</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the Expression field</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">XN1</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If we memorize all the expressions, we'll be able to close
+  the window and open it again later with easy retrieval of all the values. Also
+  if you save the simulation the values in the Expression Window will be saved
+  with the simulation if they have been memorized.</p>
+  
+  
+  <p align="center"></font><font FACE="Helvetica" SIZE="2">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <b>OK</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">2000</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">If you want to slow things down, interrupt the simulation
+    and use the Step Command. Feel free to interact with the simulation
+    environment. When you are done, halt the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[F4]</b></font></p>
+  
+    
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.</p>
+  </u></font><b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </font><font FACE="Arial">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#12. BICYCLE.GPS" name="12. BICYCLE.GPS">12. BICYCLE.GPS</a><!--mstheme--></font></h1>
+  
+    
+      <p ALIGN="left">&nbsp;</p>
+  
+    
+      <p ALIGN="center"><font size="4">Simulation of a bicycle factory.</font></p>
+      <p ALIGN="left">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+    <p align="left">Problem Statement</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A factory assembles bicycles, employing the following
+  staff, 2 clerks, 3 framers, 1 saddler, 1 handler, 1 wheeler, 1 pedaler, 4
+  assemblers, and 3 packers. The company commences to assemble a bicycle, every
+  50±10 minutes. The clerical department prepares the delivery documents,
+  instructions, tool kit and invoice.</p>
+  <p ALIGN="left">Each department withdraws the component required for a
+  particular order from stock, inspects (3±1 minutes) and prepares it for
+  assembly. The frame is manufactured and takes 65 minutes, exponentially
+  distributed. When the components are available, they are assembled. This takes
+  on average 90 minutes, with a standard deviation of 10 minutes. When the
+  delivery documents, tool kit, and the assembled bicycle, are ready, they are
+  packed (40±5 minutes), in preparation for delivery.</p>
+  <p ALIGN="left">1.&nbsp;Find the utilization of the staff in each
+  department.</p>
+  <p ALIGN="left">2.&nbsp;Determine the transit times of customers’ orders.</p>
+  <p ALIGN="left">3.&nbsp;Should the number of staff be changed in any
+  department?</p>
+  <p ALIGN="left">4.&nbsp;Simulate the bicycle factory assembly operation,
+  for 5 days.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+  </b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - BICYCLE.GPS by Gerard F. Cummings<br>
+*********************************************************************<br>
+*<br>
+* Bicycle Assembly Model&nbsp;<br>
+*<br>
+*********************************************************************<br>
+*********************************************************************<br>
+Orders FUNCTION P$Department,L6<br>
+1,Order/2,Frame/3,Saddle/4,Handlebars/5,Wheels/6,Pedals<br>
+*********************************************************************<br>
+Transit TABLE M1,100,100,20<br>
+*********************************************************************<br>
+Clerks STORAGE 2<br>
+Framers STORAGE 3<br>
+Saddlers STORAGE 1<br>
+Handlers STORAGE 1<br>
+Wheelers STORAGE 1<br>
+Pedalers STORAGE 1<br>
+Builders STORAGE 4<br>
+Packers STORAGE 3<br>
+*********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 50,10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Order arrives for bicycle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPLIT&nbsp;&nbsp;&nbsp;&nbsp; 5,Factory,Department ;Make 5 copies of order<br>
+Order&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Clerks<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 80,10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Prepare invoice<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Clerks<br>
+Invoice MATCH&nbsp;&nbsp;&nbsp;&nbsp; Bicycle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Synchronize with bicycle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transaction finished<br>
+*********************************************************************<br>
+Factory TRANSFER&nbsp; FN,Orders&nbsp;&nbsp;&nbsp;&nbsp; ;Route to correct dept.<br>
+*********************************************************************<br>
+Frame&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Framers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Exponential(1,0,65)) ;Make frame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 12,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect frame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Framers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Send for assembly<br>
+*********************************************************************<br>
+Saddle&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Saddlers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 6,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get a saddle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect the saddle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Saddlers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Send for assembly<br>
+*********************************************************************<br>
+Handlebars ENTER Handlers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 4,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get handlebars<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect handlebars<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Handlers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Send for assembly<br>
+*********************************************************************<br>
+Wheels&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Wheelers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get wheels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect wheels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Wheelers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Send for assembly<br>
+*********************************************************************<br>
+Pedals&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Pedalers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 5,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get pedals<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect pedals<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Pedalers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Send for assembly<br>
+*********************************************************************<br>
+Build&nbsp;&nbsp; ASSEMBLE&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Assemble<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Builders<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(1,90,10)) ;Time for assembling<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 35,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspect<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Builders<br>
+Bicycle MATCH&nbsp;&nbsp;&nbsp;&nbsp; Invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait for paperwork<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Packers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 40,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Pack for dispatch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Packers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transaction finished<br>
+*********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 480&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Timer every day<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Timer xact finished<br>
+*********************************************************************</font></p>
+<p align="left"><font FACE="Arial" SIZE="2">Transactions represent orders. When an order is received, a
+  SPLIT Block creates a work order for each of five departments. Coordinated use
+  of the FN mode TRANSFER Block labeled Factory, the Order Function Entity, and
+  the serializing SPLIT Block automatically deliver department orders. Notice
+  that the C operand of SPLIT first increments the parent Transaction’s
+  parameter to 1 and the newly created Transactions then have 2, 3, 4, 5, and 6
+  placed in the department parameter.</p>
+  <p ALIGN="left">When all 5 suborders have been completed, they are combined
+  at the ASSEMBLE Block labeled Build, a simulated delay represents the final
+  assembly and pack steps, and the overall order completion time is tabulated.</p>
+  <p ALIGN="left">The bottom model segment decrements the Termination Count
+  once a day.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run the simulation and create a Standard Report,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>File / Open</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Bicycle</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, create the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">5</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The simulation will end when 5 Transactions have entered
+    the TERMINATE 1 Block. This represents 5 days of operation.</p>
+    <p ALIGN="left">When the simulation ends, GPSS World writes a report to
+    the default report file, Bicycle.1.1. As discussed in Chapter 1, the Report
+    extension will vary depending on saved simulations and previously existing
+    reports. For our purposes, we will assume that this is the first time the
+    simulation has been created and run giving an extension of 1.1.</p>
+    <p ALIGN="left">This report will be automatically displayed in a window.
+    If you close the window, you can reopen it by using the GPSS World <b>File /
+    Open</b> in the Main Menu. Then you should choose Report in the &quot;Files
+    of type&quot; drop down box at the bottom of the window. GPSS World reports
+    are written in a special format. If you wish to edit the report, you will
+    have to copy its contents to the clipboard and from there into a word
+    processor. You will not be able to open the file directly in a word
+    processor.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Discussion of Results</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The utilization of the staff in each department is given
+    under the Util. column of the Storages subreport. The Clerks are busiest
+    with a utilization of 78%. To determine the most desirable staff levels, we
+    need to experiment with the Storage definitions.</p>
+    <p ALIGN="left">The distribution of order transit times is given by the
+    Table Transit. The average was about 235.5<b> </b>minutes with a standard
+    deviation of 51.2 minutes.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Inside the Simulation</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Let us now explore the ending condition of the
+    simulation, which generated the Standard Report above. If you are not at the
+    end of the simulation, please translate the model and run it again.</p>
+    <p ALIGN="left">First, let’s open the Storages Window.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This shows the utilization and current state of the 8
+    Storage Entities. Let’s use the SHOW Command to look at some System
+    Numeric Attributes. First, the time delay for clerical operations. In the
+    Main Window menu</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">ST$Clerks</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the average holding time per unit of the Storage
+  Entity Clerks.</p>
+  <p ALIGN="left">Next, use the SHOW Command to look at the time delays
+  associated with each department. In all cases, there appears to be no
+  significant queuing. In other words, the need for additional personnel in any
+  department is not suggested by the results. Perhaps we could get by with fewer
+  personnel.</p>
+  <p ALIGN="left">It would be easy to insert QUEUE, DEPART, and QTABLE Blocks
+  to collect more detailed statistics. The final word on the predicted effects
+  of personnel changes would, of course, be based on full simulations of the
+  proposed changes using multiple replications and statistical analysis before
+  final conclusions are drawn.</p>
+  <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+  this simulation. If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+  </u></p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+</font><b><font FACE="Arial">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#13. STOCKCTL.GPS" name="13. STOCKCTL.GPS">13. STOCKCTL.GPS</a><!--mstheme--></font></h1>
+  
+    
+      <p ALIGN="left">&nbsp;</p>
+  
+    
+      <p ALIGN="center"><font size="4">Simulation of a warehouse and branch inventories.</font></p>
+      <p ALIGN="left">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+    <p align="left">Problem Statement</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A manufacturing company makes waste disposal units, which
+  it sells for $200 each. Total annual demand is for 20,000 units. Distribution
+  is through three branches, from a factory warehouse. The lead-time for
+  delivery of an order, from the manufacturing plant to the factory warehouse,
+  is 4 weeks. The lead-time for delivery of an order, from the factory warehouse
+  to the branches is 1 week.</p>
+  <p ALIGN="left">The proposed inventory control method is by an economic
+  order quantity and order point system. The initial stocks, order points,
+  economic order quantities, weekly demand and standard deviation, are shown in
+  the table below, for the factory warehouse and each of the branches.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+<p ALIGN="left">Inventory Control Parameters</p>
+</font></b><font FACE="Courier New" SIZE="2">
+<p ALIGN="left"><b>Location&nbsp;&nbsp; Initial&nbsp;&nbsp;&nbsp; Order&nbsp;
+Economic&nbsp;&nbsp; Weekly&nbsp;&nbsp; Weekly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stock&nbsp;&nbsp;&nbsp;&nbsp;
+Point&nbsp; Quantity&nbsp;&nbsp; Demand&nbsp;&nbsp; Std Dev<br>
+<br>
+Warehouse&nbsp;&nbsp;&nbsp; 3400&nbsp;&nbsp;&nbsp;&nbsp; 2100&nbsp;&nbsp;&nbsp;&nbsp;
+2300<br>
+Branch 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 430&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 240&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24<br>
+Branch 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 430&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+165&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32<br>
+Branch 3&nbsp;&nbsp;&nbsp;&nbsp; 1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 630&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 192&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 48</b></p>
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Simulate the inventory control system for 75 weeks.</p>
+<p ALIGN="left">1.&nbsp;Determine the distribution of inventories at the
+three branches and the factory warehouse.</p>
+<p ALIGN="left">2.&nbsp;Tabulate the distribution of actual monthly sales.</p>
+<p ALIGN="left">3.&nbsp;Calculate the average value of the inventories at the
+branches, and at the factory warehouse.</p>
+<p ALIGN="left">4.&nbsp;Does the system meet the company’s service policy
+of one stockout, in eight years?</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+STOCKCTL.GPS, by Gerard F. Cummings<br>
+****************************************************************<br>
+* Factory Warehouse and Distributors Inventory&nbsp;<br>
+* Time unit is one week&nbsp;<br>
+****************************************************************<br>
+INITIAL X1,3400 ;Fact warehouse inventory<br>
+INITIAL X2,2100 ;Fact warehouse order pnt<br>
+INITIAL X3,2300 ;Fact warehouse order qty<br>
+INITIAL X$Stock1,430 ;Dist 1 stock initial<br>
+INITIAL X$Stock2,600 ;Dist 2 stock initial<br>
+INITIAL X$Stock3,1000 ;Dist 3 stock initial<br>
+INITIAL X$EOQ1,115 ;Economic order qty 1<br>
+INITIAL X$EOQ2,165 ;Economic order qty 2<br>
+INITIAL X$EOQ3,200 ;Economic order qty 3<br>
+INITIAL X$Point1,240 ;Order point 1<br>
+INITIAL X$Point2,430 ;Order point 2<br>
+INITIAL X$Point3,630 ;Order point 3<br>
+Demand1 VARIABLE (Normal(2,64,24))<br>
+Demand2 VARIABLE (Normal(3,128,32))<br>
+Demand3 VARIABLE (Normal(4,192,48))<br>
+Total VARIABLE P1+P2+P3<br>
+Sales TABLE X5,200,200,20<br>
+Region_1 TABLE X$Stock1,0,40,20<br>
+Region_2 TABLE X$Stock2,0,40,20<br>
+Region_3 TABLE X$Stock3,0,40,20<br>
+Factory TABLE X1,0,200,20<br>
+****************************************************************<br>
+* Reordering by Factory Warehouse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; ,,,1,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Order point xact<br>
+Backhere TEST LE&nbsp; X1,X2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Factory order point?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Lead time is 4 weeks<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 1+,X3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inv increase by order qty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Backhere&nbsp;&nbsp; ;Cycle xact around<br>
+****************************************************************<br>
+* Reordering at Each of the Distributors<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1,,,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;First distributor<br>
+Distr1&nbsp; TEST L&nbsp;&nbsp;&nbsp; X$Stock1,X$Point1 ;Order point reached?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Lead time = 1 week<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 1-,X$EOQ1&nbsp;&nbsp; ;Warehouse supplies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock1+,X$EOQ1 ;Distr invent increased<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Distr1&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact finished<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1,,,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Second distributor<br>
+Distr2&nbsp; TEST L&nbsp;&nbsp;&nbsp; X$Stock2,X$Point2 ;Order point reached<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Lead time = 1 week<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 1-,X$EOQ2&nbsp;&nbsp; ;Warehouse supplies<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock2+,X$EOQ2 ;Inventory increased<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Distr2&nbsp;&nbsp;&nbsp;&nbsp;
+;Cycle xact around<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1,,,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Third distributor<br>
+Distr3&nbsp; TEST L&nbsp;&nbsp;&nbsp; X$Stock3,X$Point3 ;Order point reached?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Lead time = 1 week<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 1-,X$EOQ3&nbsp;&nbsp; ;Warehouse supplies EOQ<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock3+,X$EOQ3 ;Distr invent increased<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Distr3&nbsp;&nbsp;&nbsp;&nbsp;
+;Cycle xact around<br>
+****************************************************************<br>
+* Weekly Demand at Each Distributor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1,,,,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Priority weekly demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 1,V$Demand1 ;P1 = Demand distr one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 2,V$Demand2 ;P2 = Demand distr two<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 3,V$Demand3 ;P3 = Demand distr three<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock1-,P1&nbsp; ;Distr 1 Weekly demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock2-,P2&nbsp; ;Distr 2 Weekly demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Stock3-,P3&nbsp; ;Distr 3 Weekly demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 5+,V$Total&nbsp; ;Accumulate total demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Region_1&nbsp;&nbsp;&nbsp;
+;Record invent distr 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Region_2&nbsp;&nbsp;&nbsp;
+;Record invent distr 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Region_3&nbsp;&nbsp;&nbsp;
+;Record invent distr 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Factory&nbsp;&nbsp;&nbsp;&nbsp;
+;Factory warehouse invent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+****************************************************************<br>
+* Monthly Recording of Sales<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 4,,,,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Low priority xact monthly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Sales<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE 5,0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Reset sales=0 each month<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact finished<br>
+****************************************************************
+</font></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The model is organized into several segments. After
+  non-Block Entities are defined, there are 7 more model segments. Transactions
+  created in the top segment represent orders by the factory warehouse.
+  Transactions in the next three segments represent orders from each of the
+  three regional warehouses. Each Transaction in the next segment, represents
+  customer orders in all three regions. Each regional demand is placed in a
+  different Transaction parameter. This segment also times the simulation (in
+  weeks) by decrementing the Termination Count. Transactions in the last segment
+  record monthly sales.</p>
+  <p ALIGN="left">Notice that nothing prevents inventories from becoming
+  negative. The model is intended to test for stockouts, but not to simulate the
+  delays involved with them. To incorporate these features into the simulation
+  we could add TEST Blocks to test for orders which cannot be filled, or perhaps
+  use Storage Entities to represent the inventories, as was done in the
+  PERIODIC.GPS example.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run the simulation and create a Standard Report,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Stockctl</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, create the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">76</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The simulation will end when 76 Transactions have entered
+    the TERMINATE 1 Block. This represents 76 weeks of operation.</p>
+    <p ALIGN="left">When the simulation ends, GPSS World writes a report to
+    the default report file, Stockctl.1.1. As discussed in Chapter 1, the Report
+    extension will vary depending on saved simulations and previously existing
+    reports. For our purposes, we will assume that this is the first time the
+    simulation has been created and run giving an extension of 1.1.</p>
+    <p ALIGN="left">This report will be automatically displayed in a window.
+    If you close the window, you can reopen it by using the GPSS World <b>File /
+    Open</b> in the Main Menu. Then you should choose Report in the &quot;Files
+    of type&quot; drop down box at the bottom of the window. GPSS World reports
+    are written in a special format. If you wish to edit the report, you will
+    have to copy its contents to the clipboard and from there into a word
+    processor. You will not be able to open the file directly in a word
+    processor.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b>
+  <p align="left"><font FACE="Arial" SIZE="4">Discussion of Results</p>
+  </font></b>
+  
+    
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">In the Standard Report, the inventory distributions are
+      given by the Tables Region_1, Region_2, Region_3, and Factory. The average
+      stock levels for these inventories were about 172, 269, 183, and 1831,
+      respectively.</p>
+      <p ALIGN="left">Monthly sales were tabulated in the Table Sales. The
+      monthly average was about 1542.</p>
+      <p ALIGN="left">The simulation did experience some stockouts at
+      Distributor 3 (look at Table Region_3) during the 76 simulated weeks.
+      You'll see that there were 7 entries in the 0 or less bucket. We would
+      certainly want to do additional replications to determine if this result
+      is due to random variation. To quantify the probability of no stockouts in
+      8 years, we could replicate an 8 year simulation several times, and use
+      the Chi-square distribution to calculate an interval estimate.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Inside the Simulation</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Let’s now explore the ending condition of the
+      simulation, which generated the Standard Report above. If you are not at
+      the end of the simulation, please Retranslate the model and run it again.</p>
+      <p ALIGN="left">Now, let’s open a Table Window.</p>
+      
+    
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>SALES</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Here, we see the distribution of monthly sales. Now, let’s
+    look at Region_3 where the stockouts occurred.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>REGION_3</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">It appears that stockouts occurred 7 times. We definitely
+    need to pursue this further before we make any determinations on established
+    inventory levels.</p>
+    <p ALIGN="left">To view the inventory histograms, repeat the action you
+    just completed substituting the name of each of the regions and then Factory
+    for the last Table when asked for Table name in the dialog box.</p>
+    <p ALIGN="left">The current scheme appears that it might need to be
+    examined further. You might also want to look at the system under different
+    customer demand load to see if changes may need to be made. You may want to
+    simulate the effects of stockouts by adding your own Blocks to the
+    simulation. You could easily collect statistics on order completion times by
+    adding QUEUE, DEPART, and QTABLE Blocks.</p>
+    <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+    this simulation.</p>
+    <p ALIGN="left">If you wish to go on to the next lesson, close all
+    windows related to this model.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+  </u></p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+</font><b>
+  <h1 align="left"><!--mstheme--><font color="#336666"><font face="Arial"><a name="14. LOCKSIMN.GPS"></a>14. LOCKSIMN.GPS</font><!--mstheme--></font></h1>
+<font FACE="Arial">
+  <p ALIGN="left">&nbsp;</p>
+  
+    
+      <p ALIGN="center"><font size="4">Lock and Canal Simulation.</font></p>
+  
+    
+      <p ALIGN="center">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A single lock and narrow canal system joins two navigable
+  waterways. The barge traffic is heavy between the two waterways, and the canal
+  system can take only one barge at a time. The first barge in a particular
+  direction takes 58 minutes, and subsequent barges in the same direction take
+  46 minutes.</p>
+  <p ALIGN="left">The lock operator has a policy of one-up barge followed by
+  one-down barge.</p>
+  <p ALIGN="left">It has been suggested that a policy of up to six up,
+  followed by up to six down might be more efficient.</p>
+  <p ALIGN="left">Simulate the operation of the lock and canal with the new
+  policy.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+  </b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - LOCKSIMN.GPS, by Gerard F. Cummings<br>
+**********************************************************************<br>
+* Lock Simulation *<br>
+* Time in Hours *<br>
+**********************************************************************<br>
+* X$Uplimit = Number of barges to go up<br>
+* X$Downlimit = Number of barges to go down<br>
+* X$Upcount = Number of barges which have passed up<br>
+* X$Downcount = Number of barges which have passed down<br>
+*<br>
+RMULT 94521<br>
+Upbarge FUNCTION X$Upcount,D6<br>
+1,.967/2,.767/3,.767/4,.767/5,.767/6,.767<br>
+Downbarge FUNCTION X$Downcount,D6<br>
+1,.967/2,.767/3,.767/4,.767/5,.767/6,.767<br>
+Upq QTABLE Upq,.25,.25,20<br>
+Downq QTABLE Dnq,.25,.25,20<br>
+Upcount TABLE X$Upcount,2,2,20<br>
+Dncount TABLE X$Downcount,2,2,20<br>
+INITIAL X$Uplimit,6 ;No. of barges to go up<br>
+INITIAL X$Downlimit,6 ;No. of barges to go down<br>
+**********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1.67,.5,.67&nbsp;&nbsp;&nbsp;&nbsp;
+;Up barge arrives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Upq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GATE LR&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Gate for the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Upcount+,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Accumulate up number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Upq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Upbarge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to service barge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST GE&nbsp;&nbsp; X$Uplimit,X$Upcount,Swh1 ;Have enough passed?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST NE&nbsp;&nbsp; Q$Upq,0,Swh1&nbsp;&nbsp;&nbsp;
+;Check if Upq is zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+**********************************************************************<br>
+Swh1&nbsp;&nbsp;&nbsp; LOGIC S&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Set lock the other way<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Upcount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record no. passed up<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Upcount,0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Set count to zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+**********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1.67,.5,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Arrival of down barge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Dnq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Enter queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GATE LS&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Is lock set?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Downcount+,1&nbsp;&nbsp;&nbsp;
+;Accumulate down count<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Dnq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Downbarge&nbsp;&nbsp;&nbsp;
+;Time for down barge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST GE&nbsp;&nbsp;
+X$Downlimit,X$Downcount,Swh2 ;Down count reached?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST NE&nbsp;&nbsp; Q$Dnq,0,Swh2&nbsp;&nbsp;&nbsp;
+;Any down barges left?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+**********************************************************************<br>
+Swh2&nbsp;&nbsp;&nbsp; LOGIC R&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Set lock for other way<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Lock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Dncount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record down count</font></p>
+<p align="left">&nbsp;</p>
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The model is organized into several segments. After the
+  Tables are defined and Savevalues initialized, there are three more model
+  segments. Transactions in the top segment represent barges moving in the
+  upward direction, Transactions in the second segment represent barges moving
+  in the downward direction, and bottom segment times the simulation by
+  decrementing the Termination Count once per simulated day.</p>
+  <p ALIGN="left">The direction of movement is controlled by the GPSS
+  Logicswitch Lock. When it is reset (off), the direction of movement is upward.
+  When it is set (on), the movement is downward. Each Transaction representing a
+  barge tests to see if the direction should be changed. If the barge count
+  limit has been reached, or if there are no more barges, the Transaction
+  changes the Logicswitch Lock so that traffic may begin in the other direction.
+  This model shows a scheduling policy allowing a maximum of 6 barges to pass in
+  either direction. The Savevalues Uplimit and Downlimit are therefore set to 6.
+  These can be altered interactively.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run the simulation and create a Standard Report,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Locksimn</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, create the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">7</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The simulation will end when 7 Transactions have entered
+    the TERMINATE 1 Block. This represents 7 days of operation.</p>
+    <p ALIGN="left">When the simulation ends, GPSS World writes a report to
+    the default report file, Locksimn.1.1. As discussed in Chapter 1, the Report
+    extension will vary depending on saved simulations and previously existing
+    reports. For our purposes, we will assume that this is the first time the
+    simulation has been created and run giving an extension of 1.1.</p>
+    <p ALIGN="left">This report will be automatically displayed in a window.
+    If you close the window, you can reopen it by using the GPSS World <b>File /
+    Open</b> in the Main Menu. Then you should choose Report in the &quot;Files
+    of type&quot; drop down box at the bottom of the window. GPSS World reports
+    are written in a special format. If you wish to edit the report, you will
+    have to copy its contents to the clipboard and from there into a word
+    processor. You will not be able to open the file directly in a word
+    processor.</p>
+    </font><b><font FACE="Courier New" SIZE="1">
+    
+      
+        <p align="left">&nbsp;</p>
+      </font><font FACE="Arial" SIZE="4">
+      <p align="left">Discussion of Results</p>
+      </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The distributions of barge delays for each direction are
+    given in the GPSS Tables Upq and Downq. In both cases, the average delay was
+    about 1.3 hours.</p>
+    <p ALIGN="left">The utilization of the lock was nearly 100%. This is
+    evident from the statistics associated with the Facility Lock.</p>
+    <p ALIGN="left">The actual number of barges which pass in each direction
+    is tabulated in the Tables Upcount and Downcount.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Inside the Simulation</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Let’s now explore the ending condition of the
+    simulation, which generated the Standard Report above. If you are not at the
+    end of the simulation, please Retranslate the model and run it again.</p>
+    <p ALIGN="left">Now, let’s open some graphics windows.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>UPCOUNT</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This is the Tables Window for the Table UPCOUNT. This
+    table shows the distribution of counts of consecutive barges passing in the
+    upward direction. Now look at the Table UPQ.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>UPQ</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This Table shows the distribution of delay times of
+    barges moving in the upward direction.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>DOWNQ</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This Table shows the distribution of delay times of
+    barges moving in the downward direction.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box you will see that DNCOUNT is
+    already selected.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This Table shows the distribution of counts of
+    consecutive barges passing in the downward direction.</p>
+    <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+    this simulation. To change the maximum barge counts,</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Clear</p>
+  </font>
+  </b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then use INITIAL Commands in the <b>Command /
+    Custom</b> menu option to set X$Uplimit and
+    X$Downlimit to the upward and downward limits, respectively. Don’t forget
+    that the CLEAR Command zeroes all Savevalues and Matrices unless you use Off
+    as the A operand of CLEAR.</p>
+    <p ALIGN="left">You can then observe the effects of alternate traffic
+    policies.</p>
+    <p ALIGN="left">When you are done, if you wish to go on to the next
+    lesson, close all windows except the Model Window.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Model Window.
+  </u></p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+</font><b><font FACE="Arial">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#15. FOUNDRY.GPS" name="15. FOUNDRY.GPS">15. FOUNDRY.GPS</a><!--mstheme--></font></h1>
+  
+    
+      <p ALIGN="left">&nbsp;</p>
+  
+    
+      <p ALIGN="center"><font size="4">Foundry Simulation</font></p>
+      <p ALIGN="left">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+    <p align="left">Problem Statement</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A foundry employs 18 molders to process incoming orders
+  which arrive on average every hour, exponentially distributed. The foundry
+  runs on an eight hour day, five day week schedule. Thirty percent of incoming
+  orders are new and seventy percent are repeat orders. New orders require a
+  pattern, which is made in the pattern shop taking 72±24 hours, uniformly
+  distributed. Patterns for repeat orders must be located and cleaned and take
+  5±3 hours.</p>
+  <p ALIGN="left">Orders vary in size from 6 to 24 components, uniformly
+  distributed. The weight of the individual components varies according to the
+  following table.</p>
+  </font><b><font FACE="Arial">
+<p ALIGN="left">Weight Distribution</p>
+</font><font FACE="Courier New" SIZE="2">
+<p align="left">Frequency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.05&nbsp;&nbsp;.08&nbsp;&nbsp;.12&nbsp;&nbsp;.25&nbsp;&nbsp;.20&nbsp;&nbsp;.15&nbsp;&nbsp;.10&nbsp;&nbsp;.05</p>
+<p align="left">Weight of
+Part&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;50</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Molding time is 2 minutes per kilogram weight of component.
+The due date for orders is determined by the total molding time plus a variable
+flowtime which typically ranges from 40 to 160 hours, uniformly distributed.</p>
+<p ALIGN="left">The foreman waits until the pattern is available for an
+order. Then he releases one job at a time according to due-date. One individual
+molder completes the entire order.</p>
+<p ALIGN="left">Casting takes place once a day, one hour before finishing
+time. When casting commences all molders cease molding and assist in the casting
+process.</p>
+<p ALIGN="left">1.&nbsp;Write a GPSS World model to simulate the operation of
+the foundry.</p>
+<p ALIGN="left">2.&nbsp;Run the simulation for 10 days.</p>
+<p ALIGN="left">3.&nbsp;Find the distribution of transit times of all jobs.</p>
+<p ALIGN="left">4.&nbsp;Tabulate the total weight cast each day.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+FOUNDRY.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+*<br>
+* Foundry Simulation Model<br>
+* Time Unit Is One Minute&nbsp;<br>
+*<br>
+***********************************************************************<br>
+* P1 = Type of Job<br>
+* P2 = Number in the Order<br>
+* P3 = Weight of a Component<br>
+* P4 = Molding Time per Component<br>
+* P5 = Due Date<br>
+* P6 = Total Weight per Order<br>
+* P7 = Index for Looping<br>
+Weight FUNCTION RN1,C8 ;Weight per component in Kgs<br>
+0.0,3/.13,6/.25,11/.50,20/.70,28/.85,35/.95,42/1.0,50<br>
+Ordertype FUNCTION RN1,D2 ;New order P1=1: Repeat P1=2<br>
+0.3,1/1.0,2<br>
+Size VARIABLE RN1@19+6 ;Size of order<br>
+Ddate VARIABLE V$Mtime#P2+RN1@121+40+C1 ;Due date<br>
+Mtime VARIABLE (P3#2) ;Mold time per component<br>
+Day VARIABLE (C1/480) ;Day indicator<br>
+Total VARIABLE P3#P2 ;Weight per order<br>
+Times TABLE M1,400,400,20 ;Transit time<br>
+Cast TABLE X$Wtmold,400,400,20 ;Weight cast<br>
+Molders STORAGE 18 ;Molders employed<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,60)) ;Jobs arrive every hour<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 1,FN$Ordertype ;Type of job<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; P1,2,Newjob&nbsp;&nbsp;
+;Is it a repeat order?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 300,180&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Locate pattern<br>
+Commence ASSIGN&nbsp;&nbsp; 2,V$Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Size of order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 3,FN$Weight&nbsp;&nbsp;
+;Weight of component<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 4,V$Mtime&nbsp;&nbsp;&nbsp;&nbsp;
+;Molding time per component<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 5,V$Ddate&nbsp;&nbsp;&nbsp;&nbsp;
+;Due date<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 6,V$Total&nbsp;&nbsp;&nbsp;&nbsp;
+;Total weight of order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GATE SNF&nbsp; Molders,Wait&nbsp; ;Any molders free?<br>
+Beg&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Molders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Molder begins order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 7,P2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;P7=Number in order<br>
+Next&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; P4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Molding time per component<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOOP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7,Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Loop for every component<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Molders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free molder, order complete<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Wtmold+,P6&nbsp;&nbsp;&nbsp;
+;Sum weight molded each order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp; 1,Beg,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Release next order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Times&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Tabulate transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Destroy xact<br>
+*<br>
+Newjob&nbsp; ADVANCE&nbsp;&nbsp; 4320,1440&nbsp;&nbsp;&nbsp;&nbsp; ;Time to make new pattern<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Commence&nbsp;&nbsp;&nbsp;&nbsp;
+;Transfer to commence order<br>
+*<br>
+Wait&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,P5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Link waiting orders in chain 1<br>
+*<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 420,,,1,2&nbsp;&nbsp;&nbsp;&nbsp;
+;Start casting operation cycle<br>
+Again&nbsp;&nbsp; SUNAVAIL&nbsp; Molders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Marks start of casting cycle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Casting cycle lasts 60 mins<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVAIL&nbsp;&nbsp;&nbsp; Molders&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Molders free for molding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 420&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;420 mins elapse before casting<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Cast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record total weight cast<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Totcast+,X$Wtmold ;Accumulate total cast so far<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Wtmold,0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Reset to zero each day<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Again&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Return xact to start again<br>
+**************Timer****************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 4800,,,,4&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact every ten days<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE V$Day,X$Totcast ;Records total weight cast<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Destroy xact<br>
+***********************************************************************
+</font></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The model is organized into several segments. After the
+  non-Block Entities are defined, there are three more model segments.
+  Transactions in the top segment represent orders, those in the middle segment,
+  the casting process, and those in the bottom segment time the simulation by
+  decrementing the Termination Count every 10 simulated days. Also, Transactions
+  in the bottom segment record the total weight cast.</p>
+  <p ALIGN="left">Transactions representing orders in the top segment first
+  determine if the order is a repeat order. If not, the Transaction jumps to
+  encounter a longer preparation time. After the attributes of the order are
+  assigned to Transaction parameters, the Transaction is caused to wait on
+  Userchain 1 if there are no molders available. Otherwise, the order is
+  processed by using a LOOP Block to cause a delay for every component. When the
+  process is finished, the Transaction attempts to remove any waiting order from
+  the Userchain before it is destroyed by a TERMINATE Block.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run the simulation and create a Standard Report,</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Foundry</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, create the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, since 1 is what we want for a
+    Termination Count</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The simulation will end when a Transaction has entered
+    the TERMINATE 1 Block. This represents 10 days of operation.</p>
+    <p ALIGN="left">When the simulation ends, GPSS World writes a report to
+    the default report file, Foundry.1.1. As discussed in Chapter 1, the Report
+    extension will vary depending on saved simulations and previously existing
+    reports. For our purposes, we will assume that this is the first time the
+    simulation has been created and run giving an extension of 1.1.</p>
+    <p ALIGN="left">This report will be automatically displayed in a window.
+    If you close the window, you can reopen it by using the GPSS World <b>File /
+    Open</b> in the Main Menu. Then you should choose Report in the &quot;Files
+    of type&quot; drop down box at the bottom of the window. GPSS World reports
+    are written in a special format. If you wish to edit the report, you will
+    have to copy its contents to the clipboard and from there into a word
+    processor. You will not be able to open the file directly in a word
+    processor.</p>
+    </font><b><font FACE="Courier New" SIZE="1">
+    <p align="left">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+    <p align="left">Discussion of Results</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The distribution of order completion times is given in
+    the Table Times. The average completion time was about 779.4 minutes, with a
+    standard deviation of 611.3.</p>
+    <p ALIGN="left">The distribution of daily weight cast is given in the
+    Table Cast. The average daily weight was 862.0 kilograms. The standard
+    deviation was about 362.5 kilograms.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Inside the Simulation</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Let 's now explore the ending condition of the
+    simulation, which generated the Standard Report above. If you are not at the
+    end of the simulation, please Retranslate the model and run it again.</p>
+    <p ALIGN="left">Now, let’s open some graphics windows.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This is the Storages Window. It gives utilization and
+    queuing information on the molders. They encountered a 22% utilization.</p>
+    <p ALIGN="left">The histogram for order completion times can be seen in
+    the Table TIMES and the Table CAST will tell us the daily weight cast.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the end of the Table Name Box</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TIMES</p>
+  </u>
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Notice that a few jobs had very long completion times.
+    These may be worth further investigation. Perhaps they represent the new
+    orders. It would be easy to tabulate new jobs and reorders separately.
+    Multiple QUEUE/DEPART pairs could be used, as well.</p>
+    <p ALIGN="left">To see the histogram of daily weight cast</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+   </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the drop-down box in the dialog box, CAST is
+    already showing.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now, close the two Table Windows and the Storages Window.
+    Then, let’s watch the dynamics of the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, open the Blocks Window.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Blocks Window</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Next, increase the size of the Blocks Window so you can
+    see as much as possible of the total model.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">10</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+  </font>
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">When you get the feel for the flow of Transactions,
+    interrupt the simulation and proceed to use the STEP Command to view the
+    movement of Transactions through the model.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F4]</b></font></p>
+  
+    
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to halt the simulation</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F5]</b></font></p>
+  
+    
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">as many times as you wish to watch the Transactions move a
+  Block at the time through the simulation. Make sure one of the visible windows
+  has the focus when you are trying to Step. At the same time, watch the
+  messages in the Journal that tell you about Transaction movement.</p>
+  <p ALIGN="left">Your trace messages will accumulate in the Journal and when
+  you are done you can save the contents to a file or print the contents
+  directly to your printer. You could also minimize the Journal Window while you
+  are concentrating on the Blocks Window and then retrieve it once you are done
+  to print . If you save the Journal / Simulation Window, the simulation is
+  saved in its current state.</p>
+  <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+  this simulation.</p>
+  <p ALIGN="left">When you are done, if you wish to go on to the next lesson,
+  close all windows related to this model.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+  </u></p>
+  <p align="center">&nbsp;</p>
+</font>
+  <p align="center"><font FACE="Arial" SIZE="2"><a href="tutorial_manual.htm">[Table
+  of Contents]</a></font></p>
+
+
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

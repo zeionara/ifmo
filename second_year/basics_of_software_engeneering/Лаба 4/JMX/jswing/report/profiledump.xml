@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExportedView Name="Live Results" type="table">
+ <TableData NumRows="13" NumColumns="4">
+  <TableHeader>   <TableColumn><![CDATA[Hot Spots - Method]]></TableColumn>
+   <TableColumn><![CDATA[Self Time [%]]]></TableColumn>
+   <TableColumn><![CDATA[Self Time]]></TableColumn>
+   <TableColumn><![CDATA[Total Time]]></TableColumn>
+   <TableColumn><![CDATA[Invocations]]></TableColumn>
+  </TableHeader>
+  <TableBody>
+   <TableRow>
+    <TableColumn><![CDATA[sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run()]]></TableColumn>
+    <TableColumn><![CDATA[76,59%]]></TableColumn>
+    <TableColumn><![CDATA[1402189.418 ms]]></TableColumn>
+    <TableColumn><![CDATA[1402189.417 ms]]></TableColumn>
+    <TableColumn><![CDATA[13]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[java.util.concurrent.ThreadPoolExecutor$Worker.run()]]></TableColumn>
+    <TableColumn><![CDATA[22,11%]]></TableColumn>
+    <TableColumn><![CDATA[404780.9 ms]]></TableColumn>
+    <TableColumn><![CDATA[1806970.318 ms]]></TableColumn>
+    <TableColumn><![CDATA[3]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[jswing.AnimationThread.run()]]></TableColumn>
+    <TableColumn><![CDATA[1,16%]]></TableColumn>
+    <TableColumn><![CDATA[21157.85 ms]]></TableColumn>
+    <TableColumn><![CDATA[21157.838 ms]]></TableColumn>
+    <TableColumn><![CDATA[26]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[javax.swing.RepaintManager$ProcessingRunnable.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,07%]]></TableColumn>
+    <TableColumn><![CDATA[1336.277 ms]]></TableColumn>
+    <TableColumn><![CDATA[1337.283 ms]]></TableColumn>
+    <TableColumn><![CDATA[511]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[sun.awt.GlobalCursorManager$NativeUpdater.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,07%]]></TableColumn>
+    <TableColumn><![CDATA[1249.745 ms]]></TableColumn>
+    <TableColumn><![CDATA[1249.745 ms]]></TableColumn>
+    <TableColumn><![CDATA[2297]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[javax.swing.text.DefaultCaret$1.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[50.564 ms]]></TableColumn>
+    <TableColumn><![CDATA[50.564 ms]]></TableColumn>
+    <TableColumn><![CDATA[400]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[javax.management.NotificationBroadcasterSupport$SendNotifJob.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[48.047 ms]]></TableColumn>
+    <TableColumn><![CDATA[48.047 ms]]></TableColumn>
+    <TableColumn><![CDATA[900]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[javax.swing.Timer$DoPostEvent.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[9.825 ms]]></TableColumn>
+    <TableColumn><![CDATA[9.825 ms]]></TableColumn>
+    <TableColumn><![CDATA[90]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[sun.java2d.d3d.D3DSurfaceData$1.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[3.513 ms]]></TableColumn>
+    <TableColumn><![CDATA[3.513 ms]]></TableColumn>
+    <TableColumn><![CDATA[4]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[sun.awt.windows.WComponentPeer$2.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[0.837 ms]]></TableColumn>
+    <TableColumn><![CDATA[0.837 ms]]></TableColumn>
+    <TableColumn><![CDATA[1]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[0.409 ms]]></TableColumn>
+    <TableColumn><![CDATA[0.563 ms]]></TableColumn>
+    <TableColumn><![CDATA[3]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[javax.swing.RepaintManager$2.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[0.167 ms]]></TableColumn>
+    <TableColumn><![CDATA[1.005 ms]]></TableColumn>
+    <TableColumn><![CDATA[1]]></TableColumn>
+  </TableRow>
+   <TableRow>
+    <TableColumn><![CDATA[sun.rmi.transport.DGCImpl$1.run()]]></TableColumn>
+    <TableColumn><![CDATA[0,00%]]></TableColumn>
+    <TableColumn><![CDATA[0.153 ms]]></TableColumn>
+    <TableColumn><![CDATA[0.153 ms]]></TableColumn>
+    <TableColumn><![CDATA[3]]></TableColumn>
+  </TableRow>
+  </TableBody> </TableData>
+</ExportedView>

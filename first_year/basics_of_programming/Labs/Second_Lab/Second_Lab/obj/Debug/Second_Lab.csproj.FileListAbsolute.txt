@@ -1,0 +1,12 @@
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.exe.config
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.pdb
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.csprojResolveAssemblyReference.cache
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.pdb
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.exe.config
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.exe
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.pdb
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.exe
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\bin\Debug\Second_Lab.pdb
+C:\Users\Zerbs\OneDrive\study (2nd semester)\Op\Labs\Second_Lab\Second_Lab\obj\Debug\Second_Lab.csprojResolveAssemblyReference.cache

@@ -1,0 +1,201 @@
+Microsoft Windows [Version 10.0.10586]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2015. Все права защищены.
+
+C:\Users\Zerbs>cd opi
+
+C:\Users\Zerbs\opi>svn checkout https://svn.riouxsvn.com/testlab2
+A    testlab2\trunk
+A    testlab2\branches
+Checked out revision 1.
+
+C:\Users\Zerbs\opi>cd testlab2
+
+C:\Users\Zerbs\opi\testlab2>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opi\testlab2
+
+17.10.2016  23:27    <DIR>          .
+17.10.2016  23:27    <DIR>          ..
+17.10.2016  23:27    <DIR>          branches
+17.10.2016  23:27    <DIR>          trunk
+               0 файлов              0 байт
+               4 папок  815 995 674 624 байт свободно
+
+C:\Users\Zerbs\opi\testlab2>cd trunk
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn log --xml > B.xml
+
+C:\Users\Zerbs\opi\testlab2\trunk>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opi\testlab2\trunk
+
+17.10.2016  23:28    <DIR>          .
+17.10.2016  23:28    <DIR>          ..
+17.10.2016  23:28               198 B.xml
+               1 файлов            198 байт
+               2 папок  815 995 711 488 байт свободно
+
+C:\Users\Zerbs\opi\testlab2\trunk>more B.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<log>
+<logentry
+   revision="1">
+<author>petu4</author>
+<date>2016-10-17T20:26:36.070167Z</date>
+<msg>add branches and trunk</msg>
+</logentry>
+</log>
+
+C:\Users\Zerbs\opi\testlab2\trunk>cd .
+
+C:\Users\Zerbs\opi\testlab2\trunk>cd ..
+
+C:\Users\Zerbs\opi\testlab2>svn status
+?       trunk\B.xml
+
+C:\Users\Zerbs\opi\testlab2>svn add
+svn: E205001: Try 'svn help add' for more information
+svn: E205001: Not enough arguments provided
+
+C:\Users\Zerbs\opi\testlab2>svn add B.java
+svn: warning: W155010: 'C:\Users\Zerbs\opi\testlab2\B.java' not found
+svn: E200009: Could not add all targets because some targets don't exist
+svn: E200009: Illegal target for the requested operation
+
+C:\Users\Zerbs\opi\testlab2>svn add B.xml
+svn: warning: W155010: 'C:\Users\Zerbs\opi\testlab2\B.xml' not found
+svn: E200009: Could not add all targets because some targets don't exist
+svn: E200009: Illegal target for the requested operation
+
+C:\Users\Zerbs\opi\testlab2>svn add trunk/B.xml
+A         trunk\B.xml
+
+C:\Users\Zerbs\opi\testlab2>svn commit -m "Added B.xml"
+Adding         trunk\B.xml
+Transmitting file data .done
+Committing transaction...
+Committed revision 2.
+
+C:\Users\Zerbs\opi\testlab2>svn copy trunk branches/zeio
+A         branches\zeio
+
+C:\Users\Zerbs\opi\testlab2>cd branches/zeio
+
+C:\Users\Zerbs\opi\testlab2\branches\zeio>vol
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+C:\Users\Zerbs\opi\testlab2\branches\zeio>vol > C.info
+
+C:\Users\Zerbs\opi\testlab2\branches\zeio>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opi\testlab2\branches\zeio
+
+17.10.2016  23:30    <DIR>          .
+17.10.2016  23:30    <DIR>          ..
+17.10.2016  23:30               198 B.xml
+17.10.2016  23:30                78 C.info
+               2 файлов            276 байт
+               2 папок  815 994 908 672 байт свободно
+
+C:\Users\Zerbs\opi\testlab2\branches\zeio>cd ..
+
+C:\Users\Zerbs\opi\testlab2\branches>cd ..
+
+C:\Users\Zerbs\opi\testlab2>commit -m "Added branch zeio"
+"commit" не является внутренней или внешней
+командой, исполняемой программой или пакетным файлом.
+
+C:\Users\Zerbs\opi\testlab2>svn status
+A  +    branches\zeio
+A  +    branches\zeio\B.xml
+?       branches\zeio\C.info
+
+C:\Users\Zerbs\opi\testlab2>svn add branches/zeio
+svn: warning: W150002: 'C:\Users\Zerbs\opi\testlab2\branches\zeio' is already under version control
+svn: E200009: Could not add all targets because some targets are already versioned
+svn: E200009: Illegal target for the requested operation
+
+C:\Users\Zerbs\opi\testlab2>svn add branches/zeio/C.info
+A         branches\zeio\C.info
+
+C:\Users\Zerbs\opi\testlab2>svn status
+A  +    branches\zeio
+A  +    branches\zeio\B.xml
+A       branches\zeio\C.info
+
+C:\Users\Zerbs\opi\testlab2>svn commit -m "Added new branch zeio"
+Adding         branches\zeio
+Adding         branches\zeio\B.xml
+Adding         branches\zeio\C.info
+Transmitting file data .done
+Committing transaction...
+Committed revision 3.
+
+C:\Users\Zerbs\opi\testlab2>svn status
+
+C:\Users\Zerbs\opi\testlab2>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opi\testlab2
+URL: https://svn.riouxsvn.com/testlab2
+Relative URL: ^/
+Repository Root: https://svn.riouxsvn.com/testlab2
+Repository UUID: 1c4927fb-d26e-470f-9767-deb578c00b98
+Revision: 1
+Node Kind: directory
+Schedule: normal
+Last Changed Author: petu4
+Last Changed Rev: 1
+Last Changed Date: 2016-10-17 23:26:36 +0300 (Пн, 17 окт 2016)
+
+
+C:\Users\Zerbs\opi\testlab2>cd trunk
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opi\testlab2
+URL: https://svn.riouxsvn.com/testlab2/trunk
+Relative URL: ^/trunk
+Repository Root: https://svn.riouxsvn.com/testlab2
+Repository UUID: 1c4927fb-d26e-470f-9767-deb578c00b98
+Revision: 1
+Node Kind: directory
+Schedule: normal
+Last Changed Author: petu4
+Last Changed Rev: 1
+Last Changed Date: 2016-10-17 23:26:36 +0300 (Пн, 17 окт 2016)
+
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn copy https://svn.riouxsvn.com/testlab2/trunk https://svn.riouxsvn.com/testlab2/branch1 -m "Added branch1"
+Committing transaction...
+Committed revision 4.
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn copy https://svn.riouxsvn.com/testlab2/trunk https://svn.riouxsvn.com/testlab2/branches/branch1 -m "Added branch1"
+Committing transaction...
+Committed revision 5.
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn switch https://svn.riouxsvn.com/testlab2/branches/branch1
+At revision 5.
+
+C:\Users\Zerbs\opi\testlab2\trunk>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opi\testlab2
+URL: https://svn.riouxsvn.com/testlab2/branches/branch1
+Relative URL: ^/branches/branch1
+Repository Root: https://svn.riouxsvn.com/testlab2
+Repository UUID: 1c4927fb-d26e-470f-9767-deb578c00b98
+Revision: 5
+Node Kind: directory
+Schedule: normal
+Last Changed Author: zeionara
+Last Changed Rev: 5
+Last Changed Date: 2016-10-17 23:48:33 +0300 (Пн, 17 окт 2016)
+
+
+C:\Users\Zerbs\opi\testlab2\trunk>

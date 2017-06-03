@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+      <h:head>
+      </h:head>
+
+      <h:body>
+        <p:panel>
+          <h:outputText value="Welcome, #{mainBean.user}!"/>
+        </p:panel>
+        <h:form>
+          <h:panelGrid columns="3" cellpadding="5">
+            <h:outputText value="Text"/>
+            <h:inputText value="#{mainBean.text}">
+              <p:ajax event="keyup" update="out1"/>
+            </h:inputText>
+            <h:outputText id="out1" value="#{mainBean.text}"/>
+          </h:panelGrid>
+        </h:form>
+      </h:body>
+</html>

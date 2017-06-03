@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log>
+<logentry
+   revision="3">
+<author>ostaninanastya</author>
+<date>2016-10-17T18:46:55.709547Z</date>
+<msg>'r1'</msg>
+</logentry>
+<logentry
+   revision="2">
+<author>ostaninanastya</author>
+<date>2016-10-17T18:30:34.118600Z</date>
+<msg>'r0'</msg>
+</logentry>
+<logentry
+   revision="1">
+<author>www-data</author>
+<date>2016-10-17T18:06:20.819373Z</date>
+<msg>Creating initial repository structure</msg>
+</logentry>
+</log>

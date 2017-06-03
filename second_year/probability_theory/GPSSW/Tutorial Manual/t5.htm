@@ -1,0 +1,147 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><b><font FACE="Arial" SIZE="6">
+<h1 align="center"><!--mstheme--><font color="#336666"><a name="Chapter 2">Chapter 2</a>. Applications<!--mstheme--></font></h1>
+<blockquote>
+  <blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">This chapter contains a set of sample simulations, by Gerard
+F. Cummings and other authors, based on a wide spectrum of applications.</p>
+<p ALIGN="JUSTIFY">In this collection of models, there are examples from traffic
+control, inventory control, distribution, assembly, quality control, Flexible
+Manufacturing Systems, PBX design, network modeling and many others. Each
+example is listed here, followed by a sample report, and a set of suggested
+interactions with the simulation. These examples are intended primarily to
+present the &quot;artistic&quot; side of a simulation project: how simulation
+techniques can be used to capture the essential behavior of a real world system.
+It is usually the case that any given process can be modeled in many different
+ways, and studying the methods used by experienced professionals is an efficient
+way to build one’s own simulation skills.</p>
+<p ALIGN="JUSTIFY">It is desirable to develop a </font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2">feel</font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2">
+for which factors will have significant effects. You will find that many
+suggested changes to a simulated system, are, in fact, ineffective with respect
+to many overall system metrics, such as speed or cost. Since realizable designs
+to be suggested by the simulation study should not be based on ineffective
+changes, it is important to develop a &quot;feel&quot; for the effectiveness of
+changes before the final designs are simulated. You should not waste time
+studying changes which don’t matter.</p>
+<p ALIGN="JUSTIFY">In simulation studies it is important to keep track of what
+real world behavior and/or data can be taken as given and what is assumed to be
+true. Unlike most other disciplines, the experimental nature of simulation
+allows you to use </font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2">sensitivity
+analysis</font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2"> to
+examine the effects of error in your assumptions. It may be permissible to
+include very inaccurate data, if its accuracy has no effect on the results. On
+the other hand, if the results are highly sensitive to missing data, it may be
+ill-advised to continue the simulation study unless the proper data can be
+obtained. Such relationships can be quantified by preliminary simulations.</p>
+<p ALIGN="JUSTIFY">It is the burden of the simulation analyst to prove that the
+reported results are not due to random variation. Many simulation studies in the
+past have reported so-called &quot;effects&quot; which were actually
+indistinguishable from random noise. GPSS World makes it easy to perform a first
+level statistical analysis. The GPSS World ANOVA command is discussed in Lesson
+13 of the last chapter, and in Chapter 6 of the <i>GPSS World Reference Manual</i>.</p>
+<p ALIGN="JUSTIFY">The objective of this chapter is to present the application
+of simulation techniques to real world problems. For this reason, the examples
+in this chapter have been simplified in two ways.</p>
+<blockquote>
+  <blockquote>
+  </font><font FACE="ZapfDingbats" SIZE="1">
+  <p ALIGN="JUSTIFY">l </font><font FACE="Arial" SIZE="2">First, the run times
+  have been made much shorter than you would use in a real simulation study.
+  Longer runs would lead to less variable results.</p>
+  </font><font FACE="ZapfDingbats" SIZE="1">
+  <p ALIGN="JUSTIFY">l </font><font FACE="Arial" SIZE="2">Second, in this
+  chapter, we have not considered the use of statistical methods, which you
+  would apply in any actual application.</p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  </blockquote>
+</blockquote>
+<p ALIGN="JUSTIFY">The sample programs are in the GPSS World Samples Folder. The
+examples are named by the corresponding GPSS World Program File names. They are:</p>
+<p ALIGN="JUSTIFY">1. TURNSTIL.GPS — Simulation of a turnstile at a football
+stadium.</p>
+<p ALIGN="JUSTIFY">2. TELEPHON.GPS — Simulation of a simple telephone system.</p>
+<p ALIGN="JUSTIFY">3. PERIODIC.GPS — Simulation of inventory with periodic
+review.</p>
+<p ALIGN="JUSTIFY">4. TVREPAIR.GPS — Simulation of a television repair shop.</p>
+<p ALIGN="JUSTIFY">5. QCONTROL.GPS — Simulation of a quality control system.</p>
+<p ALIGN="JUSTIFY">6. ORDERPNT.GPS — Simulation of an order point inventory
+system.</p>
+<p ALIGN="JUSTIFY">7. MANUFACT.GPS — Simulation of an electronics
+manufacturing system.</p>
+<p ALIGN="JUSTIFY">8. TEXTILE.GPS — Simulation of a textile factory.</p>
+<p ALIGN="JUSTIFY">9. OILDEPOT.GPS — Simulation of an oil storage depot.</p>
+<p ALIGN="JUSTIFY">10. ASSEMBLY.GPS — Simulation of a pump assembly process.</p>
+<p ALIGN="JUSTIFY">11. ROBOTFMS.GPS — Simulation of a robot operated FMS.</p>
+<p ALIGN="JUSTIFY">12. BICYCLE.GPS — Simulation of a bicycle factory.</p>
+<p ALIGN="JUSTIFY">13. STOCKCTL.GPS — Simulation of a warehouse and branch
+inventories.</p>
+<p ALIGN="JUSTIFY">14. LOCKSIMN.GPS — Simulation of a canal and lock.</p>
+<p ALIGN="JUSTIFY">15. FOUNDRY.GPS — Foundry simulation.</p>
+<p ALIGN="JUSTIFY">16. TAPEPREP.GPS — Simulation of NC tape preparation.</p>
+<p ALIGN="JUSTIFY">17. TRAFFIC.GPS — Simulation of traffic at a T-junction.</p>
+<p ALIGN="JUSTIFY">18. POWDER.GPS — Simulation of customer brand loyalty.</p>
+<p ALIGN="JUSTIFY">19. QTHEORY.GPS — Simulation of a solvable queuing network.</p>
+<p ALIGN="JUSTIFY">20. SUPERMRK.GPS — Simulation of a supermarket.</p>
+<p ALIGN="JUSTIFY">21. SHIPPORT.GPS — Simulation of a port.</p>
+<p ALIGN="JUSTIFY">22. EXCHANGE.GPS — Simulation of a PBX.</p>
+<p ALIGN="JUSTIFY">23. FMSMODEL.GPS — Simulation of a flexible manufacturing
+system.</p>
+<p ALIGN="JUSTIFY">24. ETHERNET.GPS — Simulation of a 10 Mbps Ethernet
+Network.</p>
+<p ALIGN="JUSTIFY">25. PREDATOR.GPS — Simulation of Predator and Prey
+Populations.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<p ALIGN="JUSTIFY">We recommend that you study each example, then read it into
+your GPSS World Simulation Environment, to interact with it. You may then
+interactively explore a wide variety of </font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2">What
+if?</font><font SIZE="2">&quot;</font><font FACE="Arial" SIZE="2"> scenarios,
+starting with the suggested interactions. Feel free to use and explore your own
+methods.</p>
+<p ALIGN="JUSTIFY">At this point, you might also want to refer to the chart
+included in the &quot;How This Manual Describes Actions&quot; section at the
+beginning of Chapter 1 of this manual. This chart will tell you how to interpret
+the color changes in GPSS World icons.</p>
+<p ALIGN="JUSTIFY">Some GPSS statements are introduced without explanation. You
+will need to refer to Chapters 6, 7, and 8 in the <i>GPSS World Reference Manual</i>
+for details.</p>
+<p ALIGN="JUSTIFY">The first five examples include detailed discussions of the
+programming of each GPSS model. You may want to study these first, and then
+proceed to the application(s) that match your own most closely.</p>
+<p ALIGN="JUSTIFY">You can use your mouse to select the Samples folder in the
+GPSS World folder by double clicking on it. Then a double click on the sample
+you want to run will automatically start a GPSS World Session and open the
+selected model or you can</p>
+</blockquote>
+</blockquote>
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON <u>Start / Programs / GPSS World...</p>
+<blockquote>
+  <blockquote>
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and when the Main Window opens follow the steps in any of the
+samples that follow.</p>
+<p ALIGN="JUSTIFY">One additional note: While running GPSS World, files that are
+written are placed in the directory where their parent file has been saved. In
+other words, a newly created simulation will be saved in the location where the
+model file that produced it exists. Reports are written to the location where
+the saved simulation exists. If the simulation has not been saved then the
+reports are written to the location of the simulation's parent, the model file.</p>
+<p ALIGN="JUSTIFY">Now, let's go on and try running some sample models.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<p ALIGN="JUSTIFY"><a href="tutorial_manual.htm">[Table of Contents]</a></p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+</blockquote>
+</blockquote>
+</font><!--mstheme--></font></body>
+
+</html>

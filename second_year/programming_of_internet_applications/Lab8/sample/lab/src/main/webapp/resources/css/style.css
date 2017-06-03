@@ -1,0 +1,90 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+h1{
+  color:red;
+  margin-left: 20px;
+  font-family: fantasy;
+  font-size: 32pt;
+}
+
+h1::first-letter{
+  color : blue;
+  font-size: 40pt;
+}
+
+.timer{
+  color:green;
+  margin-left: 20px;
+  font-family: cursive;
+  font-size: 32pt;
+}
+
+.bigBlueButton{
+  width:100px;
+  height:50px;
+  margin-left:20px;
+  background: blue;
+  color:white;
+}
+
+label{
+  color:blue;
+}
+
+#formtable, #formtable td, #pontos, #pontos td{
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding : 5px;
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+.after{
+  margin-right: 1%;
+  margin-left: 0.2%;
+}
+
+input{
+  cursor:pointer;
+}
+
+#formtable td:hover{
+  background: yellow;
+}
+
+.submit{
+  margin : 20px;
+}
+
+div#area{
+  width:205px;
+  height:205px;
+  background-image:url("../images/area.png");
+  margin:20px;
+  cursor:pointer;
+  border: 3px solid #000;
+}
+
+div.dot{
+  width:4px;
+  height:4px;
+  background-color:black;
+  position:absolute;
+}
+
+div.positivedot{
+  width:4px;
+  height:4px;
+  background-color:green;
+  position:absolute;
+}
+
+div.negativedot{
+  width:4px;
+  height:4px;
+  background-color:red;
+  position:absolute;
+}

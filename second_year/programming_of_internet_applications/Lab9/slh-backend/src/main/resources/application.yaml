@@ -1,0 +1,13 @@
+zuul:
+  routes:
+    adminui:
+      path: /ui/**
+      url: https://localhost:4200/ui/
+logging:
+  level:
+    org.springframework.web: 'debug'
+    org.springframework.hateoas: 'debug'
+spring:
+  jackson:
+    serialization:
+      indent_output: 'true'

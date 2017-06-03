@@ -1,0 +1,6 @@
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

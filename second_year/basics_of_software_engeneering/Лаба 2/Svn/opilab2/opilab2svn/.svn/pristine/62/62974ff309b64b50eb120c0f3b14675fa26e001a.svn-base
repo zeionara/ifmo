@@ -1,0 +1,6 @@
+public class F extends null {
+
+    int[] ii();
+
+    void ab();
+}

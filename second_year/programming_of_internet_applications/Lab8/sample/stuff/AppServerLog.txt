@@ -1,0 +1,300 @@
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.050 s
+[INFO] Finished at: 2017-04-29T17:47:46+03:00
+[INFO] Final Memory: 8M/20M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [926 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.993 s
+[INFO] Finished at: 2017-04-29T17:53:10+03:00
+[INFO] Final Memory: 8M/19M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [716 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.021 s
+[INFO] Finished at: 2017-04-29T18:00:50+03:00
+[INFO] Final Memory: 8M/20M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [1003 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 9.308 s
+[INFO] Finished at: 2017-04-29T18:06:47+03:00
+[INFO] Final Memory: 8M/19M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [653 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.113 s
+[INFO] Finished at: 2017-04-29T18:09:26+03:00
+[INFO] Final Memory: 8M/20M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [895 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.587 s
+[INFO] Finished at: 2017-04-29T18:12:28+03:00
+[INFO] Final Memory: 8M/19M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building samplejsf Maven Webapp 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ samplejsf ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ samplejsf ---
+[WARNING] Using platform encoding (Cp1251 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ samplejsf ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ samplejsf ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ samplejsf ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [samplejsf] in [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\src\main\webapp]
+[INFO] Webapp assembled in [734 msecs]
+[INFO] Building war: C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ samplejsf ---
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\target\samplejsf.war to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.war
+[INFO] Installing C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab\pom.xml to C:\Users\Zerbs\.m2\repository\zeio\nara\samplejsf\1.0\samplejsf-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.198 s
+[INFO] Finished at: 2017-04-29T18:16:33+03:00
+[INFO] Final Memory: 8M/20M
+[INFO] ------------------------------------------------------------------------
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>asadmin deploy --force target/samplejsf.war
+Application deployed with name samplejsf.
+Command deploy executed successfully.
+
+C:\Users\Zerbs\Documents\Study\PIP\lab3\sample\lab>

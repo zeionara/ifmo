@@ -1,0 +1,3107 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica">
+<blockquote>
+ <blockquote>
+<font FACE="Arial" SIZE="2">
+<h2 ALIGN="center"><a name="Lesson 5">Lesson 5</a> - The GENERATE and TERMINATE
+Blocks: Transaction Entities</h2>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">A GPSS Transaction is an object with a set of attributes.
+    Each Transaction is distinct in that it can be identified by a unique
+    Transaction Number. Transactions created in a simulation are numbered
+    consecutively starting with 1. In addition, you can change the attributes
+    associated with each Transaction. Attributes are in the form of priority,
+    scheduled time, Assembly Set, and &quot;Transaction Parameters&quot;, which
+    are given user ASSIGNed names or numbers. Transaction Parameters are like
+    the letters in the mail carrier’s bag that are addressed to one person.
+    The Parameters carry information about the Transaction that is unique to
+    that Transaction only. You can use Snapshot Windows to look at information
+    that is carried in these Parameters. Transactions pass from Block to Block
+    in a simulation, acting on, and being acted upon by other GPSS Entities.</p>
+    <p ALIGN="JUSTIFY">Unlike general purpose programming languages, each
+    Transaction in GPSS maintains a place marker. Whereas there is only one
+    place in a computer program to be remembered, in a GPSS simulation there may
+    be thousands, with thousands of Transactions located in many different
+    Blocks. Transactions do not necessarily start at the top of the program. A
+    GPSS simulation may have many GENERATE statements, each of which creates
+    many Transactions, each of which has a place marker.</p>
+    <p ALIGN="JUSTIFY">Transactions can be created in a batch, or at spaced out
+    time intervals by a GENERATE Block. All simulations must have at least one
+    GENERATE Block. Let’s consider the case where a new Transaction is created
+    every 60 time units. The specific unit of time does not matter as long as we
+    are consistent throughout. Let’s say that one time unit represents a
+    second. Then, the appropriate form of the GENERATE statement for a Block
+    which creates a new Transaction every minute is:</p>
+    <p ALIGN="center"><b>GENERATE 60 ;Create a new Transaction</p>
+    </b>
+    <p ALIGN="left">Since GPSS World has a floating-point clock, we could
+    also represent generation of Transactions at one minute intervals by</p>
+    <p ALIGN="center"><b>GENERATE 1 ;Create a new Transaction</p>
+    </b>
+    <p ALIGN="left">Then if we needed to represent a one second interval it
+    could be represented by 1/60 of a minute or 0.01666667. You should choose
+    the representation that is most meaningful in your model. If you use an
+    expression here, it must be parenthesized.</p>
+    <p ALIGN="left">Start a GPSS World Session as we have done before.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font><font FACE="Helvetica">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>File / New</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and since the model is already selected</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>OK</p>
+</b>
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and type the GENERATE statement from the previous page in
+    the Model Window that appears. Then, translate your one line model. Start by
+    pressing the Tab Key.</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[Tab]</b></font></p>
+<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><font FACE="Courier New"><b>GENERATE</p>
+</b></font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Tab]</b></font></p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">60</p>
+</font></b>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Tab]</b></font></p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">;Create a new
+Transaction</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">We have only used tabs so the model will line up. It is not
+necessary for the parts of your GPSS model line to be in certain columns, but it
+does make it easier to read. You can change the tabstops by editing the Settings
+of the Model Object. We will show you how, later.</p>
+<p ALIGN="JUSTIFY">Now,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>File / Save As</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box in the highlighted area</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">MyModel</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>SAVE</p>
+</b>
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Then,</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command /Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Window / Blocks Window</p>
+</b>
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You should see your GENERATE Block in the Blocks Window.
+    Blocks are always numbered starting with 1. This is the &quot;Details
+    View&quot; of the Blocks Window where the most important information about
+    each Block is listed in columns.</p>
+    <p ALIGN="JUSTIFY">Let's turn off the &quot;Details View&quot;.</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+</b>
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">This &quot;toggles&quot; the window into and out of
+    &quot;Details View&quot;. In this non-details view, succeeding Blocks are
+    generally placed beneath their predecessors. When the next Block won’t fit
+    beneath its predecessor, it is moved up to the top of the next column to the
+    right. The arrangement of the Blocks is also due to the size of the window
+    and will change if you resize the window.</p>
+    <p ALIGN="JUSTIFY">Let's move back to off the &quot;Details View&quot;.</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+</b>
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">TERMINATE Blocks remove Transactions from the simulation.
+    When a Transaction enters a TERMINATE Block, the Transaction is destroyed.
+    Also, there is an optional operand that will decrement a special number
+    called the &quot;Termination Count&quot;. When you type START 123, you are
+    setting the Termination Count to 123. This controls how long the simulation
+    should run by itself. If you place a 1 in operand A of a TERMINATE Block,
+    every time a Transaction is destroyed by that Block, the Termination Count
+    is reduced by 1. When the Termination Count becomes 0 or less, the
+    simulation ends and, unless suppressed by Operand B of START, a Standard
+    Report is written automatically. The Termination Count can be less than zero
+    when the simulation ends if Operand A of the TERMINATE Block is greater than
+    1.</p>
+    <p ALIGN="JUSTIFY">Let’s add a TERMINATE Block to our model. Click on the
+    Title Bar of the MyModel.gps Model Window. In the Model Window start a new
+    line after the GENERATE Block line. With the cursor at the end of the
+    GENERATE Block line</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[Enter]</b></font></p>
+<font FACE="Arial" SIZE="2">
+
+  
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+  
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Tab]</b></font></p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">TERMINATE</p>
+</font></b>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Tab]</b></font></p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">1</p>
+</font></b>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Tab]</b></font></p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">;Destroy a
+Transaction</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Now, click on the Title Bar of the Blocks Window. Another
+  way to get to the Blocks Window is to could click on the appropriate item in
+  the window list under the Windows menu of the Main Window.</p>
+  </font>
+
+
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_5_1.gif" width="443" height="130"></p>
+<p align="center">Figure 5—1. The Blocks Window with a two Block Model</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="left">These two Blocks represent a tiny simulation. They could
+    represent a situation where a customer arrives at a store every minute,
+    precisely on the minute. Not very likely, but later you will see how to
+    change the model to match your specific situation. For now, let’s use this
+    model to study what happens in a simulation.</p>
+    <p ALIGN="left">The clipboard operations of Cut, Copy and Paste are
+    available as you build your model. Large segments of blocks can be selected
+    and then replicated, moved, or deleted this way. Feel free to experiment
+    with this powerful feature. Multiple Block selection and the clipboard
+    operations are discussed in the <i>GPSS World Reference Manual</i>.</p>
+    <p ALIGN="left">Before we begin the simulation, you must know about two
+    lists of Transactions called the Current Events Chain, and the Future Events
+    Chain. To understand these chains, you must keep in mind the &quot;system
+    clock&quot;, which tells what the current simulated time is. Each
+    Transaction has an attribute that indicates when it must attempt its next
+    Block entry. If the current simulated clock time has not yet reached that
+    time, the Transaction must be put aside until the simulation is ready for
+    it. That’s what the Future Events Chain is for. The Future Events Chain is
+    a holding area for Transactions that are scheduled to do something in the
+    future.</p>
+    <p ALIGN="left">Every time a Transaction enters a GENERATE Block, a
+    second Transaction is created. This new Transaction does not enter the
+    GENERATE Block right away. Instead, it is placed on the Future Events Chain
+    according to the arrival time interval you specified in the GENERATE Block.</p>
+    <p ALIGN="left">The Current Events Chain is the set of Transactions that
+    still have Blocks to be entered at the current system clock time.
+    Transactions are taken from the front of the Current Events Chain, one at a
+    time, to enter as many Blocks as possible. When there are no more
+    Transactions on the Current Events Chain, GPSS World will advance the system
+    clock.</p>
+    <p ALIGN="left">Let’s take a look at the Current Events Chain and the
+    Future Events Chain in our Current Model. First set up a Stop Condition that
+    will cause the simulation to stop on each attempted Block entry.</p>
+    <p ALIGN="left">Make sure the Blocks Window has the focus. You should now
+    see two blocks</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+    <u>The Generate Block Icon</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">In the debugging icons in the Debug Toolbar at the top of the
+Blocks Window, you will see a place icon in the form of a stop light.</p>
+
+
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Place Icon in the Debug Toolbar at the Top of the Window</p>
+
+  
+  </u>
+  <p ALIGN="JUSTIFY">This will place a STOP on the Generate Block. The
+  Simulation will stop on an attempted entry into the GENERATE Block. The STOP
+  command is discussed in Chapter 6 of the GPSS World<i> Reference Manual</i>.
+  Before we even start, let’s see what’s on the Current Events Chain and the
+  Future Events Chain.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+    </font><b>Window / Simulation Snapshot / FEC Snapshot</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+    </font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / CEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Nothing on the CEC, but there is one Transaction on the FEC!
+  That’s because the GENERATE Block was &quot;primed&quot;, thereby creating
+  its first Transaction when we issued the STOP Command. Once we issue a START
+  Command, Transaction 1 will be moved to the Current Events Chain and the time
+  will be set to 60.</p>
+  <p ALIGN="JUSTIFY">Close each of the Snapshot Windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+    <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">These windows are not like the windows that you select under <b>Window
+/ Simulation Window</b>. Snapshots are static views of the current condition and
+will not change as the simulation runs. They can be refreshed by halting the
+simulation and opening the window when you are ready for current information.
+Although you don't really have to halt the simulation, doing so keeps the
+information in the Snapshot Window consistent with the current state of the
+simulation.</p>
+<p ALIGN="JUSTIFY">Make sure you can see the entire Journal Window. Click on its
+Title Bar if you need to.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+    </font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box, replace the 1</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+    </font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">100</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+    </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">This sets the Termination Count to 100, moves Transaction 1
+  to the Current Events Chain, and begins the simulation. But remember that we
+  have set up a Stop Condition. That is why the simulation stops before the
+  first Block entry, and writes a 2 line message in the Journal Window. We could
+  also put a Stop Condition on any Block using the Stops menu in the Blocks
+  Window. As we shall see shortly, current Stop Conditions can be viewed in a
+  special Simulation Snapshot window.</p>
+  <p ALIGN="JUSTIFY">Let’s make Transaction 1 enter the GENERATE Block. We’ll
+  use the STEP 1 Command, which has been preloaded into function key p. It will
+  be available until you change it.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p>PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp; <b>[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, look at the Current Events Chain and the Future Events
+Chain using the same mouse clicks that we did a minute ago in the Window /
+Simulation Snapshot Menu.</p>
+<p ALIGN="JUSTIFY">Your windows should look like this.</p>
+<p>&nbsp;</p>
+
+
+<p align="center"><img border="0" src="../images/T1_5_2.gif" width="482" height="85"></p>
+
+
+<p align="center"></font><i><font SIZE="2">Figure 5—2. CEC Snapshot-Unexpanded View.</p>
+</font></i>
+<p ALIGN="center">&nbsp;</p>
+
+  
+    <p ALIGN="center"><img border="0" src="../images/T1_5_3.gif" width="479" height="78"></p>
+    <i><font SIZE="2">
+    
+    
+    <p align="center">Figure 5—3. FEC Snapshot</p>
+    <p>.</p>
+    
+      
+      </font></i><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now, look at the FEC Snapshot so you can see all the
+    information about the Transaction waiting to enter the simulation. On the
+    FEC the Time is the &quot;Block Departure Time&quot; (BDT) which is the
+    system clock time when Transactions on the FEC are scheduled to come back
+    into the simulation. The Next Block column shows the number of the Block to
+    be entered next by each Transaction. Block number 1 is the GENERATE Block
+    and Block number 2 is the TERMINATE Block. Transaction 2 is waiting to enter
+    the GENERATE Block.</p>
+    <p ALIGN="left">Now let’s look at the Expanded View of the CEC. With
+    the focus on the CEC Snapshot Window</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The + in the CEC Window</p>
+</font>
+</u>
+  
+
+<i><font SIZE="2">
+<p>&nbsp;</p>
+
+  
+<p align="center"><img border="0" src="../images/T1_5_4.gif" width="499" height="72"></p>
+<p align="center">Figure 5—4. CEC Snapshot. Expanded View.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Transaction 1 has entered the GENERATE Block, thereby
+creating Transaction 2, which goes onto the Future Events Chain. Transaction 1
+is on the Current Events Chain, with M1, its time of entry into the simulation
+at 60 seconds, and Transaction 2 is on the Future Events Chain, ready to enter
+the GENERATE Block when the simulated clock time becomes 120 seconds. The
+GENERATE Block’s job is to bring in a new Transaction every 60 simulated
+seconds. You will see this information in the various views of these windows.
+Later we will see that Transaction Parameters can be easily accessed in these
+windows.</p>
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left">Close the Snapshot Windows as we did a few minutes ago.</p>
+<p ALIGN="left">Let’s see what time it is right now. Activate the Journal
+Window as we did above</p>
+</font><b><font FACE="Helvetica" SIZE="2">
+<p ALIGN="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">Command / SHOW</p>
+<p ALIGN="JUSTIFY">In the dialog box:</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">AC1 is the SNA that returns the value of the absolute
+  system clock. Transaction number 1 will move as far as it can in the Current
+  Model at time 60. When it can move no further, it is taken off the Current
+  Events Chain.</p>
+  <p ALIGN="left">Let’s load the SHOW command into <b>[F8]</b>.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Edit / Settings</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then, page forward in the Model Settings Notebook to the
+  Function Keys Page.</p>
+  <p ALIGN="JUSTIFY">In the F8 box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">SHOW AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Transaction 1 is about to be destroyed by entering the
+  TERMINATE Block. Let’s let it do so.</p>
+  
+
+</font><p align="center"><font FACE="Helvetica" SIZE="2">
+PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F5]</b></font><font FACE="Arial" SIZE="2"><b><font FACE="Helvetica" SIZE="2">&nbsp;</font></b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The Transaction will move one Block in response to a STEP 1
+command that has been caused by a single keystroke. Transaction 1 has been
+destroyed. The next Transaction to move in the simulation is Transaction 2,
+which has just been taken off the FEC.</p>
+<p ALIGN="left">Transaction 1 is gone. Since that depleted the Current Events
+Chain, there was nothing more to be done at time 60. GPSS World then advanced
+the clock to the next scheduled time of 120. Transaction 2 was then taken off
+the Future Events Chain and placed on the Current Events Chain. The Future
+Events Chain is now empty. However, Transaction 2 is about to enter the GENERATE
+Block. This will create Transaction 3 and schedule it for 60 time units into the
+future. Then Transaction 2 will go on its way. Let’s allow Transaction 2 to
+enter the GENERATE Block.</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">
+PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F5]</b></font><font FACE="Arial" SIZE="2"><b><font FACE="Helvetica" SIZE="2">&nbsp;</font></b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, look at the chains.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / CEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and with the CEC Snapshot Window having the focus</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The + Sign</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">then in the Main Window</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Snapshot / FEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Size the windows and move them one above the other. Then
+  elongate them so you can see all the information. See? Transaction 3 is now on
+  the Future Events Chain at time 180, and Transaction 2 is ready to enter the
+  TERMINATE Block. When it does, it will be destroyed, and the simulation will
+  have nothing more to do at time 120.</p>
+  <p ALIGN="JUSTIFY">Oh yes! Remember that Transaction 1 already entered the
+  TERMINATE Block. That means that the Termination Count was decremented by 1.
+  Let’s check TG1, the SNA that returns the remaining Termination Count. In
+  the Model Window menu</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">TG1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">in the dialog box.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The value is written to the Journal Window and also to the
+  Status Line at the bottom of the Main Window.</p>
+  <p ALIGN="left">Of course! We set up the TERMINATE Block to subtract 1 from
+  the Termination Count every time it is entered by a Transaction. Since it has
+  been entered once, the Termination Count is now 99. If we would remove the
+  Stop Condition, and let the simulation run, it would stop automatically when
+  the Termination Count reached 0.</p>
+  <p ALIGN="left">Now you’re on your own for a minute. Your assignment is
+  to load other commands into the function keys and to become totally familiar
+  with the creation and movement of Transactions to the Current Events Chain.
+  Please take some time now to study these things. Use the Snapshot Windows to
+  study these changes. When you’re done, please close up any Snapshot Windows
+  that are open.</p>
+  <p ALIGN="left">Welcome back. I hope you feel good about the Current Events
+  Chain and the Future Events Chain.</p>
+  <p ALIGN="left">Now, let’s open an Expression Window on the Clock, the
+  Termination Count, and the Active Transaction number.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box, for the Label</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">Clock</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and for the Expression</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><u><font FACE="Arial" SIZE="2">View</p>
+</font></u><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><u><font FACE="Arial" SIZE="2">Memorize</p>
+
+  
+  </font></u><font FACE="Arial" SIZE="2">
+<p ALIGN="left">View allows you to see the expression in the current
+Expression Window, and Memorize will allow you to save the information with the
+simulation so you will not have to enter the information the next time you want
+to display it in a Plot or Expression Window. You can also enter expressions
+that you wish to save with a model by using Edit / Settings and Clicking on the
+Expressions tab. You must save the model in order for expressions that are
+entered here to be saved These expressions will be memorized and will be
+available to be viewed the next time you create a simulation from this model.</p>
+<p ALIGN="left">Now, add the next expression. Type in the next Label and
+Expression in the dialog box deleting the previous entries.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">Act. Xact</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">XN1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u>View</p>
+</u><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u>Memorize</p>
+
+  
+</u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and repeat the procedure for the third expression. In the
+dialog box for the Label and Expression,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">Term Ct.</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><b><font FACE="Courier New">TG1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><u><font FACE="Arial" SIZE="2">View</p>
+</font></u><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><u><font FACE="Arial" SIZE="2">Memorize</p>
+
+  
+  </font></u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Close the Edit Expression Window Dialog</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">You should now see the new Expression Window.</p>
+  <p ALIGN="JUSTIFY">Now let’s speed things up a bit. Let's remove all Stop
+  Conditions.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><b>Window / Simulation Snapshot / User Stops</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><u>Remove All</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Let’s look at the Blocks Window again.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font></font><u>Anyplace on the Blocks Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now,</p>
+
+
+</font>
+<p align="center"><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F5]</b></font><b><font FACE="Helvetica" SIZE="2">&nbsp;</font></b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">several times to observe the effects of the movement of
+Transactions on the system clock and the Termination Count. Notice, in the
+Blocks Window, that each Block flashes <i>after</i> it has been entered by a
+Transaction, not before.</p>
+<p ALIGN="JUSTIFY">When you are ready, use either the Continue icon in the Debug
+Toolbar at the top of the Blocks Window or the loaded Function Key to continue
+the run.</p>
+
+
+<p align="center">CLICK ON</font><font FACE="Helvetica" SIZE="2"> </font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u>The
+Continue Icon in the Debug Toolbar at the Top of the Window</p>
+
+  
+</u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">or</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">
+PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F</font></font><font face="Helvetica" size="2">2]</font></b><font FACE="Arial" SIZE="2"><b><font FACE="Helvetica" SIZE="2">&nbsp;</font></b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The simulation will end soon and write a report. You can
+examine the report later, if you like.</p>
+<p ALIGN="left">We have covered a lot of ground. Let’s review. To schedule
+a Transaction to come into the simulation at some future time, GPSS World places
+the Transaction on a chain of Transactions called the Future Events Chain, or
+FEC. The FEC is ordered by increasing values of scheduled time. In other words,
+a Transaction scheduled at time 200 will precede a Transaction scheduled at time
+300. When there is nothing more to do at any given simulated clock time, GPSS
+World takes Transaction(s) off the Future Events Chain that have the lowest
+scheduled time value. It is precisely this action that causes the system clock
+to advance. Since the system clock jumps over time durations where no events
+occur, it is often possible for a discrete event simulation to run much faster
+than the real process being simulated.</p>
+<p ALIGN="left">The Current Events Chain, or CEC, is used as a holding area
+for Transactions that still have things to do at the current simulated clock
+time. When there are no more Transactions on the CEC, it means that there is
+nothing more to do at the current simulated time instant. GPSS World then moves
+all Transactions scheduled at the lowest time on the FEC to the CEC, and
+advances the system clock to the new value.</p>
+<p ALIGN="left">Please note that when Transactions scheduled to reenter the
+simulation at the same time are moved from the FEC to the CEC, their order is
+randomized. This prevents certain unintended synchronization sequences from
+developing. You can prevent this randomization by setting time tie randomization
+to zero in the Random Page of the Model Settings Notebook. If you wish to view
+this setting</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Edit / Settings</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to move to the Random Page.</p>
+  <p ALIGN="left">An important rule to remember is that the simulated clock
+  time advances every time a Transaction or Transactions must be taken from the
+  Future Events Chain. As you can see, time in a digital computer simulation
+  does not flow smoothly. A simulation usually consists of many Block entries at
+  a given clock time, followed by a sudden jump to the next clock time. As far
+  as the interpretation of the simulation goes, all GPSS Block entries occurring
+  at a given clock time are occurring instantaneously! The quick jumps to each
+  new time instant often allow simulations to run much faster than the real time
+  process being modeled. A simulated time duration is always associated with new
+  Transactions being taken from the FEC.</p>
+  <p ALIGN="left">When you use the INTEGRATE Command to automatically
+  maintain a continuous variable, a mathematical integration algorithm is
+  employed between discrete time instants to update the continuous variables.
+  Such mixed simulations proceed in alternating discrete and continuous phases.
+  But more on this later, in the lesson on continuous modeling.</p>
+  <p ALIGN="left">That’s all for now. Go ahead and end the GPSS World
+  Session.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The X-Upper Right of the Main Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and answer the questions asked in the dialog boxes. We have
+added a TERMINATE Block since we saved the model. If you want to use the model
+in the next lesson, answer &quot;No&quot; no to the &quot;Do you want to save
+changes ...&quot; question for the Simulation Object (.sim) and the Report
+Object (.gpr), and &quot;Yes&quot; to the save question for the Model Object (.gps).</p>
+<p ALIGN="JUSTIFY">In the simple simulation we studied in this lesson, the
+Transactions that represented the customers did not do anything! They entered
+the store and disappeared in the same instant. To be realistic, we must have the
+customers spend time before departing. We obviously must have a way to cause a
+time delay in the simulation. This is discussed in the next lesson. See you
+then.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<h2 ALIGN="center"><a name="Lesson 6"></a>Lesson 6 - The ADVANCE Block</h2>
+<p ALIGN="JUSTIFY">Before starting this lesson, let’s review how a simulation
+works. Remember that the Future Events Chain, the FEC, is a chain of
+Transactions in increasing order of scheduled times. When all the Transactions
+scheduled for the current time have done all they can do, the most imminent
+Transaction(s) are taken from the FEC, and the system clock is advanced. Such
+Transactions are kept in a first come first served (within priority) holding
+area called the Current Events Chain, or CEC.</p>
+<p ALIGN="JUSTIFY">The highest priority Transaction on the CEC is the Active
+Transaction. A simulation consists of the Active Transaction entering first one
+GPSS Block, then the next, until it can enter no more. When the Active
+Transaction can no longer move, it is removed from the CEC. Then another
+Transaction becomes the Active Transaction. If the CEC is empty, the next Active
+Transaction must come from the FEC, by moving one or more Transactions from the
+FEC, to the CEC. Remember, it is precisely the act of taking the most imminent
+Transaction(s) from the FEC that makes the system clock advance.</p>
+<p ALIGN="JUSTIFY">In the last lesson we learned how GPSS World simulates time
+durations by placing Transactions on the FEC, and moving them to the CEC at the
+end of the simulated duration. This was controlled by a GENERATE Block. In this
+lesson, you will learn how to use the ADVANCE Block to cause existing
+Transactions to experience simulated delays.</p>
+<p ALIGN="JUSTIFY">Let’s take another look at the simulation we used in the
+last lesson. It simulated the arrival of customers at a store. Recall that in
+the simulation, we represent the situation where customers arrive precisely 60
+seconds apart.</p>
+<p ALIGN="JUSTIFY">Let’s begin. Start a GPSS World Session. See Lesson 1 if
+you are unsure of how to do this.</p>
+<p ALIGN="JUSTIFY">If you have not deleted MYMODEL.GPS from Lesson 5, open it
+now otherwise,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>File/ New</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and since the model type is already selected</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><b><font FACE="Courier New">GENERATE 60 ;Create
+  a new Transaction</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and on the next line</p>
+  <p ALIGN="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><b><font FACE="Courier New">TERMINATE 1
+  ;Destroy a Transaction</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Save the model using </font><b>Save As</b><font FACE="Arial" SIZE="2">
+  like we did in Lesson 5.</p>
+  <p ALIGN="JUSTIFY">Create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Now, open the Blocks Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, set up a Stop Condition that will cause the simulation
+  to stop on each attempted entry into the TERMINATE Block.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The TERMINATE Block Icon</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">in the Blocks Window, then</p>
+
+
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><u><font FACE="Arial" SIZE="2">The
+Place Icon in the Debug Toolbar at the Top of the Window</p>
+
+  
+  </font></u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to place a Stop condition on the TERMINATE Block and then
+return to the Journal / Simulation Window</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Anyplace on the Journal / Simulation Window</u>.</p>
+
+  
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box replace the 1,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">This sets the Termination Count to 1000, and begins the
+  simulation. But remember that we have set up a Stop Condition. That is why the
+  simulation stops on the first attempt to enter the TERMINATE Block. Now, look
+  at the Current Events Chain and the Future Events Chain.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p ALIGN="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Window / Simulation Snapshot / FEC
+  Snapshot</p>
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Window / Simulation Snapshot / CEC Snapshot</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Plus Sign in the CEC Snapshot Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Transaction 1 is on the Current Events Chain, and Transaction
+2 is on the Future Events Chain, ready to enter the GENERATE Block when the
+simulated clock time becomes 120 seconds. Transaction number 1 does all its
+Block entries at time 60, and then the clock is advanced. Transaction 1 is about
+to be destroyed by entering the TERMINATE Block. Before we continue, close the
+FEC and CEC Snapshots.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of the Main Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, let’s continue. Make sure that the focus is on the
+Blocks Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to step one Block entry.</p>
+<p ALIGN="JUSTIFY">Let’s look at the simulated clock time.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">AC1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The current time is 120.000, as we can see in the Status Line
+of the Main Window. This is the simulation entry time for Transaction 2. Let’s
+load the SHOW command into <b>[F8]</b>.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Edit / Settings</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the notebook go to the Function Keys page and to the
+  right of F8</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">SHOW AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Transaction 1 is gone. Since that depleted the Current
+  Events Chain, the simulation jumped to the next scheduled time at 120 seconds.
+  Transaction 2 was taken off the Future Events Chain and placed on the Current
+  Events Chain, thereby advancing the system clock to 120.</p>
+  <p ALIGN="JUSTIFY">Transaction 1 did not spend any time in the simulation. All
+  its Block entries occurred at a single simulated instant, namely when the
+  system clock was at 60 seconds. In the case of a simulation of customer
+  arrivals, we would have to interpret this as a succession of customers
+  arriving, but spending no time in the store. We must get each Transaction back
+  onto the Future Events Chain to simulate the passage of time while the
+  Transaction is still in the simulation. Then the Transaction would be taken
+  off the Future Events Chain after the system clock had advanced further. The
+  GPSS ADVANCE Block is what we need! Operand A of the ADVANCE Block is the time
+  increment at which the Transaction should be scheduled to come off the Future
+  Events Chain. Let’s set this up for Transaction 2 in our simulation. First,
+  insert the ADVANCE Block after the GENERATE Block. In the Model Window,
+  position the cursor at the end of the GENERATE Block line and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">or</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Edit / Insert Line</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  <p ALIGN="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  </font></font><b><font FACE="Courier New">ADVANCE</font><font FACE="Courier">
+  </font><font FACE="Courier New">61</font><font FACE="Courier"> </font><font FACE="Courier New">;Cust
+  browses 61 sec.</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Now that you have added a new Block, you will have to
+  retranslate the model. Make sure that the focus is on the Journal Window to
+  keep track of messages as we Step through the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Anyplace on the Journal / Simulation Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the simulation in the last lesson, Transaction 2 left
+  the simulation at time 120, before Transaction 3 arrived (at 180). Now,
+  however, Transaction 2 will stay in the simulation 61 time units. The ADVANCE
+  Block will cause this to happen. This means that Transaction 3 will arrive
+  before Transaction 2 leaves. Let's see if this is true. First let Transaction
+  2 enter the GENERATE Block. This will create, and schedule Transaction 3 to
+  come in at time 180.</p>
+  <p ALIGN="JUSTIFY">In the Blocks Window we had put a Stop Condition on the
+  TERMINATE Block before we Retranslated. Stops work by block number and survive
+  a Retranslation. The TERMINATE was Block number 2. Now, the ADVANCE Block is
+  block 2 and the Stop will be on it. Start the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the dialog box replace the 1,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">The simulation will stop when Transaction 1 tries to enter
+  the Advance Block.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to make the Transaction enter the ADVANCE Block.</p>
+<p ALIGN="JUSTIFY">Look at the CEC and the FEC as we did before by opening the
+appropriate Snapshot Windows. If you don’t remember how to do this, look back
+to the beginning of this chapter.</p>
+<p ALIGN="JUSTIFY">Do you see Transaction 1 on the FEC at time 121 as well as
+Transaction 2 on the CEC scheduled to move at time 120? Your windows should look
+like this.</p>
+</font><i><font SIZE="2">
+<p>&nbsp;</p>
+
+
+<p align="center"><img border="0" src="../images/T1_6_1.gif" width="473" height="102"></p>
+
+
+<p align="center">Figure 6—1 FEC Snapshot.</p>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_6_2.gif" width="475" height="95"></p>
+<p align="center">Figure 6—2. CEC Snapshot-Expanded View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b><font FACE="Arial" SIZE="2">
+</font></b></font><b><font face="Helvetica" size="2">[F8]</font></b></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and you will see (in the Status line of the Main Window) that
+the clock has been updated to time 120. Step twice more.</p>
+
+
+</font><p align="center">
+<font FACE="Helvetica" SIZE="2">
+PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font><font FACE="Arial" SIZE="2"></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">two times. Now, check the time again by pressing:</p>
+
+
+</font>
+<p align="center">
+<font FACE="Helvetica" SIZE="2">
+PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2"><b>
+[F8]</b> </font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Notice that since Transaction 2 was the last Transaction on
+the Current Events Chain, the system clock was advanced immediately when
+Transaction 1 was taken from the FEC at time 121. The time is now 121. Once
+again, you should look at the FEC and CEC to understand which Transaction is on
+which chain. Notice that Transaction 2 is on the FEC, and will not be active
+until time 181. Let’s continue. Step two more times.</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">two times and then look at the location of the Transactions
+on the chains. When you stepped, you should have caused Transaction 1 to leave
+the ADVANCE Block and be TERMINATEd. Then, Transaction 3, which has been
+scheduled to enter the simulation at time 180, will enter the GENERATE Block.
+Show the current time.</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F</font></font><font face="Helvetica" size="2">8]</font></b></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Transaction 3 has entered the GENERATE Block creating
+Transaction 4. Transaction 3 will take its turn entering the ADVANCE Block next.</p>
+<p ALIGN="JUSTIFY">Please take time now to understand what is happening.
+Transaction 3 is about to be placed on the FEC behind Transaction 2 and 4, at
+time 241 (180+61). The current time is 180, and Transaction 2 will become active
+at time 181. For the simulated second between time 180 and 181 both Transactions
+will be on the FEC using up part of their 61 second browsing intervals. This is
+the first second of Transaction 3’s interval and the last second of
+Transaction 2’s interval. For this one simulated second, both customers are
+browsing in the store.</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, notice that Transaction 2 has become active, and that
+the time is now 181. Transaction 2 is about to leave the simulation at this time
+since it will enter the TERMINATE Block next. It has just left the ADVANCE
+Block. Look at snapshots of the CEC and FEC as we did before to establish which
+Transactions are on which chain. When you have studied the SNAPSHOTS and feel
+comfortable with the location of the Transactions and their movement times,</p>
+
+
+</font>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+<p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F</font></font><font face="Helvetica" size="2">8]</font></b></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Transaction 2 has left the simulation. It arrived at time
+120, and left at time 181. That means we have simulated its browsing time to be
+61 seconds. That’s exactly what we wanted the ADVANCE Block to do for us.</p>
+<p ALIGN="JUSTIFY">If we interpret Transaction 2 to represent &quot;customer
+number 2&quot;, we conclude that the customer browsed in the store for 61
+seconds, leaving 1 second after the arrival of customer number 3.</p>
+<p ALIGN="JUSTIFY">GPSS is much more than a programming language. Unlike
+programming languages, GPSS has many points of control. When you interrupt a
+program written in C or BASIC you need only know which statement is next. GPSS
+is different. There’s usually more than one Transaction in the simulation at
+any instant, and each one can be ready to enter a different GPSS Block! So, we
+see that unlike a programming language, which always knows which one statement
+is to be executed next, GPSS has a place marker for each Transaction. This
+allows you to have each customer in a simulation doing or waiting for a
+different thing. The use of multiple place markers is one of the reasons that
+GPSS is a more powerful simulation language than are programming languages like
+BASIC or FORTRAN or C. Each Transaction in GPSS knows which Block it is to enter
+next, and there may be thousands of Transactions.</p>
+<p ALIGN="JUSTIFY">Once again, we now leave you on your own. Your assignment is
+to continue to use the STEP, and SHOW commands and the Chain Snapshot Windows
+until you are quite comfortable with the action of the ADVANCE Block to
+represent a simulated time delay. Use pencil and paper to calculate when future
+events should be scheduled. Feel free to experiment. Try modifying the ADVANCE
+Block, but don’t forget you must retranslate after you make changes. You can
+make the simulation more realistic by using operand B of ADVANCE to randomize
+the delay times. If you want to venture this far, you should read about the
+ADVANCE, GENERATE, and TERMINATE Blocks in Chapter 7 of the GPSS World Reference
+Manual. Return to the tutorial when you are ready.</p>
+<p ALIGN="JUSTIFY">Welcome back. Did you see that the ADVANCE Block simply
+places a Transaction back on the FEC to simulate a time delay? It causes the
+delayed Transaction to be processed at precisely the right simulated time.</p>
+<p ALIGN="JUSTIFY">Remember that the simulated clock time advances every time a
+Transaction must be taken from the Future Events Chain. A simulation usually
+consists of many Block entries at a given clock time, followed by a sudden jump
+to the next clock time. As far as the interpretation of the simulation goes, all
+GPSS Block entries occurring at a given clock time are occurring
+instantaneously!</p>
+<p ALIGN="JUSTIFY">If you want to experiment some more with the ADVANCE Block,
+please do so.</p>
+<p ALIGN="JUSTIFY">For now,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Upper Right of the Main Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">You decide if you want to save the Simulation or the Model
+with the ADVANCE block for further experimentation. This will end the GPSS World
+Session.</p>
+<p ALIGN="JUSTIFY">Well, now we can simulate customers browsing in the store.
+But what about when customers want to engage a salesman? A salesman will
+certainly only talk to one customer at a time. If we do nothing other than add
+an ADVANCE Block, we will simulate the case where more than one customer has
+engaged the salesman at the same time. Remember how both Transaction 2 and
+Transaction 3 were using up their 61 second delays during the same simulated
+second (180-181) ?</p>
+<p ALIGN="JUSTIFY">If a customer needs a full 61 seconds of the salesman’s
+time, we must not start counting until the customer begins talking to the
+salesman. In other words, we cannot allow a Transaction to enter the ADVANCE
+Block until it has engaged the salesman. And we must stop any Transaction that
+tries to engage a busy salesman.</p>
+<p ALIGN="JUSTIFY">As you might expect, GPSS provides Blocks (SEIZE and RELEASE)
+to do this. We’ll discuss them in the next lesson. See you then.</p>
+</font><b><font FACE="Arial" SIZE="5">
+<p>&nbsp;</p>
+</font></font>
+<h2 align="center"><font face="Arial" size="5"><a name="Lesson 7"></a>Lesson 7 - The SEIZE and
+RELEASE Blocks: Facility Entities</font></h2>
+</b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Before starting this lesson, let’s review how a simulation
+works. Remember that the Future Events Chain, the FEC, is a chain of
+Transactions in increasing order of scheduled times. When all the Transactions
+scheduled for the current time have done all they can do, the most imminent
+Transaction is taken from the FEC, and the system clock is advanced. All
+transactions scheduled for the new time are removed. Such Transactions are kept
+in a first come first served (within priority) holding area called the Current
+Events Chain, or CEC. The top Transaction on the CEC is called the &quot;Active
+Transaction&quot;. A simulation consists of a series of Active Transactions,
+each entering as many GPSS Blocks as possible. When one Active Transaction has
+nothing more to do, another Transaction is chosen to be the Active Transaction.
+Block entries at a single clock time occur instantaneously, with no simulated
+time duration.</p>
+<p ALIGN="JUSTIFY">Good. Now that that’s out of the way, let’s recall what
+happened in the last lesson. We simulated customers browsing in the store, but
+we did not cause them each to fully engage a salesman, one at a time. Let us
+assume that each customer must spend 61 seconds talking to a single salesman. To
+simulate this, we cannot let a Transaction enter an ADVANCE Block immediately,
+because that would start counting off the 61 second interval, even if the
+salesman were talking to another customer. If the salesman is already talking to
+a customer, we want any succeeding Transactions to be prevented from entering
+the ADVANCE Block. To do this, we can use a GPSS Entity called a Facility, and
+the associated Blocks, SEIZE and RELEASE. The Facilities Window is available for
+viewing Facility Entities.</p>
+<p ALIGN="JUSTIFY">A GPSS Facility Entity has several attributes, the most
+important of which is ownership. When a Facility is owned by a Transaction, it
+is said to be busy. Otherwise, it is said to be idle. Only one Transaction can
+own a Facility, and ownership is acquired by entering a SEIZE Block which names
+that Facility in its A operand. Transactions attempting to acquire ownership of
+a Facility by entering a SEIZE Block are denied entry into the SEIZE Block until
+the Facility is idle. This prevents the movement of Transactions that are
+waiting to gain ownership of the Facility. The would-be SEIZEing Transaction
+stops moving in the simulation until its turn for ownership comes up. Such
+Transactions are removed from the CEC, and placed on the Facility’s
+&quot;Delay Chain&quot; until they can assume ownership of the Facility.</p>
+<p ALIGN="JUSTIFY">An owning Transaction continues to move in the simulation,
+and owns the Facility until it enters a RELEASE Block naming that Facility in
+its A operand. As you can see, the SEIZE and RELEASE Blocks are exactly what we
+need to keep our &quot;customer&quot; Transactions from entering the ADVANCE
+Block before they have engaged the salesman. Only when a Transaction comes off
+the FEC and enters a RELEASE Block, does the next simulated customer get to talk
+to the salesman.</p>
+<p ALIGN="JUSTIFY">Let’s try out these new Blocks.</p>
+<p ALIGN="JUSTIFY">Start a GPSS World Session as we have before. See Lesson 1 if
+you are unsure of how to do this,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Since you know how to enter statements in building a model,
+  we have provided this one for you. All you have to do is select <b>Seizemod</b>
+  from the model list. You will see that the model has the following Blocks.</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE 20 ;Customer arrives</p>
+  </b>
+  <p ALIGN="JUSTIFY">and</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE SALESMAN ;Customer engages salesman</p>
+  </b>
+  <p ALIGN="JUSTIFY">and</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE 41 ;Customer talks to salesman</p>
+  </b>
+  <p ALIGN="JUSTIFY">and</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE SALESMAN ;Customer gives up salesman</p>
+  </b>
+  <p ALIGN="JUSTIFY">and</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1 ;Customer leaves</p>
+  </b>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="JUSTIFY">Create a simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Now, let's put a STOP on the GENERATE Block</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></font>
+</font><b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Next,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></font>
+<u>The GENERATE Block Icon</p>
+</u></font>
+<p align="center">CLICK ON&nbsp;<font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The Place Icon in the Debug Toolbar at the Top of the Window</p>
+
+  
+  </u>
+  <p ALIGN="left">This will set up a Stop Condition that will cause the
+  simulation to stop on each attempted entry into the GENERATE Block.</p>
+
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></font>
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box, replace the 1</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></font>
+</font><b><font FACE="Courier New">1000</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></font>
+</font><b>OK</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p>or</p>
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The Function key <b>[F5]</b>
+is also set to cause you to be able to step through the simulation with a single
+keystroke. Function key&nbsp; <b>[F8]</b>&nbsp; has been set to show us the clock time. Remember, you can set any of the
+function keys to SHOW expressions or System Numerical Attributes (SNAs).</p>
+<p ALIGN="JUSTIFY">Let’s move the first Transaction one step into the GENERATE
+Block.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Look at the Journal Window. The message will tell you that
+Transaction 1 is about to enter the SEIZE Block. It will be able to do so
+because the salesman is idle. Let’s also view the Current and Future Events
+Chains.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / CEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the CEC Snapshot Window,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The + Sign</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">for a closer look at the individual Transaction on the chain.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / FEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">After you have viewed the Events Chains, close them. If you
+  want to print them first, select </font><b>File / Print</b><font FACE="Arial" SIZE="2">.</p>
+  <p ALIGN="JUSTIFY">Transaction 1 is on the CEC ready to enter the SEIZE Block.
+  Transaction 2 is on the FEC scheduled to enter the simulation at time 40.</p>
+  <p ALIGN="JUSTIFY">Give the Blocks Window the focus.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Any place on the Blocks Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, let’s allow Transaction 1 to gain ownership of a
+Facility Entity used to represent the salesman.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Transaction 1 is still the Active Transaction, i.e., first on
+the CEC. It is now the owner of the Facility that represents the salesman. Let’s
+check by opening the Facilities Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">This is a representation of the Facility Entity that
+  represents the salesman. Don’t worry about the details of this window, as we
+  will study it later. For now, find the &quot;Owner XN&quot; heading and notice
+  that Transaction 1 is the owner. Transaction 1 is ready to begin the 41 second
+  interval during which the customer will be talking to the salesman, by
+  entering the ADVANCE Block.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F8]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / FEC Snapshot</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F8]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The ADVANCE Block has placed Transaction 1 on the FEC. The
+customer it represents will disengage the salesman at time 61. Notice that the
+current time is 40. Actually, we can read it off the Title Bar of the Snapshot
+window as well as in the Status Line.</p>
+<p ALIGN="left">Before we go any further, let’s look at the Blocks Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Any place on the Blocks Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to make it the Active Window.</p>
+<p ALIGN="JUSTIFY">Now, let’s move the current Transaction, number 2 one more
+Block.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Transaction 2 is about to attempt to SEIZE the salesman at
+time 40. It will not be able to do so. Transaction 1 owns the salesman.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[F8]</b>&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / FEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / CEC Snapshot</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">What happened to Transaction 2? Where is it? Transaction 2
+  attempted to enter the SEIZE Block but was denied entry and placed on the
+  Delay Chain of the salesman Facility. By refusing to let Transaction 2 enter
+  the ADVANCE Block, we have not yet started on the 41 seconds that Transaction
+  2 must pass while owning the salesman Facility. Let’s look at the Facilities
+  Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Any place on the Facilities Window</p>
+</font>
+</u>
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_7_1.gif" width="459" height="173"></p>
+<p align="center">Figure 7—1. Facilities Window. Detailed View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">You will see that there is one Transaction on the Delay
+    Chain for the Facility.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">We are now looking at the non-detailed view of the salesman
+  Facility. See the small column representing a queue containing one
+  Transaction? Transaction 2 is on the Delay Chain of the Facility Entity that
+  represents the salesman.</p>
+  </font><i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_7_2.gif" width="497" height="333"></p>
+  <p align="center">Figure 7—2. Facilities Window. Non-detailed View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">Let’s continue.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font>&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F8]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The removal of Transaction 2 from the CEC depleted it. Since
+Transaction 3 was next on the FEC, the system clock has been advanced to 60.
+Transaction 1 will be finished talking to the salesman at time 61, and will be
+ready to disengage by entering the RELEASE Block. Make the Blocks Window the
+active window</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2"><u>Any place on the Blocks Window</p>
+</u>
+<p align="center">PRESS&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">What happened? Where did Transaction 2 come from? Transaction
+1 gave up ownership of the salesman Facility when it entered the RELEASE Block.
+This made the Facility idle. Since Transaction 2 was next on the Delay Chain of
+the salesman Facility, it was automatically given ownership and allowed to enter
+the SEIZE Block. Transaction 3 is now on the Delay Chain waiting its turn with
+the salesman. Now make the Facility Window active</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Any place on the Facilities Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and return to the detailed view.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+</b>
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_7_3.gif" width="498" height="176"></p>
+<p align="center">Figure 7—3. Facilities Window. Detailed View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">See? Transaction 2 owns the Facility, and there is 1
+    Transaction waiting to own it.</p>
+    <p ALIGN="JUSTIFY">Just a quick note here: You can minimize any of these
+    windows when you don’t want them by clicking on the minimize button in the
+    upper right corner of the window. Then you can quickly reopen the window by
+    clicking on the window's icon in the lower left of the Main Window. However,
+    always be aware that when on-line windows are minimized or open, they will
+    slow the running of your simulation. An alternative is to use the <b>Windows
+    / Tile</b> menu command to organize all your windows.</p>
+    <p ALIGN="JUSTIFY">Transaction 1 has entered the RELEASE Block, thereby
+    allowing Transaction 2 to enter the SEIZE Block. Transaction 2 will enter
+    the ADVANCE Block when it gets its turn as the Active Transaction.
+    Transaction 2 immediately takes possession of the Facility even though it is
+    not the active Transaction. It does so by entering the SEIZE Block. This
+    prevents a Transaction that might be transferred from elsewhere in the
+    simulation to the SEIZE Block from jumping ahead of the next rightful owner,
+    Transaction 2.</p>
+    <p ALIGN="JUSTIFY">Transaction 2 is ready to enter the ADVANCE Block, now
+    that it has engaged the salesman. But first, Transaction 1 will leave the
+    simulation by entering the TERMINATE Block.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F5]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / FEC Snapshot</p>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_7_4.gif" width="486" height="76"></p>
+<p align="center"></b><i><font SIZE="2">Figure 7—4. FEC Snapshot.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Snapshot / CEC Snapshot</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The + Sign</p>
+</u></font>
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_7_5.gif" width="476" height="112"></p>
+<p align="center">Figure 7—5. CEC Snapshot, Expanded View.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to view the Expanded View of the CEC and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F8]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">That gets rid of Transaction 1. Notice that the time is 61
+and that Transaction 2 still has not started its 41 second interval. Had we not
+inserted the SEIZE Block, Transaction 2 would not have been delayed before
+entering the ADVANCE Block, and both it, and Transaction 1, would have been on
+the FEC. Both Transactions would have been using up their 41 second interval at
+the same time. In other words, we would have had two customers talking to the
+salesman at the same time. The use of the SEIZE Block prevented this.</p>
+<p ALIGN="JUSTIFY">As before, we again leave you on your own. Your assignment is
+to continue to use the STEP, and SHOW commands and the various windows until you
+are quite comfortable with the action of the SEIZE Block to serialize (make
+one-at-a-time) the movement of Transactions into the ADVANCE Block.</p>
+<p ALIGN="JUSTIFY">Notice that when a Transaction is on a Delay Chain it cannot
+be on the FEC or the CEC. That makes sense. The Transaction cannot be on the FEC
+because it wants to gain ownership of the Facility as soon as possible. There’s
+no point in putting the Transaction back on the CEC until it can enter the SEIZE
+Block. All these considerations are handled automatically by GPSS World.</p>
+<p ALIGN="JUSTIFY">Go ahead and switch to the Blocks Window and the Facilities
+Window to view the simulation from different viewpoints. Verify that the SEIZE
+Block allows no more than one Transaction at a time in the ADVANCE Block.</p>
+<p ALIGN="JUSTIFY">When you feel comfortable with the use of Facility entities
+to force Transactions to proceed one at a time, go ahead and END the Session.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Upper Right of the Main Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">And answer &quot;No&quot; to all the &quot;Save&quot;queries.</p>
+<p ALIGN="JUSTIFY">If you got this far fairly, you are doing just fine. If you
+are having difficulty with the Future Events Chain and the Current Events Chain,
+you should go back to Lesson 5. If you are not at ease with how a Transaction
+must wait on a Facility Delay Chain until it gains ownership, please begin
+Lesson 7 again.</p>
+<p ALIGN="JUSTIFY">In the next lesson we will look at how easy it is to get
+dynamic histograms out of GPSS World simulations.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+</font></font><b>
+
+
+<h2 align="center"><font face="Arial" size="5"><a name="Lesson 8"></a>Lesson 8 - QUEUE and
+DEPART Blocks: Queue and Qtable Entities</h2>
+
+  
+</font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Unlike the GPSS Blocks studied so far, the QUEUE and DEPART
+Blocks do nothing other than gather statistics. The statistics are kept in a
+GPSS Entity called a Queue Entity. Just as with a Facility Entity, a Queue
+Entity is created automatically when needed. You do not have to define a Queue
+Entity explicitly.</p>
+<p ALIGN="JUSTIFY">The most important attribute of a Queue Entity is a number
+called the &quot;Queue Content&quot;. When a Transaction enters a QUEUE Block,
+the Queue Content of the associated Queue Entity is increased. When a
+Transaction enters a DEPART Block the Queue Content of the Queue Entity is
+reduced. The advantage of using Queue Entities is that GPSS World will keep
+statistics automatically for Queue entities. These statistics are written in the
+Standard Report, and are available during the simulation as several System
+Numeric Attributes. In addition you can define Qtable entities, which are
+visible as histograms in a Table Window. Also, you can open a QUEUE Window on
+the current Queue entities in your simulation and see all the statistics
+displayed dynamically.</p>
+<p ALIGN="JUSTIFY">Start a GPSS World Session reading in the SAMPQUE.GPS Program
+File.</p>
+</font><font FACE="Helvetica" SIZE="2">
+
+
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<u>The GPSS World Icon in the GPSS World Folder</p>
+</u>
+<p align="center">CHOOSE</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>File / Open</p>
+</b>
+
+  
+    <p ALIGN="JUSTIFY">in the dialog box as shown on the next page</p>
+    
+      
+        <p ALIGN="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Sampque</p>
+        </b>
+        <i><font SIZE="2">
+        <p>&nbsp;</p>
+        
+        
+      
+    
+        <p align="center"><img border="0" src="../images/T1_8_1.gif" width="508" height="304"></p>
+        
+        
+      
+    
+    <p align="center">Figure 8—1. The File Open Dialog.</p>
+    
+      
+      </font></i><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Arial" SIZE="2">Open</p>
+
+  
+    <font FACE="Courier New" SIZE="1">
+    <p>&nbsp;</p>
+    </font></font></b>
+    <p><font face="Courier New" size="2">; GPSS World Sample File - SAMPQUE.GPS<br>
+    **********************************************************************<br>
+    *<br>
+    * Barber Shop Simulation<br>
+    * Time Is In Minutes&nbsp;<br>
+    **********************************************************************<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+    (Exponential(1,0,6.5)) ;Create next customer.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Barber ;Begin queue time.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Total_time ;Total haircut time<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,Barb1,Barb2 ;Choose not busy barber.<br>
+    Barb1&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Barber1 ;Get service by Barber1.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Barber ;End queue time.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 10,2.5 ;Haircut takes a few minutes.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Total_time ;Leave total time queue<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Barber1 ;Give up the barber.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Next ;Used Barber1-Done with cut.<br>
+    Barb2&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Barber2 ;Get service by Barber2<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Barber ;End queue time.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 13,4 ;Haircut takes a few minutes.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Total_time ;Leave total time queue<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Barber2 ;Give up the barber.<br>
+    Next&nbsp;&nbsp;&nbsp; SAVEVALUE Ave_Queue,QT$Barber ;Save resulting average.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1 ;Customer leaves.</font></p>
+<font FACE="Arial" SIZE="2"><b>
+
+  
+    <font FACE="Courier New" SIZE="1">
+    <p><br>
+    </font></b>Recall that this is a simple simulation of a barber shop
+  with one barber. Notice how the QUEUE Barber and DEPART Barber Blocks are
+  used. They define the duration for the automatic queuing statistics associated
+  with the Queue Entity named Barber. In this case, we use QUEUE and DEPART
+  Blocks to &quot;sandwich&quot; the SEIZE Block. This will automatically
+  register a queuing time for each Transaction to enter the DEPART Block.
+  Transactions that are able to own the Facility Entity named Barber
+  immediately, will register a 0 waiting time. The average queue length and the
+  average queuing time will be printed automatically in the GPSS World Standard
+  Report.</p>
+  <p ALIGN="JUSTIFY">We have also placed QUEUE and DEPART Blocks to encompass
+  the entire haircut time, including waiting. We will have statistics for
+  waiting time and for total time to get a haircut, including the wait.</p>
+  <p ALIGN="JUSTIFY">Let’s look at the queue statistics as the simulation
+  runs. First we’ll have to create the simulation.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then open the Queue Window to view the Queue Entity
+  statistics as the simulation runs.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Window / Queues Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Arrange the windows so you can see both Model and Queues
+  Windows. For the present, it is not necessary to see the text in the Model
+  Window. The Queues will start to be displayed once the simulation starts to
+  run and the Queues are entered.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box , replace the 1,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">11111</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+</b>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_2.gif" width="579" height="191"></p>
+<p align="center"><i><font SIZE="2">Figure 8—2. The Queues Window. Detailed View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">Remember that you can view this window in two ways. The
+    detailed view comes up first. It will give you all the information that you
+    would find in the report as well as an icon that show that state of the
+    queue. The non-detailed view will just give you an overview of the size of
+    the queues in your simulation and is very good for a quick scan of these
+    entities. First, let’s look at the various statistics that are available
+    to us in the detailed view of Queue Entities.</p>
+    <p ALIGN="left">Now for an overview of all the queues. This simulation is
+    set up with two barbers, but the queue for the barbers is a single one.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>View / Entity Details</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">to view the non-detailed view of the Queues. When you have
+  viewed this version of the window and are ready to move on, please either
+  minimize the window by a</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The Smallest Button in the Upper Right of the Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">or close the window by a</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Upper Right of the Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now, please halt the simulation.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[F4]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">GPSS World makes it extremely easy to create histograms that
+can even be viewed dynamically as the simulation runs. This is done by defining
+a TABLE or QTABLE Entity for each histogram. Let’s begin by putting all the
+queuing times into a histogram. Instead of an interactive definition in the
+simulation, here we’ll add the QTABLE definition to the model. Give the Model
+Window the focus. Place the cursor at the end of the last line of the model and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">then</p>
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New" SIZE="3">Waittime QTABLE
+Barber,2,3,20 ;Wait times Table</p>
+</font></b><i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_3.gif" width="559" height="286"></p>
+
+
+<p align="center">Figure 8—3. Addition of a QTABLE Command.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">This defines our histogram, or in GPSS terms, our QTABLE
+    Entity. Unlike Facility entities and Queue entities, Qtable Entities must be
+    specifically declared in a QTABLE command to be created. As with all Model
+    Statements, a QTABLE Command can be sent to an existing simulation to define
+    a Qtable Entity interactively.</p>
+    <p ALIGN="JUSTIFY">Now, retranslate the model.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and start the simulation running</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box, replace the 1,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">1111111</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>OK</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font><font FACE="Arial" SIZE="2"> <b>[F4]</b>&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now the easy part, GPSS World has a window for viewing
+histograms. Open the Table Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the dialog box you'll see Waittime is already selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>OK</p>
+</b>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">Make sure to expand the window to a comfortable size to
+    be able to see the bars in the Table.</p>
+    <p ALIGN="JUSTIFY">Your screen should look something like this.</p>
+    <i><font SIZE="2">
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_8_4.gif" width="563" height="287"></p>
+    <p align="center">Figure 8—4. The Table Window.</p>
+  </font></i><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F2]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to watch the Histogram develop.</p>
+<p ALIGN="left">The vertical axis is a count of Transactions, and the
+horizontal axis has a bucket for each waiting time in a range. For example, a
+waiting time of up to 2 minutes will add a count of 1 to the bucket used for
+times 0 to 2. Let’s watch how the waiting times are changing in our original
+barber shop example. Do you see that the mean waiting time is around 15 minutes
+with some customers waiting 56 or more minutes. They must really need a haircut.
+When you have seen enough, close this window and switch over to the Blocks
+Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The X-Upper Right of the Table Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">then</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Window / Blocks Window</p>
+</b>
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_5.gif" width="587" height="302"></p>
+<p align="center">Figure 8—5. The Blocks Window, Detailed View.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">By observing the current Block contents of the first
+    TRANSFER Block (Block 4), you will see that the number of Transactions
+    varies as the customers (Transactions) wait for the barbers. They wait in
+    the Transfer Block until they can enter one of the two SEIZE Blocks that
+    represent ownership of the barber’s services.</p>
+    <p ALIGN="JUSTIFY">Close the Blocks Window.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The X-Upper Right of the Blocks Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now look at the Facility entities representing the barbers.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Window / Simulation Window / Facilities Window</p>
+</b>
+<i><font SIZE="2">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_6.gif" width="588" height="153"></p>
+<p align="center">Figure 8—6. The Facilities Window.</p>
+</font></i>
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">Utilization of both barbers is quite high. Perhaps, there
+    will be a high turnover rate of employees if we work them this hard.</p>
+    <p ALIGN="left">All the Transactions waiting to get into the SEIZE Block
+    are on Retry Chains of the Facility entities named Barber1 and Barber2. Each
+    time a barber changes state, from busy to not busy, GPSS World checks all
+    the chains associated with the Facilities to see who should be the next
+    owner. In this case, the Transactions are never reaching the Delay Chain for
+    each barber, but are being placed on the Retry Chains associated with the
+    test at the TRANSFER Block. When both barbers are busy they are placed on
+    Retry Chains for both barbers to try again when one becomes free.</p>
+    <p ALIGN="left">Now, look back at the Model Window. You may have to
+    expand it to see the text of the model. Notice, that the labels for the
+    SEIZE Blocks and the Facility Entity names are slightly different. Block
+    locations, i.e., names used in the label field of a Block statement, are
+    special. You should not use Block location names to name other entity types.
+    However, you can give Queues, Storages, Facilities, etc. the same names and
+    it is perfectly acceptable. You could have a Queue named Barber and a
+    Facility with the same name.</p>
+    <p ALIGN="left">Let’s take a look at another histogram. Interrupt the
+    simulation.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRES</font></font><font face="Helvetica" size="2">S&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>[F5]</b>&nbsp;</font></p>
+<font FACE="Helvetica" SIZE="2">
+<font FACE="Arial" SIZE="2">
+<p align="center">CLICK ON&nbsp;</font>&nbsp;&nbsp;&nbsp; </font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The Model Window</p>
+
+  
+</font>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Notice that in our barber shop example, the first barber does
+not take a constant amount of time to do haircuts. Although he averages 10
+minutes to do a haircut, the actual durations range from 7.5 to 12.5 minutes.
+Barber 2 takes from 9 to 17 minutes. The B operand of the ADVANCE Block is the
+half range of the Uniform distribution. If you are not familiar with operands A
+and B of the ADVANCE Block, please refer to Chapter 7 of the <i>GPSS World
+Reference Manual</i>.</p>
+<p ALIGN="left">The distribution of haircut times generated by the ADVANCE
+Block is called a uniform distribution. Its histogram will eventually converge
+to the shape of a rectangular fence. Let’s check this.</p>
+<p ALIGN="left">First, we want to insert QUEUE and DEPART Blocks to gather
+the haircut times. For this purpose we will use the Block Creation Dialog of
+GPSS World, which provides for &quot;fill-in-the-blank&quot; Block definitions.
+In the Model Window, just after the Barb1 label</p>
+</font><font FACE="Helvetica" SIZE="2">
+
+
+<p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Anywhere in the DEPART Statement</p>
+</font>
+</u>
+
+  
+    <p ALIGN="JUSTIFY">We do this so that when the Block Statement is created it
+    will be inserted right before the first ADVANCE Block Statement. Now let's
+    fill in the blanks.</p>
+    <font FACE="Helvetica" SIZE="2">
+    
+  
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Edit / Insert GPSS Blocks ...</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">The Block Menu appears.</p>
+    
+  
+</font><i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_7.gif" width="276" height="318"></p>
+<p align="center">Figure 8—7. The Block Menu.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Now for the QUEUE Block Statement. In the left column of the
+Block Menu</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><u><font FACE="Arial" SIZE="2">QUEUE</p>
+
+  
+  </font></u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The Block Input Dialog appears, ready to take information on
+your new QUEUE Block. In Operand A</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">Haircut</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">In Comment</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">Length of cut -- Barber1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The Block Input Dialog should look like this.</p>
+
+
+</font><i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_8.gif" width="419" height="475"></p>
+<p align="center">Figure 8—8. The Block Input Dialog for QUEUE Block.</p>
+</font></i><font FACE="Helvetica" SIZE="2">
+
+  
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">If you would like to review the details of the QUEUE Block,
+  just click on the Help button. When you are ready to insert the new statement</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;</font></font>&nbsp;&nbsp;&nbsp; <font FACE="Arial" SIZE="2"><b>OK</p>
+</b>
+
+  
+    <p ALIGN="JUSTIFY">Now look at the Model Window. The newly created QUEUE
+    Statement has been placed just after the line where we put the insertion
+    point. This new statement actually contains tabs, and you can change
+    tabstops in the Settings of the Model Object.</p>
+    <p ALIGN="JUSTIFY">Great. Now let's do the same thing to create the DEPART
+    Statement. First, set the insertion point in the Statement just before where
+    the new Block Statement is to go. In the Model Window just after the new
+    QUEUE Statement</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<u>Anywhere in the next ADVANCE Statement</p>
+</u></font>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">Now go to the Block Menu. In the left column of the Block
+    Menu</p>
+    <font FACE="Helvetica" SIZE="2">
+    
+  
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><u><font FACE="Arial" SIZE="2">DEPART</p>
+  </font></u>
+
+  
+    <p ALIGN="left">The Block Input Dialog appears again, this time ready to
+    take information on your new DEPART Block. In Operand A</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">Haircut</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">In Comment</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">Length of cut -- Barber1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">The Block Input Dialog should look like this.</p>
+
+
+</font><i><font SIZE="2">
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_8_9.gif" width="419" height="475"></p>
+<p align="center">Figure 8—9. The Block Input Dialog for DEPART Block.</p>
+</font></i><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p>As before, the new statement has been inserted into the Model.</p>
+
+  
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Next we must define the histogram. For this we must insert
+  the statement ourselves. Move the cursor to the end of the last line of the
+  model,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[Enter]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">Cuttimes QTABLE Haircut,8,0.5,10</font><font FACE="Courier New" SIZE="2"></p>
+</font><font FACE="Courier" SIZE="2">
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">This defines our histogram, or in GPSS terms, our Qtable
+Entity.</p>
+<p ALIGN="JUSTIFY">Retranslate the model and start it running and open the
+Tables Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box, replace the 1,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  
+
+<p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">1111111</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">and</p>
+</font><font FACE="Helvetica" SIZE="2">
+
+
+<p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>OK</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font>&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2">
+<b>[F4]</b>&nbsp;</font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to halt the simulation while you open the new Table Window,
+then</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box you will see Cuttimes is already
+  selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2">
+<b>[F2]</b>&nbsp;</p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">to continue the simulation run.</p>
+<p ALIGN="JUSTIFY">Your screen should something like this look like this after
+the simulation has run for a few seconds.</p>
+</font><i><font SIZE="2">
+<p>&nbsp;</p>
+
+
+<p align="center"><img border="0" src="../images/T1_8_10.gif" width="543" height="333"></p>
+<p align="center">Figure 8—10. Haircut Duration Histogram.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">If you wish, you can print the window to a printer at any
+    time. Just Choose <b>File / Print</b> in the Main Window. You can do this at
+    any time, but it is usually wiser to print after you have halted the
+    simulation so you know exactly what you are printing.</p>
+    <p ALIGN="JUSTIFY">Notice that although the histogram is irregular, over a
+    long period of time, it approaches the rectangular shape of the uniform
+    distribution. Also notice that the average haircut time converges to the 10
+    minutes we desired. By the way, when a tabulated duration falls exactly on a
+    boundary, such as 11, the frequency class to the <i>left</i> is incremented.</p>
+    <p ALIGN="JUSTIFY">Clearly our results will not be good if we do not
+    simulate enough haircuts. One of the objectives of your study of simulation
+    methods, is to know how long to run your simulations. This topic is covered
+    in more detail in textbooks on simulation techniques. Also, we will discuss
+    the GPSS World ANOVA command in a later lesson.</p>
+    <p ALIGN="JUSTIFY">When you are ready, go ahead and end the GPSS World
+    Session as we have before.</p>
+    <p ALIGN="JUSTIFY">The TABLE and TABULATE statements are also used to create
+    histograms. They are used with GPSS Table entities, and they allow you to
+    use any expressions, not just simulated durations, in your histograms.</p>
+    <p ALIGN="JUSTIFY">Let’s review. We have used the QUEUE and DEPART Blocks
+    in association with Queue and Qtable entities. We saw how easy it is to view
+    histograms, and we took a brief look at how probability distributions
+    converge.</p>
+    <p ALIGN="JUSTIFY">The insertion of QUEUE and DEPART Blocks does not affect
+    the simulation because no simulated time is used, and the flow of
+    Transactions is not affected. The only difference is that additional
+    statistics are collected automatically.</p>
+    <p ALIGN="JUSTIFY">There are many other GPSS Blocks that we will not
+    consider in this tutorial. However, the examples in Chapter 2 of this manual
+    do use some of them. You must, therefore, make use of Chapter 7 of the GPSS
+    World Reference Manual to understand the use of these Blocks.</p>
+    <p ALIGN="JUSTIFY">Most people generally use only a subset of the GPSS
+    Blocks available. However, you should have a general idea of what the
+    remaining Blocks can do for you. Before concluding this lesson, your
+    assignment is to read the list of Block descriptions at the beginning of
+    Chapter 7 in the<i> GPSS World Reference Manual.</i> Don’t worry about
+    details, this exercise is just to acquaint you with the simulation power
+    available.</p>
+    <p ALIGN="JUSTIFY">In the next lesson, we will look at the GPSS World
+    Commands. They let you manage the operation of your simulation environment.
+    See you then.</p>
+    <h2 ALIGN="JUSTIFY">&nbsp;</h2>
+    <h2 ALIGN="center"><a name="Lesson 9"></a>Lesson 9 - GPSS World Commands</h2>
+    <p ALIGN="JUSTIFY">The GPSS World Commands are used to manage the
+    construction and execution of your simulations as well as to define certain
+    GPSS entities. In this lesson we will review each of the commands. Let’s
+    start with a list of the commands and a short description of each.</p>
+    <p ALIGN="JUSTIFY">The commands are:</p>
+    <blockquote>
+    <blockquote>
+    <font FACE="Symbol" SIZE="2">
+    <p>·</font><font SIZE="2">&nbsp;<b>BVARIABLE</b> - Define a Boolean
+    Variable Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font><b><font SIZE="2">&nbsp;CLEAR</font></b><font SIZE="2"> - Reset
+    statistics and delete Transactions.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font><b><font SIZE="2">&nbsp;CONDUCT</font></b><font SIZE="2"> -
+    Conduct an Experiment.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">CONTINUE</font></b><font SIZE="2">
+    - Resume the Simulation.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>EQU</b></font><font SIZE="2">
+    - Assign a value to a User Variable.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>EXIT</b></font><font SIZE="2">
+    - End the GPSS World Session.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>FUNCTION</b></font><font SIZE="2">
+    - Define a Function Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">FVARIABLE</font></b><font SIZE="2">
+    - Define an Fvariable Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>HALT</b></font><font SIZE="2">
+    - Stop the simulation and delete all Queued Commands.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">INCLUDE</font></b><font SIZE="2">
+    - Read and Translate a secondary Model File.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>INITIAL</b></font><font SIZE="2">
+    - Initialize or modify a Logicswitch, Savevalue, or Matrix Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">INTEGRATE</font></b><font SIZE="2">
+    - Automatically integrate a time differential in a User Variable.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">MATRIX</font></b><font SIZE="2">
+    - Define a Matrix Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">QTABLE</font></b><font SIZE="2">
+    - Define a Qtable Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>REPORT</b></font><font SIZE="2">
+    - Request an immediate report.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>RESET</b></font><font SIZE="2">
+    - Reset the statistics of the Simulation.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">RMULT</font></b><font SIZE="2">
+    - Set the seeds of the first 7 Random Number Generators</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>SHOW</b></font><font SIZE="2">
+    - Evaluate and display Expression.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>START</b></font><font SIZE="2">
+    - Set the Termination Count and begin a Simulation.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">STEP</font></b><font SIZE="2">
+    - Attempt a limited number of Block entries.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>STOP</b></font><font SIZE="2">
+    - Set a Stop Condition based on Block entry attempts.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<b><font SIZE="2">STORAGE</font></b><font SIZE="2">
+    - Define a Storage Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>TABLE</b></font><font SIZE="2">
+    - Define a Table Entity.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p>·</font></font><font face="Symbol" size="2"> </font><font FACE="Arial" SIZE="2">
+<font SIZE="2"><b>VARIABLE</b></font><font SIZE="2">
+    - Define a Variable Entity.</p>
+    </font>
+    </blockquote>
+    </blockquote>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    <p ALIGN="JUSTIFY">This is an unstructured lesson. Your assignment is to use
+    each command in the list at least once.</p>
+    <p ALIGN="JUSTIFY">Start a GPSS World Session as we have before.</p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE</font><font FACE="Helvetica">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Sample2</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Open</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Now you’re on your own. If you run into trouble, consult
+  on-line help, and Chapter 6 of the <i>GPSS World Reference Manual</i>, in that
+  order.</p>
+  <p ALIGN="JUSTIFY">How did you do? Did you notice that some of the commands
+  have many options, some of which you probably have not yet used? We will not
+  pursue the command features here, but if you want to take full advantage of
+  the GPSS World Commands you should read the rest of Chapter 6 of the <i>GPSS
+  World Reference Manual</i>. We will discuss Manual Simulation and the INCLUDE
+  Command in more detail in the next lesson as well as the Debugging and Design
+  lesson.</p>
+  <p ALIGN="JUSTIFY">Now, close the Sample2 Journal and Model Windows as we have
+  done before.</p>
+  <p ALIGN="JUSTIFY">Before we conclude this lesson let us consider two more
+  ideas. The first of the two ideas is that each name is associated with a
+  value.</p>
+  <p ALIGN="JUSTIFY">Open a new model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>File / New</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the new Model Window</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Var1 Variable 3#3/3</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Save the model as Tmp.gps.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>File / Save As</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Tmp</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Save</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">You have defined a GPSS Arithmetic Variable Entity, named
+  Var1, which returns the value of the expression as given in the variable
+  definition. Variables can consist of constants or contain variables that
+  change during the simulation. Now translate this one line model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">V$Var1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font><b>&nbsp;</b><font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">In the Status Line of the Main Window, you should see the
+  evaluated result of the Variable Entity named Var1. The V class SNA V$Var1
+  returns the value of the Variable Entity named Var1.</p>
+  <p ALIGN="JUSTIFY">Here’s a common mistake.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Var1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT</font><b>&nbsp;</b><font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">What happened? Why wasn’t the variable evaluated? The
+  answer is that a name alone is resolved as its numerical value. If you want to
+  use the name itself, you can enclose it in double quotes to form a string
+  constant. If you have not assigned a value to the name using an EQU statement
+  or a PLUS assignment statement, GPSS World assigns it an integer value of
+  10000 or above. Further, you must assign values to names using an EQU
+  statement before you can refer to their values in an expression. If you wish a
+  named VARIABLE to be evaluated, don’t forget the V$ before the name of the
+  VARIABLE.</p>
+  <p ALIGN="JUSTIFY">When you use a name, GPSS World assigns a distinct system
+  number to it. If the name is used as the name of an entity, you do not have to
+  do anything else. However, if you want the name to have a specific value, you
+  must use an EQU statement to assign the value before the entity is created.</p>
+  <p ALIGN="JUSTIFY">In the last case, GPSS World assigned its own number to the
+  name Var. and that’s what you see in the Status Line. Had you used Var. in
+  an EQU statement before defining the Variable Entity, the SHOW Var. would
+  return your number.</p>
+  <p ALIGN="JUSTIFY">WARNING! If you change the value of a name after you define
+  a named entity, you will no longer be able to use the name to refer to the old
+  entity. Changing the value of a name does not redefine entities. Any old
+  entity now has an entity number that is different from the new value of the
+  name. Also, remember that Block labels are numbered by GPSS World. You should
+  not use Block labels to name other entities. When you start your simulation,
+  you will get an error message if you have done so.</p>
+  <p ALIGN="JUSTIFY">This concludes our lesson. In the next lesson, we return to
+  the more structured approach. We will now take a closer look at Manual
+  Simulation, a very powerful feature of GPSS World.</p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <h2 ALIGN="center"><a name="Lesson 10"></a>Lesson 10 - Manual Simulation</h2>
+  <p ALIGN="JUSTIFY">In this lesson we will look at one of the most powerful
+  interactive features of GPSS World.</p>
+  <p ALIGN="JUSTIFY">Any Model Statement can be sent interactively to an
+  existing simulation. This includes GPSS Block Statements. The GENERATE Block
+  is the only exception. When a Block is sent to an existing Simulation Object,
+  it is executed bit not inserted.</p>
+  <p ALIGN="JUSTIFY">We can enter a Block Statement by using the Custom Command
+  Dialog in the Command menu of the Main Window. When the Simulation Object
+  receives the Block Statement, it causes the Active Transaction to attempt to
+  enter a temporary Block described by the Block statement. This method is
+  called Manual Simulation. Such a Block statement does not go into the program
+  that has been translated in the Model Window, and the Block Entity does not
+  become a permanent member of the simulation.</p>
+  <p ALIGN="JUSTIFY">Let’s try it. Start up a GPSS World Session. See Lesson 1
+  if you have questions about doing this.</p>
+  <p ALIGN="JUSTIFY">We must establish an Active Transaction before we can use
+  manual simulation. There are several ways to do this. We could use a STOP
+  command or we could interrupt a simulation by pressing the o function key. We
+  could also wait until a simulation completes. Normally, simulations end with
+  an Active Transaction in place.</p>
+  <p ALIGN="JUSTIFY">For the purpose of this lesson we will use the STOP
+  command. This causes a Stop Condition to be registered, which will stop when
+  any Transaction attempts to enter any Block. First we must open a model and
+  then establish a Stop Condition</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Sample2</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Open</p>
+
+  
+</b></font><p>&nbsp;</p>
+<p><font face="Courier New" size="2">; GPSS World Sample File - SAMPLE2.GPS<br>
+*************************************************************<br>
+*<br>
+* Barber Shop Simulation<br>
+*<br>
+*************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;&nbsp;&nbsp; 300,100&nbsp;&nbsp;&nbsp;&nbsp;
+;Create next customer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Barber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Begin queue time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Barber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Own or wait for barber.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Barber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;End queue time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp;&nbsp; 400,200&nbsp;&nbsp;&nbsp;&nbsp;
+;Haircut takes a few minutes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp;&nbsp;&nbsp; Barber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Haircut done. Give up the barber.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Customer leaves.<br>
+</font></p>
+<p>&nbsp;</p>
+<p><font FACE="Arial" SIZE="2">The Model Window should contain the model shown above. Now,
+  let’s translate the model and then open the Blocks Window.</p>
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Select the first GENERATE Block by positioning the mouse
+  pointer over the Block and clicking mouse button 1 once.</p>
+  
+
+<p align="center">CLICK ON<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The GENERATE Block Icon</p>
+
+  
+  </u>
+  <p ALIGN="JUSTIFY">Then</p>
+
+
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The Place Icon in the Debug Toolbar at the Top of the Window</p>
+</u></font><b>
+
+  
+  </b>
+  <p ALIGN="JUSTIFY">Now, we can START a simulation that will stop immediately.</p>
+
+
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b>
+  <p ALIGN="JUSTIFY">and in the dialog box, replace the 1,</p>
+
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Notice that a stop message appears in the Journal Window.
+  Before we do anything else, let’s remove all Stop Conditions, but first
+  return to the Blocks Window by clicking anywhere on the window. Again, in the
+  Blocks Window,</p>
+  
+
+<p align="center">CLICK ON</font><font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font><u><font FACE="Arial" SIZE="2">The
+GENERATE Block Icon</p>
+
+  
+  </font></u><font FACE="Arial" SIZE="2">
+<p ALIGN="JUSTIFY">Then</p>
+
+
+<p align="left">CLICK ON<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The Remove Icon in the Debug Toolbar Top of the Window</p>
+
+  
+  </u>
+  <p ALIGN="left">Since we have set up an Active Transaction, we can type any
+  Block statement we please. In the Model Window,</p>
+
+
+<p align="center">CHOOSE<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font FACE="Helvetica" SIZE="2"> </font><b>Command / Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then in the dialog box</p>
+  
+
+<p align="center">TYPE<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font FACE="Helvetica" SIZE="2"> </font><b><font FACE="Courier New">Assign
+Price,19.95</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b>
+  <p ALIGN="left">The Active Transaction now has a Transaction parameter
+  named Price containing the value 19.95. Let’s see.</p>
+
+
+<p align="center">CHOOSE<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Snapshot
+/ CEC Snapshot</p>
+</b>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">and in the Snapshot Window</p>
+    <p ALIGN="center">CLICK ON<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><b>
+    </b><u>The + Sign</p>
+    </u>
+    <p ALIGN="JUSTIFY">in the CEC Window to see the Transactions on the chain.
+    Transaction 1 is the only Transaction. One more click will reveal any
+    parameters of this Transaction.</p>
+  
+
+<p align="center">CLICK ON<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The + Sign</p>
+</u>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="JUSTIFY">See, there’s the PRICE parameter. Your screen should
+    look like this:</p>
+  
+
+<p>&nbsp;</p>
+  
+
+<p align="center"><img border="0" src="../images/T1_10_1.gif" width="555" height="127"></p>
+  
+
+<p align="center"><i><font SIZE="2">Figure 10—1. Manual Simulation ASSIGN.</p>
+</font></i>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+
+  
+    <p ALIGN="left">Now, close the CEC Snapshot Window. Another way to view a
+    parameter value of the Active Transaction is to use the SHOW command.</p>
+  
+
+<p align="center">CHOOSE<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b>
+  <p ALIGN="left">and</p>
+
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>P$Price</p>
+</b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">That should confirm the value of 19.95. Now, let’s check
+  out some additional power that manual simulation gives you.</p>
+  
+
+<p align="center">CHOOSE<font FACE="Helvetica">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font><b>Command / Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+<p align="center">TYPE<font FACE="Helvetica">&nbsp;</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font FACE="Helvetica" SIZE="2"> </font><b>Trace</p>
+</b>
+<p align="center">SELECT<font FACE="Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b>
+  <p ALIGN="left">This has the same effect as if the Active Transaction had
+  passed through a TRACE Block. The Trace Indicator for the Active Transaction
+  is now on. Watch the Journal Window to see the trace.</p>
+
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[F2]</b></font><font FACE="Arial" SIZE="2"></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">to continue running the simulation.</p>
+<p ALIGN="left">Notice, that in the Journal Window, each Block entry results
+in a trace because the Trace Indicator of the Transaction is on. If the time
+changes, or a new Transaction is traced, a general message giving the time and
+Transaction number is written. In this case, we will only see a small number of
+trace messages since only one Transaction is being traced. This is how the
+Journal / Simulation Window will look.</p>
+</font><i><font SIZE="2">
+<p align="left">&nbsp;</p>
+<p align="center"><img border="0" src="../images/T1_10_2.gif" width="581" height="271"></p>
+<p align="center">Figure 10—2. Trace Messages in the Journal Window.</p>
+</font></i>
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">If you had wanted traces of all Transactions, you could
+    insert a TRACE Block in the model and retranslate it.</p>
+    <p ALIGN="left">As with any statement, a Manual Simulation statement can
+    be loaded into a function key, for later use. Function keys can be preset by
+    changing the Function Keys Page of the Model Settings Notebook as we did
+    earlier when we loaded AC1 into <b>[F8]</b>.</p>
+    <p ALIGN="left">Take a moment now to consider what you can do with Manual
+    Simulation. You can send any Block Statement, except GENERATE, to a running
+    simulation. You can create Transactions with a SPLIT Block, reroute
+    Transactions with a TRANSFER Block, or modify parameters with an ASSIGN
+    Block. You can test the membership of groups with EXAMINE and SCAN Blocks.
+    You can manually take resources out of action with FUNAVAIL and FAVAIL
+    Blocks. You can even activate any Block in the Model by entering an EXECUTE
+    Block in manual simulation mode. Remember though, it is always the Active
+    Transaction that attempts to enter the Block you describe in a manual
+    simulation statement.</p>
+    <p ALIGN="left">Manual simulation is an extremely powerful and flexible
+    feature. You will find that it is an excellent tool for correcting error
+    conditions and for experimentation. It is a simple matter to introduce a
+    sequence of Blocks to the Active Transaction by only a few keystrokes.</p>
+    <p ALIGN="left">Next, we start to explore the interactive graphical
+    windows of the GPSS World simulation environment. We will take a look at
+    each of the most important windows you can use to observe your simulations.
+    See you then.</p>
+  
+</font>
+ 
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="center"><a href="tutorial_manual.htm">[Table of Contents]</a></p>
+  
+
+</font>
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

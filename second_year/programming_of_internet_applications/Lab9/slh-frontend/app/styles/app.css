@@ -1,0 +1,193 @@
+div#area{
+  width:205px;
+  height:205px;
+  background-image:url("https://image.ibb.co/eQEbd5/area.png");
+  margin:20px;
+  cursor:pointer;
+  border: 3px solid #000;
+}
+
+div.dot{
+  width : 3px;
+  height: 3px;
+  background-color: red;
+  position: absolute;
+}
+
+div.inside{
+  background-color: green;
+}
+
+/*
+//
+// Mobile-specific styles
+//
+*/
+
+.eif885{
+  width : 500px;
+  margin : 0 auto;
+  font-size: 15pt;
+}
+
+.eif885 input{
+  font-size : 15pt;
+}
+
+.mh885, .bh885{
+  font-size : 15pt;
+  text-align:center;
+}
+
+.esb885{
+  display : block;
+  margin:20px auto;
+  font-size : 15pt;
+  clear: left;
+}
+
+.ee885{
+  text-align : center;
+  font-size : 15pt;
+  clear : left;
+}
+
+.area885{
+  margin:20px auto !important;
+}
+
+.ebg885{
+  margin : 10px auto;
+  display : block;
+  width : 450px;
+}
+
+.ebg885 button{
+  font-size : 15pt;
+  width : 50px;
+  height : 50px;
+}
+
+.ebg885 button{
+  font-size : 15pt;
+  width : 50px;
+  height : 50px;
+}
+
+.sch885{
+  text-align:center;
+  clear:left;
+}
+
+.etf885{
+  width : 500px;
+  margin : 10px auto;
+}
+
+.etf885 textarea{
+  font-size : 15pt;
+}
+
+.pontos885, .pontos885 td{
+  font-size: 15pt;
+  border: 2px black solid;
+  padding : 5px;
+  margin : 10px auto;
+}
+
+/*
+//
+// Tablet-specific styles
+//
+*/
+
+.eif1094{
+  width : 700px;
+  margin : 0 auto;
+  font-size: 13pt;
+}
+
+.eif1094 input{
+  font-size : 13pt;
+}
+
+.mh1094, .bh1094{
+  font-size : 20pt;
+  text-align:center;
+}
+
+.esb1094{
+  display : block;
+  margin:20px auto;
+  font-size : 13pt;
+  clear: left;
+}
+
+.ee1094{
+  text-align : center;
+  clear : left;
+}
+
+.area1094{
+  margin:10px auto !important;
+}
+
+.ebg1094{
+  margin : 10px auto;
+  display : block;
+  width : 360px;
+}
+
+.ebg1094 button{
+  font-size : 13pt;
+  width : 40px;
+  height : 40px;
+}
+
+.sch1094{
+  text-align:center;
+  clear:left;
+}
+
+.etf1094{
+  width : 700px;
+  margin : 10px auto;
+}
+
+.etf1094 textarea{
+  font-size : 13pt;
+}
+
+.pontos1094, .pontos1094 td{
+  font-size: 13pt;
+  border: 1px black solid;
+  padding : 3px;
+  margin : 10px auto;
+}
+
+/*
+//
+// Desktop-specific styles
+//
+*/
+
+.eiflarge{
+  width : 900px;
+  margin-left : 20px;
+}
+
+.esblarge{
+  clear:left;
+  display: block;
+}
+
+.etflarge{
+  width : 700px;
+  margin : 10px;
+}
+
+.pontoslarge, .pontoslarge td{
+  border: 1px black solid;
+  padding : 3px;
+  margin : 10px auto;
+}

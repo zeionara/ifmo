@@ -1,0 +1,1744 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Chapter 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica">
+
+<h1 ALIGN="left"><!--mstheme--><font color="#336666">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter <a name="1">1</a>.
+Introduction<!--mstheme--></font></h1>
+<blockquote>
+  <blockquote>
+    <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+        <p ALIGN="left">Predicting the behavior of complex real world systems
+        -- that's what GPSS World is all about.</p>
+        <p ALIGN="left">Many expensive projects in the past have failed
+        because the end result was not characterized accurately. From maximum
+        capacity to cost of operation, it is essential for detailed knowledge of
+        the behavior of the system under construction to be known as soon as
+        possible. Although purely mathematical models are extremely valuable,
+        and should be used where feasible, the complexity of most real world
+        systems requires the use of computer simulation to get the necessary
+        answers. That's where GPSS World comes in.</p>
+        <p ALIGN="left">GPSS World is based on the seminal language of
+        computer simulation, GPSS, which stands for General Purpose Simulation
+        System. This language was developed primarily by Geoffrey Gordon at IBM
+        around 1960, and has contributed important concepts to every commercial
+        discrete event Computer Simulation Language developed ever since. GPSS
+        World is a direct descendent of GPSS/PC, an early implementation of GPSS
+        for personal computers. Since it's introduction in 1984, GPSS/PC and its
+        successors have saved thousands of users millions of dollars. Now, the
+        Windows implementation of GPSS World extends these capabilities into an
+        Internet aware environment.</p>
+        <p ALIGN="left">GPSS World is designed to deliver answers quickly and
+        reliably, with the least effort, achieving the highest reliability of
+        results. Consistent with these objectives, visualization of running
+        simulations is highly stylized and a default statistical treatment is
+        built in. This approach means that animations are &quot;free&quot;
+        requiring no additional effort to produce, but are not photo-realistic.
+        GPSS World's forte is transparency, not photo-realism. Third party
+        animation systems are available which can provide pictorial animations
+        based on GPSS World simulations.</p>
+        <p ALIGN="left">Transparency is valuable for three reasons. First, it
+        is dangerous to rely on an opaque &quot;Black-Box&quot; simulation whose
+        internal mechanisms cannot be observed. Not only can you not be sure it
+        fits your situation, but it is difficult to be assured that it even
+        works as intended. Second, successful simulations are valuable and have
+        a surprisingly long lifetime. It is possible that new staff members will
+        be required to become familiar with the internal workings of the
+        simulation -- a near-impossible task unless provision has already been
+        made for a high level of transparency. Third, one of the most effective
+        but least mentioned benefits of computer simulation is the insight on
+        system behavior achieved when an experienced simulation professional can
+        see the internal dynamics at crucial times in the simulation.</p>
+        <p ALIGN="left">GPSS World was designed to address these issues. Its
+        visualizable nature allows the internal mechanisms of models to be
+        revealed and captured. Its interactivity allows one to explore and
+        manipulate simulations. Its built-in data analysis facility can
+        calculate confidence intervals and an Analysis of Variance easily. And
+        now, it can even create and run sophisticated screening and optimization
+        experiments automatically, with relatively little effort from you.</p>
+        <p ALIGN="left">Most systems can be modeled in any of several ways
+        using GPSS World. Usually only a small subset of the features available
+        need to be used. However, the greatest proficiency requires familiarity
+        with all that GPSS World has to offer. This manual is the primary source
+        of that information.</p>
+        <p ALIGN="left">This chapter consists of 5 sections. The first is a
+        brief overview of the most important aspects of GPSS World. The second
+        explores a few basic concepts that are necessary for moving on to later
+        chapters. The third section discusses the advanced architecture of GPSS
+        World and what you must know to take advantage of it. The fourth section
+        explores the modeling language of GPSS World, and the fifth section is
+        for GPSS/PC users who want to take advantage of the Compatibility Mode
+        of GPSS World. This last feature is available only in the Commercial
+        Version of GPSS World.</p>
+        <p ALIGN="left">Installation and operating procedures are discussed
+        in Chapter 2.</p>
+        <p ALIGN="left">&nbsp;</p>
+ </font>
+        <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="1.1"></a>1.1.
+        Highlights</font></h2>
+    <font FACE="Arial" SIZE="2">
+        <p ALIGN="left">GPSS World is object oriented. Its inhabitants
+        include Model Objects which are used to create Simulation Objects.
+        Simulation Objects, in turn, are used to play out simulations and create
+        Report Objects. Finally, Text Objects can be used as Include-files to
+        support code sharing and a user source code library and they are often
+        used as files which can be read from or written to by the simulation.</p>
+        <p ALIGN="left">Simulation projects require several steps. They
+        normally include model building and data collection, testing and
+        verification, simulation, experimentation, and the analysis of results.
+        GPSS World has a large number of capabilities addressing each of these
+        steps. In GPSS World, you will create and modify a model using the
+        full-screen text editor. If you prefer, you can insert GPSS Block
+        Statements using special Block Input Dialogs where you just fill in the
+        blanks. The resulting Block Statements are placed sequentially at the
+        insertion point in your Model Object. You then Create a Simulation
+        Object by selecting <b>Command / Create Simulation</b> in the Main
+        Window Menu. Thereafter, you have a powerful set of Commands at your
+        disposal to control the running of the simulation. You can enter
+        Commands interactively, or you can include them in the original model.
+        During the testing and verification phase, a large number of window
+        types are available for online viewing and to take snapshots of the
+        simulation. Hot Keys and Point and Shoot breakpoint control makes
+        verification and debugging easy. After the simulation is tested, you can
+        use the Automatic Experiment Generators or you can design your own
+        experiments. GPSS World will help you every step of the way.</p>
+        <p ALIGN="left">GPSS World was designed to exploit your computing
+        environment. The use of virtual memory allows your models to grow to a
+        billion bytes. Preemptive multitasking and multithreading mean higher
+        responsiveness and permit GPSS World to be doing many things at the same
+        time. It also means that the simulation environment can utilize the
+        computing capacity of <u>S</u>ymmetric <u>M</u>ulti-<u>P</u>rocessing
+        architectures.</p>
+        <p ALIGN="left">The structure of the modeling language has been
+        simplified in GPSS World. A Model is now defined as a sequence of Model
+        Statements. Each can be a GPSS Statement or a PLUS Procedure definition
+        (possibly a PLUS Experiment definition). A Model Object is used to
+        create the corresponding Simulation Object, which can then be activated.
+        Any Model Statement can be sent to an existing Simulation Object. Such
+        statements are called Interactive Statements. These concepts are
+        discussed in more detail in the next section.</p>
+        <p ALIGN="left">New in GPSS World are the GPSS Block creation
+        dialogs. These are great in a teaching environment. Using the <b>Edit /
+        Insert Block</b> menu command, you can open the Block Menu Window which
+        has a button for each GPSS Block. Passing your mouse over each button is
+        all you need to do to see a description of that Block. When you click on
+        a button, a Dialog opens with all the details you need to create a GPSS
+        Block. Just fill in the blanks. The Help button takes you to the
+        appropriate place in the Reference Manual describing the block. When you
+        click OK the resulting block is inserted in the Model Object. Don't
+        worry, any syntax errors are reported immediately so you can correct
+        them on the spot. For formatting purposes, the inserted GPSS Block
+        Statements contain tabs. You can alter the tabstops to your liking in
+        the Settings of the Model Object. In any event, since inserted Block
+        Statements and PLUS Experiments are in the form of source code, you can
+        always edit them before Creating the Simulation Object.</p>
+        <p ALIGN="left">The simulation language within GPSS World has been
+        extended by PLUS, the <u>P</u>rogramming <u>L</u>anguage <u>U</u>nder <u>S</u>imulation.
+        This simple but powerful programming language removes the restrictions
+        that existed in the older GPSS implementations. Data within this
+        environment are untyped, with conversions occurring automatically as
+        needed. In addition, powerful function and probability distribution
+        libraries are directly available to be used in PLUS Expressions. The
+        Procedure Library supports string manipulations, numeric calculations
+        and probability distributions. User written PLUS Procedures can be used
+        in the same way. An INCLUDE Command can bring in existing User Procedure
+        Libraries containing tested PLUS Procedures for use throughout the
+        simulation.</p>
+        <p ALIGN="left">User-defined PLUS Procedures and can be accessed
+        anywhere in the Model. Expressions, defined in PLUS, can incorporate
+        data elements and System Numeric Attributes. When parenthesized, PLUS
+        Expressions can appear outside PLUS Procedures, in GPSS Statements. In
+        fact, most arguments in the GPSS Statements can now be in the form of a
+        parenthesized expression.</p>
+        <p ALIGN="left">In Version 4 of GPSS World, the PLUS Language has
+        been extended for definition of Experiments. This powerful feature
+        permits programmable control and can even be based on simulation
+        results. Thus, completely automatic operation is possible including the
+        exploration of response surfaces. PLUS Experiments, which are invoked by
+        the CONDUCT Command, can be used to control the running of simulations
+        over a parameter space. Experiments can be created with minimal
+        involvement on your part. GPSS World now includes two new powerful
+        experiment generators that can be accessed through the Edit Menu of the
+        Main Window. The Screening Experiment Generator will create a fractional
+        factorial experiment under your direction, and insert its PLUS source
+        code into your model. Similarly, the Optimizing experiment generator
+        will insert a sophisticated response surface exploration experiment that
+        searches for minimum or maximum yields. The CONDUCT Command necessary to
+        initiate the experiments is by default loaded into a Function Key. To
+        execute a Screening or Optimizing Experiment and analyze the results,
+        all you have to do is press a button.</p>
+        <p ALIGN="left">GPSS World has comprehensive discrete and continuous
+        modeling capabilities. The tightly knit continuous modeling feature
+        allows for easy transition between the continuous and the discrete
+        phases. From the continuous phase thresholds can be established that
+        trigger the creation of Transactions for the discrete phase. Conversely,
+        the INTEGRATION Block and INTEGRATE Command, control the processing in
+        the continuous phase.</p>
+        <p ALIGN="left">Several new GPSS Blocks have been added to cover the
+        control of integrations, Transaction rescheduling, changes to Assembly
+        Sets, user-defined PLUS Blocks, and Data Streams. Data types now include
+        integer and real numeric values, as well as strings. Each type is
+        automatically coerced to the required form, as needed. The new data type
+        &quot;UNSPECIFIED&quot; now is available to indicate the absence of
+        valid data, such as that from a missing run of an experiment.</p>
+        <p ALIGN="left">Even matrix structures have been improved. They can
+        now incorporate up to 6 dimensions. The new multiway ANOVA Library
+        Procedure analyzes data from a &quot;Result Matrix&quot;, which is
+        nothing more than a GPSS Matrix Entity where the yields of an experiment
+        have been stored in a conventional way.</p>
+        <p ALIGN="left">GPSS World is easy to operate. A full screen text
+        editor can be used in any of the Text Windows. Even the Journal Window
+        and Reports can be customized and annotated. You can use bookmarks as
+        placeholders in any text window. Then since a single keystroke takes you
+        to successive bookmarks, jumping from place to place in a large Model is
+        a trivial matter. When you Create a Simulation, if any errors are
+        detected, they are remembered so that you can correct them one at a
+        time. When you go to each successive error, the cursor moves
+        automatically to the location in the Model where the error was detected
+        to help you locate each problem. After the Simulation is Created,
+        several Hot Keys can be used in place of Interactive Commands. Not only
+        that, using Model and Simulation Settings, you can load your own
+        Commands into one or more function keys in order to get single keystroke
+        response. Windows are easy to open. Generally, only a menu selection is
+        needed. During debugging, the Debug Toolbar allows even breakpoint
+        control to be accomplished in a Point and Shoot fashion.</p>
+        <p ALIGN="left">It’s easy to visualize running simulations. GPSS
+        World can create stylized animations of any GPSS entity type with no
+        more than a mouse click or two, from you. These windows are dynamic --
+        showing the changing state of running simulations. In several different
+        ways, you can view the changing condition of any GPSS entity. In
+        addition to the entity specific views, one or more Expression Windows
+        can be opened to display the changing values of any number of your own
+        Expressions. For visualization of any of the variables in your
+        simulation, any number of scrollable PLOT Windows can be opened to show
+        dynamics graphically. And finally, the Table Window opens a changing
+        view of any frequency distribution you care to see.</p>
+        <p ALIGN="left">GPSS World provides for a set of snapshots, as well.
+        These are advanced features intended for professionals who need detailed
+        knowledge of microstates of the simulation. Static snapshots can be
+        taken of any Transaction, the Future Events Chain, the Current Events
+        Chain, or the membership of the Numeric and Transaction Groups.</p>
+        <p ALIGN="left">GPSS World is highly interactive. All Model
+        Statements can be used interactively. When you send a Command, Block
+        Statement, Procedure Definition, or Experiment Definition to an existing
+        Simulation Object, the interaction is used to redefine or manipulate the
+        state of the simulation. This level of control is useful while the
+        behavior of the simulation is being verified. In essence, you can do
+        almost anything, except Block insertion, to the simulation after it is
+        created.</p>
+        <p ALIGN="left">Simulations can communicate with the outside world.
+        You can now use five new GPSS Blocks and/or PLUS Procedures to
+        manipulate Data Streams. They are OPEN, CLOSE, READ, WRITE, and SEEK.
+        The last of these, SEEK, provides for direct access into a database.
+        Data Streams have many purposes. You can use them to access data files,
+        to create Result Files and custom reports, to access internal data
+        directly. There are now PLUS Library Routines with the same names that
+        perform nearly the same functions. That means that complex I/O
+        operations can now be handled inside User-created PLUS Procedures. GPSS
+        World simulations can even communicate with other products by direct
+        invocation. The PLUS Procedure Library now contains the <b>Call()</b>, <b>Call_Integer()</b>,
+        <b>Call_String(), </b>and the <b>Call_Real()</b> procedures which can
+        invoke external functions existing on your system in executable files
+        (i.e. EXE and DLL files). These features are described in Chapter 8.</p>
+        <p ALIGN="left">The analysis of results is easy in GPSS World. It has
+        facilities that support the capture and printing of graphical windows.
+        The Journal Window records the activities associated with the Simulation
+        Object. An automatic Report numbering system ensures the safe keeping of
+        each Standard Report. The new ANOVA Library Procedure can perform a
+        complete multiway Analysis of Variance when passed a Result Matrix.
+        That's all there is to the generation of an ANOVA table and a set of
+        Confidence Intervals. And now, the Automatic Experiment Generators can
+        create sophisticated screening and optimizing experiments based on
+        dialog-window input from you. The basic analyses of these experiments
+        are done automatically and reported in the Journal Window.</p>
+        <p ALIGN="left">A new Batch Mode of operation can be used to run
+        simulations in the background. If you specify a Model File or a
+        Simulation File on the DOS command line followed by the word
+        &quot;BATCH&quot;, GPSS World will run in a minimized window. It first
+        opens the file and then passes it a Create Command (if a Model Object)
+        or a CONTINUE Command (if a Simulation Object). In the former case, you
+        would normally append the desired run control Commands in the Model
+        itself. You can use the new EXIT 1 Command (or Exit(1) Library
+        Procedure) to shut down the resulting Session by itself, automatically
+        saving all the newly created or modified Objects. EXIT is discussed in
+        Chapter 6.</p>
+        <p ALIGN="left">GPSS World does inherit some characteristics from
+        GPSS/PC. For example, normally it retains the use of the </font><font FACE="Keycaps" SIZE="4">#
+        </font><font FACE="Arial" SIZE="2">character as the multiplication
+        operator, reserving the </font><font FACE="Keycaps" SIZE="4">*</font><font FACE="Arial" SIZE="2">
+        character for GPSS Indirect Addressing. You can switch the function of
+        these characters so that </font><font FACE="Keycaps" SIZE="4">*</font><font FACE="Arial" SIZE="2">
+        denotes multiplication, if you like, by changing a Model Setting.
+        Although GPSS Statements, except Function Followers, must still fit on a
+        single line of text, the maximum line length has been increased to 250
+        characters. PLUS Statements are not so restricted. They can span any
+        number of lines.
+      </font></p>
+        <p ALIGN="left">&nbsp;</p>
+        <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="1.2"></a>1.2.
+        GPSS World Concepts</font></h2>
+    <b><font FACE="Arial" SIZE="5">
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World is populated by 4 kinds of objects. Model,
+      Simulation, and Report Objects form the 3 basic types that are used in all
+      GPSS World simulations. Typically, a Model is developed by editing the
+      statements in a Model Object. Then, a Create Simulation Command is issued,
+      thereby creating a Simulation Object structured according to the
+      statements in the Model. Simulations are run by sending them GPSS
+      Commands, or by including commands in the Model Object, itself. Normally,
+      when a simulation completes, a Report Object is created automatically.</p>
+      <p ALIGN="left">Overall control of multiple simulation runs can be
+      handled within this framework by including a PLUS Experiment in the Model
+      Object. (PLUS is the &quot;<u>P</u>rogramming <u>L</u>anguage <u>U</u>nder
+      <u>S</u>imulation&quot; that can be used to define procedures and
+      experiments.) Then, a CONDUCT Command can be sent to the Simulation Object
+      to control a series of simulation runs, and deal with the results.</p>
+      <p ALIGN="left">The Text Object completes the 4 types of GPSS World
+      Objects. These are named in INCLUDE Statements to aid the development of
+      large simulations, and for a few other handy uses such as the creation of
+      a source code library. In addition, Text Objects are often used by
+      Simulation Objects, when OPEN, CLOSE, READ, WRITE, and SEEK operations are
+      performed.</p>
+      <p ALIGN="left">All GPSS World Objects can be saved at any time, in any
+      state, and reopened in a later session. This includes Simulation Objects,
+      which can be run any number of times from a saved state, thereby
+      facilitating debugging and demonstrations. With some careful planning,
+      Simulation Objects can be saved in the middle of complex Experiments,
+      allowing you to complete the simulation runs at a later time.</p>
+      <p ALIGN="left">All GPSS World Objects except Text Objects contain data
+      in addition to the basic ASCII text. This is why you can use an external
+      text editor to edit a Text Object, but not any of the others. Model,
+      Simulation, and Report Objects contain Bookmarks for easy navigation, and
+      a list of attribute values called Settings, which can be modified and are
+      inherited by child objects. When a Simulation Object is Created it begins
+      with a copy of the Settings of the Model that created it. The same goes
+      for Report Objects which inherit their settings from the parent Simulation
+      Object. In addition, Model Objects remember all the Translation errors
+      encountered the last time you tried to Create a Simulation Object from it.
+      That way you can make some corrections and save the rest for later.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Model Objects</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Model Object contains primarily a sequence of Model
+      Statements and a set of built-in values called Settings. In addition, a
+      set of Bookmarks and a circular Result List of syntax errors are part of
+      the Model Object. When a Simulation Object is Created by Translating the
+      Statements in a Model, it inherits all the Settings from the parent Model
+      Object. The <b>Command / Create Simulation</b> menu command in the Main
+      Window is used to create a new Simulation Object.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Model Statements</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Model is the set of all statements contained in a
+      Model Object and all its Include-files. A Model Statement can be either a
+      GPSS Statement, or a PLUS Procedure definition. GPSS Statements, in turn,
+      can be either Block Statements or Commands. Model Statements define a
+      Simulation Object when it is first Translated, and they can be sent as
+      interactions to an existing simulation.</p>
+      <p ALIGN="left">Commands are either <i>Queued</i> or <i>Immediate</i>.
+      Actually, all Commands except HALT and SHOW are Queued. Each Simulation
+      Object has a special chain called a Command Queue that holds all Queued
+      Commands received by the Simulation Object. Commands are taken off the
+      Command Queue, one after the other, for execution.</p>
+      <p ALIGN="left">The HALT Command is a special case. It is an Immediate
+      Command, and therefore is not placed on the simulation’s Command Queue.
+      However, when a HALT is executed, all remaining Commands are removed from
+      the Command Queue and discarded. This ensures that all action on behalf of
+      the simulation ceases when a HALT is received. Normally, a HALTed
+      simulation is resumed by sending it a CONTINUE Command.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Multiple Model Files</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Usually, a Model is the set of Statements in a single
+      Model Object, and optionally, any number of plain text files, called Text
+      Objects. It is sometimes useful to place a sequence of one or more
+      Statements, PLUS Procedures, and/or PLUS Experiments into one or more
+      separate Text Objects in order to modularize the model.</p>
+      <p ALIGN="left">Text Objects, which are plain text files, can be named
+      in INCLUDE Statements in the Model Object. Doing so causes all Statements
+      in the Text Object to be inserted in place of the INCLUDE Command when the
+      Simulation Object is created. Text Objects may themselves may contain
+      INCLUDE Statements, to a maximum nesting level of 5. INCLUDE Commands can
+      be used interactively, as well as within Models. They can even be loaded
+      into Function Keys, thereby invoking a complex sequence with a single
+      keystroke. This is discussed in detail in Chapter 2.</p>
+      <p ALIGN="left">A Model is built from the Statements in exactly one
+      Model Object and optionally any (nonnegative) number of Text Objects,
+      which are mentioned in INCLUDE Statements encountered during the
+      Translation of the Model. Only the Model Object can have Settings
+      associated with it, which can be accessed through the Main Window's <b>Edit
+      / Settings</b> menu command. These Settings are inherited by all
+      Simulation Objects Created from that Model Object. To prevent the
+      occurrence of multiple Settings, Model Objects may not be used in INCLUDE
+      Statements, only Text Objects.</p>
+      <p ALIGN="left">There are two kinds of numbering associated with files.
+      Model and Include-files are numbered internally so they can be referenced
+      by Status Messages coming from the simulation. The number is the
+      0-relative ordinal of the file in the order encountered by the Translator
+      when the Simulation Object was created. For example, the primary Model
+      Object is assigned Model File Number 0 and the Include-files are numbered
+      as they are encountered starting with 1. This numbering is for
+      identification in error messages only. A different numbering system is
+      applied to newly created simulation and report files in order to keep the
+      file names distinct. You can set the numbering of the filenames of child
+      objects within the Settings of the parent object. For example, to change
+      the numbering of simulation filenames, you should edit the Settings of the
+      parent Model Object. Similarly, edit the Settings of the Simulation Object
+      to set the numbering of its child Report Objects.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Model Settings</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Each Model Object carries with it a set of choices
+      called Model Settings, or simply &quot;Settings&quot;. These are
+      accessible using the <b>Edit / Settings</b> menu command in the Main
+      Window's menu. Settings are inherited by the Simulation Object, and also
+      by the resulting Report Objects. Some settings can be changed even after
+      the Simulation Object is created. The details are in Chapter 2.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Simulation Objects</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Simulation Object is created by translating the
+      statements in a Model Object. The <b>Command / Create Simulation</b> menu
+      item is used for this purpose. After a Simulation Object is created
+      successfully, commands are then used to advance the state of the
+      simulation. These Commands can be part of the Model Object, or they can be
+      sent to the existing Simulation Object as interactions.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">The Translator</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The high performance Translator is that part of the
+      GPSS World program which Creates the Simulation Objects. All Model
+      Statements are Translated before they are incorporated into the
+      simulation. Similarly, interactions are Translated in global scope before
+      they are sent to an existing Simulation Object.</p>
+      <p ALIGN="left">When errors occur which prevent a Simulation Object
+      from being Created, a list of messages is placed in the Model Object.
+      Then, you can move to the next error message by a mouse click in the <b>Search
+      / Next Error</b> menu item or using accelerator keys. Each error is
+      described in the Status Line at the bottom of the Main Window and the
+      mouse cursor jumps to the location in the Model text where you can correct
+      the error. Correcting and retranslating is quick and easy. There is a
+      special command, <b>Command / Retranslate</b>, for retranslating the Model
+      into an existing Simulation Object.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Report Objects</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">One of the strongest features of GPSS has always been
+      its Standard Reports. With essentially no effort from the model developer,
+      a simulation run automatically reports on all the GPSS Entities defined in
+      the model when the simulation's Termination Count reaches zero. There are
+      a variety of ways of customizing these reports by Editing the Settings in
+      the Simulation Object.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Text Objects</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Text Object is simply a way to represent a plain text
+      file in GPSS World. Their primary use is as the target of INCLUDE
+      Commands. This allows a shared set of Model Statements to be accessed
+      easily from a Model Object. You can even load an INCLUDE Statement into a
+      function key. In that way, a complex Command list and/or PLUS Procedure in
+      a text file can be sent to a Simulation with a single keystroke.</p>
+      <p ALIGN="left">Text Objects turn up in other places, as well. Data
+      Streams allow a Simulation to read and write data from text files, and to
+      create Result Files for later analysis. As you might expect, these files
+      are all represented as Text Objects.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="1.3"></a>1.3.
+      Architecture</font></h2>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      At the interface level, GPSS World is an implementation
+      of the Document/View architecture common to Windows</font><font SIZE="1">tm</font><font SIZE="2">
+      applications. Objects can be opened with multiple views, modified, and
+      saved to persistent memory according to highly intuitive action sequences
+      on the part of the user. The familiar main window menu and the disabling
+      of inappropriate menu commands guides the user to his/her objective with
+      minimal distractions. Internally, GPSS World has been designed to take
+      advantage of close interactivity even in a multitasking virtual memory
+      environment. This is discussed next.</font></font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.3.1. Multitasking</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The Multithreaded-design of GPSS World allows it to run
+      multiple simulations and experiments simultaneously. Not only is screen
+      update, user input, disk Input/Output, printing, and simulation done
+      concurrently, but any number of simulations can be run at the same time,
+      as well.</font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.3.2. Virtual Memory</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      Simulations are not directly limited to the size of the
+      physical random access memory (RAM) where the Simulation Object is run.
+      Using virtual memory, simulations can be up a gigabyte in size. No other
+      direct entity limits are imposed, assuming adequate swap space is
+      provided. For optimum performance, however, sufficient real memory must be
+      available. All
+      entity allocation and management is invisible to the user. Entities are
+      created automatically, unless additional information is required.
+      REALLOCATE statements are not used.</font></font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.3.3. Interactivity</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World maintains a high level of interactivity with
+      your simulations. You can send any Model Statement to an existing
+      Simulation Object, using the Command item on the main menu of the Model
+      Window, Accelerator Keys, or by using Model Settings to load function keys
+      with your own customized Commands. You can use the Custom Command Dialog
+      for statements not on the drop down menu, and using an INCLUDE command,
+      you can send an interaction of any complexity to a simulation. Even
+      INCLUDE Commands can be loaded into Function Keys, thereby supporting
+      iterations of any complexity invoked by a single keystroke.</p>
+      <p ALIGN="left">Block Statements, when used interactively, cause the
+      Active Transaction to attempt to enter a temporary block, which is then
+      discarded. This mode is called Manual Simulation Mode and it is useful
+      during Experiments, providing all the functions available inside the
+      simulation.</p>
+      <p ALIGN="left">PLUS Procedure and Experiment Statements case a
+      user-defined procedure or experiment to be registered in the simulation’s
+      Procedure Library. Any existing Procedure item of the same name and type
+      is replaced.</p>
+      <p ALIGN="left">Commands, except for HALT and SHOW, when received by an
+      existing Simulation Object, are placed on the simulation’s Command Queue
+      to be executed in turn. HALT and SHOW are Immediate Commands, and are
+      executed immediately when first received by the simulation. In addition,
+      HALT removes all waiting Commands from the Command Queue. CONDUCT Commands
+      initiate a PLUS Experiment that takes over control of the Simulation
+      Object. Experiments can base decisions on results and invoke a statistical
+      analysis, however interactivity is reduced during an Experiment.</p>
+      <p ALIGN="left">&nbsp;</p>
+    </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.3.4. Visualization</font><!--mstheme--></font></h3>
+    <font face="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World excels in the visualization of running
+      simulations. Consistent with the generality of the GPSS language, twenty
+      different windows are available for observation of and interaction with
+      your simulations. No additional effort beyond operating the windows is
+      necessary to obtain, save, and print a visual representation of the state
+      of the simulation. Whereas, Simulation Snapshots a one-time static picture
+      of a quickly changing entity, Simulation Windows are updated online,
+      dynamically changing to keep current with the changing state of the
+      running simulation. Although the dynamic windows show the changing state
+      of entities, they also cause simulations to run more slowly.</p>
+      <p ALIGN="left">Many windows have a non-detailed view and a detailed
+      view which show alternate sets of information. Others allow you to display
+      a running numerical simulation clock at the bottom of the Main Window. You
+      make the choices using the View item on the Main Window's menu bar.</p>
+      <p ALIGN="left">The details on the appearance and operation of each of
+      the windows is in Chapter 5.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Snapshots</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Snapshots are available for:</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Current Events Chain</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Future Events Chain</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Individual
+            Transactions</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Numeric Groups</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Transaction Groups</p>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Dynamic Windows</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Any number of online simulation windows can be opened
+      on the following entity types:</p>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Blocks</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Facilities</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Logicswitches</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Matrix</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Queues</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Savevalues</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Storages</p>
+            </font><font FACE="Symbol" SIZE="2">
+            <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Table</p>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <p ALIGN="left">The Table Window presents a dynamic histogram that is
+      extremely useful for viewing the accumulation of values, looking for
+      outliers, and observing the convergence to a parent probability
+      distribution.</p>
+      <p ALIGN="left">In addition, the Plot Window and the Expression Window
+      can be used to follow values with meaning to your simulation. Any number
+      of multicolored on-line plots can be viewed, saved, or printed by opening
+      one or more Plot Windows. Each window can track the value of up to 8
+      general Expressions, including integration variables. Plots can be
+      scrolled vertically and horizontally, and can be scaled in either
+      direction, as well.</p>
+      <p ALIGN="left">The Expression Window can be an extremely powerful
+      microscope on your simulation. Using it, you can view the changing values
+      of any number of PLUS Expressions, of your own creation. As with all
+      Simulation Windows, you can open Expression Windows at any point in the
+      simulation.</p>
+      <p ALIGN="left">The Blocks Window shows the entry of Transactions into
+      blocks. It allows you to set and remove breakpoints using the mouse or the
+      keyboard and to visually step through the simulation.</p>
+      <p ALIGN="left">Most Interactive Windows have a Debug Toolbar which
+      allows a &quot;Point and Shoot&quot; debugging session using only the
+      mouse. The Debug Toolbar is discussed more thoroughly in Chapter 5.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Simulation Clocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Each Simulation Object has an internal toggle switch
+      that causes it to print the changing value of its System Clock in the
+      rightmost pane of the Status Line at the bottom of the Main Window. This
+      provides an easy verification that the Simulation is progressing normally.
+      When you click on any View of a Simulation Object, it will display its
+      clock if you have set its &quot;Show Clock&quot; toggle switch. This is
+      very useful for monitoring the status of Experiments.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Animation</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A variety of animation possibilities exist in GPSS
+      World. The level of realism varies from abstract visualization requiring
+      no effort, to highly realistic dynamic representations involving complex
+      user-drawn elements.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Abstract Animation</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A comprehensive stylized animation capability is built
+      into GPSS World. This facility is provided by a large set of Simulation
+      Windows which show the GPSS Entities of the simulation dynamically, as
+      they change state during the simulation. No additional effort is required
+      to view such animations, other than merely opening the window. The
+      graphical images may be saved for inclusion into reports, and/or printed,
+      as well.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Post-processing Animation</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World includes an external interface that can
+      support simulation animation packages that are driven by trace data.
+      Photorealistic animations can be developed in this manner. To use this
+      interface, you construct an output Data Stream obeying the formatting and
+      content rules of the third party animation package. Data Streams are
+      discussed in the next section..</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Online Animation</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World includes set of dynamic call PLUS Procedures
+      that allow you to invoke the functions in third party executable files.
+      This can provide an online link to a third party animation package. The
+      details are in Chapter 8.</p>
+      <p ALIGN="left">&nbsp;</p>
+ </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="1.4"></a>1.4.
+      The Modeling Language</font></h2>
+    <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World contains an implementation of GPSS, the <u>G</u>eneral
+      <u>P</u>urpose <u>S</u>imulation <u>S</u>ystem, enhanced by an embedded
+      programming language PLUS, <u>P</u>rogramming <u>L</u>anguage <u>U</u>nder
+      <u>S</u>imulation.</p>
+      <p ALIGN="left">The GPSS variant includes over 50 Block Statements and
+      25 Commands. It includes over 35 System Numeric Attributes, which provide
+      instant state variables, accessible anywhere in the model.</p>
+      <p ALIGN="left">PLUS is a small but powerful procedural programming
+      language created out of only 12 statement types. Much of its power comes
+      from a large procedure library containing mathematical and string
+      manipulation functions, and a strong set of probability distributions.</p>
+      <p ALIGN="left">In GPSS World, a Model is defined to be a sequence of
+      Model Statements. These are either GPSS Statements, PLUS Procedure
+      Statements, or PLUS Experiment Statements. GPSS Statements, in turn, are
+      either Block Statements or Commands. Except for Function Follower
+      Statements, all GPSS Statements must reside on a single text line of up to
+      250 characters. Any Model Statement can be part of the model in a Model
+      File, or can be sent interactively to modify an existing simulation.</p>
+      <p ALIGN="left">The inclusion of Expressions in PLUS Statements and
+      Parenthesized Expressions in GPSS Statements is a strong enhancement to
+      the modeling power and ease of use of the language. The use of the [*]
+      character to denote multiplication has been retained as the default. This
+      clearly distinguishes that arithmetic operation from the GPSS indirect
+      addressing operation which is denoted by the [*]
+      character. However, you can now switch the role of these operators if you
+      prefer. This is done on Page 1 of the Settings Notebook of the Model
+      Object.</p>
+      <p ALIGN="left">Commands are discussed in Chapter 6, Block Statements
+      in Chapter 7, and the PLUS Language, including the Procedure Library, in
+      Chapter 8.</p>
+      <p ALIGN="left">&nbsp;</p>
+    </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.1. What’s New</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Many changes have been made to the modeling language.
+      The distinction of Control Statements has been removed. All GPSS
+      Statements that are not Block Statements are now simply called Commands.
+      Line numbers are ignored in GPSS World. If used, they must begin in the
+      first column of the text line.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Automatic truncations have been removed from GPSS
+      World. You must now explicitly use the INT( ) procedure, or some other
+      method, if you wish intermediate numeric results to be truncated. This is
+      true in all Expressions, even in VARIABLE and BVARIABLE Statements.
+      Similarly, the data type returned by a System Numeric Attribute can now be
+      integer, real, or string, depending on the SNA. Even those SNAs returning
+      parts per thousand do so as a real number of double precision between 0
+      and 1000, inclusively. The old truncations and integer SNAs can be
+      enforced by running a Commercial Version of GPSS World in GPSS/PC
+      Compatibility Mode, which is discussed below.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      PLUS Statements can span any number of text lines.
+      Although GPSS Statements, except for Function Followers, must reside on a
+      single text line, the maximum length is now 250 characters.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Parenthesized mathematical expressions can now be used
+      nearly anywhere you can use an SNA. Expressions are an integral part of
+      the PLUS Language, but they are also used to expand the power of operands
+      in GPSS Statements. The permissible forms of each operand are given in the
+      statement descriptions in Chapters 6 and 7. Many new statement types have
+      been added, as well. These are discussed next.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Several new features are available in both Student and
+      Commercial Version. Here's a quick overview:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Automatic Optimizing
+        Experiment Generator</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Automatic Screening
+        Experiment Generator</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Snapshots available in
+        Student Version</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Multiway 'ANOVA' Library
+        Procedure</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Variable Argument count
+        for 'PolyCatenate' Library Procedure</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;'Call' Library Procedures
+        to invoke external functions</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PLUS Trace Setting</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;BATCH Mode Sessions</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;EXIT Command with File
+        Save Modes</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Block Creation Dialogs</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Adjustable Model Tabstops</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PLUS Data Stream
+        Procedures</p>
+        </blockquote>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">New GPSS Statements</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Several new Blocks have been added.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">New GPSS Blocks</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>ADOPT</b> - Change
+      Assembly Set.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>DISPLACE</b> - Change the
+      Next Sequential Block of a given Transaction. Save FEC residual time. Can
+      be used to reschedule events.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>PLUS</b> - Evaluate PLUS
+      Expression and save result in Parameter.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>INTEGRATION</b> - Turn
+      the integration of a User Variable ON or OFF.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>OPEN</b> - Initialize a
+      Data Stream for operation.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CLOSE</b> - End the Data
+      Stream operation.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>READ</b> - Bring the next
+      line of data from a Data Stream into a parameter of the Current
+      Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>WRITE</b> - Send a line
+      representing the value of a Transaction Parameter to the next slot in a
+      Data Stream.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SEEK</b> - Change the
+      Current Line Position in a Data Stream.</p>
+      </blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">New Commands</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Statements have been added to control the integration
+      of continuous state variables, to provide for multiple Model Files and
+      Procedure Libraries, and to invoke PLUS Experiments..</p>
+      <blockquote>
+        <blockquote>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CONDUCT</b> -Begin a
+        previously registered PLUS Experiment.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>EXIT</b> - Terminate
+        Session, optionally saving objects.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>INTEGRATE</b> -
+        Automatically integrate an Ordinary Differential Equation, with optional
+        Transaction generation trigger values.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>INCLUDE</b> - Insert a
+        Text Object for Translation.</p>
+        </font><b><font FACE="Arial" SIZE="4">
+        </blockquote>
+        </blockquote>
+        <p align="left">New SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The new System Numeric Attribute <b>A1</b> returns the
+      Assembly Set of the Active Transaction. This is useful in conjunction with
+      the new ADOPT Block which lets the Active Transaction change its Assembly
+      Set.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.2. Language Elements</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World provides for a range of language elements
+      for convenience in the development of complex simulations.
+      </font></p>
+    <b><font FACE="Arial" SIZE="4">
+      <p align="left">Polymorphic Data Types</p>
+      </font></b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Variables can now take on values with one of four
+      types. User controlled variables, such as Savevalues, Matrix Elements,
+      Transaction Parameters, and User Variables can take on integer, real,
+      string, or UNSPECIFIED values. Clock values are integer or real, in double
+      precision.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Conversion between types is automatic. Procedures that
+      require a specific data type as an argument will coerce the argument to
+      the appropriate type. If you pass a string to a Procedure that requires a
+      numeric argument, the numeric equivalent of the string is used. Similarly,
+      if you attempt to WRITE a numeric value, it is converted to a line of text
+      automatically.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      String values have many uses. They can be used in Data
+      Streams, to format reports and Result Files, and internally for direct
+      access of data. String constants are denoted by enclosure of the string in
+      a pair of double quotes. You can use two double quotes together to
+      represent a single double quote internal to the string. For example, you
+      would use a total of 6 double quote characters to represent a string
+      within a string. The inner string would be &quot;sandwiched&quot; by two
+      pairs of double quotes, and the overall string would be
+      &quot;sandwiched&quot; by a double quote character on each end. Procedure
+      Library contains many string procedures that can be used to create and
+      manipulate strings.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      You can now give the Data Type 'UNSPECIFIED' to
+      Savevalue Entities, and Matrix Entities. The INITIAL Command allows you to
+      assign this type to Savevalues, Matrix elements, and even whole Matrices
+      at once. If an UNSPECIFIED datum is used in an operation that requires a
+      value, an Error Stop will occur. The ANOVA Library Procedure has been
+      upgraded to recognize UNSPECIFIED elements in a Result Matrix as
+      unavailable experimental run results.
+      </font></p>
+    <b><font FACE="Arial" SIZE="4">
+      <p align="left">Initializing Data Structures</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Variables and Matrix elements may be given initial
+      values in several ways.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The INITIAL
+      Command can be used to give values to Logicswitch, Savevalue, and Matrix
+      entities. PLUS Assignment Statements are used to assign values to higher
+      dimension matrices.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SAVEVALUE
+      Block Statements assign values to Savevalue Entities.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MSAVEVALUE
+      Block Statements assign values to Matrix Entities.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LOGIC Block
+      Statements assign values to Logicswitch Entities.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;READ and
+      ASSIGN Block Statements assign values to Transaction Parameters.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PLUS
+      Assignment Statements can be used to assign values to User Variables and
+      Matrices.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;The CLEAR
+      Command normally resets the values of Savevalues, Logicswitches, and
+      Matrices to integer zero, This action can be suppressed by specifying OFF
+      in the B Operand of CLEAR. Normally, you would use the OFF option in CLEAR
+      Statements to be used in Experiments. Otherwise, the Result Matrix would
+      not be preserved.</p>
+      <p ALIGN="left">It is often useful to isolate initialization statements
+      in a Text Object. Then, only an INCLUDE Command need be asserted to
+      perform the complete initialization. This can be done interactively, as
+      well.</p>
+      <p ALIGN="left">PLUS Experiments can control initializations to any
+      level of detail. Any initialization command can be invoked within an
+      Experiment by use of the DoCommand Library Procedure.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Multidimensional Matrices</p>
+      </font></b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Matrices can be defined with up to 6 dimensions.
+      Dynamic Matrix Windows view any cross-section of a Matrix, and there may
+      be any number of Matrix Windows. Temporary matrices can be created for use
+      during procedure invocation. PLUS assignment statements are used to
+      initialize matrices of dimension 3, or more.
+      </font></p>
+    <b>
+      <p align="left"><font face="Arial" SIZE="4">
+      Expressions
+      </font></p>
+    </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World supports the widespread use of expressions.
+      They can appear in PLUS Procedures or, when parenthesized, in GPSS
+      Statements. This means that a powerful level of computation can be
+      achieved just in the Operands of Blocks and Commands. Expressions can do
+      simple computations, invoke procedures that perform math or string
+      operations, sample probability distributions, or execute user-defined
+      algorithms, including file I/O.</font></p>
+    <font FACE="Helv" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+    </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font size="4" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.3. Embedded Programming Language</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      The Programming Language Under Simulation, PLUS</font><font SIZE="1">tm</font><font SIZE="2">,
+      is a simple, but powerful, embedded programming language that fills the
+      detailed computational needs of users who require a fine level of control
+      of data structures, computational algorithms, and ad hoc Block processing.
+      </font></font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">PLUS Procedure Statements can be used to define
+      Procedures as part of the original model, or they can be sent to an
+      existing simulation. This applies to PLUS Experiment Statements, as well.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">A new GPSS Block, PLUS, allows users to invoke a PLUS
+      Procedure as a Block routine. In effect, Users can create their own
+      blocks, in as complex a manner as desired.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      PLUS Procedures are easily created, can reside anywhere
+      in the model, and can be INCLUDEd in a Procedure Library. They can also be
+      redefined at any time, even interactively.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      PLUS Statement types are discussed in Chapter 8. They
+      include:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Assignment</b>· </font></font><font SIZE="2">
+ <b><font face="Arial">BEGIN</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">DO...WHILE</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">END</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">EXPERIMENT</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">GOTO</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>IF ...THEN...ELSE</b>· </font></font><font SIZE="2">
+        <b><font face="Arial">PROCEDURE</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Procedure Call</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">RETURN</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">TEMPORARY</font>
+        </b></font></p>
+        <b><font FACE="Helv" SIZE="5">
+        <h3 align="left"><!--mstheme--><font color="#336666">&nbsp;<!--mstheme--></font></h3>
+        </blockquote>
+        </blockquote>
+      </font></b>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.4. Procedure Libraries</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World has a wide range of functions that can be
+      accessed as procedure calls.
+      </font></p>
+    <b>
+      <p align="left"><font face="Arial" SIZE="4">
+      String Procedure Library
+      </font></p>
+    </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      To facilitate manipulation of the new string data
+      types, a built-in String Procedure library is available. It includes:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Align</b> - Return a
+        copy of one string placed in another, right justified.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Catenate</b> - Return a
+        copy of two strings combined into one.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Copies</b> - Create a
+        string from many copies of a string.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Datatype</b> - Return a
+        string denoting the data type of the argument.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Find</b> - Return the
+        offset of one string in another.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Left</b> - Return a
+        copy of a substring starting on the left.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Length</b> - Return the
+        count of characters in a string.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Lowercase</b> - Return
+        the lowercase representation of a string.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Place</b> - Place one
+        string in another. Left justify.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>PolyCatenate</b> -
+        Return a copy of one or more strings combined into one.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Right</b> - Return a
+        copy of a substring starting on the right.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>String</b> - Convert a
+        data item to its string equivalent.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>StringCompare</b> -
+        Return an integer result if string comparison.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Substring</b> - Return
+        a copy of a substring of the string argument.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Trim</b> - Remove
+        leading and trailing white space.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Uppercase</b> - Return
+        the uppercase equivalent of a string.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Value</b> - Return the
+        numeric equivalent of a string.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Word</b> - Return a
+        copy of one of the words in a string.</font></font></p>
+        </blockquote>
+      </blockquote>
+    <b>
+      <p align="left"><font face="Arial" SIZE="4">
+      Math Procedure Library
+      </font></p>
+    </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Common Math library routines include
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>ABS</b> - Absolute
+        Value</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>ATN</b> - Arctangent</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>COS</b> - Cosine</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>INT</b> - Truncate</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>EXP</b> - Power of </font></font><font SIZE="2">
+ <b><font face="Arial">e</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>LOG</b> - Natural
+        Logarithm</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>SIN</b> - Sine</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>SQR</b> - Square Root</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>TAN</b> - Tangent</font></font></p>
+        </blockquote>
+      </blockquote>
+    <b>
+      <p align="left"><font face="Arial" SIZE="4">
+      New Transaction Query Procedures
+      </font></p>
+    </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Transaction state query procedures now include:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>QueryXNExist</b> -
+        determine the existence of a Transaction.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>QueryXNParameter</b> -
+        retrieve the value of a Transaction Parameter.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>QueryXNAssemblySet</b>
+        - retrieve the Assembly Set of a Transaction.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>QueryXNPriority</b> -
+        retrieve the priority of a Transaction.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>QueryXNM1</b> -
+        retrieve the mark time of a Transaction.</font></font></p>
+        </blockquote>
+      </blockquote>
+    <b>
+      <p align="left"><font face="Arial" SIZE="4">
+      New Utility Procedures
+      </font></p>
+    </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      New utility Procedures have been implemented for the
+      support of Experiments:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>DoCommand - </b>Translate
+        a Command String in global context and send it to a Simulation Object</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>ANOVA - </b>Perform
+        Analysis of Variance. The new multiway ANOVA Procedure now can handle
+        replicates and limited factor interactions.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Effects- </b>Calculate
+        Effects from a generated screening experiment.</font></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Exit- </b>Terminate the
+        GPSS World Session saving all objects, no objects, or inquiring User for
+        each.</font></font></p>
+        <b>
+        </blockquote>
+        </blockquote>
+      </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">An new utility Procedure has been implemented to
+      communicate with programs in external executable modules:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Call- Invoke a function
+        in an executable module. Pass no arguments. Optional return value is an
+        integer.</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Call_Integer- Invoke a
+        function in an executable module. Pass an integer argument. Optional
+        return value is an integer.</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Call_Real- Invoke a
+        function in an executable module. Pass a real argument. Optional return
+        value is an integer.</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Call_String- Invoke a
+        function in an executable module. Pass a string argument. Optional
+        return value is an integer.</font>
+        </b></font></p>
+        <font FACE="Arial" SIZE="4">
+        </blockquote>
+      </blockquote>
+      </font>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Over 20 built in probability distributions are
+      available:
+        </font></p>
+      <blockquote>
+        <blockquote>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Beta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">LogLaplace</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Binomial&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">LogLogistic</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Discrete Uniform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">LogNormal</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Exponential&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Negative
+        Binomial</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Extreme Value A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Normal</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Extreme Value B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Pareto</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Gamma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Pearson
+        Type V</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Geometric&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Pearson
+        Type VI</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Inverse Gaussian&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Poisson</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Inverse Weibull&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Triangular</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Laplace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Uniform</font>
+        </b></font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        ·&nbsp;<b>Logistic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b>·&nbsp;</font></font><font SIZE="2"><b><font face="Arial">Weibull</font></b></font></p>
+        <b><font FACE="Arial" SIZE="5">
+        </blockquote>
+        </blockquote>
+      </font></b>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.5. High Performance Translator</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World features a new high performance model
+      Translator that is hundreds of times faster than its predecessor. The
+      largest models are Translated in no more than a few seconds. Any errors
+      that are detected are placed in a circular error message queue so that
+      they may be corrected quickly using the full screen editor in the Text
+      View of the Model Object. Error correction is aided by automatic placement
+      of the cursor next to the offending lexical element in the model. The
+      error list is easily traversed by mouse or keystroke, and is saved with
+      the Model Object.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.6. Block Creation Dialog</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The creation of GPSS Blocks in GPSS World can
+      optionally be guided by &quot;fill-in-the-blanks&quot; dialogs. You access
+      these through the <b>Edit / Insert Block</b> menu item which opens the
+      GPSS Block Menu Window. You can then open a Creation Dialog for any GPSS
+      Block by clicking on the appropriate button. When you click the OK button
+      after filling in the information needed by the Block, the resulting
+      statement is checked for syntax errors and, if correct, is inserted into
+      the Model just after the line containing the flashing insertion point.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.4.7. Automatic Experiment Generators</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World now has the ability to generate experiments
+      written in the PLUS language and insert them into your Model Object. All
+      you have to do is to fill in the blanks in a few dialog windows,
+      accessible through the Main Window's <b>Edit </b>Command. You can create
+      either screening or optimizing experiments automatically. Optionally, a
+      CONDUCT Command will be loaded into a function key so that all you must do
+      to run the experiment is to Create the Simulation Object and press the
+      function key. All this, and more, is discussed in Chapter 13, and in
+      Lessons 19 and 20 of the <i>GPSS World Tutorial Manual</i>.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="1.5"></a>1.5.
+      Compatibility</font></h2>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The following section is an extensive comparison
+      between GPSS World, and its predecessor, GPSS/PC. You should skip this
+      section if you have no experience with GPSS/PC.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World is compatible with GPSS/PC, and normally
+      yields results that are statistically indistinguishable from it. This
+      level of compatibility is available by simply correcting a few
+      differences, and running the simulations.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      In addition, a higher level of compatibility is
+      available called GPSS/PC Compatibility Mode. In most cases, you can
+      achieve precise duplication of results. However, GPSS World utilizes a new
+      run time library. Its floating point round off differs slightly from that
+      used in GPSS/PC. Even so, most GPSS/PC models can be modified slightly to
+      achieve identical results when run under the Commercial Version of GPSS
+      World in GPSS/PC Compatibility Mode. The procedure you should follow is
+      detailed below, after the discussion of differences between GPSS World and
+      GPSS/PC.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.5.1. Differences from GPSS/PC</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World has many differences from GPSS/PC. GPSS
+      World is based on the idea that a textual Model Object is built, and/or
+      modified, and then Translated in order to create a Simulation Object. This
+      differs from the GPSS/PC notions of Program File and Simulation.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      In GPSS World, the model loading operation of GPSS/PC
+      has been completely replaced. Instead of scanning each line, one at a
+      time, GPSS World has a full-screen editor and a Create Simulation menu
+      Command. Any errors detected during the Translation are saved in an error
+      message queue, so they may be easily found and corrected. The speed of the
+      Translator assures that the detection/correction of errors can proceed
+      quickly.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      GPSS World does not perform Keystroke Error Prevention,
+      as did GPSS/PC. Instead, GPSS World uses the model Translator for creating
+      the simulation. This improves the model load-time by a factor of hundreds.
+      However, it changes the error detection mechanism. Now, errors are
+      detected during Translation, and are corrected by Selecting &quot;Next
+      Error&quot; from the Search submenu of the Main Window. The cursor then
+      automatically moves to the error, and an error message is written in the
+      status line at the bottom of the Main Window.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Perhaps the next most noticeable change from GPSS/PC is
+      that line numbers are no longer necessary, and in fact, they are ignored
+      by GPSS World. This means that the positioning of Blocks is no longer
+      specified by the line number of the Block, only by its relative position
+      in the Model File(s) given to the Translator. Since the new INCLUDE
+      Statement allows Model Objects to contain other plain text files, it is
+      the sequence of Block Statements read by the Translator that dictates the
+      position of Blocks in the simulation. Although Blocks can no longer be
+      inserted during a simulation, it turns out that the Translation time is so
+      fast, for most purposes it will be as easy to retranslate the model when a
+      change to the Block structure is desired. Even so, the high level of
+      interactivity of &quot;Manual Simulation&quot; is retained. This means
+      that any Model Statement can be used during a simulation as an Interactive
+      Command.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The level of interactivity of GPSS World has been
+      maintained. Any Model Statement can be passed to an existing simulation
+      for execution. In fact, PLUS Procedures can be defined, or even redefined,
+      on the fly. In the case of GPSS Commands, this usually redefines an
+      entity, or controls the running of the simulation. In the case of a Block
+      Statement, as in GPSS/PC, a &quot;Manual Simulation&quot; Block entry is
+      attempted by the Active Transaction. All this is done using the Commands
+      submenu, after the model has been Translated.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Automatic truncations have been removed from GPSS
+      World. You must now explicitly use the INT( ) procedure, of some other
+      method, if you wish intermediate numeric results to be truncated. This is
+      true in all Expressions, even in VARIABLE and BVARIABLE Statements.
+      Similarly, the data type returned by a System Numeric Attribute can now be
+      either integer, real, or string, depending on the SNA. Even those SNAs
+      returning parts per thousand do so as a real number of double precision
+      between 0 and 1000, inclusively. The old truncations and integer SNAs can
+      be enforced by running in GPSS/PC Compatibility Mode.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The multitasking architecture of GPSS World has led to
+      other changes. To begin with, messages are now sent to represent Commands
+      or status changes. Therefore, online window update is done via a queue of
+      messages received from the simulation. Similarly, most Commands received
+      by the Simulation Object are placed on the simulation’s Command Queue
+      before being executed one after the other. There are two exceptions: HALT
+      and SHOW, which are done immediately when received. In addition, HALT
+      deletes all remaining Commands on the queue.
+      </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      The remaining changes will be listed here and discussed
+      more fully, elsewhere in this manual.
+      </font></p>
+      <blockquote>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;PLUS
+      Statements can span any number of text lines. Although GPSS Statements,
+      except for Function Followers, must reside on a single text line, the
+      maximum length is now 250 characters.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;Parenthesized
+      mathematical expressions can now be used nearly anywhere you can use an
+      SNA.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;System
+      Numeric Attributes now may return integer, real, or string values
+      depending on the SNA. In GPSS/PC Compatibility Mode, SNAs return only
+      integers, except as Function Modifiers.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;A new System
+      Numeric Attribute, A1, has been created to return the Assembly Set of the
+      Active Transaction.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The HELP
+      Block has been dropped. It is replace by the PLUS Block, which supports
+      the inclusion of complete Procedures in a model, and by the Data Stream
+      Blocks that support communication with external files and programs.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The
+      MICROWINDOW Control Statement has been replaced by the Expression Window,
+      which is opened from the Window / Simulation Window submenu of the Main
+      Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The PLOT
+      Control Statement has been replaced by the Plot Window which is opened
+      from the Window / Simulation Window submenu of the Main Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The END
+      Control Statement has been replaced by EXIT, which can terminate a
+      Session. END is now a keyword in the PLUS Language.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The ANOVA
+      Control Statement has been replaced by the ANOVA Library Procedure.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The EVENTS
+      Control Statement has been replaced by the FEC and CEC Snapshot Windows
+      which is opened from the Window / Simulation Snapshot submenu of the Main
+      Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The GROUPS
+      Control Statement has been replaced by the Numeric and Transaction Groups
+      Snapshot Windows which is opened from the Window / Simulation Window
+      submenu of the Main Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The RESULT
+      Control Statement has been replaced by the Stream IO Blocks which can
+      automatically write to a Result File.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The WINDOW
+      Control Statement has been replaced by the Window submenu of the Model
+      Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The
+      USERCHAINS Control Statement has been replaced by the Userchain Snapshot
+      Window which is opened from the Window / Simulation Snapshot submenu of
+      the Main Window Menu.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The ANITRACE
+      Control Statement has been dropped. Animation in GPSS World is provided by
+      Data Steams and third party postprocessors.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The MOVE
+      Block has been dropped. Animation in GPSS World is provided by Data Steams
+      and third party postprocessors..</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The
+      Positions Window and the POSITION.GPS file have been dropped. Animation in
+      GPSS World is provided by Data Steams and third party animation packages.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The @ file
+      inclusion character has been replaced by INCLUDE, which takes a double
+      quoted filespec as an operand.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The Z1
+      System Numeric Attribute no longer represents the total amount of physical
+      memory available. It now returns the value of the maximum amount of memory
+      that can be allocated, as returned by the operating system.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;The
+      following GPSS/PC source management functions have been replaced by the
+      Graphical User Interface with full-screen editor and filing options:
+      DELETE, DISPLAY, DOS, EDIT, RENUMBER, and SAVE.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;Integer,
+      Real, or String Data types are supported in Savevalues, Matrices, Named
+      Values, and Transaction Parameters. Clock values may be integer or real.
+      The unlimited precision integer arithmetic of GPSS/PC has been replaced.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;REPORT
+      Commands always operate in NOW mode. Operand A is no longer used, and must
+      be <i>Null</i>.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;A library of
+      PLUS Procedures is now available for use in PLUS Expressions. Procedures
+      for manipulating String data types and over 20 built-in probability
+      distributions are supported.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;GPSS Matrix
+      entities can now have up to 6 dimensions. Any 2 D Cross Section can be
+      viewed dynamically in a Matrix Window.</font></font></p>
+      <p ALIGN="left"><font face="Arial"><font SIZE="2">
+      ·&nbsp;Operator
+      precedence has changed. The new precedence is discussed in Chapter 3. If
+      there is any question, you should fully parenthesize expressions from
+      GPSS/PC Program Files.</font></font></p>
+      <b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.5.2. Modifying Old GPSS/PC Programs</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      This section is for GPSS/PC users who wish to migrate
+      existing GPSS/PC models to the GPSS World environment. It contains a list
+      of changes you should make to your GPSS/PC Program Files. This will
+      provide you with results that are not significantly different from those
+      obtained form GPSS/PC simulations. You do not need GPSS/PC Compatibility
+      Mode to achieve this level of correspondence.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      However, if you want to obtain precise duplication of
+      results, you must perform the procedure in the next section, as well.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      There are many features provided to ensure an easy move
+      to the new system. All GPSS/PC users should note the small number of
+      enhancements that may require changes to your existing Model Files. The
+      other end of the spectrum is those users who wish to precisely duplicate
+      the GPSS/PC results in order to establish the veracity of the model when
+      running under GPSS World. After that, it’s an easy matter to switch over
+      to the new mode of operation, including the floating point clock, and the
+      myriad of other features.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Line numbers are now ignored. Do not use old Program
+      Files that replaced GPSS/PC Blocks by line number. If you use them as
+      Include-files they will add to the size of the simulation, if you use them
+      as interactive Commands they will be executed one at a time as Manual
+      Simulation Statements.
+        </font></p>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      You should make the following changes to your Program.
+        </font></p>
+      <blockquote>
+        <blockquote>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      1.&nbsp;If you used Keystroke Error Prevention of
+          GPSS/PC to finish keywords automatically, you must type in the
+          remaining characters before Translating the model under GPSS World.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      2.&nbsp;Replace @ with INCLUDE.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      3.&nbsp;Filespecs must be in double quotes in
+          INCLUDE.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      4. Remove all REPORT Commands.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      5.&nbsp;Remove END Commands and any labels, such as
+          BEGIN, COUNT, NORMAL, etc. that now clash with GPSS World keywords.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      6.&nbsp;Replace HELP Blocks with PLUS and/or Data
+          Stream Blocks.
+        </font></p>
+          <p ALIGN="left"><font face="Arial" SIZE="2">
+      7.&nbsp;Remove MOVE Blocks. Positions Windows are
+          no longer supported.
+        </font></p>
+          <p align="left"><font face="Arial" SIZE="2">
+      8.&nbsp;Fully parenthesize all Expressions in VARIABLE, FVARIABLE,
+          and BVARIABLE Statements.
+        </font></p>
+        </blockquote>
+      </blockquote>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      It is probably safest to remove all the old run
+      commands from the old GPSS/PC Program File until you have tested your
+      modified model. Do not use line number replacement of Blocks in the
+      Savable Program. This no longer works.
+        </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1.5.3. Strict Duplication of Results</font><!--mstheme--></font></h3>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      Most GPSS/PC Program Files can be made to yield
+      precisely the same results when run under GPSS World. However, because of
+      differences in the rounding of real numbers in floating point
+      calculations, you may need to make a few additional modifications to the
+      GPSS/PC Program File, in addition to the ones in the previous section. If
+      you only need results that will be statistically indistinguishable from
+      those obtained from GPSS/PC, you do not need to do the following things
+      using the Commercial Version of GPSS World.
+        </font></p>
+           <p align="left"><font face="Arial" SIZE="2">
+      1.&nbsp;This first step is to turn on GPSS/PC Compatibility Mode in
+          the Model Settings. This causes GPSS World to use an integer clock and
+          to truncate results, just as GPSS/PC did.
+        </font></p>
+        <p align="left"><font face="Arial"><font SIZE="2">
+        <blockquote>
+        <p align="left">
+        CHOOSE </font><b>File / Open</b><font SIZE="2"> to
+        open the Model Object</font></font>
+        <p align="left"><font face="Arial" SIZE="2"> CHOOSE</font><b> <font face="Arial"> Edit / Settings</font></p>
+        </b>
+        </blockquote>
+        <p align="left"><font face="Arial" SIZE="2">
+        then on the first page check the checkbox labeled GPSS/PC
+        Compatibility.
+    </font></p>
+        <p align="left"><font face="Arial" SIZE="2">
+        2.&nbsp;Now set the Random Number Streams of GENERATE, ADVANCE, and
+        TRANSFER to correspond to the SETTINGS.GPS File you used with GPSS/PC.
+        Next, set the Random Number Stream of Time Ties to 1.
+    </font></p>
+    <p align="left"><font face="Arial" SIZE="2">
+    <blockquote>
+    <p align="left">
+    CHOOSE</font><b><font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Edit / Settings</font>
+    </blockquote>
+          </b>
+          <p align="left"><font face="Arial"><font SIZE="2">
+          then select the </font><b><font size="2">Random Numbers</font> <font FACE="Arial" SIZE="2">
+          </font></b><font SIZE="2">page. Then set the entry fields
+          of the Random Number Streams for GENERATE, ADVANCE, TRANSFER, and Time
+          Ties.
+    </font>
+          </font></p>
+          <p align="left"><font face="Arial" SIZE="2">3.&nbsp;Make sure all seeds in any RMULT Commands are less than
+          100,000,000.
+    </font>
+          </p>
+          <p align="left"><font face="Arial" SIZE="2">4.&nbsp;Remove all dependencies on an identifier being given a
+          default system value. For example, RN$IDENTIFIER seeds a random number
+          stream with a distinct system default value. This entity specifier
+          would need to be changed.
+    </font>
+          </p>
+          <p align="left"><font face="Arial" SIZE="2">5.&nbsp;Do not call a Random Function from a Random Function.
+          Replace any such statements.
+    </font>
+          </p>
+          <p align="left"><font face="Arial" SIZE="2">6.&nbsp;Replace all fractions, occurring in TRANSFER Blocks, with
+          parts-per-thousand integers.
+    </font>
+          </p>
+          <p align="left"><font face="Arial" SIZE="2">7.&nbsp;Make sure Random GPSS Function Entities do not allow any
+          Function Follower pair to be associated with a probability of 1/n,
+          where n is the number of pairs. For example, if a Function is defined
+          by 4 points, do not allow any probability to be .25. You can do this
+          by adding additional points until 1/n is a repeating fraction, or is
+          not associated with any of the Function Follower Pairs. FN$SNORM and
+          FN$XPDIS do not have to be changed.
+    </font>
+          </p>
+        <p ALIGN="left"><font face="Arial" SIZE="2">A special DOS program, named PCAID.EXE, has been
+        provided to help you modify your GPSS/PC Program File. It will correct
+        line numbers and remind you if you have GPSS FUNCTION Statements that
+        need to be examined. You can start this program in a DOS Window.
+    </font>
+      </p>
+        <p ALIGN="left"><font face="Arial" SIZE="2">In either case, keep in mind that Model Objects are
+        not simple text files. They contain Settings, Bookmarks, and Result
+        Lists that cannot be read by external word processing programs. For this
+        reason, when you have finished modifying your GPSS/PC Program File, you
+        should use a word processing program to copy it to the Windows
+        clipboard. Then, in GPSS World, open a new Model Object
+    </font>
+      </p>
+      <blockquote>
+      <blockquote>
+     <p align="left"><font face="Arial">Select&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font face="Arial">File / New</font></p>
+       </blockquote>
+    </blockquote>
+        </b>
+      <p ALIGN="left"><font face="Arial" SIZE="2">
+      and paste the text into place using
+    </font>
+      </p>
+      <blockquote>
+      <blockquote>
+     <p align="left"><font face="Arial">Select&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font face="Arial">Edit / Paste</font></p>
+    </blockquote>
+    </blockquote>
+     </b>
+    <p align="left"><font face="Arial" SIZE="2">
+    This process creates a valid GPSS World Model Object based on your
+    original model. You should now be able to get corresponding results for
+    simulations run under GPSS/PC and GPSS World.
+    </font>
+
+      </p>
+
+    <p align="left">&nbsp;
+
+      </p>
+
+    <p align="center">
+  <font FACE="Arial" SIZE="2"> &nbsp;
+  <a href="reference_manual.htm">[Table of Contents]</a>
+</font>
+
+      </p>
+
+    <p ALIGN="left">&nbsp;</p>
+        </blockquote>
+        </blockquote>
+        <!--mstheme--></font></body>
+
+</html>

@@ -1,0 +1,283 @@
+Microsoft Windows [Version 10.0.10586]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2015. Все права защищены.
+
+C:\Users\Zerbs>cd opilab2
+
+C:\Users\Zerbs\opilab2>svn checkout https://svn.riouxsvn.com/opilab2svn
+Checked out revision 0.
+
+C:\Users\Zerbs\opilab2>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opilab2
+
+17.10.2016  22:43    <DIR>          .
+17.10.2016  22:43    <DIR>          ..
+17.10.2016  22:43    <DIR>          opilab2svn
+               0 файлов              0 байт
+               3 папок  816 001 470 464 байт свободно
+
+C:\Users\Zerbs\opilab2>cd opilab2svn
+
+C:\Users\Zerbs\opilab2\opilab2svn>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opilab2\opilab2svn
+
+17.10.2016  22:43    <DIR>          .
+17.10.2016  22:43    <DIR>          ..
+               0 файлов              0 байт
+               2 папок  816 001 470 464 байт свободно
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn status
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn log
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opilab2\opilab2svn
+URL: https://svn.riouxsvn.com/opilab2svn
+Relative URL: ^/
+Repository Root: https://svn.riouxsvn.com/opilab2svn
+Repository UUID: 8369b39b-b188-4969-8b77-e675a7a4145b
+Revision: 0
+Node Kind: directory
+Schedule: normal
+Last Changed Rev: 0
+Last Changed Date: 2016-10-17 22:40:46 +0300 (Пн, 17 окт 2016)
+
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn log
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opilab2\opilab2svn
+URL: https://svn.riouxsvn.com/opilab2svn
+Relative URL: ^/
+Repository Root: https://svn.riouxsvn.com/opilab2svn
+Repository UUID: 8369b39b-b188-4969-8b77-e675a7a4145b
+Revision: 0
+Node Kind: directory
+Schedule: normal
+Last Changed Rev: 0
+Last Changed Date: 2016-10-17 22:40:46 +0300 (Пн, 17 окт 2016)
+
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn status
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn log
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn>
+C:\Users\Zerbs\opilab2\opilab2svn>svn log
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    trunk
+A    trunk\B.java
+A    trunk\C.java
+A    trunk\F.java
+A    trunk\J.java
+A    branches
+Updated to revision 1.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    branches\anastasia
+A    branches\anastasia\J.java
+A    branches\anastasia\B.java
+A    branches\anastasia\C.java
+A    branches\anastasia\F.java
+Updated to revision 2.
+
+C:\Users\Zerbs\opilab2\opilab2svn>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opilab2\opilab2svn
+
+17.10.2016  23:35    <DIR>          .
+17.10.2016  23:35    <DIR>          ..
+17.10.2016  23:56    <DIR>          branches
+17.10.2016  23:35    <DIR>          trunk
+               0 файлов              0 байт
+               4 папок  815 992 422 400 байт свободно
+
+C:\Users\Zerbs\opilab2\opilab2svn>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opilab2\opilab2svn
+
+17.10.2016  23:35    <DIR>          .
+17.10.2016  23:35    <DIR>          ..
+17.10.2016  23:56    <DIR>          branches
+17.10.2016  23:35    <DIR>          trunk
+               0 файлов              0 байт
+               4 папок  815 992 389 632 байт свободно
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    branches\anastasia\_
+Updated to revision 3.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+At revision 3.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn log
+------------------------------------------------------------------------
+r3 | ostaninanastya | 2016-10-18 00:00:45 +0300 (Вт, 18 окт 2016) | 1 line
+
+r1
+------------------------------------------------------------------------
+r2 | ostaninanastya | 2016-10-17 23:52:11 +0300 (Пн, 17 окт 2016) | 1 line
+
+=Creating a branch of /trunk
+------------------------------------------------------------------------
+r1 | petu4 | 2016-10-17 23:03:04 +0300 (Пн, 17 окт 2016) | 1 line
+
+r0
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn>dir
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+ Содержимое папки C:\Users\Zerbs\opilab2\opilab2svn
+
+17.10.2016  23:35    <DIR>          .
+17.10.2016  23:35    <DIR>          ..
+17.10.2016  23:56    <DIR>          branches
+17.10.2016  23:35    <DIR>          trunk
+               0 файлов              0 байт
+               4 папок  815 991 746 560 байт свободно
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    trunk\_
+Updated to revision 4.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    branches\Bizzonium
+A    branches\Bizzonium\B.java
+A    branches\Bizzonium\C.java
+A    branches\Bizzonium\F.java
+A    branches\Bizzonium\J.java
+A    branches\Bizzonium\_
+Updated to revision 5.
+
+C:\Users\Zerbs\opilab2\opilab2svn>vol
+ Том в устройстве C имеет метку Windows8_OS
+ Серийный номер тома: 9AC9-2AA7
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+At revision 5.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+At revision 5.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn copy https://svn.riouxsvn.com/opilab2svn/trunk https://svn.riouxsvn.com/opilab2svn/branches/zeio -m "Created new branch"
+Committing transaction...
+Committed revision 6.
+
+C:\Users\Zerbs\opilab2\opilab2svn>svn update
+Updating '.':
+A    branches\zeio
+A    branches\zeio\J.java
+A    branches\zeio\_
+A    branches\zeio\B.java
+A    branches\zeio\C.java
+A    branches\zeio\F.java
+Updated to revision 6.
+
+C:\Users\Zerbs\opilab2\opilab2svn>cd trunk
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn switch https://svn.riouxsvn.com/opilab2svn/branches/zeio
+At revision 6.
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opilab2\opilab2svn
+URL: https://svn.riouxsvn.com/opilab2svn/branches/zeio
+Relative URL: ^/branches/zeio
+Repository Root: https://svn.riouxsvn.com/opilab2svn
+Repository UUID: 8369b39b-b188-4969-8b77-e675a7a4145b
+Revision: 6
+Node Kind: directory
+Schedule: normal
+Last Changed Author: zeionara
+Last Changed Rev: 6
+Last Changed Date: 2016-10-18 00:20:37 +0300 (Вт, 18 окт 2016)
+
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn status
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r5"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opilab2\opilab2svn
+URL: https://svn.riouxsvn.com/opilab2svn/branches/zeio
+Relative URL: ^/branches/zeio
+Repository Root: https://svn.riouxsvn.com/opilab2svn
+Repository UUID: 8369b39b-b188-4969-8b77-e675a7a4145b
+Revision: 6
+Node Kind: directory
+Schedule: normal
+Last Changed Author: zeionara
+Last Changed Rev: 6
+Last Changed Date: 2016-10-18 00:20:37 +0300 (Вт, 18 окт 2016)
+
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r7"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r8"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r10"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r13"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn commit -m "r15"
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn status
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn info
+Path: .
+Working Copy Root Path: C:\Users\Zerbs\opilab2\opilab2svn
+URL: https://svn.riouxsvn.com/opilab2svn/branches/zeio
+Relative URL: ^/branches/zeio
+Repository Root: https://svn.riouxsvn.com/opilab2svn
+Repository UUID: 8369b39b-b188-4969-8b77-e675a7a4145b
+Revision: 6
+Node Kind: directory
+Schedule: normal
+Last Changed Author: zeionara
+Last Changed Rev: 6
+Last Changed Date: 2016-10-18 00:20:37 +0300 (Вт, 18 окт 2016)
+
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>svn log
+------------------------------------------------------------------------
+r6 | zeionara | 2016-10-18 00:20:37 +0300 (Вт, 18 окт 2016) | 1 line
+
+Created new branch
+------------------------------------------------------------------------
+r4 | petu4 | 2016-10-18 00:06:25 +0300 (Вт, 18 окт 2016) | 1 line
+
+r3
+------------------------------------------------------------------------
+r1 | petu4 | 2016-10-17 23:03:04 +0300 (Пн, 17 окт 2016) | 1 line
+
+r0
+------------------------------------------------------------------------
+
+C:\Users\Zerbs\opilab2\opilab2svn\trunk>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ITMO</groupId>
+    <artifactId>JMX_TEST</artifactId>
+    <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>aaaa</groupId>
+            <artifactId>bbbb</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+        <systemPath>C:\Users\Zerbs\Desktop\jmx_test\src\main\resources\jmxri.jar</systemPath>
+        </dependency>
+    .........
+    </dependencies>
+
+</project>

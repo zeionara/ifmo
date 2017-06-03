@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      <h:head>
+        <title>Welcome</title>
+        <link href="#{request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"></link>
+      </h:head>
+      <h:body>
+        <h:outputScript library="primefaces" name="primefaces.js" />
+        <h1>Выполнил студент группы P3217 Плюхин Дмитрий Алексеевич вариант 6161</h1>
+        <h:outputStylesheet name="styles.css"  />
+        <h:form>
+          <a4j:poll id="poll" interval="5000" render="poll,time" />
+          <p:panel>
+            <h:panelGrid columns="2">
+              <h:outputText styleClass="timer" value="Server date and time : "/>
+              <h:outputText styleClass="timer" id="time" value="#{clockBean.serverTime}"/>
+            </h:panelGrid>
+            <h:commandButton styleClass="bigBlueButton" id="ok" value="OK" action="showApp"/>
+          </p:panel>
+        </h:form>
+      </h:body>
+</html>

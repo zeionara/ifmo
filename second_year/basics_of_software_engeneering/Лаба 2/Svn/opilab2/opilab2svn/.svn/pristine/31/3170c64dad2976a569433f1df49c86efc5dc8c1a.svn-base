@@ -1,0 +1,10 @@
+public class J extends null {
+
+    long dd();
+
+    float ff();
+
+    public void bb() {
+        System.out.println(42);
+    }
+}

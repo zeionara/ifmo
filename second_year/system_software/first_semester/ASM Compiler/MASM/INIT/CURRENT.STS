@@ -1,0 +1,88 @@
+[shared-]
+	version=2
+	pmark=""
+	project=""
+	buildmode=0
+[edit-]
+	srch=F2
+	fSrchRe=0
+	rpl=
+	src=qq
+	fRplRe=17920
+	file=""
+[pwb]
+	screen=25 80
+	winstyle=1
+	wnd=C 2 1 24 80
+[environ]
+	INCLUDE=l:\masm\include
+	LIB=
+	HELPFILES=l:\masm\help\*.hlp
+[build]
+    build: macro DEBUG "1"
+    build: macro ASM "ml"
+    build: macro AFLAGS_G "/Cx /W2 /WX"
+    build: macro AFLAGS_D "/Zi"
+    build: macro AFLAGS_R "/nologo"
+    build: macro MAPFILE_D "NUL"
+    build: macro MAPFILE_R "NUL"
+    build: macro LFLAGS_G "/NOI /BATCH"
+    build: macro LFLAGS_D "/CO /FAR /NOPACKC"
+    build: macro LFLAGS_R "/EXE /FAR /NOPACKC"
+    build: macro LINKER "link"
+    build: macro ILINK "ilink"
+    build: macro LRF "echo > NUL"
+    build: all $(PROJ).exe
+    build: target $(PROJ).exe lrf_exe link_exe
+    build: inference .asm.sbr asm_asm_sbr
+    build: inference .asm.obj asm_asm_obj
+    build: inference .h.inc h2inc_h_inc
+    build: release command asm_asm_sbr "$(ASM) /Zs $(AFLAGS_G) $(AFLAGS_R) /FR$@ $<"
+    build: debug command asm_asm_sbr "$(ASM) /Zs $(AFLAGS_G) $(AFLAGS_D) /FR$@ $<"
+    build: release command asm_asm_obj "$(ASM) /c $(AFLAGS_G) $(AFLAGS_R) /Fo$@ $<"
+    build: debug command asm_asm_obj "$(ASM) /c $(AFLAGS_G) $(AFLAGS_D) /Fo$@ $<"
+    build: release command h2inc_h_inc "$(H2INC) /c $(CFLAGS_G) $(CFLAGS_R) $<"
+    build: debug command h2inc_h_inc "$(H2INC) /c $(CFLAGS_G) $(CFLAGS_D) $<"
+    build: release command lrf_exe "$(LRF) @<<$(PROJ).lrf\n$(RT_OBJS: = +^\n) $(OBJS: = +^\n)\n$@\n$(MAPFILE_R)\n$(LLIBS_G: = +^\n) +\n$(LLIBS_R: = +^\n) +\n$(LIBS: = +^\n)\n$(DEF_FILE) $(LFLAGS_G) $(LFLAGS_R);\n<<"
+    build: debug command lrf_exe "$(LRF) @<<$(PROJ).lrf\n$(RT_OBJS: = +^\n) $(OBJS: = +^\n)\n$@\n$(MAPFILE_D)\n$(LLIBS_G: = +^\n) +\n$(LLIBS_D: = +^\n) +\n$(LIBS: = +^\n)\n$(DEF_FILE) $(LFLAGS_G) $(LFLAGS_D);\n<<"
+    build: command link_exe "$(LINKER) @$(PROJ).lrf"
+    build: command run "$(PROJ).exe $(RUNFLAGS)"
+    build: command debug "CV $(CVFLAGS) $(PROJ).exe $(RUNFLAGS)"
+    build: include dependencies
+    build: include no system
+    build: include .asm "^[ \t]*include[ \t]+\\([^ \t]+\\)"
+    build: include .inc "^[ \t]*include[ \t]+\\([^ \t]+\\)"
+    build: include .rc "^[ \t]*rcinclude[ \t]+\\([^ \t]+\\)"
+    build: include .rc "^[ \t]*#[ \t]*include[ \t]*\"[ \t]*\\(\\:p\\)[ \t]*\""
+    build: include .rc "^[ \t]*#[ \t]*include[ \t]*<[ \t]*\\(\\:p\\)[ \t]*>" system
+    build: message "^SYS[0-9][0-9][0-9][0-9]:\\:b"
+    build: message "^NET[0-9][0-9][0-9][0-9]:\\:b"
+    build: message "^\\(\\{\\:p\\!<[^>]*>\\}\\) \\([0-9]+\\) \\([0-9]+\\)[ ]*:" file line col
+    build: message "^\\(\\:p\\):\\([0-9]+\\):" file line
+    build: message "^[^(]+(\\(\\:p\\)) : error L[0-9]+[ ]*: '_*\\([^']+\\)' : unresolved external" file token
+    build: message "^[^(]+(\\(\\:p\\)) : [^L]+L[124]" file
+    build: message "^LINK [^L]+L[124]"
+    build: message "^ILINK : [^L]+L[124]"
+    build: message "^\\(\\:p\\)(\\(\\:z\\))[ ]*: [^U]+U[124]" file line
+    build: message "^NMAKE : [^U]+U[124]"
+    build: message "^\\:p : [^U]+U[124]\\:d\\:d\\:d"
+    build: message "^\\(\\:p\\)(\\([0-9]+\\))[ \t]*:[ \t]*[^A]+A[12456]" file line
+    build: message "^\\(\\:p\\)(\\(\\:z\\)) : [^H]+HI[124]" file line
+    build: message "^[^H]+HI[124][0-9]+: "
+    build: message "^BIND : [^U]+U[124]"
+    build: message "^\\(\\:p\\)(\\(\\:z\\)) RC:" file line
+    build: message "^RC: error"
+    build: language None
+
+[debug-]
+	target="a:\penka\elena.exe"
+[cv]
+	wndstate=0 0 0 2 0 1 0 1 0 0 254
+	tilestate=1 24 0 80 0 0 0 67 0 5 0 19 0 0 17 0 0 254
+	command=use auto
+	command=n10
+	command=s1
+	command=s&
+	command=oc-
+	command=of+
+	command=o3-

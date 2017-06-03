@@ -1,0 +1,4162 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica">
+<blockquote>
+  <blockquote>
+    <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter 14. Error Messages<!--mstheme--></font></h1>
+</blockquote>
+</blockquote>
+<font FACE="Helvetica" SIZE="5">
+<blockquote>
+  <blockquote>
+  </font>
+<h2 ALIGN="left"><b><font FACE="Arial" SIZE="5">&nbsp;&nbsp;&nbsp; <a name="14.1"></a>14.1
+Introduction</font></b></h2>
+<font FACE="Helvetica" SIZE="2">
+<p ALIGN="left">There are many conditions that can prevent the normal
+completion of an operation. They can occur from operation of the menus, during
+Translation of a Model, or during the running of a Simulation.</p>
+<p ALIGN="left">Errors that occur as you initiate Commands and environmental
+operations appear immediately and prevent the operation from beginning. They
+require you to correct a condition or select a different operation. The other
+two categories of error generally are fixed by alterations in your Model.</p>
+<p ALIGN="left">Syntax errors can occur when you translate a Model or
+Command. To fix ones that occur in a Model translation you can use <b>Search /
+Next Error </b>or<b> Search / Previous Error </b> to move the cursor directly to
+the faulty Statement. If an error occurs in an Include-file, you can get better
+diagnostic messages by temporarily placing those statements in a Model Object.</p>
+<p ALIGN="left">Errors that occur within the Simulation are called Error
+Stops. They cause the Simulation to enter the Halted state, and if an Experiment
+is in progress it is aborted. Usually Error Stop messages tell you where the
+error is to be corrected in the Model, but the <b>Search / Next Error</b>
+ feature
+is not available for them. Instead, the Include-file number (the Model is file
+number 0) and the text-line number is given in the error message. The <b>Edit /
+Goto</b> menu command can usually be used to find and correct these errors.</p>
+<p ALIGN="left">Sometimes you will need to do some investigation in order to
+find the error. If the source of the error is not apparent, you may want to stop
+the simulation at a specific place and then use the SHOW Command and open
+Windows and Snapshots to see what happened.</p>
+<p ALIGN="left">For troublesome Error Stops you may want to use the Blocks
+window and the debug toolbar. Then you can place a Stop condition that causes a
+stop just before when the error condition occurs, Then use interactive SHOW
+commands to evaluate all suspected operands. When a condition occurs late in a
+simulation, you may find it convenient to save the Simulation object just before
+the simulated time when the error is due to occur. This can save time when you
+must rerun a late part of the simulation a few times in the diagnostic process.
+You can keep reopening that saved Simulation instead of rerunning the simulation
+to the error point.</p>
+<p ALIGN="left">The major error messages are listed next in alphabetic order
+with an additional explanation. Where you see <i>XXX</i> in the message it means
+that the error message contains a phrase that depends on the details of the
+error condition. Admittedly some messages arise from more than one context. In
+that case the explanation is based on what we think is the most common way the
+message can occur.</p>
+<p ALIGN="left">&nbsp;</p>
+<h2 ALIGN="left"><b><font FACE="Arial" SIZE="5">&nbsp;&nbsp;&nbsp; </font></b></font><b><font face="Arial" size="5">
+<font FACE="Helvetica" SIZE="2"><a name="14.2"></a></font></font></b><font size="5"><b><font face="Arial">14.2
+M</font></b></font><font face="Arial" size="5"><b>essages and Explanations</b></font></h2>
+<font FACE="Helvetica" SIZE="2"></font><b><font FACE="Helvetica" SIZE="5">
+</blockquote>
+</font><font FACE="Helvetica" SIZE="2">
+<p align="left">&quot;A Simulation Data Stream failed. &quot;</p>
+  </font></b>
+<blockquote>
+  <blockquote>
+    <font FACE="Helvetica" SIZE="2">
+    <p ALIGN="left">A Data Steam operation failed. The details have been
+    given in a previous message. You must change values, operands, or the flow
+    of Transactions in the simulation to prevent this condition.</p>
+    </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;A Transaction is blocked on an impossible condition.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to wait for a
+    condition that can never occur. Such a Transaction would never be able to
+    enter the Block. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. Do not attempt to
+    block on an Integrated User Variable. Use the Transaction generation
+    thresholds in the INTEGRATE Command instead.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;A Transaction tried to seize or preempt its own Facility.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction already owns a Facility that it
+    again tries to seize or preempt. You must change values, operands, or the
+    flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;A Transaction which owns a Facility is attempting to terminate.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The simulation is attempting to terminate a Transaction
+    that owns one or more Facility Entities. Transactions must release
+    Facilities before they can be destroyed. You must change values, operands,
+    or the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;A Transaction which was preempted at a Facility tried to seize or
+  preempt it.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is preempted at a Facility that it
+    is attempting to seize or preempt again. You must change values, operands,
+    or the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Access is denied. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A read or write operation was disallowed because another
+    process is using the file.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Add not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Addition overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Alias Group Generator <i>XXX</i> cannot be Identity (i.e. null).
+  &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use the given expression as an Alias Group
+    Generator. See Chapter 13 of <i>The GPSS World Reference Manual</i> on how
+    to specify them.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;An attempt to enlarge the event calendar failed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;An Experiment cannot be called by a Procedure. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Although an Experiment is a kind of PLUS Procedure, you
+    must use a CONDUCT Command to invoke one.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Argument B must be greater than Argument A. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When the arguments were evaluated, Argument B was not
+    greater than Argument A. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Argument cannot be used as a TEMPORARY MATRIX: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use the same name for both arguments and local
+    variables.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Argument cannot be used as a TEMPORARY: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use the same name for both arguments and local
+    variables.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Arithmetic overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Array ordinal error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The element of the array does not exist. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Assembly Count was not positive.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The evaluation of an Assembly Count resulted in a 0 or
+    negative value. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Attempt to release an idle Facility.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to release a
+    Facility that it neither owns nor has been preempted from. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Attempt to release an unowned Facility.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to release a
+    Facility that is not owned. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Attempt to release more storage than existed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to cause a Storage
+    Entity to have more available capacity than was defined in the STORAGE
+    Command. You must change values, operands, or the flow of Transactions in
+    the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Block index is not positive.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An incremental value used to calculate Block locations is
+    0 or negative. You must change values, operands, or the flow of Transactions
+    in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Block index is too big.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A Block location was calculated that exceeds the number
+    of Blocks in the Model. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Block labels cannot be used elsewhere.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Block labels cannot be used as the names of non-Block
+    entities.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Block limit is too small.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Block limit location comes before the starting Block
+    location. You must change values, operands, or the flow of Transactions in
+    the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Call stack overflow. Possible circular reference. Increase Stack Size
+  in Settings. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The nesting depth of Procedure calls exceeded the maximum
+    allowed. The maximum can be set in the Settings Notebook. It is possible
+    that one of your PLUS Procedures gets called by one of the Procedures it
+    calls, forming an endless cycle.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get local PLUS array. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get memory for text string. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get Numeric Group Element. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get Parameter Block. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get Transaction Parameter. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get Transaction queuing element. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Can’t get Transaction. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Cannot find that function in the specified module.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A dynamic function call found the desired executable file
+    but did not find the function within it. Please consult Chapter 8 for the
+    details on using <b>Call()</b> and related library procedures.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Character error in statement. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An invalid character was found in a text line. Please
+    correct it with the text editing capabilities of GPSS World.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Circular reference in expressions.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The nesting depth in expression evaluation exceeded the
+    maximum allowed. The maximum can be set in the Simulation Page of the
+    Settings Notebook. It is possible that the GPSS Variable Entities and
+    Procedure calls form an unending sequence that you must prevent.</p>
+    <p ALIGN="left">This error is usually caused by a circular reference
+    during the evaluation of an expression. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition. You
+    might want to assign an intermediate value to a Savevalue or Transaction
+    Parameter.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Comma needed between coordinates.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Matrix element coordinates must be separated by commas.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Conjugate block is not a MATCH Block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to test for a match
+    condition in a Block that is not a MATCH Block. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Cumulative probability Must be 1.0 at the last point. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The last cumulative probability in the Function Follower
+    Statement must be 1.0.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Data Stream Numbers must be strictly positive.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use a nonpositive number for a Data Stream.
+    You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Datum has not been initialized. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You are attempting to use a variable in an operation
+    before it has been given an initial value. You must change values, operands,
+    or the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Decrement not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Divide not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Division overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of an operation exceeded the maximum value
+    allowed. The result of the operation exceeds the maximum allowable value.
+    You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Division range error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">One of the operands has a value for which the operation
+    is not defined. An attempt to divide by zero can cause this error. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;DoCommand received an invalid command.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The string passed to the <b>DoCommand()</b> library
+    procedure did not contain a valid GPSS World Command. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Duplicate Alias Group Generators are not allowed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use the given expression as an Alias Group
+    Generator. It is a duplicate. See Chapter 13 of <i>The GPSS World Reference
+    Manual</i> on how to specify them.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Entity is not a BVariable.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction caused an attempt to evaluate a
+    Variable Entity that does not exist. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Entity is not a Variable.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction caused an attempt to evaluate a
+    Variable Entity that does not exist. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error in derivative evaluation found while integrating: &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error was detected evaluating the derivative while
+    attempting to integrate the User Variable given in the message. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error in Operand A of QUEUE.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The evaluation of Operand A of a QUEUE Block resulted in
+    a nonpositive value. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error in threshold evaluation found while integrating: &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error was detected evaluating a Transaction-generation
+    threshold while attempting to integrate the User Variable given in the
+    message. You must change values, operands, or the flow of Transactions in
+    the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error occurred opening the Simulation.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Simulation Object. Retry the operation. If it persists,
+    you may have a hardware problem or one associated with the operating system.
+    The file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error occurred saving the simulation.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to write the file
+    associated with the Simulation Object. Retry the operation. If it persists,
+    you may have a hardware problem or one associated with the operating system.
+    The file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error placing data on Clipboard. Please Try again. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A clipboard operation failed. Retry the operation. If it
+    persists you may have a problem associated with the operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error priming GENERATE Block with its first Transaction. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">GPSS World was not able to initialize the GENERATE Block
+    with its first Transaction. There is an error in the calculation of the
+    arrival time, or in one of the other operands of the GENERATE Block.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error reading plain text Include-file.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Text Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system. The
+    file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error Stop.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error condition has stopped the operation. Additional
+    details can be found in accompanying messages.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error: corrupt Simulation Object. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Simulation Object. The data in the file is of unknown
+    format.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Error: decreasing cumulative probabilities. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The cumulative probability in the Function Follower
+    Statement cannot be decreasing.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting = .&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a decimal point or period. If this is a
+    Model translation you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error</b> to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting Label.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a label. If this is a Model translation you
+    can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move
+    the cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting `DO’.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find ‘DO’. If this is a Model translation you
+    can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move
+    the cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting `THEN’.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find ‘THEN’. If this is a Model translation
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a ‘/’. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a forward slash. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a GPSS Verb. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a Verb. If this is a Model translation you
+    can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move
+    the cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a Label or GPSS Verb. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a label or a Verb. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a PLUS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a PLUS Statement. See Chapter 8 of <i>The
+    GPSS World Reference Manual</i>. If this is a Model translation you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a Y value. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a Y value in a Function Follower Statement.
+    If this is a Model translation you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a comma. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a comma. If this is a Model translation you
+    can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move
+    the cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a formal argument.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find an argument in a Procedure call. If this is
+    a Model translation you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a numeric value or Identifier. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a numeric value or identifier. If this is a
+    Model translation you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a numeric value. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a numeric value. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting a right parenthesis.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘)’ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting an EXPERIMENT, PROCEDURE or GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find one of the items in the error message. If
+    this is a Model translation you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting an expression factor.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a valid factor of an expression. The formal
+    grammar is given in the Appendix of <i>The GPSS World Reference Manual</i>.
+    If this is a Model translation you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting left parenthesis.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘(‘ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting left square bracket ([).&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘[‘ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting right parenthesis.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘)’ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting right square bracket (]).&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘]’ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expecting semicolon.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. In its present state, the
+    Translator is expecting to find a ‘;’ character. If this is a Model
+    translation you can use <b>Search / Next Error </b>or <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Experiment aborted.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A simulation was interrupted while a PLUS Experiment was
+    under way. Usually this means that the Result Matrix does not have all the
+    data intended. You must complete the remaining runs and then the Analysis of
+    Variance. The Experiments generated automatically by GPSS World test for the
+    completion of runs and may be restarted with a CONDUCT Command.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Experiments cannot be nested. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">PLUS Experiments can only be called directly by a CONDUCT
+    Command.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Exponent too large.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The exponent exceeds the maximum allowable value. You
+    must change values, operands, or the flow of Transactions in the simulation
+    to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Exponentiation overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Expression memory is full.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">There is no more room for memorized expressions. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Factors must be consecutive beginning with A. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Experimental factors are denoted consecutively A, B, C,
+    D, E, and F.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Failure loading the specified module.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A dynamic function call could not find the desired
+    executable file. Please consult Chapter 8 for the details on using <b>Call()</b>
+    and related library procedures.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;File close error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An attempt to close a file failed. This can be caused by
+    a hardware error.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;File error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error prevented a file operation from completing
+    properly.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Floating point exception during integration. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A floating-point arithmetic operation encountered an
+    overflow or underflow. You must scale the values of your variables so they
+    don’t exceed numerical limits.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;GPSS Verb cannot be used as operator or operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Syntax error. The Translator is expecting an operator or
+    operand, but instead, encountered a GPSS Verb.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;GPSS World Student Version GPSS Block limit was exceeded. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Goodness of fit test fails.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The preliminary experimental response surface did not fit
+    the data. Normally, an experiment generated by GPSS World will attempt to
+    acquire more data, and continue, or apply a higher order model. Otherwise,
+    you will need to apply a more sophisticated analysis to the data.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Help system failure. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A failure occurred initializing the online Help system.
+    The GPSS World Help file may be missing.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Identifier has not been defined.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A reference occurred to a name that has not been defined.
+    You must add the appropriate definition to the Model and/or Simulation
+    Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal attempt to make Queue entity content negative.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A Transaction tried to enter a QUEUE or DEPART Block,
+    which would have caused the content of a Queue Entity to be negative. This
+    is not allowed. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal character.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Translator has encountered an invalid character. Your
+    Statement has a syntax error. In the Model Window, you can use <b>Search /
+    Next Error </b>or <b>Search / Previous Error </b>to move the cursor directly
+    to the faulty Statement. If the error occurred in an Include-file file, you
+    can get better diagnostic messages by temporarily placing the statements in
+    a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal combination of operands in ALTER block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used an illegal combination of operands in an
+    ALTER Block. Please consult Chapter 7 of this manual for details on using
+    ALTER Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal combination of operands in REMOVE Block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used an illegal combination of operands in a
+    REMOVE Block. Please consult Chapter 7 of this manual for details on using
+    REMOVE Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal combination of operands in UNLINK block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used an illegal combination of operands in a
+    REMOVE Block. Please consult Chapter 7 of this manual for details on using
+    REMOVE Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal operator combination.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used an illegal combination of operands in a
+    Block. Please consult Chapter 7 of this manual for details on using Blocks</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Illegal SNA class in COUNT or SELECT block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used an illegal SNA class in operand E of a
+    COUNT or SELECT Block. Please consult Chapter 7 of this manual for details
+    on using these Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Include-file files must be Text Objects (.txt).&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Include-file files must be plain text files with a .txt
+    filename extension.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Incompatible formats. The archive and this version of the GPSS World
+  software are using different object formats. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You are attempting to read a file associated with a GPSS
+    World Object of a different format than the GPSS World software you are
+    using.</p>
+    <p ALIGN="left">For Simulation or Report Objects, you should recreate
+    them from the Model Object using the new version of GPSS World.</p>
+    <p ALIGN="left">For Model Objects, use the Windows clipboard with the old
+    version of GPSS World to create plain text files for each Model. Then, use
+    the Windows clipboard with the new version of GPSS World to create new Model
+    Objects from the plain text files.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Incorrect Keyword.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have used a keyword that does not belong where you
+    tried to use it. Your Statement has a syntax error. In the Model Window, you
+    can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move
+    the cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Incorrect Matrix shape.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">GPSS World has encountered a Matrix of the wrong shape as
+    it attempts to fit a response surface to data.</p>
+    <p ALIGN="left">If the MATRIX Statement was generated by a GPSS World
+    Automatic Experiment Generator and has not been altered, please report this
+    problem. To do so, please complete an error report on the GPSS World
+    Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Increment not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Indirect SNA not allowed here.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot use a System Numeric Attribute with an
+    indirect entity specifier as this operand. Your Statement has a syntax
+    error. In the Model Window, you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Integer division overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. Possible division by zero. You must change values, operands, or the
+    flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Integer division range error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">One of the operands has a value for which the operation
+    is not defined. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. This error is
+    caused by an attempt to divide by integer zero.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Integration tolerance cannot be maintained for: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">During the integration of the variable given in the error
+    message, a reduction in integration ministep size was not sufficient to
+    bring the local error below the error tolerance. You must either increase
+    the Error Tolerance in the Simulate Page of the Settings Notebook, or you
+    must create your own integration method using PLUS Procedures. It is
+    possible that a derivative of integration variables is too large in
+    magnitude.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Integration variable was not initialized: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When an attempt was made to integrate the variable named
+    in the error message it was found to have no initial value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Internal compiler error. Unknown source type.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Internal depth error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid $ character in name.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid character
+    was detected in an identifier. In the Model Window, you can use <b>Search /
+    Next Error </b>or <b>Search / Previous Error </b>to move the cursor directly
+    to the faulty Statement. If the error occurred in an Include-file file, you
+    can get better diagnostic messages by temporarily placing the statements in
+    a Model Object.</p>
+    <p ALIGN="left">Names are discussed in Section 3.5 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid attempt to enter a GENERATE Block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Transactions are not allowed to enter GENERATE Blocks,
+    except for those created by the Block itself. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid attempt to skip a required operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid character in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid character
+    was encountered. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid character in exponent.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid character
+    was encountered. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid character in number.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid character
+    was encountered. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid character.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid character
+    was encountered. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid column coordinate. Must be name or integer.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. Matrix element indices
+    must be names or integers. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid data type.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The operation failed because an operand has taken on a
+    value which cannot be coerced to an appropriate data type. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition. .</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid decimal point in number.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An extraneous decimal
+    point was encountered. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid delimiter. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid delimiter
+    character was encountered. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid delimiter in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid delimiter
+    character was encountered. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid dollar character.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid ‘$’
+    character was encountered. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid E character in number.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid ‘E’
+    character was encountered. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid expression.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An expression was not correctly formed using defined
+    syntax. You must correct the syntax. The formal grammar is given in the
+    Appendix of <i>The GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid Function pair count. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have broken one of the rules regarding the definition
+    of GPSS Function Entities. Please review Section 4.4 of <i>The GPSS World
+    Reference Manual</i> and Chapter 6 on FUNCTION Statements and Function
+    Follower Statements.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid Function type.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have broken one of the rules regarding the definition
+    of GPSS Function Entities. Please review Section 4.4 of <i>The GPSS World
+    Reference Manual</i> and Chapter 6 on FUNCTION Statements and Function
+    Follower Statements.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid handle. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid identifier. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. An invalid identifier
+    was encountered. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirect addressing.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirect identifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirect identifier in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirect integer in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirect operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid indirection character&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The indirect
+    addressing is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Indirect addressing is discussed in Section 3.4.2 of <i>The
+    GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid integer in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The integer is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid keyword for this operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The keyword is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid keyword. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The keyword is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid list sequence number. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The List sequence number on the Function Follower
+    Statement is incorrect. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid name in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The name is invalid or
+    out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+    <p ALIGN="left">Names are discussed in Section 3.5 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid negative number in GPSS statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The negative number is
+    invalid or out of place. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid number of Matrix indices. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The dimension of the matrix implied by the number of
+    indices in the matrix element specifier does not match that of the MATRIX
+    Command. The two statements must imply the same Matrix dimension.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid number of procedure arguments.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The procedure invocation does not have the number of
+    arguments required by the PLUS Procedure definition. The two statements must
+    agree.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid number. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The number is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid operator. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The operator is
+    invalid or out of place. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid PLUS Procedure.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error in the Procedure
+    definition. In the Model Window, you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid procedure definition.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error in the Procedure
+    definition. In the Model Window, you can use <b>Search / Next Error </b>or <b>Search
+    / Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid procedure identifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The procedure
+    identifier is incorrect or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid quoted operator.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The quoted operator is
+    incorrect or out of place. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid real number in GPSS statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. A real number cannot
+    be used in this position. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid row coordinate.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. Matrix element indices
+    must be names or integers. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid SNA Class. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The System Numeric
+    Attribute Class is invalid or out of place. In the Model Window, you can use
+    <b>Search / Next Error </b>or <b>Search / Previous Error </b>to move the
+    cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+    <p ALIGN="left">SNA Classes are discussed in Section 3.4 of <i>The GPSS
+    World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid SNA entity specifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The System Numeric
+    Attribute is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">SNAs are discussed in Section 3.4 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid SNA in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The System Numeric
+    Attribute is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">SNAs are discussed in Section 3.4 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid SNA. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The System Numeric
+    Attribute is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">SNAs are discussed in Section 3.4 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid string in GPSS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid string. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The string is invalid.
+    In the Model Window, you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error </b>to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid threshold arrival block found while integrating: &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred during the integration of the variable
+    named in the message. A threshold crossing occurred but the destination
+    Block number was not in the valid range. You must change values, operands,
+    or the flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid use of SNA Class Specifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The System Numeric
+    Attribute is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">SNAs are discussed in Section 3.4 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid <i>XXX</i> character in <i>YYY</i>. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The character given in
+    the message is invalid or out of place in the expression. In the Model
+    Window, you can use <b>Search / Next Error </b>or <b>Search / Previous Error
+    </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid <i>XXX</i> expression. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The expression given
+    in the message is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Expressions are discussed in Section 8.2 of <i>The GPSS
+    World Reference Manual</i>. .</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid <i>XXX</i> name. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The expression given
+    in the message is invalid or out of place. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">Names are discussed in Section 3.5 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Invalid Y value. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Y value in the Function Follower Statement is invalid
+    or out of place. Function Follower Statements are discussed in Chapter 6.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Line number must be a strictly positive integer.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The number is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Line numbers must begin in the first column.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The number is invalid
+    or out of place. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;List Function argument is too large.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When the argument of a list function was evaluated it
+    exceeded the size of the list. You must change values, operands, or the flow
+    of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Lock violation. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A file sharing violation has occurred. Retry the
+    operation when the file is available.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Logarithm range error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The operand cannot be nonpositive. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;MAPI failure. Email was not sent. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your MAPI System could not be initialized or an error
+    occurred when a message transmission was attempted. The message was not
+    sent.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;MAPI initialization failed. Email was not sent. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your MAPI System could not be initialized or an error
+    occurred when a message transmission was attempted. The message was not
+    sent.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Manual Simulation failure.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Manual Simulation Statement encountered an Error
+    Stop. Additional details follow this message.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Matrix column cannot be system-assigned or Block label.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The matrix column is not correctly specified. Change the
+    Matrix element specifier in the offending Statement.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Matrix inversion failure.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Matrix row cannot be system-assigned or Block Label.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The matrix row is not correctly specified. Change the
+    Matrix element specifier in the offending Statement.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Maximum depth exceeded: possible circular reference. Increase Max
+  Depth in Settings. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The nesting depth in an expression evaluation exceeded
+    the maximum allowed. The maximum can be set in the Simulate Page of the
+    Settings Notebook. It is possible that the GPSS Variable(s) and/or procedure
+    calls form an unending sequence that you must change.</p>
+    <p ALIGN="left">This error is usually caused by a circular reference
+    during the evaluation of an expression. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition. You
+    might want to assign an intermediate value to a Savevalue or Transaction
+    Parameter.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Memory error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be specified in the Simulate Page of the Settings Notebook. Be sure you
+    have enough swap space on your hard disk drive(s).</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Memory request denied. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be specified in the Simulate Page of the Settings Notebook. Be sure you
+    have enough swap space on your hard disk drive(s).</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Minimum and maximum must be numeric.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A minimum or maximum must have a numeric value. Please
+    correct the Statement and retry the operation.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Maximum must be greater than minimum.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot have a minimum value greater than the maximum.
+    Please correct the Statement and retry the operation.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Missing GPSS operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Missing GPSS operator.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Missing SNA entity specifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Missing Statement Label.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Missing coordinates for MX Class SNA.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Model translation failed; out of memory.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be specified in the Simulate Page of the Settings Notebook. Be sure you
+    have enough swap space on your hard disk drive(s).</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Modulo division not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value that cannot be coerced to an arithmetic value or an attempt was made
+    to divide by zero. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Modulo division range error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiplication overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiple defined Block label definitions.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. A Block Label can only
+    be used for one Block. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiple label definitions: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The label given in the
+    message was not uniquely defined. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiple argument definitions: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The argument given in
+    the message was not uniquely defined. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiply not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Multiway Experiment is Not Orthogonal. No F Statistic is
+  available.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The run results in the Result Matrix do not form an
+    orthogonal experiment. You must either complete the experiment, or redefine
+    it if the experiment itself is not orthogonal.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Name has not been given a value.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An unitialized identifier was encountered. If you do not
+    assign a value to a name in an EQU Statement, GPSS World assigns a distinct
+    &quot;system&quot; number for use in defining GPSS Entities. Names with
+    system assigned values may be used to name entities, but may not be used by
+    themselves in expressions.</p>
+    <p ALIGN="left">Do not confuse the value of a name with the result of an
+    SNA. For example, if you define a Variable Entity named VAR1, you evaluate
+    it by a reference to V$VAR1 and not to VAR1. Here VAR1 serves as the entity
+    specifier.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Name too long.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. Names cannot exceed
+    200 characters. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error </b>to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+    <p ALIGN="left">Names are discussed in Section 3.5 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Negative A operand in SPLIT Block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused the A Operand of a
+    SPLIT Block to be evaluated with an invalid negative result. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Negative Storage request.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When Operand B of an ENTER or LEAVE Block was evaluated,
+    the storage amount requested was less than 0. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Negative time increment.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a negative time
+    increment to be calculated. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;No data. An error occurred in the User Dialog.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must complete the required data field in the dialog.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;No room for conversion to floating point number. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Nonpositive List Function argument.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When the argument of a list function was evaluated it was
+    nonpositive. You must change values, operands, or the flow of Transactions
+    in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Nonpositive modulus.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The modulus must be positive. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Not enough memory for Model translation&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal memory request was denied. Be sure you have
+    enough swap space on your hard disk drive(s).</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Object code is corrupt.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Please retranslate the Model. If the error persists
+    please complete an error report on the GPSS World Internet Web site at
+    MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Operand B of QUEUE or DEPART is negative.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused the B Operand of a
+    QUEUE or DEPART Block to be evaluated with an invalid negative result. You
+    must change values, operands, or the flow of Transactions in the simulation
+    to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Operation has not been defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Optimum could not be predicted.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A second order model could not be fitted to the data.
+    Consequently the analysis has failed to predict an optimum value.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Out of memory. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Parameter number must be a positive integer.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A nonpositive Transaction number was specified. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Path not found. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An input of output operation attempted to use a path that
+    does not exist in your file system. Please correct the situation and retry
+    the operation.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Plot limit exceeded. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot add more plots to this Plot Window. You can
+    open additional PLOT Windows.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;PLUS Array has not been defined.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A reference was made to PLUS Array that was not defined.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;PLUS Procedure cannot be found.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must define a PLUS Procedure before you invoke it.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Probability cannot be less than 0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The probability cannot be less than 0 or greater than 1.
+    Some probabilities are in parts-per-thousand. This is described in the
+    associated Statement description in <i>The GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Probability cannot exceed 1.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The probability cannot be less than 0 or greater than 1.
+    Some probabilities are in parts-per-thousand. This is described in the
+    associated Statement description in <i>The GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Procedure Statement limit exceeded. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Procedure is too large. You must break it into
+    multiple procedures.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Procedure replaced. Multiple definition. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Block entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a Block
+    entity that does not exist. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Block entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a Block
+    entity that does not exist. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. You may have
+    neglected to define the Block entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Function entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a
+    Function entity that does not exist. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition. You
+    may have neglected to define the Function entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Matrix entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a Matrix
+    entity that does not exist. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. You may have
+    neglected to define the Matrix entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Parameter.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a
+    Transaction Parameter entity that does not exist. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition. Transaction Parameters are created in ASSIGN, MARK, SPLIT, and
+    TRANSFER SUB Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Savevalue entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a
+    Savevalue entity that does not exist. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition. You
+    may have neglected to define the Savevalue entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Storage entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a
+    Storage entity that does not exist. You must change values, operands, or the
+    flow of Transactions in the simulation to prevent this condition. You may
+    have neglected to define the Storage entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Table entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a Table
+    entity that does not exist. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. You may have
+    neglected to define the Table entity with a TABLE or QTABLE Statement.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Reference to a non-existent Variable entity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a reference to a
+    Variable entity that does not exist. You must change values, operands, or
+    the flow of Transactions in the simulation to prevent this condition. You
+    may have neglected to define the Variable entity with a VARIABLE, BVARIABLE,
+    or FVARIABLE Statement.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;REmove option was not specified.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have specified a destination Block without using the
+    required RE option. Please consult the Block Statement description in
+    Chapter 8 for more details.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;REmove option was used with no destination.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must specify a destination Block location when you
+    use the RE option. Please consult the Block Statement description in Chapter
+    8 for more details.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Saddle point detected. Critical point is not optimal.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A second order model was fitted to the data but a saddle
+    point was detected. Consequently, the analysis has failed to predict an
+    optimum value.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Second order model fails. Failure to calculate optimum.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A second order model could not be fitted to the data.
+    Consequently the analysis has failed to predict an optimum value.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Second order model fails. Saddle point detected.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A second order model was fitted to the data but a saddle
+    point was detected. Consequently, the analysis has failed to predict an
+    optimum value.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Setup error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred during GPSS World initialization. If it
+    persists, please complete an error report on the GPSS World Internet Web
+    site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Share.exe was not loaded, or a shared region was locked. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">This is an operating system error. If the problem
+    persists, please consult the vendor of your operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry the Text Object Open failed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Text Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system. The
+    file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Model open failed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Model Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system. The
+    file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Model save failed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to write the file
+    associated with the Model Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Report open failed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Report Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system. The
+    file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Report save failed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to write the file
+    associated with the Report Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Simulation has no Matrices defined.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot open a Matrix Window on the simulation because
+    there are no Matrix entities in the Simulation Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Simulation has no Tables defined.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You cannot open a Table Window on the simulation because
+    there are no Table or Qtable entities in the Simulation Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Simulation open failed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    associated with the Simulation Object. Retry the operation. If it persists,
+    you may have a hardware problem or one associated with the operating system.
+    The file may be corrupt.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Simulation save failed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to write the file
+    associated with the Simulation Object. Retry the operation. If it persists,
+    you may have a hardware problem or one associated with the operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Sorry, the Text Object Save failed. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to write the file
+    associated with the Text Object. Retry the operation. If it persists, you
+    may have a hardware problem or one associated with the operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Square root not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value or which is negative.
+    You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Square root range error.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The argument cannot be negative. You must change values,
+    operands, or the flow of Transactions in the simulation to prevent this
+    condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Standard Error is 0. Cannot perform F test.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation for the F test cannot be completed
+    because the Standard Error of the experiment is 0. This makes all related
+    statistical differences significant.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Storage request exceeds total capacity.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">When Operand B of an ENTER Statement was evaluated, the
+    storage request exceeded the total capacity of the Storage entity. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition. You may wish to redefine the Storage entity.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Subtract not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Subtraction overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The result of the operation exceeds the maximum allowable
+    value. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Label. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error or</b> <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p ALIGN="left">&quot;Syntax error in Operand A. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand B. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand C. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand D. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand E. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand F. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand G. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operand H. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error in Operator. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error </b>to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. <i>XXX</i> &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error in the expression given
+    in the message. In the Model Window, you can use <b>Search / Next Error </b>or
+    <b>Search / Previous Error</b> to move the cursor directly to the faulty
+    Statement. If the error occurred in an Include-file file, you can get better
+    diagnostic messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Illegal use of Library Procedure name.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The name of a PLUS
+    library procedure occurred in an invalid way. In the Model Window, you can
+    use <b>Search / Next Error </b>or <b>Search / Previous Error</b> to move the
+    cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Incorrect argument count.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. A PLUS Procedure
+    invocation has an argument count that does not match that of the Procedure
+    definition. The name of a PLUS library procedure occurred in an invalid way.
+    In the Model Window, you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error</b> to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Invalid PLUS Statement.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error in a PLUS Statement. In
+    the Model Window, you can use <b>Search / Next Error </b>or <b>Search /
+    Previous Error</b> to move the cursor directly to the faulty Statement. If
+    the error occurred in an Include-file file, you can get better diagnostic
+    messages by temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Invalid TEMPORARY MATRIX Identifier.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error in a PLUS TEMPORARY
+    MATRIX Statement. An identifier is invalid. In the Model Window, you can use
+    <b>Search / Next Error </b>or <b>Search / Previous Error</b> to move the
+    cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Nonpositive dimension size.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error</b> to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Too many matrix dimensions.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. You have specified
+    more dimensions in a Matrix entity than really exists. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error</b> to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Unexpected end of file.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Translator expected to find more language elements
+    but ran into the end of the Model. This error can occur when you have a
+    string with unclosed double quotes.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Syntax error. Unidentified character.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In the Model Window,
+    you can use <b>Search / Next Error </b>or <b>Search / Previous Error</b> to
+    move the cursor directly to the faulty Statement. If the error occurred in
+    an Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error translating the interaction. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. A workable set for the principle block could not be
+  found. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. An exception error occurred saving the
+  Simulation.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Bad DEQ call.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Bad ENQ call.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Bad FEC.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Bad token string.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Corrupt chain in DEQ.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Corrupt chain in UnQQE. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Dangling QQE.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. FEC corrupt.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. FUNCTION setup error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Internal exception.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Internal overflow.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Invalid indirect pointer.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. Invalid operand.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. No Next Block.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. No QQE.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;System error. QCB cache failure.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Tab stops must be nonzero and increasing.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Tab stops must be specified as positive strictly
+    increasing integers.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Test expression does not have numeric or logic value. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You can only use a numeric value as the result of a TEST
+    Block expression. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The <i>XXX</i> field is required. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The field specified in
+    the message is invalid. In the Model Window, you can use <b>Search / Next
+    Error </b>or <b>Search / Previous Error </b>to move the cursor directly to
+    the faulty Statement. If the error occurred in an Include-file file, you can
+    get better diagnostic messages by temporarily placing the statements in a
+    Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The command is not valid. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. Commands are discussed
+    in Chapter 6 in <i>The GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The disk is full. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An attempt was made to write a file to a disk that did
+    not have enough space.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The dynamic call must pass 0 or 1 argument.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The dynamic call did not have the correct number of
+    arguments. <b>Call()</b> and related library procedure invocations are
+    described in Chapter 8 of <i>The GPSS World Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The end of file was reached. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator ran out
+    of text before a statement was completed. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+    <p ALIGN="left">This error can be caused when a string does not have a
+    closing double quote character.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The entity label is missing.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The Translator is
+    expecting to find the item in the message. In the Model Window, you can use <b>Search
+    / Next Error </b>or <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The exit code must be -1, 0 or +1. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Exit Command takes only these values as its argument.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The expression is not valid.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The expression must have a label.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An expression cannot be viewed, plotted, or memorized
+    without a label.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The file could not be found. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read a file
+    that the operating system could not find. The location of files is discussed
+    in Chapter 2 of <i>The GPSS World Reference Manual</i>, and that associated
+    with dynamic call invocations in Chapter 8 of <i>The GPSS World Reference
+    Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The generators must be independent w.r.t. modulo multiplication. None
+  can be the product of others. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have specified an Alias Group Generator that can be
+    created from a combination of the other generators. They must be
+    independent. Alias Groups are discussed in Chapter 13 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The j argument must be greater than the i argument. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The location argument must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Matrix has too many dimensions. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Matrix index is not positive.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a Matrix index to be
+    evaluated that is 0 or is negative. You must change values, operands, or the
+    flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Matrix index is too large.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused a Matrix index to be
+    evaluated that exceeds the size of the dimension of that Matrix. You must
+    change values, operands, or the flow of Transactions in the simulation to
+    prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Matrix offset is too big.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The max argument must be greater than the mode argument. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The mean must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The mode argument must be greater than the min argument. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The numeric conversion is not defined. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An operation was attempted which required a numeric
+    conversion that could not be done. You must change values, operands, or the
+    flow of Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The nesting of Include-file files is too deep.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Include-file files may be nested only to a maximum depth
+    of 5.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The optimum type must be -1 for minimum or +1, for maximum&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The p argument must be strictly between 0 and 1. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Random Stream number must be positive. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A nonpositive Random Number stream was requested. You
+    must change values, operands, or the flow of Transactions in the simulation
+    to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The redirection limit must be between 0 and 10, inclusively. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The replicate dimension is out of range. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The result Matrix has an invalid shape.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The result Matrix is incompatible with the Defining Contrasts. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The results of the Fractional Factorial Experiment are not complete.
+  &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The scale argument must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The shape argument must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Simulation is still running and could not be saved.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must Halt the Simulation before saving it.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Simulation was created by a GPSS World Commercial Version. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Student Version of GPSS World cannot open Simulation
+    Objects created by the Commercial Version.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Simulation was created by an upgraded version of GPSS World. This
+  version cannot read it. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must create a new Simulation object with your current
+    version of GPSS World.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The Simulation was not created by a Student Version. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Student Version of GPSS World cannot open Simulation
+    Objects created by the Commercial Version.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The standard deviation must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The string of Defining Contrasts is invalid. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An invalid argument was passed to the Effects procedure.
+    If the string was created by a GPSS World generated experiment, please
+    complete an error report on the GPSS World Internet Web site at
+    MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The system was unable to serialize part of the Simulation. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Internal error. Please complete an error report on the
+    GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The t argument must be greater than 0.0. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A procedure invocation used arguments that were not
+    valid. You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The upper count limit is too low.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction has caused an operand to be
+    evaluated that resulted in an entity number lower than the starting number.
+    You must change values, operands, or the flow of Transactions in the
+    simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;The User Key is not valid for this product. Please register to
+  receive a new Key. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You need to acquire a valid User Key from Minuteman
+    Software. The registration dialog can be accessed through <b>File / Register
+    Software</b> in the menu of the Main Window of GPSS World.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There are no Transactions. Check Transaction limits and
+  blocking.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Either you have entered a statement that requires an
+    Active Transaction and there is none, or all GENERATE statements have
+    reached their creation limits.</p>
+    <p ALIGN="left">If you limit the number of Transaction created by using
+    Operand D in all GENERATE Statement returns to zero. You must provide
+    another source of Transactions in the Simulation (SPLIT or GENERATE), you
+    must increase the Termination Count in one or more TERMINATE Blocks, or you
+    must reduce the Termination Count in the START Statement.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There are no errors in the list.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The list of errors is empty. You may need to retranslate
+    the model.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There are no more directory entries. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">There are no more files in this directory (folder).</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There are not enough runs defined in this Experiment. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The analysis program does not have enough data points to
+    continue the analysis. You must complete the runs in the e You must complete
+    the runs in the experiment before analyzing the results.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is no Stop here. Do you want to remove all Stops? &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">There is no stop condition on the currently selected
+    Block. You have the option to remove all stop conditions, however.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is no Transaction for the Parameter reference.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A Statement was encountered which needed one or more
+    Parameters of the Active Transaction for its evaluation. However, there is
+    no Active Transaction.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is no Transaction for this SNA evaluation.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An SNA which a Transaction for its evaluation and there
+    is none. You must change values, operands, or the flow of Transactions in
+    the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is no experiment. DoCommand() is Invalid.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The <b>DoCommand()</b> library procedure cannot be
+    invoked unless an Experiment is underway — i.e. started by a CONDUCT
+    Command. During an Experiment, even regular PLUS Procedures called directly
+    or indirectly by the PLUS Experiment can invoke <b>DoCommand()</b>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is no such Transaction. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Transaction specified does not currently exist in the
+    Simulation Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There is not enough computer memory to continue.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A memory request was denied. The maximum memory request
+    can be set in the Simulate Page of the Settings Notebook. Be sure you have
+    enough swap space on your hard disk drive.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There must be an arrival block for the threshold expression.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must specify a Block that is to receive Transactions
+    to be generated when the threshold is crossed.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was a Simulation address translation error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was a Simulation translation initialization Error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was a hardware error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your operating system has reported that a hardware error
+    prevented GPSS World from completing the operation.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was an error opening <i>XXX</i>. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read the file
+    identified in the message. If it persists, you may have a hardware problem
+    or one associated with the operating system. The file may be corrupt</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was an error processing <i>XXX</i>, in IO Stream Number <i>YYY</i>.
+  &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An error occurred when GPSS World tried to read or write
+    the file identified in the message on behalf of the Data Stream, also in the
+    message. Retry the operation. If it persists, you may have a hardware
+    problem or one associated with the operating system. The file may be corrupt</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;There was an error trying to set the file pointer. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The operating system has reported that an error occurred
+    when GPSS World tried to set a file pointer. Retry the operation. If it
+    persists, you may have a hardware problem or one associated with the
+    operating system. The file may be corrupt</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;This feature has not yet been implemented. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The feature is not functional in this version of GPSS
+    World.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Time range must be numeric greater than 0.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The time range must be a positive number.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Tolerance must be between 0.000000001 and 0.1, inclusively.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The integration tolerance must be in the given range.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Too many Block Entities for the Student Version. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Student Version supports only 150, or fewer, GPSS
+    Blocks.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Too many open files. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your operating system is limiting the number of files
+    that can be open at one time. You should close other applications and
+    continue.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Too many significant digits.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You have exceeded the maximum number of significant
+    digits in a number. Real values are kept as double precision floating point
+    numbers.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Trigonometric function domain error. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The value of the operand is not in the range permitted
+    for this function. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Truncate not defined for this data type. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The calculation failed because an operand has taken on a
+    value which cannot be coerced to an arithmetic value. You must change
+    values, operands, or the flow of Transactions in the simulation to prevent
+    this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Unable to Stop the Simulation.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Please close all other applications. Retry the operation.
+    If this error persists, please complete an error report on the GPSS World
+    Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Unable to set up expression.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">An internal error has occurred. Please complete an error
+    report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Unclosed double quote.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must terminate the string with a closing double
+    quote. Two consecutive double quotes within a string denote a double quote
+    internal to the string.</p>
+    <p ALIGN="left">If this is a Model translation you can use <b>Search /
+    Next Error or</b> <b>Search / Previous Error </b>to move the cursor directly
+    to the faulty Statement. If the error occurred in an Include-file file, you
+    can get better diagnostic messages by temporarily placing the statements in
+    a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Undefined Label: <i>XXX</i>&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. The label in the
+    message has not been defined. Check spelling. In the Model Window, you can
+    use <b>Search / Next Error or</b> <b>Search / Previous Error </b>to move the
+    cursor directly to the faulty Statement. If the error occurred in an
+    Include-file file, you can get better diagnostic messages by temporarily
+    placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Unexpected Delimiter.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">Your Statement has a syntax error. In its present state
+    the Translator expects to find a delimiter character such as a comma. In the
+    Model Window, you can use <b>Search / Next Error or</b> <b>Search / Previous
+    Error </b>to move the cursor directly to the faulty Statement. If the error
+    occurred in an Include-file file, you can get better diagnostic messages by
+    temporarily placing the statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Unknown token.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Translator has encountered a symbol it could not
+    recognize. Possible corrupt file. If the problem persists, please complete
+    an error report on the GPSS World Internet Web site at MinutemanSoftware.com.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Use of a nonpositive entity number.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;Windows sockets initialization failed.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">GPSS World was unable to initialize its Internet
+    interface. This could be a problem in your operating system.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You cannot use GENERATE in Manual Simulation. Use SPLIT. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">To create Transactions interactively you must use a SPLIT
+    Block not a GENERATE Block.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You cannot use UNSPECIFIED to initialize a Logicswitch Entity. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">A syntax error occurred. Logicswitch Entities cannot take
+    on a value of UNSPECIFIED. If this is a Model translation you can use <b>Search
+    / Next Error or</b> <b>Search / Previous Error </b>to move the cursor
+    directly to the faulty Statement. If the error occurred in an Include-file
+    file, you can get better diagnostic messages by temporarily placing the
+    statements in a Model Object.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You cannot wait on this SNA.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The Active Transaction is attempting to wait for a
+    condition that can never occur. Such a Transaction would never be able to
+    enter the Block. You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition. Do not attempt to
+    block on an Integrated User Variable. Use the Transaction generation
+    thresholds in the INTEGRATE Command for that purpose.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You must Halt the Experiment first. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">The operation attempted requires that the current
+    simulation be Halted first.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You must specify an SNA.&quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must specify an operand that is a valid System
+    Numeric Attribute.</p>
+    <p ALIGN="left">SNAs are discussed in Section 3.4 of <i>The GPSS World
+    Reference Manual</i>.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You must specify arguments for this Experiment. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">You must change values, operands, or the flow of
+    Transactions in the simulation to prevent this condition.</p>
+  </blockquote>
+  </blockquote>
+  <b>
+  <p align="left">&quot;You must use a CONDUCT Command to invoke an Experiment. &quot;</p>
+  <blockquote>
+    <blockquote>
+    </b>
+    <p ALIGN="left">PLUS Experiments can only be started by a direct CONDUCT
+    Command.</p>
+  </blockquote>
+  </blockquote>
+</font>
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left"><b><font FACE="Courier New" SIZE="1">&nbsp;&nbsp; </font><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font FACE="Courier New" SIZE="1"><a href="reference_manual.htm"><font FACE="Arial" SIZE="2">[Table
+of Contents]</font></a></font></b></p>
+
+
+
+
+
+</html>

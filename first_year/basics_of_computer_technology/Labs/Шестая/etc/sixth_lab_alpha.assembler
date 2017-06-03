@@ -1,0 +1,96 @@
+ORG     000
+RET:    WORD    ?
+        NOP
+        BR INT
+
+ORG 008
+X:      WORD    0000
+ORG 010
+TWO:    WORD    0002
+SAVEA:  WORD    0000
+SAVEC:  WORD    0000
+EXTVAL: WORD    0000
+SIXX:   WORD    0000
+SVN:    WORD    0007
+AHD:    WORD    0014
+ALD:    WORD    0015
+
+ORG     020
+BEGIN:  EI
+        CLA
+LOOP:   JSR EDIT_X
+        BR LOOP
+
+ORG     040
+EDIT_X: WORD    ?
+        CLA
+        ADD X
+        DI
+        SUB TWO 
+        JSR CHECKX
+        EI
+        BR (EDIT_X)
+
+ORG     070
+INT:    WORD    ?
+        MOV SAVEA
+        ROL
+        MOV SAVEC
+CHECK2: TSF 2
+        BR CHECK3
+        BR READY2
+CHECK3: TSF 3
+        BR READY1
+        BR READY3
+READY2: CLA
+        IN 2
+        MOV EXTVAL
+        JSR SF_X
+        NOP
+        CLF 2
+        BR RSTOR
+READY3: CLA
+        ADD X
+        ADD X
+        ADD X
+        CLC
+        ROL
+        MOV SIXX
+        CLA
+        SUB SIXX
+        SUB SVN
+        OUT 3
+        HLT
+        CLF 3
+        BR RSTOR
+READY1: CLF 1
+RSTOR:  CLA
+        ADD SAVEC
+        ROR
+        CLA
+        CMA
+        AND SAVEA
+        EI
+        BR (RET)
+
+ORG     090
+SF_X:   WORD    000
+        CLA
+        ADD X
+        SUB EXTVAL
+        JSR CHECKX  
+        BR 890
+
+ORG     120
+CHECKX: WORD    ?
+        SUB AHD
+        BPL CORR
+        ADD AHD
+        ADD ALD
+        BMI CORR
+        SUB ALD
+        BR MOVING
+CORR:   CLA
+        ADD AHD
+MOVING: MOV 008
+        BR (CHECKX)    

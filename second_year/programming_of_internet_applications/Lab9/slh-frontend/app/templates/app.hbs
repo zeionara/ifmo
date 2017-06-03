@@ -1,0 +1,105 @@
+{{#unless isAuthenticated}}
+<h1 class="bigheader">Permission denied</h1>
+{{#bs-form model=login onSubmit=(action "login") novalidate=true as |form|}}
+    {{bs-button defaultText="Log in" type="primary" buttonType="submit" class="submit"}}
+{{/bs-form}}
+{{/unless}}
+{{#if isAuthenticated}}
+<h1 class="bigheader">Welcome to the app page</h1>
+{{#dynamic-area controller=this}}
+<div id="area">
+  {{#each model as |ponto|}}
+
+  {{/each}}
+</div>
+{{/dynamic-area}}
+<h2 class="secondaryheader">X:</h2>
+{{#bs-form action onSubmit=(action "add") novalidate=true as |form|}}
+{{#bs-button-group
+  class="emberbuttongroup"
+  value=model.x
+  type="checkbox"
+  onChange=(action (mut model.x)) as |bg|}}
+  {{#bg.button class="xbtn" value=-5}}-5{{/bg.button}}
+  {{#bg.button class="xbtn" value=-4}}-4{{/bg.button}}
+  {{#bg.button class="xbtn" value=-3}}-3{{/bg.button}}
+  {{#bg.button class="xbtn" value=-2}}-2{{/bg.button}}
+  {{#bg.button class="xbtn" value=-1}}-1{{/bg.button}}
+  {{#bg.button class="xbtn" value=0}}0{{/bg.button}}
+  {{#bg.button class="xbtn" value=1}}1{{/bg.button}}
+  {{#bg.button class="xbtn" value=2}}2{{/bg.button}}
+  {{#bg.button class="xbtn" value=3}}3{{/bg.button}}
+{{/bs-button-group}}
+{{#unless isXValid}}
+  <div class="alert danger embererror">
+    X must be selected
+  </div>
+{{/unless}}
+<h2 class="secondaryheader">Y:</h2>
+{{form.element value=model.y onChange=(action (mut model.y)) class="embertextfield" controlType="textarea"}}
+{{#unless isYValid}}
+  <div class="alert danger embererror">
+    Y must be number in interval (-5 ... 5)
+  </div>
+{{/unless}}
+<h2 class="secondaryheader">R:</h2>
+{{#bs-button-group
+  class="emberbuttongroup"
+  value=model.r
+  type="radio"
+  default = -5
+  onChange=(action (mut model.r))
+
+   as |bg|}}
+  {{#bg.button class="rbtn" value=-5}}-5{{/bg.button}}
+  {{#bg.button class="rbtn" value=-4}}-4{{/bg.button}}
+  {{#bg.button class="rbtn" value=-3}}-3{{/bg.button}}
+  {{#bg.button class="rbtn" value=-2}}-2{{/bg.button}}
+  {{#bg.button class="rbtn" value=-1}}-1{{/bg.button}}
+  {{#bg.button class="rbtn" value=0}}0{{/bg.button}}
+  {{#bg.button class="rbtn" value=1}}1{{/bg.button}}
+  {{#bg.button class="rbtn" value=2}}2{{/bg.button}}
+  {{#bg.button id="activedef" class="rbtn active" value=3}}3{{/bg.button}}
+{{/bs-button-group}}
+{{#unless isRadiusValid}}
+  <div class="alert danger embererror">
+    Radius must be positive number
+  </div>
+{{/unless}}
+{{bs-button defaultText="Add" type="primary" buttonType="submit" disabled="true" class="add embersubmitbutton"}}
+{{/bs-form}}
+{{#bs-form model=login onSubmit=(action "logout") novalidate=true as |form|}}
+    {{bs-button defaultText="Log out" type="primary" buttonType="submit" class="submit embersubmitbutton"}}
+{{/bs-form}}
+<table id="pontos">
+  <td>
+    X
+  </td>
+  <td>
+    Y
+  </td>
+  <td>
+    R
+  </td>
+  <td>
+    Inside
+  </td>
+  {{#each model as |ponto|}}
+    <tr>
+      <td>
+        {{ponto.x}}
+      </td>
+      <td>
+        {{ponto.y}}
+      </td>
+      <td>
+        {{ponto.rad}}
+      </td>
+      <td>
+        {{ponto.inside}}
+      </td>
+    </tr>
+  {{/each}}
+</table>
+{{/if}}
+{{outlet}}

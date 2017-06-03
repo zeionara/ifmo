@@ -1,0 +1,2511 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica">
+<blockquote>
+  <blockquote>
+<b><font FACE="Arial" SIZE="6">
+<h1 align="center"><!--mstheme--><font color="#336666"><a name="Chapter 1">Chapter 1</a>. Using GPSS World<!--mstheme--></font></h1>
+</font></b>
+  <font FACE="Arial" SIZE="2">
+  <b><font FACE="Arial" SIZE="5">
+  <h2>&nbsp;</h2>
+  <h2 align="left">How This Manual Describes Actions</h2>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This tutorial is designed to lead you gradually through the
+  powerful simulation features of GPSS World. Most choices will be made from
+  drop down menus or dialog boxes.</p>
+  <p ALIGN="left">Actions you are asked to make immediately are represented
+  by verbs in uppercase. For example, when you see PRESS, CHOOSE, CLICK, DOUBLE
+  CLICK, SELECT, or TYPE, you are to perform the action, yourself. When actions
+  are referred to, but you are not asked to do them immediately, the verbs are
+  shown in lower case.</p>
+  <p ALIGN="left">Words representing objects or denoting concepts specific to
+  GPSS World are often shown in Italics for emphasis, when first encountered, or
+  capitalized when used frequently. GPSS verbs are generally shown in all
+  capitals. For example, SHOW is an Immediate Command.</p>
+  <p ALIGN="left">Keystrokes you are required to make are indicated the name
+  of the key enclosed in an outline. For example, &quot;PRESS</font>
+</font><b><font face="Arial" size="2">[Enter]</font></b><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">&quot;
+  </font><font FACE="Arial" SIZE="2">means that you are to press the key labeled
+  &quot;Enter&quot; on your keyboard.</p>
+  <p ALIGN="left">When more than one key must be used, the key symbols are
+  separated by a plus sign(s). For example,</font> <b>[Ctrl] + [Alt] + [H]</b><font FACE="Arial" SIZE="2">
+  means that you are to press and hold the first two keys, while you press and
+  release the right one. With two keys, press and hold the left one then press
+  and release the right.</p>
+  <p ALIGN="left">Mouse actions are required when the capitalized phrases
+  CLICK or DOUBLE CLICK appears. This means that you are to use mouse button 1
+  to perform the action. When mouse button 2 is needed, it will be called for
+  explicitly. By default, mouse button 1 is the left mouse button, and 2 the
+  right. You can use the system control panel to switch these assignments.</p>
+  <p ALIGN="left">Menu items are indicated in a bold</font><font FACE="Helv" SIZE="2">
+  </font><b><font SIZE="2">Times New Roman </font></b><font FACE="Arial" SIZE="2">font</font><b><font FACE="Helv" SIZE="2">.</font></b><font FACE="Helv" SIZE="2">
+  </font><font FACE="Arial" SIZE="2">When more than one level of selection is
+  necessary, they are shown in the order: menu bar item / pull down menu item /
+  cascade menu item. For example,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font><b>&nbsp;&nbsp;&nbsp;&nbsp; File / Open</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">means that you should use either the mouse or the
+    keyboard to choose the &quot;Model&quot; item in the menu bar. Then you
+    should choose the &quot;Open&quot; item in the pull down menu. In this
+    example, there is no cascade menu item. For purposes of nomenclature in this
+    manual, &quot;CHOOSE&quot; is used for menu items, &quot;SELECT&quot; is
+    used for other choices.</p>
+    <p ALIGN="left">Dialog window controls are also shown in a bold </font><b><font SIZE="2">Times
+    New Roman </font></b><font FACE="Arial" SIZE="2">font</font><font FACE="Helv" SIZE="2">.
+    </font><font FACE="Arial" SIZE="2">For example,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">means that you should use the mouse to select the OK
+    button or in some cases the Proceed button in the dialog window to process
+    your selection. In either of these cases you can also use the keyboard to
+    process your selection. To do this,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[Enter]</b></font></p>
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Characters you are to type into a Model Window are
+  indicated in a bold </font><b><font FACE="Courier New" SIZE="2">Courier New</font><font FACE="Arial" SIZE="2">
+  </font></b><font FACE="Arial" SIZE="2">font. For example,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font>&nbsp;&nbsp;&nbsp;&nbsp; <font FACE="Courier New"><b>GENERATE 100</p>
+  </b>
+    </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">means that you are to type the characters &quot;GENERATE
+  100&quot;, making sure the Model Window has the focus, and that the text
+  cursor has been positioned to the right place in the window.</p>
+  <p ALIGN="left">Finally, programs in the Windows directories or on the
+  Desktop are described with <u>underlining</u> For example,</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">DOUBLE CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">The GPSS World Session Icon</p>
+</font>
+    </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">means that you are to view the desktop or a Windows folder
+  containing the icon that represents the GPSS World Session Object, and you are
+  to position the mouse pointer over it and double click mouse button 1. Parts
+  of the windows, other than menu items, such as debugging icons are also
+  indicated with underlining.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Menu Operation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You can use either the mouse or the keyboard to choose menu
+  items. In multistep selections, a selection cursor appears to show you which
+  item is about to be chosen. A selection cursor is a dotted line or a
+  &quot;pressed&quot; appearance around a menu item. The <b>[Alt]</b>
+  key, when pressed, will select the first item in the main menu giving it a
+  &quot;pressed&quot; appearance. The </font>arrow <font FACE="Arial" SIZE="2">keys can then be used to move back and forth over the menu items. The
+  <b>[Enter]</b>
+  makes the final selection.</p>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p align="left">Using the Mouse</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">There are two ways to use a mouse to choose a menu item.
+  You can position the mouse pointer over the item to be chosen, and then press
+  and release mouse button 1. You can do this in the menu bar, a pull down menu,
+  or a cascade menu.</p>
+  <p ALIGN="left">Alternately, you can press mouse button 1 and not let up
+  immediately. Instead, you can drag over the item in the pull down menu and
+  over the item in a cascade menu to be chosen, and then release the button. You
+  may find this combined action quicker, although there are keyboard shortcuts,
+  as well.</p>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p align="left">Using the Keyboard</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The keyboard alone can be used to make menu choices. If any
+  menu actions are highlighted, press <b>[Esc]</b></font><font FACE="Helv" SIZE="2">.</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If the cursor is presently in a window, press <b>[Alt]</b>
+  to position the menu selection cursor on the first item of the menu bar. Now
+  you can move the selection cursor by using the arrow keys</font><font FACE="Helv" SIZE="2">. </font><font FACE="Arial" SIZE="2">Press
+  <b>[Enter]</b></font>
+</font><font face="Helv" size="2"> </font><font FACE="Arial" SIZE="2">to
+  make the final menu item choice.</p>
+<p ALIGN="left">Alternately, you may be able to simply press a mnemonic
+  key. These keys are denoted by the underlined letters occurring in the menu
+  items. After entering keyboard selection mode by pressing <b>[Alt]</b><font FACE="Helv" SIZE="2">, </font><font FACE="Arial" SIZE="2">you
+  can press mnemonic keys to choose succeeding menu items. For example</font> <b>[Alt]</b>
+then <b>[C]</b><font FACE="Helv" SIZE="2"> </font><font FACE="Arial" SIZE="2">will
+  cause the Command Menu to drop down.</p>
+  <p ALIGN="left">Some items have shortcut key combinations listed in the
+  menu, to the right of the item. You can immediately choose a menu item, simply
+  by pressing this key combination. Of course, for you to be able to do this,
+  that window has to have the focus.</p>
+  <p ALIGN="left">Finally, when you see</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">you may instead choose to use the keyboard and</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[Enter]</b></font></p>
+<font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This works in all dialog boxes except the Custom Command
+  Dialog that is that is reached via the Command Menu. The Custom Dialog allows
+  for multiple commands to be entered. The <b>[Enter] </b>
+  key starts a new line in this dialog box.</p>
+</font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Model Windows</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When a GPSS World Text Window has the focus, keystrokes
+  usually cause the replacement or insertion of characters into the window. The <b>[Ins]</b></font><font FACE="Helv" SIZE="2"> </font><font FACE="Arial" SIZE="2">key
+  can be used to change between insert mode and replace mode. The mode is
+  indicated by the shape of the blinking text cursor, which also indicates the
+  insertion point in the window.</p>
+  <p ALIGN="left">Either the keyboard or the mouse can move the text cursor.
+  Clinking mouse button 1 moves the text cursor to the position under the mouse
+  pointer. The arrow keys,</font> <b>[Home]</b>,<b> [End]</b>,<b> [PgUp]</b>,
+  and <b>[PgDn]</b><font FACE="Helv" SIZE="2">
+  </font><font FACE="Arial" SIZE="2">all move the text cursor, as does normal
+  text insertion and deletion.</p>
+  <p ALIGN="left">A new line of text can be started by pressing</font>
+</font><font face="Helv" size="2"> <b>[Enter]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">.</p>
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Selected text is shown in inverse, and can take part in
+  special operations. You can select text by dragging mouse button 1 over the
+  target text, by pressing <b>[Shift]</b></font><font FACE="Helv" SIZE="2">,
+  </font><font FACE="Arial" SIZE="2">and clicking mouse button 1 on the end of
+  selected text, or by double clicking on the word to be selected.</p>
+  <p ALIGN="left">You can delete characters, one at a time, by pressing</font><font FACE="Helv" SIZE="2">
+  </font>
+</font><font face="Helv" size="2"><b>[Del]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2"> </font><font FACE="Arial" SIZE="2">or
+  backspace. Pressing</font><font FACE="Helv" SIZE="2"> </font></font><font face="Helv" size="2"><b>[Del]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">
+  </font><font FACE="Arial" SIZE="2">deletes the character to the right of the
+  cursor; pressing backspace deletes the character to the left of the cursor.
+  Selected text can be deleted by choosing </font><b>Edit / Cut</b><font FACE="Times">
+  </font><font FACE="Helv" SIZE="2">, </font><font FACE="Arial" SIZE="2">or by
+  pressing </font></font><font face="Helv" size="2"><b>[Del]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">
+.</font><font FACE="Arial" SIZE="2"> A single level undo is available by
+  choosing </font><b>Edit / Undo</b><font FACE="Helv" SIZE="2"> .</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Dialog Boxes</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Although the GPSS World dialog boxes are all different,
+  they do have some things in common.</p>
+  <p ALIGN="left">Mouse selection is normally used to set the focus in entry
+  fields, and make selections in each dialog. Usually, the</font><font FACE="Helv" SIZE="2">
+  <b>[</font></font><font face="Helv" size="2">Enter]</font></b><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">
+</font><font FACE="Arial" SIZE="2">key
+  will select</font><font FACE="Helv" SIZE="2"> </font><b>OK</b><font FACE="Helv" SIZE="2">,
+  </font><font FACE="Arial" SIZE="2">the</font><font FACE="Helv" SIZE="2"> </font></font><font face="Helv" size="2"><b>[Esc]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">
+  </font><font FACE="Arial" SIZE="2">key will select</font><font FACE="Helv" SIZE="2">
+  </font><b>Cancel</b><font FACE="Helv" SIZE="2">, </font><font FACE="Arial" SIZE="2">and
+  the</font><font FACE="Helv" SIZE="2"> </font></font><font face="Helv" size="2"><b>[F1]</b></font><font FACE="Arial" SIZE="2"><font FACE="Helv" SIZE="2">
+  </font><font FACE="Arial" SIZE="2">key will select</font><font FACE="Helv" SIZE="2">
+  </font><b>Help</b><font FACE="Helv" SIZE="2">.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Getting Help</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">On-line Help is available when you</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Help</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">in a dialog window, or when you</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Helv" size="2"><b>[F1]</b></font></p>
+  <font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Once the On-line Help Facility is activated, you can use a
+  variety of search techniques for information. If you highlight a keyword in a
+  Text Window and press the Help Window will open on detailed information for
+  that keyword. This is useful for getting information on things like GPSS
+  Blocks, Commands, PLUS library procedures, and probability distributions.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Universal Keys</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Several keys, and key combinations are effective no matter
+  which GPSS World</font><font FACE="Arial" SIZE="1">TM</font><font FACE="Arial" SIZE="2">
+  window has the focus. They are generally used to control a simulation in
+  progress by quickly activating frequently used commands.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">The Accelerator Keys</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Accelerator keys are key combinations that immediately
+  enter a menu command into GPSS World. Usually, they are listed just to the
+  right of the menu item they effect. They are enabled only when their
+  associated menu item is. To activate an accelerator key, hold down all keys in
+  the combination except the last, then press the last key, then release all
+  keys.</p>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p align="left">GPSS World Hot Keys</p>
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Hot keys are quick ways to send GPSS World Commands to a
+  Simulation Object. They are:</p>
+  <blockquote>
+  <blockquote>
+  <p ALIGN="JUSTIFY"></font><b><font face="Helv" size="2">[</font></font><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font></font></b><b><font face="Helv" size="2">+</font></b><font face="Helv" size="2"><b>[Alt]+[S]</b></font><font FACE="Arial" SIZE="2">&nbsp;-
+  <b>Create Simulation</b> &nbsp;<b><font FACE="Keycaps" SIZE="4"><br>
+  </font><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[R]</b></font><font FACE="Arial" SIZE="2">&nbsp;-
+  <b>Retranslate<br>
+  <font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[L]</b></font><font FACE="Arial" SIZE="2">&nbsp;-
+  <b>Repeat Last Command</b>
+  <p ALIGN="JUSTIFY"></font><font FACE="Arial" SIZE="2"><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><b><font face="Helv" size="2">[Alt]+[</font></font><font face="Helv" size="2">C]</font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  - <b>CONTINUE<br>
+  </b> </font><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[H]
+  </b></font><font FACE="Arial" SIZE="2">- <b>HALT<br>
+  <font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[1]</b></font><font FACE="Arial" SIZE="2">
+  - <b>STEP 1<br>
+  </blockquote>
+  </blockquote>
+  <blockquote>
+  </font><b><font FACE="Arial">
+  <p>Text View Navigation Keys</p>
+  </blockquote>
+  </font></b></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Navigation Keys let you jump to specific locations in a
+  Text View. They are:</p>
+  </font>
+ <b>
+  <blockquote>
+  <blockquote>
+  <p ALIGN="JUSTIFY"><font FACE="Arial" SIZE="2"><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><b><font face="Helv" size="2">[Alt]+[</font></font><font face="Helv" size="2">B]</font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  - <b>Next Bookmark<br>
+  </b> </font><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[G]</b></font><font FACE="Arial" SIZE="2">
+  - <b>Go To Line<br>
+  <font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[N]</b></font><font FACE="Arial" SIZE="2">
+  - <b>Next Error<br>
+  <font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><b><font face="Helv" size="2">[Alt]+[</font></font><font face="Helv" size="2">P]</font></b><font FACE="Arial" SIZE="2"><b><font FACE="Arial">
+  - </font></b><font FACE="Arial"><b>Previous Error<br>
+  </b></font><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><font face="Helv" size="2"><b>[Alt]+[F]</b></font><font FACE="Arial" SIZE="2"><b><font FACE="Arial">
+  - </font></b><font FACE="Arial">Find / Replace<b> Text<br>
+  </b></font>
+</font></p>
+  </blockquote>
+  </blockquote>
+ <blockquote>
+  <p ALIGN="JUSTIFY"><font FACE="Arial" SIZE="2"><font FACE="Arial"><b> &nbsp;Editing Accelerators</p>
+ </blockquote>
+  </b></font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Editing is faster using Text Edit Accelerators instead of
+  menu selection. These keys are:</p>
+ <b>
+  <blockquote>
+  <blockquote>
+  </font><p ALIGN="JUSTIFY"><b><font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+</font></b><b><font face="Helv" size="2">[</font></font><font face="Helv" size="2">Z]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Insert Line<br>
+  <font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b></font><b><font face="Helv" size="2">D]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Delete Line<br>
+  <font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b></font><b><font face="Helv" size="2">I]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Undo<br>
+  <br>
+  </font><font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b><b><font face="Helv" size="2">C]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Copy to Clipboard<br>
+  <font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b></font><b><font face="Helv" size="2">X]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Cut to Clipboard<br>
+  <font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b></font><b><font face="Helv" size="2">V</font></b><b><font face="Helv" size="2">]</font></b><font FACE="Arial" SIZE="2">
+  - <b>Paste from Clipboard</b></p>
+ </b>
+  <p ALIGN="JUSTIFY">also,</p>
+ <b>
+   <p ALIGN="JUSTIFY"></b></font> <b><font FACE="Arial" SIZE="2"><b><font face="Helv" size="2">[Ctrl<font FACE="Arial" SIZE="2">]</font>+[</font></b></font><b><font face="Helv" size="2">Ins]</font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  -
+  <b>Copy to Clipboard<br>
+  </b> 
+</font><b><font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Shift<font FACE="Arial" SIZE="2">]+[</font></font><font face="Arial" size="2">Del</font><font face="Helv" size="2">]</font></b><font FACE="Arial" SIZE="2">
+  -
+  <b>Cut to Clipboard<br>
+  <font face="Helv" size="2">[</font></b></font><b><font face="Helv" size="2">Shift<font FACE="Arial" SIZE="2">]+[</font></font><font face="Arial" size="2">Ins</font><font face="Helv" size="2">]</font></b><font FACE="Arial" SIZE="2">
+  -
+  <b>Paste from Clipboard
+  </b>
+  </font></b></p>
+ <b>
+  </blockquote>
+  </blockquote>
+  <blockquote>
+  <b><font FACE="Arial">
+  <p>&nbsp;</p>
+  </font></b>
+  </blockquote>
+  </b>
+  <p ALIGN="JUSTIFY"><b><font face="Arial" size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  General Accelerators</font></b></p>
+  <font FACE="Arial" SIZE="2">
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">There are several other general purpose keys. They are:</p>
+  <p ALIGN="JUSTIFY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [Ctrl]+[O] - File Open<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [Ctrl]+[S] - File Save<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [Ctrl]+[P] - File Print</b></p>
+  <p ALIGN="JUSTIFY"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [Altl]+[F6] - Next Pane<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [Shift]+[F6] - Previous Pane</b></p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="left"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Function Keys</b></p>
+  <p ALIGN="left">Function keys can be given ad hoc assignments. You can do
+  this in the Model Settings Notebook by choosing</font><font FACE="Helv" SIZE="2">
+  </font>Edit / Settings <font FACE="Arial" SIZE="2">and selecting the </font>Function
+  Keys <font FACE="Arial" SIZE="2">page in the notebook. </font><font FACE="Helv" SIZE="2">Then,
+  type</font><font FACE="Arial" SIZE="2"> in the new assignment beside the
+  appropriate function key label. Thereafter, when you press the associated
+  function key, the assigned Command is executed. If you use INCLUDE, you can
+  even assign a complex Command List and/or PLUS Procedure redefinition to the
+  function key.</p>
+  <p ALIGN="left">Some of the function keys have been preloaded for your
+  convenience. You can change these assignments to best fit your work style. We
+  have used some of these preassigned keys in this tutorial.</p>
+ <b>
+  <blockquote>
+  <blockquote>
+  <p ALIGN="left"><b><font face="Helv" size="2">[</font></b></b></font></font><b><b><font face="Helv" size="2">F1<font FACE="Arial" SIZE="2">]</font></font></b><font FACE="Arial" SIZE="2"><font FACE="Arial" SIZE="2">
+  = <b>Help<br>
+  </b></font><b><font face="Helv" size="2">[F</font></b></font><b><font face="Helv" size="2">2<font FACE="Arial" SIZE="2">]</font></font></b><font FACE="Arial" SIZE="2">
+  = <b>CONTINUE<br>
+  <font face="Helv" size="2">[F3]</font></b><font FACE="Arial" SIZE="2">
+  = <b>EXIT<br>
+  <font face="Helv" size="2">[F4]</font></b><font FACE="Arial" SIZE="2">
+  = <b>HALT<br>
+  <font face="Helv" size="2">[F5]</font></b><font FACE="Arial" SIZE="2">
+  = <b>STEP 1<br>
+  <font face="Helv" size="2">[F6]</font></b><font FACE="Arial" SIZE="2">
+  = <b>STOP<br>
+  </b></font><b><font face="Helv" size="2">[F7]</font></b><font FACE="Arial" SIZE="2">
+  = <b>STOP ,,Off
+  </b></font></font></font></font></font></b>
+  </p>
+  <p ALIGN="left">&nbsp;
+  </p>
+  </blockquote>
+  </blockquote>
+  <p ALIGN="left"><b><font face="Arial" size="4">Blocks and
+  Transactions&nbsp;</font></b></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">GPSS simulations consist of a network of
+  &quot;Blocks&quot;, which represent actions or delays to be encountered by a
+  set of &quot;Transactions&quot;, which &quot;enter&quot; one Block, then the
+  next. The whole simulation is simply a sequence of one Transaction entering
+  one or more Blocks, then another Transaction, and so on.</p>
+  <p ALIGN="left">Your job in modeling a real system is to piece together a
+  set of Blocks that cause Transactions to behave in a manner resembling the
+  real (or proposed) system. For example, GENERATE Blocks introduce Transactions
+  into the simulation at simulated time intervals of your choosing. Such
+  Transactions could represent customers, parts, telephone calls, electronic
+  signals, or something else.</p>
+  <p ALIGN="left">Blocks and Transactions are only two of several GPSS Entity
+  types. Generally, when a Transaction enters a Block, some operation is
+  performed on a third Entity. For example, the entry of a Transaction into a
+  SEIZE Block causes a Transaction to &quot;own&quot; a GPSS Entity called a
+  facility. Facility entities are generally used to represent single owner
+  resources.</p>
+  <p ALIGN="left">The first few lessons in this tutorial are not concerned
+  with the action of specific Blocks. You will start to study a small subset of
+  them in Lesson 5. After you begin to feel comfortable with the basic methods
+  of simulation, you should make yourself aware of what the remaining Blocks can
+  do for you. These are listed and discussed in Chapter 7 of the<i> GPSS World
+  Reference Manual</i>. However, you only need to understand a few GPSS Blocks
+  to begin to build models.</p>
+  <p ALIGN="left">Don’t worry about the action of specific Blocks, just
+  yet. We will begin by becoming familiar with the GPSS World Simulation
+  Environment before we look at the GPSS language in any detail.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">&nbsp;</p>
+  <h2 ALIGN="center"><a name="Lesson 1"></a>Lesson 1. The GPSS World Program</h2>
+  <p ALIGN="left">Well, let’s get started. If you have not yet installed
+  GPSS World on your 32 bit Windows-compatible system, please refer to the <i>GPSS
+  World Reference Manual</i> and do so. Unless you are using the Student Version
+  of GPSS World, you will need to get a numeric software key to activate your
+  installation. Here, we'll assume all this has been taken care of.</p>
+  <p ALIGN="left">Normally, installing GPSS World places an item on your
+  Start Menu. Actually, it goes in the Programs submenu. If you prefer to
+  customize your installation by adding a shortcut to GPSS World to your
+  desktop, it's easy to do. Please consult your operating systems documentation
+  for details. In this tutorial we will use only the Start Menu.</p>
+  <p ALIGN="left">To start GPSS World click the <font SIZE="2">Start</font>
+  button, then click <font SIZE="2">Programs</font>,
+  and finally click <font SIZE="2">GPSS World Xxxxx Version </font> on the submenu, where Xxxxx
+  is &quot;Student&quot; or &quot;Commercial&quot;, or whatever. If a Notices
+  Window appears, go ahead and Cancel it. You have now opened the GPSS World
+  Main Window.</p>
+  <p ALIGN="left">If you get any error messages you can look them up in
+  Chapter 14 of the <i>GPSS World Reference Manual</i>.</p>
+  <i><font SIZE="2">
+  <p align="center">&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_1.gif" width="600" height="404"></p>
+  <p align="center">Figure 1—1. The GPSS World Main Window</p>
+    </font></i><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">There are two ways to open a Model Object. You can double
+  click on the file icon in a Windows folder, or you can begin by opening the
+  GPSS World Main Window as we have just done and then use File/Open as
+  described below.</p>
+  <p ALIGN="left">To open a model file, you will have to go to the Samples
+  Folder. The Samples Folder is located as follows:</p>
+  <b>
+  <p ALIGN="left">C:\Program Files\Minuteman Software\GPSS World ...\Sample
+  Model Files</p>
+  </b>
+  <p ALIGN="left">Now let's start to learn some of the features of your new
+  software.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>File/Open</p>
+  </b>
+   <i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_2.gif" width="604" height="431"></p>
+  <p align="center">Figure 1—2. The File Menu of the Main Window</p>
+    </font></i><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">A dialog box similar to the one shown below will appear.</p>
+  </font><i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_3.gif" width="428" height="271"></p>
+  <p align="center">Figure 1—3. The Open File Dialog</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="left">GPSS World Windows are described in Chapters 2 and 5 of
+      the <i>GPSS World Reference Manual</i>. If you like, you may want to refer
+      to that material. You do not need it to complete this lesson. At the end
+      of this chapter there is an outline of the various drop down menus found
+      across the top of the GPSS World Main Window. Choosing items from these
+      menus causes the opening of dialog boxes into which you will enter
+      requested information through the keyboard or with your mouse. These menus
+      also allow you to execute commands.</p>
+      <p ALIGN="left">Now, let’s continue. Double click on the Samples
+      Folder. You will see the list of GPSS World Sample Model Files that are
+      available. Double Click on the icon to open SAMPLE1.GPS. You may have to
+      use the scroll bar in the Open File Dialog to find SAMPLE1.GPS in the
+      SAMPLES folder.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Sample1</p>
+  </b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Open</p>
+  </b>
+  <p align="center">&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_4.gif" width="532" height="273"></p>
+  <p align="center"><i>Figure 1—4. The Model Window — Text View of Sample1.gps</i></p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="left">The SAMPLE1.GPS file should now be displayed in the
+      Model Window. You’ll notice that unlike Minuteman’s DOS Version of
+      GPSS (GPSS/PC<font FACE="Arial" SIZE="1">TM</font>), GPSS World ignores
+      any line numbers in the text lines.</p>
+      <p ALIGN="left">However, GPSS World does use ordinal line numbers,
+      assigned by the full screen text editor, to identify the Statement
+      associated with errors and other conditions. You do not have to worry
+      about these. Later, you can use the <b>Search / Go To Line ...</b> menu
+      item to jump to a specific text line in the Model Window.</p>
+      <p ALIGN="left">When you open a Model File, the model has not yet been
+      translated and is not ready to run. Before we run the simulation, let’s
+      explore some of the settings and menu items we can use to manipulate it.</p>
+      <p ALIGN="left">The Main Window is the starting point for GPSS World.
+      You can use its menu to display a text view of your Model Object in a
+      Model Window. From it you create a separate Simulation Object and from
+      that point on, all interactions are seen in the Journal Window or Entity
+      Windows, which are views of the Simulation Object. The Statements in the
+      Model Object must be &quot;Translated&quot; in order to create the
+      corresponding Simulation Object.</p>
+      <p ALIGN="left">Spend a few seconds now, familiarizing yourself with
+      the general organization of the Model Window. For easy reference, an
+      outline of its menus is in the Appendix of this manual.</p>
+      <p ALIGN="left">GPSS World has a full screen text editor with many
+      features found in popular word processors. We will explore the use of this
+      editor in a later chapter.</p>
+      <p ALIGN="left">Let’s use the File menu to Save the model to a file
+      with a different name.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>File / Save As</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and<b> </b>when the dialog box appears, enter the file
+    name TMP in the highlighted area that currently says SAMPLE1. Then</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Save</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The file name at the top of the Model Window changes to
+    TMP. The screen will appear as shown below.</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">&nbsp;</p>
+  </font>
+  <p align="center"><i><font SIZE="2"><img border="0" src="../images/T1_1_5.gif" width="428" height="271">
+  </font></i>
+  </p>
+  <p align="center"><i><font SIZE="2">Figure 1—5. The Save As Dialog</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="left">The file, which is the same as SAMPLE1.GPS is visible
+      in the Model Window. Let’s add a BUFFER Block after the GENERATE Block.
+      Use the mouse to position the cursor anywhere in the Queue Barber line by
+      moving the mouse pointer to the position and clicking once.</p>
+      <p ALIGN="JUSTIFY">&nbsp;</p>
+ 
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Edit / Insert Line</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">The cursor is now positioned at the beginning of a new
+    line, directly before the QUEUE Barber line. You can space or tab to
+    position the new Block under the other Block names. Although it is not
+    necessary to line up the GPSS Block statements, doing so makes them easier
+    to read.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">BUFFER</p>
+  </font>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You need not type in upper case letters. We have done so
+    in the models in this manual to make the GPSS World reserved words stand
+    out. Let’s adjust some of the model settings.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Edit / Settings</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">You will see the Simulate Page of the Model Settings
+    Notebook. There is an in depth discussion of the choices in the Model
+    Settings Notebook in Chapter 2 of the <i>GPSS World Reference Manual.</p>
+    </i>
+    <p ALIGN="left">Let’s leave the Simulation Page Options as they are.</p>
+    </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><u><font FACE="Arial" SIZE="2">Reports</p>
+  </font></u>
+  <p align="center">&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_6.gif" width="398" height="330"></p>
+  <p align="center"><i>Figure 1—6. The Report Page of the Model Settings Notebook</i></p>
+    </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">You may want to take a brief look at the Random Numbers,
+  Function Keys and Expressions pages of the Model Settings Notebook. They
+  contain options that allow you to assign the use of particular Random Number
+  Generators, to assign operations to Function Keys, and to add expressions to
+  the Expression Window. For now, let’s leave those pages set as they are.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">to exit the Settings Notebook.</p>
+    <p ALIGN="JUSTIFY">When you create a simulation a Journal Window is
+    automatically opened. It will record any interactions or messages generated
+    by GPSS World.</p>
+    <p ALIGN="JUSTIFY">Let’s create a simulation.</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Command / Create Simulation</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">This action translates the model into a simulation. If
+    there were syntax errors in the model, they would be detected at this time
+    and you would be given a chance to correct them.</p>
+    <p ALIGN="JUSTIFY">We are now ready to run the simulation, but first, let’s
+    take a brief look at the Blocks Window.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Window / Simulation Window / Blocks Window</p>
+  </b>
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_7.gif" width="549" height="271"></p>
+  <p align="center"><font face="Arial" size="2"><i>Figure 1—7. The Detailed View of the Blocks Window</i></font></p>
+  <p ALIGN="center">&nbsp;</p>
+  <font FACE="Arial" SIZE="2">
+      <p ALIGN="JUSTIFY">The detailed view of the Blocks will appear in a new
+      window that now appears on top of the Model Window and the Journal Window.
+      Remember you can resize and reposition any of the windows. Also by
+      clicking anywhere on the window, you can bring any window to the front,
+      making it the active window. Stop to review Windows windowing if you are
+      unsure of the manipulation of the windows. There is one useful trick that
+      is worth mentioning here.</p>
+      <p ALIGN="JUSTIFY">If you chose to just look at the Blocks Window, you
+      will now be looking at the non-detailed view of the Blocks in the model.
+      This window will experience on-line update as the simulation runs. Now, in
+      the View menu</p>
+   <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+  </b>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <i><font SIZE="2">
+  <p align="center"><img border="0" src="../images/T1_1_8.gif" width="599" height="297"></p>
+  </font></i>
+  <p align="center">Figure 1—8. The Non Detailed View of the Blocks Window.</p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">You should now see the non detailed view of the Blocks
+  Window. Let's go back to the detailed view.</p>
+ 
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>View / Entity Details</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Let’s start the simulation and watch it run in the
+    Blocks Window. Before you do that, resize the Blocks Window so you can see
+    all the Blocks in the model, from GENERATE to TERMINATE.</p>
+    <p ALIGN="left">Let’s now enter an interactive START 300 Command.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>Command / START</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">on the main menu bar of the GPSS World Main Window. When
+    the START dialog box appears, replace the 1.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font><font FACE="Helvetica"> </font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><font FACE="Courier New"><b>300</p>
+      </b>
+    </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>OK</p>
+  </b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+      <u>Anyplace on the Blocks Window</p>
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to see the model running in the window.</p>
+  <p ALIGN="JUSTIFY">Now close the window.</p>
+  <p align="center">DOUBLE CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Block Icon in the Upper, Left Corner-Blocks Window</p>
+  </u>
+  <p ALIGN="left">to close the window.</p>
+  <p ALIGN="left">The simulation will now run very quickly with the window
+  closed. On-line windows always make the simulation run much more slowly than
+  normal.</p>
+  <p ALIGN="left">The simulation should complete quickly. You will see a
+  Report Window open up automatically when the simulation ends. Report Objects
+  are normally created when the simulation's Termination Count reaches zero.
+  Enlarge the window to examine the contents of the report. You should see
+  something like the window shown below.</p>
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_1_9.gif" width="621" height="306"></p>
+  <p align="center"><i>Figure 1—9. Report Window with a Standard Report</i></p>
+  </font>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+       <p ALIGN="JUSTIFY">At this point, let’s print the report. If you don’t
+      have a printer available, just skip this part.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>File / Print</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Make sure you have the correct printer chosen and that
+    the Report Window is the active window.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+      </font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Remember, while you are running a simulation, only keep
+    open the windows that you are actively viewing. If you are finished with a
+    window and will not need it again, close it. The </font><b><font SIZE="2">Window
+    / Tile</font></b><font FACE="Arial" SIZE="2"> and the </font><b><font SIZE="2">Window
+    / Cascade</font></b><font FACE="Arial" SIZE="2"> menu commands are sometime
+    useful to tidy up a lot of windows.</p>
+    <p ALIGN="left">If you will want to view a window again later, you can
+    minimize it by clicking on the button just to the right of the title bar of
+    the window. You can instantly retrieve a minimized window, as well. Icons
+    for minimized windows are found just above the status line.</p>
+    <p ALIGN="left">Don’t forget that when an on-line Window is open or
+    minimized, a continuing sequence of update messages must be sent to it. This
+    means that the simulation run time will be slowed considerably. Snapshot
+    type Windows, on the other hand, are not updated on-line and therefore do
+    not affect the performance of the simulation.</p>
+    <p ALIGN="JUSTIFY">Let’s minimize the Journal Window.</p>
+  <p align="center">CLICK ON</font><font FACE="Helvetica" SIZE="2">&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><u><font FACE="Helvetica" SIZE="2">Anyplace on the Journal
+  Window</p>
+      </font>
+    </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">to make it the active window.</p>
+  <p align="center">CLICK ON</font>&nbsp;<font FACE="Arial" SIZE="2">&nbsp;&nbsp;&nbsp;
+  <u>The Left Button in the group
+  of three Right of</u></font><u> the Title Bar of the Journal Window</p>
+    </u>
+    <p ALIGN="JUSTIFY">Now, let’s bring it back.</p>
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The First or Second button on the Right of the
+  Minimized Window</p>
+      </u>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="JUSTIFY">You can see how easy it was to retrieve the window.</p>
+      <p ALIGN="JUSTIFY">Let’s review. We have opened a Model File and we
+      saved a GPSS World Model Object after altering its settings and structure.
+      We have Created the Simulation Object and used two views in the Blocks
+      Window to watch Transactions circulate in the simulation. We have
+      minimized the Journal Window. Finally, we have printed and examined a
+      Standard Report in a Report Object. Next time we will simulate customers
+      arriving at a barber shop.</p>
+      <p ALIGN="JUSTIFY">Let’s end the Session. In the GPSS World Main Window,
+      in the Main Menu,</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>File / Exit</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You will be given a chance to save the Model Object, the
+    Simulation Object, and the Report Object.</p>
+    <p ALIGN="JUSTIFY">When asked if you want to save the changes</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+      </font><font FACE="Arial" SIZE="2"><b>No</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">GPSS World will close without saving the open GPSS World
+    Objects.</p>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    </font><b><font FACE="Arial" SIZE="5">
+    <p>&nbsp;</p>
+    </font></font>
+    <h2 align="center"><font face="Arial" size="5"><a name="Lesson 2"></a>Lesson 2 - Running a
+    Simulation</font></h2>
+  </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    <p ALIGN="JUSTIFY">In this lesson, we will study a small simulation. GPSS
+    World has many interactive features which we will defer to later lessons.
+    For now, we will be content to restrict ourselves to running a
+    &quot;classic&quot; sample simulation, the barber shop.</p>
+    <p ALIGN="JUSTIFY">Before we begin, we need to go over a few basic
+    definitions. A GPSS World Model Object is defined to be a sequence of Model
+    Statements. When you know what a Model Statement is, you will know how to
+    build models.</p>
+    <p ALIGN="JUSTIFY">A Model Statement is either a Block Statement, a Command,
+    or a PLUS Procedure Statement. That’s all there is to it. When you build a
+    model, your job is to create a sequence of these Model Statements that make
+    your model behave as if it were some real world system.</p>
+    <p ALIGN="JUSTIFY">You create a Simulation Object from the Model Object by
+    Translating the Model Statements. Normally, the <b><font SIZE="2">Create
+    Simulation</font></b><font FACE="Arial" SIZE="2"> Menu Command does this for
+    you. You can still send additional Model Statements to a simulation, even
+    after the Simulation Object has been created. Statements sent to an existing
+    Simulation Object are called Interactive Statements. A START Command you
+    send after a Simulation Object has been created is an example of an
+    Interactive Statement.</p>
+    <p ALIGN="JUSTIFY">The GPSS Commands are listed in Chapter 6 of the <i>GPSS
+    World Reference Manual</i>. All Commands, except HALT and SHOW, and INCLUDE
+    are placed on an ordered Command Queue when they are received by the
+    Simulation Object. They are then performed in the order that they were
+    received. These Commands are called Queued Commands.</p>
+    <p ALIGN="JUSTIFY">HALT and SHOW are called Immediate Commands. They are
+    performed regardless of what else is going on. HALT is a special case. Not
+    only does it halt any running simulation, but also it deletes any Queued
+    Commands not yet begun.</p>
+    <p ALIGN="JUSTIFY">Let us return now to our simple first model.</p>
+    <p ALIGN="JUSTIFY">In this model, customers arrive, on average, once every
+    300 simulated seconds. Unfortunately, the barber takes, on average, 400
+    simulated seconds to do a haircut. What do you think will happen?</p>
+    <p ALIGN="JUSTIFY">First, start GPSS World as you did in Lesson 1.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Start / Program / GPSS World ...</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and then once in the GPSS World program</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>File / Open</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">open the Samples Folder and</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Sample1</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Open</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">in the list of GPSS models in the dialog box. GPSS World
+    reads in the Model File and creates the Model Object, but does not start the
+    simulation. We must create the Simulation Object by Translation and then
+    issue a START Command.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Command / Create Simulation</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Before we start the simulation, let’s set up a plot in
+    the Plot Window. What shall we plot?</p>
+    <p ALIGN="left">GPSS provides an extensive set of built-in statistics,
+    called System Numeric Attributes, or SNAs. They are listed in the GPSS World
+    Reference Manual and are extremely easy to use. All we have to do is to
+    refer to them when we want to use them in Operands and Expressions. This is
+    one reason why GPSS is much easier to use than a programming language for
+    simulation.</p>
+    <p ALIGN="left">Let’s choose an SNA which indicates the state of the
+    barber shop. The Q$BARBER SNA, which is a count of the waiting line, is a
+    good choice.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>Window / Simulation Window / Plot Window</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">A dialog box appears. Enter the following information as
+    shown in the screen view below. Place the cursor at the start of each entry
+    field to type in the information or use the Tab Key to move from field to
+    field. Do not press <b>[Enter]</b>
+    to go from field to field. <b>[Enter]</b>
+    signifies that all information has been entered. This will plot the barber’s
+    queue during the run of the simulation.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  </font><i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_2_1.gif" width="536" height="456"></p>
+  <p align="center">Figure 2—1. Initializing an on-line Plot</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+ 
+      <p ALIGN="JUSTIFY">Make sure you click on Plot and Memorize. Memorize will
+      save the plot definition of a particular. It can then be retrieved when
+      you run the simulation again or if you wish to use the definition in the
+      Expression Window as you'll see in a minute.</p>
+      <p ALIGN="JUSTIFY">Once you have completed the information, in the New
+      Expression group box</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><u><font FACE="Arial" SIZE="2">Plot</p>
+    </font></u><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><u><font FACE="Arial" SIZE="2">Memorize</p>
+     </font></u><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">GPSS World responds by setting up the axes of the plot in
+    a Plot Window. The plot will be filled in when we start the simulation. You
+    can expand the Plot Window by dragging a corner of the window to a
+    reasonable size for viewing.</p>
+    <p ALIGN="JUSTIFY">The screen should look like this.</p>
+  <p></font></p>
+  <p align="center"><img border="0" src="../images/T1_2_2.gif" width="661" height="337"></p>
+  <p align="center"><i><font SIZE="2">Figure 2—2. The Plot Window</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="JUSTIFY">Now let’s start the simulation.</p>
+      <p ALIGN="JUSTIFY">When you choose the next command you will be watching
+      the progress of the simulation unfold right in the PLOT Window. Let’s
+      stop the simulation before it completes. Once you see the Plot being
+      drawn, halt the simulation using either of the two following methods. The
+      function key <b>[F4]</b> has been
+      preloaded with the HALT command.</p>
+      <p ALIGN="JUSTIFY">First, let’s send a START 100 Command.</p>
+      <p ALIGN="JUSTIFY">Ready?</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / START</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and in the dialog box, replace the 1.</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b><font FACE="Courier New">100</font></p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font FACE="Arial" SIZE="2"><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Then, watch the plot, for a short time and halt the
+    simulation.</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[Ctrl]+[Alt]+[H]&nbsp;&nbsp;</b>&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Keycaps" SIZE="4">
+  </font><font FACE="Helvetica" SIZE="2">or</p>
+  <p align="center">PRESS&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+  [F4]</b></font></p>
+  <p><font face="Arial" size="2">to halt the simulation.</p>
+  <p ALIGN="JUSTIFY">Since we are in the middle of a simulation we might want to
+  enter debugging commands.</p>
+  <p ALIGN="JUSTIFY">For now, though, let’s finish the simulation.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Continue</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">or</p>
+  </font>
+  <p align="center"><font FACE="Helvetica" SIZE="2">
+  PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Ctrl]+[Alt]+[</font></font><font face="Helvetica" size="2">C</font><font FACE="Helvetica" SIZE="2">]&nbsp;&nbsp;</font></b></p>
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">or</p>
+  </font>
+  <p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+  [F</font></font><font face="Helvetica" size="2">2]</font></b></p>
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">The barber shop simulation takes a few seconds. When it is
+  done, GPSS World will signal you with a &quot;The Simulation has Ended&quot;
+  message in the Status Line at the bottom of the Main Window, followed by
+  &quot;Report is Complete&quot;.</p>
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_2_3.gif" width="661" height="337"></p>
+  <p align="center"><i>Figure 2—3. Plot Window at Completion of the Simulation</i></p>
+  </font>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="JUSTIFY">At this point we could choose to print the plot by
+      using the Print Command from the file menu in the Plot Window. If you wish
+      to examine the Plot in more detail, you may do this now.</p>
+      <p ALIGN="JUSTIFY">Notice that the value of Q$Barber changes in vertical
+      jumps. Such changes are happening at discrete instants. A plotted value is
+      sampled after every Block entry in the simulation. Each time the value
+      changes, a message is sent to the Plot Window.</p>
+      <p ALIGN="JUSTIFY">You will have noticed that when the simulation
+      completed, GPSS World wrote a report to the Report Window. The Report
+      Window opens automatically at the end of a simulation run. Take a brief
+      look at the Standard Report.</p>
+      <p ALIGN="JUSTIFY">You can examine the report by resizing the window, or
+      you can print the report for more detailed study later. In a later lesson,
+      we will study the sequencing and file structure of reports in GPSS World.
+      When you are finished with the report, close the window without saving the
+      report.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The X in the Upper Right-Report Window</p>
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now that the simulation has ended, let us explore some
+  results. The SHOW Command is ideal for this. First, make sure that the Journal
+  Window has the focus so that you can see the results of the Show Command.
+  Click on the Title Bar of the Journal Window if it's not the top window. Then</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b>Command / SHOW</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">C1</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">This command causes the relative system clock value to be
+    written in the Status Line as well as in the Journal. The C1 value is the
+    simulated time when our first simulation ended.</p>
+    <p ALIGN="JUSTIFY">Let’s try one more. This time, after you have selected
+    SHOW and the dialog box is open</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">QM$Barber</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This shows the maximum content of the Queue Entity named
+    Barber. If you would like to try your own favorite SNA at this time, please
+    do so.</p>
+    <p ALIGN="left">GPSS World allows you to view the simulation environment
+    in many different ways. Each of the major GPSS Entity types has a window for
+    viewing its dynamics as the simulation runs. In addition, there are
+    Snapshots that can be viewed in a window or be printed. Also, you can open
+    the Expression Window, which can contain a list of labeled expressions. Each
+    one can be any valid PLUS Expression. The most simple ones are variables or
+    SNAs. The Simulation Windows are updated dynamically while the Simulation
+    Snapshots show the state of a particular chain, group or Transaction at one
+    point in simulated time.</p>
+    <p ALIGN="left">Let’s open an Expression Window on the Clock, the
+    Customer Queue Length, and the Active Transaction number.</p>
+  <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font> <b>Window / Simulation Window / Expression Window</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Then, Edit the Expression Window</p>
+    <p ALIGN="left">Next to Label</p>
+   </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Clock</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and for the Expression</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">AC1</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then, you can choose one or both of the View or Memorize
+  options. Remember as in the Plot Window, View will allow you to see the
+  expression(s) for this run only while memorize will allow you to use the
+  expression(s) in future runs without having to type all the information again.</p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;</font> <u><font FACE="Arial" SIZE="2">View</p>
+  </font></u>
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+    </u>
+    <p ALIGN="JUSTIFY">If you have done this lesson from the beginning, you see
+    that if you memorized the Q$Barber in the Plot Window, it is accessible here
+    as well. See the Plot and Expression Windows in the Reference Manual for
+    more details.</p>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    <p ALIGN="JUSTIFY">For expressions after the first, you only have to type
+    new values in the Label and Expressions boxes and then choose View or
+    Memorize or both.</p>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    <p ALIGN="JUSTIFY">In the box for the Label</p>
+   <font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Act Trans</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and for the Expression</p>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">XN1</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;</font> <u><font FACE="Arial" SIZE="2">View</p>
+  </font></u>
+  <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+    </u>
+    <p ALIGN="JUSTIFY">Finally, If you wish to view the Barber Queue,</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The expression Q$Barber</p>
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the Memorized Expressions box</p>
+  <p ALIGN="JUSTIFY">then</p>
+   <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;</font> <u><font FACE="Arial" SIZE="2">View</p>
+  </font></u><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">We now will be able to view the <b>Clock, Active
+    Transaction Number,</b> and size of the <b>Barber Queue</b> while the
+    simulation runs.</p>
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_2_4.gif" width="622" height="175"></p>
+  <p align="center"></font><i><font SIZE="2">Figure 2—4. The Expression Window</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="JUSTIFY">While the simulation is running, let’s also open the
+      Facilities Window to look at the GPSS Facility Entity which represents the
+      barber. Don’t forget, you can interrupt a simulation by pressing <b>[Ctrl]+[Alt]+[H]</b>
+      or <b>[F4]</b>.</p>
+      <p ALIGN="JUSTIFY">First, close the Plot Window since we no longer wish to
+      watch it.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">DOUBLE-CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>The Block Icon in the Upper Left-Plot Window</p>
+  </u>
+  <p>&nbsp;</p>
+  <p align="center">CHOOSE&nbsp;</font>&nbsp;&nbsp;&nbsp; </font><font face="Arial" size="2"><b>Window / Simulation Window / Facilities Window</p>
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Position the two windows so that you can see both as the
+    simulation runs.</p>
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_2_5.gif" width="538" height="405"></p>
+    <p align="center"><i>Figure 2—5. The Expression Window and the Facilities Window</i></p>
+  </font>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+ 
+      <p ALIGN="JUSTIFY">Now start a simulation. We will suppress the Standard
+      Report this time by using NP (for &quot;No Printout&quot;) in operand B of
+      the START statement.</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / START</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">In the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">100000,NP</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Now, you can watch the vital statistics of the barber
+    change according to conditions in the simulation, as well as watch the
+    values of specific interest to you in the Expression Window. The details of
+    the Facilities Window are described in Chapter 5 of the <i>GPSS World
+    Reference Manual</i>.</p>
+    <p ALIGN="JUSTIFY">Watch the statistics as the simulation runs. We have one
+    very busy barber.</p>
+    <p ALIGN="JUSTIFY">It’s easy to open any of the simulation windows in this
+    manner. However, in our simple barber shop simulation we have not defined
+    enough entity types to make use of the other windows.</p>
+    <p ALIGN="JUSTIFY">Let’s do one more thing before we end the simulation.
+    First, let's halt the simulation.</p>
+    </font><font FACE="Helvetica" SIZE="2">
+    <p ALIGN="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[F4]</b></font></p>
+  <p ALIGN="JUSTIFY"><font face="Arial" size="2">or</p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The Halt icon in the Facilities Window Debug Toolbar</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Then, close the Expression and Facilities Windows.</p>
+  <p ALIGN="JUSTIFY">Next open the Blocks Window.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Window/ Simulation Window / Blocks Window</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">We’ll use this window to put a Stop Condition on a
+    Block, and trap a Transaction. We will choose the DEPART Block to stop a
+    Transaction.</p>
+    <p ALIGN="JUSTIFY">Halting interrupts the simulation and clears out any
+    Queued Commands that have not yet begun. In our current simulation, there
+    were no additional Queued Commands to be deleted. If there had been, they
+    would be gone forever. The interrupted state of the simulation is easily
+    restarted by a CONTINUE Command, which is itself a Queued Command.</p>
+    <p ALIGN="JUSTIFY">Now let’s set a Stop Condition. In the Blocks Window,</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>The DEPART Block Icon</p>
+  </u>
+  <p align="center">CLICK ON</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The Place Icon in the Debug Toolbar at the Top of the Window</p>
+  </u></font>
+  <i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_2_6.gif" width="661" height="337"></p>
+  <p align="center">Figure 2—6. The Blocks Window with a Selected DEPART Block</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="left">Now, restart the simulation.</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+  [F2]</b></font></p>
+  
+    
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">or</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The Continue Icon in the Debug Toolbar at the Top of the Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will stop when the next Transaction tries to
+  enter the DEPART Block. At this point, in the Model Window menu</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>Anywhere on the Journal / Simulation Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to give it the focus. Move the window to a convenient place
+  for viewing along with the Blocks Window. You may have to resize the windows
+  to do this.</p>
+  <p ALIGN="left">Now, let’s send a Block Statement to the simulation.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Custom</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">in the dialog box and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Trace</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This will cause the Trace Indicator to be set in the Active
+  Transaction. From now on, each Block entry by this Transaction will cause a
+  trace message to be sent to the Journal Window.</p>
+  <p ALIGN="left">We have just used Manual Simulation Mode to pass a
+  Transaction through a Block that does not become a permanent part of the
+  model. Look at the Journal Window to see the first Trace message. Now we must
+  remove the Stop Condition or every Transaction will be detained before
+  entering the DEPART Block. Make the Blocks Window the active window.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>Anyplace on the Blocks Window</p>
+  </u>
+  <p align="center">CLICK ON</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>The DEPART Block in the Blocks Window</p>
+  </u>
+  <p align="center">CLICK ON</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  The<u> Remove Icon in the Debug Toolbar at the Top of the Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to remove the Stop Condition on the DEPART Block. You could
+  remove one or multiple STOP conditions by selecting <b>Window / Simulation /
+  Snapshot / User Stops</b>. Try it if you like to see the User Stops Window.</p>
+  <p ALIGN="left">Then CONTINUE the simulation.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The Continue Icon in the Debug Toolbar at the Top of the Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">or</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[F2]</b></font></p>
+  
+    
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">or</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[Ctrl]+[Alt]+[C]&nbsp;</b></font></p>
+  
+    
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This will allow us to view trace messages as the simulation
+  produces them.</p>
+  <p ALIGN="left">You will see the rest of the trace messages for this
+  Transaction until it enters the TERMINATE Block. Notice that there were no
+  trace messages generated as other Transactions moved while the traced
+  Transaction was delayed in the ADVANCE Block.</p>
+  <b>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+  
+  <p ALIGN="center"><img border="0" src="../images/T1_2_7.gif" width="575" height="312"></p>
+  
+  
+  </b></font><i><font SIZE="2">
+  <p align="center">Figure 2—7. Trace Messages in the Journal Window</p>
+  </font></i><b>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+    </b>
+    <p ALIGN="left">If you wish to have trace messages for all the
+    Transactions in the model, you should insert a TRACE Block in the model.
+    However, this is rarely necessary. It is usually much better to selectively
+    trace Transactions in portions of the model where their behavior is not as
+    you expected.</p>
+    <p ALIGN="left">Don’t forget that you can print the Journal at any time
+    by making the Journal Window the active window and choosing <b>Print </b>from
+    the File Menu in that window.</p>
+    <p ALIGN="left">Let’s interrupt the simulation.</p>
+  
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><u><font FACE="Helvetica" SIZE="2">The Halt Icon in the Debug Toolbar at the Top of the Window</p>
+  
+    
+  </font>
+  
+    
+    </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">or</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[F4]</b></font></p>
+  
+    
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">or</p>
+  
+  
+  </font>
+  <p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[Ctrl]+[Alt]+[</font></font><font face="Helvetica" size="2">H</font><font FACE="Helvetica" SIZE="2">]&nbsp;</font></b></p>
+  
+    
+  <font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When the simulation is halted</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Custom</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">In the dialog box</p>
+    <p ALIGN="center"></font><font FACE="Helvetica" SIZE="2">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><b><font FACE="Helvetica" SIZE="2">
+  </font></b><b><font FACE="Courier New">Report</p>
+    
+    
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This causes a Standard Report to be created immediately,
+    even if the simulation has not ended.</p>
+    <p ALIGN="left">The name of the report that you have just created is
+    probably Sample1.1.2, but the sequence number could be different if you have
+    other Sample1 reports on your disk.</p>
+    <p ALIGN="left">You may now examine the report or print it using Print
+    from the File menu. Reports are generated automatically at the end of a
+    simulation. In a later lesson, you will learn how to customize your reports
+    using the Settings of the Simulation Object.</p>
+    <p ALIGN="left">When you attempt to close a Report Window, you will be
+    given the opportunity to save the report to a file. We’ll address reports
+    in greater detail later in this tutorial. Also, you may wish to read Chapter
+    11 in the <i>GPSS World Reference Manual </i>where the report output is
+    discussed in detail. However, for now, our next step is to end the GPSS
+    World Session.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><u><font FACE="Helvetica" SIZE="2">The X-Upper Right of the Windows Currently Open</p>
+  
+    
+  </font>
+  
+    
+    </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This returns us to the GPSS World Main Window. Close the
+  window to return to the Windows Desktop.</p>
+  <p ALIGN="left">In this lesson we have started a simulation, set up a plot,
+  watched several important simulation state variables change during a
+  simulation, interrupted a running simulation, viewed a running simulation
+  through two graphical windows, set up expressions in the Expression Window,
+  TRACEd a Transaction, suppressed the automatic writing of the Standard Report
+  using the NP option of the START Command, created the Standard Report on
+  demand using the REPORT Command, and examined the report in the Report Window.</p>
+  <p ALIGN="left">In the next lesson we will examine what happens when things
+  go wrong. We’ll also take a look at the On-line Help Facility and some other
+  assorted useful tidbits. See you next time.</p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <h2 ALIGN="center"><a name="Lesson 3"></a>Lesson 3 - Problems</h2>
+  <p ALIGN="left">Sooner or later you’re bound to run into problems. When
+  you get an error message, usuually you should be able to determine what went
+  wrong and how to fix it. If you need a fuller explanation you can look up the
+  message in Chapter 14 of the <i>GPSS World Reference Manual</i>. In addition,
+  there are several ways to get specific help. The first thing to know is that
+  the<b> [F1]</b>
+  key retrieves help immediately. This simple action will open a context
+  sensitive help panel no matter where you are in GPSS World. In addition, some
+  dialogs have a Help Button, as well.</p>
+  <p ALIGN="left">Let’s try it. Start GPSS World as you did in Lesson 1.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Start / Program / GPSS World ...</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">From the Main Menu</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Help / Help Topics</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You should see a standard Windows Help Panel, with
+    controls for searching, moving from panel to panel, and using the index. All
+    these are at your disposal. Feel free to explore the Help Subsystem until
+    you feel comfortable using it, because it can save you a lot of time.</p>
+    <p ALIGN="JUSTIFY">Now, close the Help Panel.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The X-Upper Right-Help Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">or</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The X-Upper Right-Help Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Before leaving the Help Subsystem, let’s get help for a
+  menu item in the File Menu of the Main Window. Drag down a menu with mouse
+  button 1, but do not release the button. This highlights one of the drop down
+  menu items. (You can do the with the <b>[Alt]</b>
+  and arrow keys, also). Before you release the mouse button, press<b> [F1]</b>
+  .</p>
+  <p ALIGN="JUSTIFY">You should see context sensitive help specifically for the
+  menu item</p>
+  <p ALIGN="JUSTIFY">Again, close the Help Panel.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>The X in the Upper Right-Help Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">So much for On-line Help. During the lessons in this
+  tutorial, you should use it just to get used to it. Feel free to press<b> [F1]</b>
+  at any time. For now, let’s move on to some other things.</p>
+  <p ALIGN="JUSTIFY">Here’s something that’s really handy. It’s especially
+  useful when you’re interacting with a running simulation. It’s the
+  Assignable Function Key feature. To assign a Command to a function key, you
+  should do the following.</p>
+  <p ALIGN="JUSTIFY">Open the SAMPLE10 model</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b>File / Open</p>
+  </b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Sample10</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Let's take a look how to quickly get into the GPSS World
+    Language Reference in the Help system. Double click on the word GENERATE so
+    that it becomes selected. Now,</p>
+    
+  
+    <p align="center">PRESS <b>[F1]</b></font></p>
+  
+    
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">The Help system responds by showing you occurrences of
+  GENERATE in the Reference Manual. Select the Block Statements line item to
+  view the definition of a GPSS Block Statement. Then</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><u>Display</p>
+  
+    
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Great! Scroll down to view all the details. But this is
+  only the beginning. You can research all the GPSS World Command, Blocks,
+  Procedures, SNA Classes, Probability Distributions, and other keywords. All
+  you have to do is find some Text Window where you can select it and then open
+  the Help System. If you can't find the keyword anywhere, just type it in
+  temporarily and delete it when you no longer need it.</p>
+  <p ALIGN="JUSTIFY">Close the Help Panel when you are finished looking at it.</p>
+  <p ALIGN="JUSTIFY">Now, lets look at some features provided by Model Settings.
+  Incidentally, when you create a Simulation Object, it inherits its Settings
+  from the Model Object. Well, anyway, for now</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Edit / Settings</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">In the Settings notebook, choose Function Keys. When you
+    are on the Functions Keys page, you will see that you can enter any command
+    next to a function key. Each model can be set to use its own unique function
+    keys. Let’s load key<b> [F9]</b>
+    with &quot;SHOW Q$Barber&quot;. Position the cursor in the box next to F9
+    and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b><font FACE="Courier New">SHOW Q$Barber</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">in the space next to the F9. Then close the notebook.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b>OK</p>
+  </b><font FACE="Helvetica" SIZE="2">
+  </font><i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_3_1.gif" width="398" height="330"></p>
+  <p align="center">Figure 3—1. The Function Keys Page of the Model Settings Notebook</p>
+  </font></i></font>
+  <p><font face="Arial" SIZE="2">
+  Create a simulation with the new settings. </font></p>
+  <font FACE="Helvetica" SIZE="2">
+  <font face="Arial" size="2">
+  <p align="center">CHOOSE&nbsp;</font>&nbsp;&nbsp;&nbsp; </font><font face="Arial" size="2"><b>Command / Create Simulation</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Now start the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b>Command / START</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">1000000</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Don't wait for the simulation to complete. Interrupt the
+    simulation</p>
+    
+  
+  </font><p align="center"><font FACE="Helvetica" SIZE="2">
+  PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[Ctrl]+[Alt]+[</b></font></font><b><font face="Helvetica" size="2">H</font></b><font face="Arial" size="2"><b><font face="Helvetica" size="2">]&nbsp;&nbsp;</font></b></p>
+  <p ALIGN="JUSTIFY">or</p>
+  <p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+  [F</b></font></font><b><font face="Helvetica" size="2">4</font></b><font face="Arial" size="2"><b><font face="Helvetica" size="2">]</font></b></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">nd then</p>
+  
+  
+  <p align="center"><font FACE="Helvetica" SIZE="2">PRESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+  [F</b></font></font></font><b><font face="Helvetica" size="2">9</font></b><font face="Arial" size="2"><b><font face="Helvetica" size="2">]</font></b></p>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="JUSTIFY">You’ll see the queue for the Barber in the Status
+      Line of the Main Window. Since this model has a Barber who can’t keep
+      up, don’t be surprised if you see an unreasonable queue.</p>
+  <i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_3_2.gif" width="623" height="232"></p>
+  <p align="center">Figure 3—2. Journal Window with Show Command displayed.</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="JUSTIFY">Take a moment to think about the uses of the Function
+      Keys. When you have a single Command such as STEP 1 that you will use
+      repeatedly to step through a simulation, you can load it into a Function
+      Key. Even INCLUDE Commands can be assigned to Function Keys. An INCLUDE
+      command could call in an existing plain text file with many GPSS World
+      Commands.</p>
+      <p ALIGN="JUSTIFY">A file containing a sequence of Model Statements is
+      called a Model File. You may recall from Lesson 2 that a Model Statement
+      is either a Block Statement, a Command, or a Procedure Definition. Model
+      Files read into the Model Window are called Primary Model Files, any other
+      Model Files, including Command Files, are called Secondary Model Files.
+      You can create Text Objects (which are plain text files) to be used as
+      Secondary Model Files using the GPSS World Model Window, or using your
+      favorite word processor and saving them as &quot;txt&quot; files. You can
+      read a whole Command File using the INCLUDE Command, and as we just
+      discovered, you can load an INCLUDE Command into a Function Key.</p>
+      <p ALIGN="JUSTIFY">Each of your models can use a unique set of Function
+      Keys. The following function keys are preset to the values listed below
+      when your software was shipped to you. Of course, you can override these
+      values if you wish.</p>
+  <blockquote>
+  <blockquote>
+  <p ALIGN="JUSTIFY"><font face="Arial" size="2"><b>[F1] = Help<br>
+  [F2] = CONTINUE<br>
+  [F3] = Exit to Windows<br>
+  [F4] = HALT<br>
+  [F5] = STEP 1<br>
+  [F6] = STOP<br>
+  [F8] = STOP ,,Off</b></font></p>
+  </blockquote>
+  </blockquote>
+      <p ALIGN="JUSTIFY">The Model Settings Notebook is discussed in more detail
+      in the <i>GPSS World Reference Manual</i>.</p>
+      <p ALIGN="JUSTIFY">Let’s now turn our attention to the SHOW Command. You
+      can use it as a sophisticated calculator. Stop for a moment and take a
+      look at the mathematical functions listed in Chapter 8 of the <i>GPSS
+      World Reference Manual</i>. (Select <b>Help / Help Topics</b>) You can
+      combine these in complex expressions with SNAs in a SHOW command, and GPSS
+      World will write the double precision result in the Status Line and in the
+      Journal Window. Try it. First, some simple arithmetic.</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / SHOW</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">in the dialog box after show</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">1234+5678/345#(64+94)</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Notice that <b>[#]</b>
+  is used to represent multiplication, not</font> <b>[*]</b><font FACE="Arial" SIZE="2">, which is reserved for SNA indirect
+  addressing. If you would rather use * for multiplication and # for indirect
+  addressing, you can do so by changing the Settings of the Model.</p>
+  <p ALIGN="JUSTIFY">Now check the result on a calculator. Does it agree with
+  the result on the screen?</p>
+  <p ALIGN="JUSTIFY">GPSS World evaluates Expressions according to a hierarchy
+  of operators listed in Section 3.3 of the <i>GPSS World Reference Manual</i>.
+  If there is any doubt in your mind, you should fully parenthesize Expressions.</p>
+  <p ALIGN="JUSTIFY">Next, we intentionally cause an event called an Error Stop.
+  You will see a description of the error in the Journal Window. The Error will
+  also be displayed in the Status Line of the Main Window.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / SHOW</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b><font FACE="Courier New">2/0</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">then</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Well, we certainly knew that that wasn’t going to work.
+    However, take a look at the messages written in the Journal Window. They
+    describe the error in detail.</p>
+    <p ALIGN="JUSTIFY">Now close Sample10. You will have to close the Journal /
+    Simulation Window and the Model Window.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>The X-Upper Right of each Window</p>
+  </u>
+  <p align="center">CHOOSE</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>No</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">when asked if you want to save changes for each Window.</p>
+    <p ALIGN="JUSTIFY">Next, let’s create a two line model with an obvious
+    error.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>File / New</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and in the dialog box since Model for the file type is
+    already selected.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">In the Model Window</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Henerate 10</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Terminate 1</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Create Simulation</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Did the Journal / Simulation Window open with a message
+    to indicate an invalid number?</p>
+    <p ALIGN="JUSTIFY">There are several menu items in the <b>Search</b> menu of
+    the Model Window that take you directly to the error. </font><b>Search / Go
+    to Line</b><font FACE="Arial" SIZE="2">, </font><b>Search / Next Error</b><font FACE="Arial" SIZE="2">,
+    or </font><b>Search / Previous Error</b><font FACE="Arial" SIZE="2"> can be
+    used to scroll through errors in a larger model. The cursor will be
+    positioned where the error occurred, so you can fix the problem easily.</p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_3_3.gif" width="614" height="160"></p>
+    
+  
+  <p align="center"></font><i><font SIZE="2">Figure 3—3. Error Message in a Journal Window</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="left">You can immediately go to the Model Window and fix the
+      problem by making the H into a G and when you attempt again, the model
+      should translate successfully.</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Retranslate</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now close the Journal and Model Windows.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>No</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">in both save dialog boxes.</p>
+    <p ALIGN="left">Now, let’s talk about Expressions in GPSS World. They
+    are discussed in Chapter 3 of the <i>GPSS World Reference Manual</i>. We can
+    mix SNAs right into our Expressions. Let’s run a short simulation and then
+    explore the results with the SHOW Command.</p>
+    <p ALIGN="left">First, open the Program File. SAMPLE1.GPS</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>File / Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">From the Open Model Dialog selection box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Sample1.gps</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">in the Files list box, then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">GPSS World will read in the Model File. Let’s create a
+    simulation and open the Facilities Window to watch it run.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / Create Simulation</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Window / Simulation Window / Facilities Window</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Size the window to a comfortable viewing size. O.K. Now
+    start the simulation.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / START</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">1000000</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">in the dialog box. Notice that the Facility Entity was
+    not created until it was referenced in the simulation. Other entity types,
+    like Storage and Table Entities, which require a special declaration, are
+    created when they are defined.</p>
+    <p ALIGN="left">Let’s use the Expression Window.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Window / Simulation Window / Expression Window</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now, we will mix in state variables from the simulation.
+    Let’s try a fancy one, the natural logarithm of the relative system clock
+    plus the square of the maximum queue length in the barber shop.</p>
+    <p ALIGN="left">In the Label field</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">Fancy one</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the Expression field</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">LOG(C1)+(QM$Barber)^2</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  <u>View</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You can create logical expressions using the operators ‘AND’,
+  ‘OR’, and ‘NOT’. These yield 1 (true) or 0 (false) as a result of the
+  operation, and they can be mixed in with arithmetic Expressions as well. When
+  you use logical operators, don’t forget to include single quotes and don’t
+  allow intervening blanks between operator and operand(s). Let’s try an
+  additional one. In the Expression Window dialog box, in the Label field</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">&lt;6 Waiting?</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then position the cursor in the Expression box and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+  </font><font face="Arial" size="2"><b><font FACE="Courier New">1+99#((Q$Barber)’GE’6)</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font face="Arial" size="2">
+  <u>View</p>
+  </u>
+  <p align="center">SELECT</font>&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">This Expression results in 1, if there are less than 6
+    customers waiting, or 100 otherwise. Remember that unless you alter a
+    Setting, <b>#</b> is used to represent multiplication, not <b>*</b>, which
+    is reserved for SNA indirect addressing.</p>
+    <p ALIGN="left">Now let’s look at a random number stream.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Command / SHOW</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and when the dialog box opens</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">RN1000</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The RN SNA returns a random integer from 0 to 999 in the
+    Status line and in the Journal Window. Use the Command again. When the
+    dialog box opens</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">RN1000</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A second call to the same random number generator returns
+    a different result. If the result took some time in returning, remember, we
+    have a lot of windows open. You may want to close all but the Model and
+    Journal / Simulation Windows now since their continuing update slows the
+    running of the simulation and the response to interactive commands.</p>
+    <p ALIGN="left">But wait a minute! We didn’t have to type in the SHOW
+    command again. We could have loaded it into a function key. Let’s do it.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>Edit / Settings</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and select the Function Keys Page and enter the SHOW
+    Command next to F9.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b><font FACE="Courier New">SHOW RN1000</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+  </font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>[F9]</b></font></p>
+  
+    
+<font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">several times. As you can see, a random number stream
+  returns a different random number on successive calls. This happens when you
+  call SNAs that access random numbers within a simulation, too.</p>
+  <p ALIGN="left">Time for a break. Let’s review. This lesson was an
+  introduction to the entry and correction of statements from the keyboard. In
+  this lesson we used the On-line Help facility, used the Assignable Function
+  Key feature, investigated Expressions in GPSS World, and worked with the
+  Facilities and Expression Windows.</p>
+  <p ALIGN="left">In the next lesson, we look at the full screen text editor
+  in.</p>
+  <p ALIGN="left">Now end the Session. In the Main Window</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Button on the Upper Right</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and when asked if you want to save the changes in any of
+  the Windows</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>No</p>
+  <font FACE="Arial" SIZE="5">
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  </font></b>
+  <h2 ALIGN="center"><a name="Lesson 4"></a>Lesson 4 - The Text Editor</h2>
+  
+    
+      <p ALIGN="JUSTIFY">The integrated editor is a powerful full screen text
+      editor with many of the features of word processors such as Cut, Paste,
+      Copy, and Search. In addition, there are features that allow you to find
+      model Translation errors quickly. It is discussed in detail in Chapter 3
+      of the <i>GPSS World Reference Manual.</p>
+      </i>
+      <p ALIGN="JUSTIFY">Let’s open a new model and do some editing.</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>File / Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">then in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Times">Sample2</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now let’s Edit the Model File.</p>
+    <p ALIGN="left">Highlight the line that begins with ADVANCE by placing
+    the cursor at the beginning of the line and dragging it across the page
+    using the mouse with the left button continually depressed while moving it.
+    The highlighted text is said to be selected. This is &quot;swipe&quot;
+    selection.</p>
+    <p ALIGN="left">There’s a second way to select text, as well. Click
+    just to the left of the first letter of ADVANCE. This removes the selection
+    you just did. Now press and hold <b>[Shift] </b>while you click just to the right of the last letter of ADVANCE. You have
+    just selected text using &quot;enhanced&quot; selection. Sometimes this
+    method is more convenient. Yet another selection method is to double click
+    to select a single word.</p>
+    <p ALIGN="left">Now, lets place a copy of the selected text into the
+    clipboard.</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Edit / Copy</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Now you can paste in another ADVANCE Block after the
+    RELEASE. Place the cursor in the RELEASE Block line and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Edit / Insert Line</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Edit / Paste</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You can also use the keystrokes <b>[Ctrl]</b>+<b>[X]</b>,<b>
+    [Ctrl]</b>+<b>[C]</b>,<b>. [Ctrl]</b>+<b>[V]</b> for Cut, Copy and Paste, respectively after you have selected text.</p>
+    <p ALIGN="JUSTIFY">We now have additional ADVANCE Block right before the
+    TERMINATE. Now add spaces as necessary to line up the Block names. Then add
+    an Operand A for the ADVANCE Block. Space just to under the word Barber on
+    the previous line, and</p>
+    
+  
+</font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">200</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">You can explore other options of the </font><b>Edit</b><font FACE="Arial" SIZE="2">
+  menu. Make a change and then choose </font><b>Undo</b><font FACE="Arial" SIZE="2">
+  to restore the file to its state just before the change was made. Delete and
+  insert lines. </font><b>Delete</b><font FACE="Arial" SIZE="2"> deletes the
+  line in which the cursor is positioned. </font><b>Insert</b><font FACE="Arial" SIZE="2">
+  puts a new line after the line where the cursor is positioned. The </font><b>Font</b><font FACE="Arial" SIZE="2">
+  option lets you change the font and color of your display. Remember, Courier
+  New is a monospaced font that lets you line up columns in your model easily
+  since all characters take up the same amount of space. Also, you can modify
+  the Settings of a Model Object in order to change the tabstops, if you choose
+  to use tabs.</p>
+  <p ALIGN="JUSTIFY">Now let’s take a look at the </font><b>Search</b><font FACE="Arial" SIZE="2">
+  commands. The text </font><b>Find / Replace</b><font FACE="Arial" SIZE="2">
+  operations are similar to those commands found in common text editors and word
+  processors. You can find, change or do mass changes on text in your model.
+  When using the Find / Replace Window, you should note that the Search only
+  operates in one direction and will stop when it reaches the end of the file.
+  It is best to position the cursor at the beginning of the file when doing a
+  search. The Find/Replace Box is shown below.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Search / Find / Replace</p>
+  </b>
+  <i><font SIZE="2">
+  <p>&nbsp;</p>
+  <p align="center"><img border="0" src="../images/T1_4_1.gif" width="351" height="183"></p>
+  <p align="center">Figure 4—1. The Find / Replace Dialog Box</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="JUSTIFY">As with all the windows, you can move it to a more
+      convenient place by clicking on the title bar and dragging the window to a
+      new location. To do this just place the mouse pointer over the Title Bar
+      of the window, click and hold mouse button 1 while you drag the window,
+      then release.</p>
+      <p ALIGN="JUSTIFY">Go ahead and close the Find/Replace box.</p>
+      <p ALIGN="JUSTIFY">Now Close the Sample2.gps Model Window</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Upper Right of Model Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and when the &quot;unsaved change&quot; box appears</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>No</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">The Bookmark feature is a little more complex so we’ll
+    do some practice with it. Open the model Bookmrk.gps. This is really the
+    model Telephon.gps</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>File / Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">and in the open model box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Arial" SIZE="2">Bookmrk.gps</p>
+  
+    
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">and</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Open</b></font></p>
+  
+    
+  <p align="center">&nbsp;</p>
+  
+    
+      <p><font face="Courier New" size="2">; GPSS World Sample File - BOOKMRK.GPS<br>
+      100 *****************************************************<br>
+      110 * *<br>
+      120 * *<br>
+      130 * Telephone System Model *<br>
+      140 * by Gerard F. Cummings *<br>
+      150 * *<br>
+      160 *****************************************************<br>
+      170 * Simple Telephone Simulation *<br>
+      180 * Time Unit is one second *<br>
+      200 Sets&nbsp;&nbsp;&nbsp; STORAGE&nbsp;&nbsp; 2<br>
+      210 Transit TABLE&nbsp;&nbsp;&nbsp;&nbsp; M1,100,100,20 ;Transit times<br>
+      220&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 100,60 ;Calls arrive<br>
+      230 Again&nbsp;&nbsp; GATE SNF&nbsp; Sets,Occupied ;Try for a line<br>
+      240&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;
+      Sets ;Connect call<br>
+      250&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 180,60 ;Speak for 3+/-1 min<br>
+      260&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;
+      Sets ;Free a line<br>
+      270&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit ;Tabulate transit time<br>
+      280&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1 ;Remove a Transaction<br>
+      290 Occupied ADVANCE&nbsp; 300,60 ;Wait 5 minutes<br>
+      300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Again ;Try again<br>
+      310
+      *******************************************************</font></p>
+      <p>&nbsp;</p>
+<font face="Arial" size="2"><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Now, place the cursor in line 210. We have added line
+    numbers to the TELEPHON.GPS sample model so that it will be easier to see
+    how BOOKMARKing works. Your GPSS World models do not need to have line
+    numbers.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Search / Mark</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Now, position the cursor in line 300 and again</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Search / Mark</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">You have now set two Bookmarks in the file. Place the
+    cursor in the middle of line 260.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Search / Select to Bookmark</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">What happened? The text from the cursor position to the
+    last mark visited was highlighted. You should see the highlighting to just
+    before line 300. Remember if you try to move the cursor with the arrow keys,
+    the text will be deselected. Bookmarks can be very helpful in moving around
+    your Model File or in deleting a large portion of text or for cutting and
+    pasting large sections of text.</p>
+    <p ALIGN="JUSTIFY">Now try moving around the file using the To Next Bookmark
+    command.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Search / Next Bookmark</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">a number of times. Notice that the search moves through
+    the Bookmark list in an orderly fashion. When the end of the list is
+    reached, the search for the next bookmark goes back to the beginning.
+    Remember, no matter where you are in the file (even if you have used other
+    commands such as Find Next) the To Next Bookmark Command will always go to
+    the Bookmark that is next in the list after the last bookmark visited or the
+    last bookmark created.</p>
+    <p ALIGN="JUSTIFY">If you save a file after inserting Bookmarks, they will
+    also be saved.</p>
+    <p ALIGN="JUSTIFY">Close the BOOKMRK.GPS File using the method described for
+    the last file that we closed.</p>
+    <p ALIGN="JUSTIFY">Finally, let’s address finding and correcting
+    translation errors.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>File / Open</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">From the open model dialog selection box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Error</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">in the files list box, then</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Open</p>
+  </b><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Create Simulation</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Well, we knew there were going to be errors in this
+    model. Let’s use the editing features to find and correct them. Position
+    and size the Journal and Model Windows so that the model text and Status
+    Line in the Main Window and the Journal Window are all visible.</p>
+    <p ALIGN="JUSTIFY">Make sure the Model Window has the &quot;focus&quot;,
+    i.e. is the active window.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><u><font FACE="Helvetica" SIZE="2">The Title Bar of the Error.gps Model Window</p>
+  
+    
+</font>
+  
+    
+    </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="JUSTIFY">Let’s use the </font><b>Next Error</b><font FACE="Arial" SIZE="2">
+  search. This menu item will place the cursor in the line at the place of the
+  error and show the error in the Status Line of the Model Window.</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Search / Next Error</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">The cursor has been placed in the line that uses the
+    Exponential Distribution where we have neglected to add the final right
+    parenthesis. You will see that the error message appears in the Status Line
+    of the Main Window.</p>
+    <p ALIGN="JUSTIFY">Here's a hint. You can use a single keystroke to travel
+    to the next error. The accelerator key to use for Search / Next Error is</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">PRESS</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>[Ctrl]</b>+<b>[Alt]</b>+<b>[N]</b></font></p>
+<font face="Arial" size="2">
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="center"><img border="0" src="../images/T1_4_2.gif" width="609" height="458"></p>
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center"></font><i><font SIZE="2">Figure 4—2. Translation Error</p>
+  </font></i>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  
+    
+      <p ALIGN="left">You can now insert the missing right parenthesis.
+      Notice that the invocation of the Exponential() procedure is enclosed in
+      parentheses. This is an important rule to remember: In general, PLUS
+      expressions occurring outside a PLUS Procedure must be parenthesized! The
+      good news is that you can use parenthesized expressions just about
+      anywhere.</p>
+      <b>
+      <p ALIGN="left">Search / Previous Error</b> allows you to scroll
+      backwards through an error list.</p>
+      <p ALIGN="left">The error message in the Journal File tells us that the
+      second error is at line 13. Use <b>Search / Go To Line</b> to find the
+      line.</p>
+    
+  
+  <font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><b>Search / Go To Line</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">and in the dialog box</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b><font FACE="Courier New">13</p>
+  </font></b><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The cursor has been placed at the beginning of line 13.
+    Insert the semicolon that is missing in front of the comment. Then, we
+    should be ready to run the simulation, once it is retranslated.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / Retranslate</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">Now, try to run it. You will see a runtime error
+    immediately.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>Command / START</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="JUSTIFY">In the dialog box, replace the 1.</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">TYPE&nbsp;</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;
+</font><font face="Arial" size="2"><font FACE="Courier New"><b>10,NP</p>
+</b>
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>OK</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The runtime error appeared in the Journal Window telling
+    us that we are trying to release an unowned Facility. Now use </font><b>Search
+    / Go To Line</b><font FACE="Arial" SIZE="2"> to find and correct the name of
+    the Facility used in the RELEASE Block. Make sure the Model Window has the
+    focus when you do this search. Runtime errors do not create an error list
+    like the one produced by a translation. Therefore, you can’t use </font><b>Next
+    Error</b><font FACE="Arial" SIZE="2">. Instead, a runtime error is called an
+    Error Stop. The simulation halts and sends several messages that identify
+    and locate the single error.</p>
+    <p ALIGN="left">If you wish to retranslate the model and test that it
+    will run successfully to completion you can do so on your own now.</p>
+    <p ALIGN="left">In this lesson we have explored the Edit and Search
+    menus. We have also addressed the correction of errors.</p>
+    <p ALIGN="left">When a Translation Error occurs, a notice is placed at
+    the end of the internal Error List of the Model Object. You can jump from
+    one error to the next with a single keystroke. On the other hand, when an
+    Error Stop occurs during a simulation, you must find the line number in the
+    group of error messages written to the Journal Window of the Simulation
+    Object.</p>
+    <p ALIGN="left">O.K. Now end the Session. In the Main Window</p>
+    
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">CLICK ON</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+<u>The X-Button-Upper Right of Window</p>
+  
+    
+    </u></font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and when asked if you want to save the changes</p>
+  
+  
+  </font><font FACE="Helvetica" SIZE="2">
+  <p align="center">SELECT</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="Arial" size="2"><font FACE="Helvetica" SIZE="2">
+</font><b>No</p>
+  
+    
+    </b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">In the next lesson we will begin to study the most
+    important of the GPSS Block statements.</p>
+  </font>
+  <p ALIGN="JUSTIFY">&nbsp;</p>
+  <p ALIGN="center"><a href="tutorial_manual.htm">[Table of Contents]</a></p>
+  
+
+</font>
+  
+
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

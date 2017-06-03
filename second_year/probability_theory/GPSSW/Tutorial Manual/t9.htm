@@ -1,0 +1,2158 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Helvetica" SIZE="2">
+<blockquote>
+<blockquote>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+</font>
+<b>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a name="16. TAPEPREP.GPS"><font face="Arial">16. TAPEPREP.GPS</font></a><!--mstheme--></font></h1>
+
+  
+</b>
+<p align="center"><font face="Courier New" size="2"><br>
+</font>
+<b><font face="Arial" size="4">Simulation of NC tape preparation.</font></p>
+<font FACE="Arial">
+
+  
+    <p ALIGN="left">&nbsp;</p>
+  </font><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b>
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">A computer services company prepares computer numerical
+control part program tapes for metal-cutting manufacturing industries. Drawings
+of components are supplied by the manufacturers. A part programmer studies the
+drawings, and writes a part program manuscript to control the machine tool in
+cutting the workpiece. The programming takes 90 minutes, exponentially
+distributed. The manuscript is then typed onto a computer file, processed, and a
+tape is punched for the computer numerical control machine tool. This process
+takes 60 minutes on average, exponentially distributed. The tape is then loaded
+onto an appropriate machine tool for testing and editing. This process takes 70
+minutes, exponentially distributed.</p>
+<p ALIGN="left">The computer services company’s policy is to provide a
+fast, reliable service to industry. The company wishes to test several queuing
+disciplines for the processing of orders for the best overall service to
+customers.</p>
+<p ALIGN="left">Three possible disciplines of processing waiting jobs have
+been proposed.</p>
+<p ALIGN="left">1.&nbsp;First, process those jobs which have the shortest
+overall processing time.</p>
+<p ALIGN="left">2.&nbsp;First, process those jobs which have the longest
+overall processing time.</p>
+<p ALIGN="left">3.&nbsp;First, process the jobs which have the shortest
+due-date i.e. those jobs which are required soonest.</p>
+<p ALIGN="left">The flowtime for jobs is the total processing times
+(P4=P1+P2+P3), plus 3±1 days. The due-date is the relative clock time when the
+job arrives plus the allowed flow-time. Lateness is defined as the relative
+clock time when the job is completed, minus the due-date.</p>
+<p ALIGN="left">Simulate the processing of 100 orders by the computer
+services company.</p>
+<p align="left">1.&nbsp;Investigate the shortest processing time queue discipline.</p>
+<p align="left">2.&nbsp;Find the utilization of the facilities of manuscript writing, tape
+preparation, and editing.</p>
+<p align="left">3.&nbsp;Tabulate the lateness of orders and their transit times.</p>
+<p align="left">&nbsp;</p>
+<b>
+<font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+</b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+TAPEPREP.GPS, by Gerard F. Cummings<br>
+*********************************************************************<br>
+* *<br>
+* Computer Numerical Control *<br>
+* Tape Programming, Loading and Editing *<br>
+* *<br>
+*********************************************************************<br>
+* Queue Discipline — Shortest Processing Time (SPT)<br>
+*********************************************************************<br>
+* P1 = Process Time for Programming<br>
+* P2 = &quot; &quot; &quot; Punching<br>
+* P3 = &quot; &quot; &quot; Editing<br>
+* P4 = Shortest Processing Time<br>
+* P5 = Due Date<br>
+* P6 = Longest Processing Time<br>
+*********************************************************************<br>
+RMULT 66753<br>
+Schedparm EQU 4 ;Start with short time<br>
+; process first<br>
+Var1 VARIABLE P1+P2+P3<br>
+Var2 VARIABLE <a href="mailto:P4+AC1+RN1@160+80">P4+AC1+RN1@160+80</a><br>
+Var3 VARIABLE 10000-P4<br>
+Lateness VARIABLE AC1-P5<br>
+Transit TABLE M1,100,100,20 ;Tabulate flow times<br>
+Late TABLE V$Lateness,-1000,200,20 ;Lateness<br>
+*********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(2,0,120))
+;Create new arrivals<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+1,(Exponential(3,0,90) ;Programming time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+2,(Exponential(4,0,60)) ;Tape punching time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+3,(Exponential(5,0,70)) ;Tape load and edit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+4,V$Var1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Total processing time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+5,V$Var2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Due date time in P5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+6,V$Var3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Longest processing time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Program,P$Schedparm,Wrte ;Overall Shortest<br>
+Wrte&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Manuscript<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+P1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Part
+program time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Manuscript<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp;
+Program,Wrte,1 ;Unlink one xact<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Tape,P$Schedparm,Punch ;Link into chain<br>
+Punch&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Tapepunch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+P2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Punching
+time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Tapepunch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp;
+Tape,Punch,1&nbsp; ;Unlink one xact<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Edit,P$Schedparm,Loadedit ;Link into chain<br>
+Loadedit SEIZE&nbsp;&nbsp;&nbsp; Edit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+P3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Load and
+edit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Edit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp;
+Edit,Loadedit,1 ;Unlink one xact<br>
+**********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Late<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Job
+leaves the shop<br>
+**********************************************************************<b><br>
+</b>
+</font></p>
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">After the Functions, Tables, and Variables are defined, the
+model is composed of a single segment. Transactions represent jobs, in various
+stages of completion. Each Transaction tabulates its own completion time, then
+decrements the Termination Count.</p>
+<p ALIGN="left">The Table Transit is used to tabulate a histogram of job
+completion times, and the Table Late tabulates the completion time minus the
+scheduled time. A late job, completed after its scheduled time, will register a
+positive value in the Late Table. An early job will register a negative value.</p>
+<p ALIGN="left">The named value Schedparm is used to specify which parameter,
+and therefore which scheduling policy, is to be used.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>File / Open</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Tapeprep</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">100</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 100 Transactions have entered
+  the &quot;TERMINATE 1&quot; Block. This represents the completion of 100
+  tapes.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Tapeprep.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Courier New" SIZE="1">
+  
+    
+      <p align="left">&nbsp;</p>
+    </font><font FACE="Arial" SIZE="4">
+    <p align="left">Discussion of Results</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The shortest time first policy led to a mean completion
+  time of 433.5 minutes. However, 70% of the jobs were late. Perhaps the method
+  of assigning due times should be investigated.</p>
+  <p ALIGN="left">The utilizations of the Facilities of manuscript writing,
+  tape punching, and editing were 74%, 46%, and 65%, respectively.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let's now explore the ending condition of the simulation
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">First, look at the average lateness.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">TB$Late</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, the standard deviation of lateness.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">TD$Late</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Now, let’s open some graphics windows.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TRANSIT</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Table Window for the Transit Table which shows
+  the distribution of job completion times.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box you will see that LATE is the
+  selected Table</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we see the histogram of late times.</p>
+  <p ALIGN="left">Let’s open the Expression Window on some simulation
+  values.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Expression Window</p>
+</font>
+  
+  </b><p ALIGN="left"><font face="Arial"><font SIZE="2">
+  The Edit Expression Window opens. When you enter the value
+  in the second box in this dialog box, you should place the mouse pointer in
+  the small box and click once. Do not press<b> [Enter]</b>
+  to go from the first to the second box as GPSS World then assumes that all
+  values have been entered. You can, instead, use <b>[Tab]</b>
+  to move from box to box. Now, in the dialog box for the Label field</font></font></p>
+  
+
+<font FACE="Helvetica" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Clock</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">If we memorize all the expressions, we'll be able to close
+the window and open it again later with easy retrieval of all the values. Also
+if you save the simulation the values in the Expression Window will be saved
+with the simulation if they have been memorized. We're going to close this
+window and reopen it later so please memorize this expression and the ones that
+follow.</p>
+<p ALIGN="left">In the dialog box for the Label field replace the current
+value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New"># Left</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">TG1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Finally, let’s keep track of the transactions on the
+Userchains.</p>
+<p ALIGN="left">In the dialog box for the Label field, replace the current
+value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New"># on Chain</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">CH$Tape</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s run a short simulation, observing the Facilities
+  and the values in the Expression Window. First, close all the other graphics
+  windows that we are not going to observe. Make sure to leave open the Journal
+  / Simulation Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+</u>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Open the Window to a comfortable viewing size and place it
+  and the Expression Window so each can be seen.</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_16_1.gif" width="563" height="426"></p>
+  </font><i><font SIZE="2">
+  
+  
+  <p align="center">Figure 16—1. Facilities and Expression Windows</p>
+  
+    
+    </font></i><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  
+
+  <p ALIGN="left">Then,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier">25,NP</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When the simulation completes, close both windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">It is a simple matter to shift the simulation to an earliest
+due date first policy. Notice that there are ASSIGN Blocks after the first
+GENERATE Block that put the various processing times into parameters. The named
+value Schedparm has been set equal to 4 which indicated the parameter to be
+looked at in order to know which scheduling policy to use. Let’s use the due
+date policy this time.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Custom</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Schedparm EQU 5</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then, use RESET to zero the statistics, but leave
+  Transactions in the simulation. This will allow us to eliminate startup
+  effects from the simulation. You should be sure when you do statistical
+  comparisons with other runs that you have eliminated startup effects.</p>
+  <p ALIGN="left">Now, from the Main Window menu,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / RESET</p>
+</b>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">100</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="left">SELECT <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, the average completion time for the new policy is
+  given by</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">TB$Late</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Similarly, we can change to a longest process time first
+  policy by changing Schedparm to equal 6 and resetting the statistics with a
+  RESET, as we did above.</p>
+  <p ALIGN="left">Before we report the results of these simulations, we must
+  show that the observed effects are not due to random variation. The RESET and
+  ANOVA Commands are provided for that purpose. They are discussed in Chapter 6
+  of the <i>GPSS World Reference Manual</i>.</p>
+  <p ALIGN="left">Please feel free to modify the scheduling policy of the
+  company, and simulate the effects. You may want to review the use of the LINK
+  and UNLINK Blocks before you proceed.</p>
+  <p ALIGN="left">Let's take a look at one final graphics window before we
+  conclude this lesson. We'll view the Userchains. These are available to view
+  in a Snapshot Window. When you first ran the model, at the end of the run,
+  there were no transactions on the Userchains. At this point, we'll see some.
+  We will expand the Chains only one level. You can expand them all the way if
+  you wish by clicking on the additional plus signs.</p>
+  
+  <p ALIGN="center"><font FACE="Helvetica" SIZE="2">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Window
+  / Simulation Snapshot / Userchains Window
+  </b></p>
+  <p ALIGN="center">&nbsp;</p>
+<font FACE="Arial" SIZE="2">
+  
+
+<p align="center"><img border="0" src="../images/T2_16_2.gif" width="622" height="194"></p>
+
+  
+<p align="center"></font><i><font SIZE="2">Figure 16—2 Userchains, Expanded One Level</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left">These chains represent the waiting lines for each of the
+three processes.</p>
+<p ALIGN="left">If you wish to go on to the next lesson, close all windows
+related to this model.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+</font><b><font FACE="Arial">
+<p ALIGN="left">&nbsp;</p>
+
+  
+  </font>
+</font>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#17. TRAFFIC.GPS" name="17. TRAFFIC.GPS"><font face="Arial">17. TRAFFIC.GPS</font></a><!--mstheme--></font></h1>
+
+ 
+    <p ALIGN="center">&nbsp;</p>
+
+ 
+    <p ALIGN="center"><font face="Arial" size="4">Simulation of traffic at a T-junction.</font></p>
+
+ 
+    <p ALIGN="center">&nbsp;</p>
+  </font><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Cars arrive at a T-junction every 6.28 seconds
+hyperexponentially distributed (standard deviation = 8.40 seconds). The cars
+then make a left turn northbound onto a highway. When cars cross the southbound
+lanes, they must wait in a center aisle which can accommodate a maximum of 8
+cars. Each car takes 3.6 seconds (Erlang k=4 ) to cross the traffic lanes. It
+takes 4 seconds (Erlang k=5 ) to merge with northbound traffic. Southbound
+traffic arrives every 55±5 seconds and takes 15±5 seconds to pass the
+T-junction. Northbound traffic arrives every 60±5 seconds and takes 15±5
+seconds to pass.</p>
+<p ALIGN="left">Simulate the traffic at the T-junction for 10 minutes.</p>
+<p align="left">1.&nbsp;Determine the transit time of northbound cars turning at the
+T-junction.</p>
+<p align="left">2.&nbsp;Tabulate the actual Erlang service times.</p>
+<p align="left">3.&nbsp;Find the maximum number of cars queuing in the lane, waiting to make
+a left turn.</p>
+<p align="left">&nbsp;</p>
+</font><b>
+<font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+</b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+TRAFFIC.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+* *<br>
+* Traffic at a T-Junction *<br>
+***********************************************************************<br>
+* Erlang Service Times ...Hyperexponential Arrivals *<br>
+* Time Unit is 1/100 Second *<br>
+***********************************************************************<br>
+* A Hyperexponential Probability Distribution Follows<br>
+Hyper FVARIABLE (410+((RN2’L’234)#(1343-410)))#(Exponential(2,0,1))<br>
+* f(t) = .234(1/4.10) exp(-t/4.1) + .766(1/13.43) exp(-t/13.43)<br>
+***********************************************************************<br>
+Aisle STORAGE 8<br>
+Mergetime TABLE MP2,100,100,20<br>
+Crosstime TABLE MP1,100,100,20<br>
+Transit TABLE M1,1000,1000,9<br>
+Arrivals TABLE V$Hyper,200,200,20<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE V$Hyper,,300&nbsp;&nbsp; ;Hyperexponential<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp; First<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GATE SNF
+Aisle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Is there room in
+the aisle?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp; Southlane&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Crosses highway<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp; First<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MARK&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+*———Erlang
+Distribution——————————————————————<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp; (Gamma(3,0,4,90)) ;Erlang
+K=4 waiting time<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Mean = 360 time units<br>
+*———————————————————————————————————<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE Crosstime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record crossing time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;
+Aisle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Stand in center
+aisle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp; Southlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;
+Two&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Queue for
+northlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp; Northlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp; Two<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp; Aisle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MARK&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+* ————Erlang
+Distribution————————————————————<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp; (Gamma(4,0,5,80)) ;Erlang
+K=5 waiting time<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Mean = 400 time units<br>
+*
+——————————————————————————————————<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Northlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Mergetime&nbsp;&nbsp;&nbsp;&nbsp;
+;Merge time to north flow<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Arrivals<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 5000,500,,,10
+;Southbound traffic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;
+Southlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 1200,300 ;Time to
+pass junction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Southlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 6000,500,,,10
+;Northbound traffic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;
+Northlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+1200,300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Time to pass junction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Northlane<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+6000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Xact every minute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+***********************************************************************</font>
+</p>
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">There are 100 time units in a second. After the Functions,
+Tables, and Variables are defined, the model is composed of three segments.
+Transactions in the top segment represent traffic arriving at the T-junction,
+Transactions in the second segment represent southbound traffic on the highway,
+Transactions in the third segment represent northbound traffic on the highway,
+and Transactions in the bottom segment time the simulation by decrementing the
+Termination Count once per simulated minute.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Traffic</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">10</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 10 minutes of traffic has been
+  simulated.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Traffic.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The transit times of northbound cars turning at the
+  T-junction are tabulated in Table Transit. The average time was nearly 25
+  seconds. Times are in units of 0.01 seconds.</p>
+  <p ALIGN="left">The actual Erlang service times were tabulated in Tables
+  Crosstime and Mergetime. The crossing times had a mean of 3.63 seconds and a
+  standard deviation of 0.39 seconds. The merging times had a mean of 4.05
+  seconds and a standard deviation of 0.47 seconds.</p>
+  <p ALIGN="left">From the Queue Entity First we see that the maximum number
+  of cars queuing in the lane, waiting to make a left turn was 8. The average
+  time spent waiting was about 11.5 seconds.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let 's now explore the ending condition of the simulation
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please translate the model and run it again.</p>
+  <p ALIGN="left">First, look at the average transit time.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / SHOW</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">TB$Transit</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, the standard deviation of transit times.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / SHOW</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">TD$Transit</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Now let’s open some graphics windows.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TRANSIT</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Table Window for the Transit Table which shows
+  the distribution of total times to travel through the intersection.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>CROSSTIME</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Table Window which collects the times taken to
+  cross the highway. If you wish, you may open the other Table Windows,
+  MERGETIME, and ARRIVALS, in the same manner. When you are done looking at the
+  various Table Windows, close them.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">One way to watch the dynamics at the intersection is to view
+through the Facilities Window and the Storages Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we can see cars queuing for passage through the
+  intersection. While the simulation is running, watch the delay chain for each
+  Facility.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we can see cars ready to turn.</p>
+  <p ALIGN="left">When you are done observing the simulation, Halt it if it
+  has not completed.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [F4]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">If you wish to go on to the next lesson, close all windows
+related to this model.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font>
+</font>
+<h1 align="left"><!--mstheme--><font color="#336666">
+      <b>
+        <a href="#18. POWDER.GPS" name="18. POWDER.GPS"><font face="Arial">18. POWDER.GPS</font></a>
+</b>
+<!--mstheme--></font></h1>
+<font FACE="Helvetica" SIZE="2"><font FACE="Helvetica" SIZE="2">
+<p align="center">&nbsp;</p>
+</font>
+</font><b>
+
+  
+    <p ALIGN="center"><font face="Arial" size="4">Simulation of customer brand loyalty.</font></p>
+    <p ALIGN="left">&nbsp;</p>
+    <font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">A survey was carried out to assess the brand loyalty of
+customers to 7 brands of soap powder. The probability of change from one type of
+powder to another, is given in the table below. It is assumed that the customer
+will purchase either the same brand of powder again (most likely), or change to
+some other powder (less likely). Therefore the sum of the probabilities in each
+row of the matrix is equal to 1. The probability of the market share
+distribution depends on the number of transitions which have taken place (i.e.
+the number of successive purchases) and the initial market share of each
+product.</p>
+<p ALIGN="left">The purpose of the model is to estimate the market share each
+powder will achieve, in the long term, assuming that the transition probability
+matrix will remain the same, and assuming that initially all powders have an
+equal share of the market.</p>
+<p ALIGN="left">This process of system changes occurring in sequence is
+called a Markov Chain.</p>
+<p ALIGN="left">&nbsp;</p>
+<font FACE="Helvetica" SIZE="2">
+<b>
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Probability of Customer Changing From Row to Column</p>
+</font><font FACE="Courier New" SIZE="2">
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SUDS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BUBBLES&nbsp;&nbsp;&nbsp;&nbsp; CLEANPLUS&nbsp;&nbsp;&nbsp;
+SOAPY<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font FACE="Courier New" SIZE="2">BRANDX&nbsp;&nbsp;&nbsp;&nbsp; CLEARSHINE&nbsp;&nbsp;&nbsp;
+MARVEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TOTAL</p>
+<p align="left">SUDS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .39&nbsp;&nbsp;
+.12&nbsp;&nbsp; .17&nbsp;&nbsp; .13&nbsp;&nbsp; .10&nbsp;&nbsp; .04&nbsp;&nbsp;
+.05&nbsp;&nbsp; 1.0</p>
+<p align="left">BRANDX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .13&nbsp;&nbsp;
+.32&nbsp;&nbsp; .10&nbsp;&nbsp; .15&nbsp;&nbsp; .12&nbsp;&nbsp; .09&nbsp;&nbsp;
+.09&nbsp;&nbsp; 1.0</p>
+<p align="left">BUBBLES&nbsp;&nbsp;&nbsp;&nbsp; .15&nbsp;&nbsp; .14&nbsp;&nbsp;
+.25&nbsp;&nbsp; .14&nbsp;&nbsp; .17&nbsp;&nbsp; .08&nbsp;&nbsp; .07&nbsp;&nbsp;
+1.0</p>
+<p align="left">CLEARSHINE&nbsp; .11&nbsp;&nbsp; .10&nbsp;&nbsp; .09&nbsp;&nbsp;
+.40&nbsp;&nbsp; .08&nbsp;&nbsp; .09&nbsp;&nbsp; .13&nbsp;&nbsp; 1.0</p>
+<p align="left">CLEANPLUS&nbsp;&nbsp; .05&nbsp;&nbsp; .12&nbsp;&nbsp;
+.16&nbsp;&nbsp; .09&nbsp;&nbsp; .37&nbsp;&nbsp; .14&nbsp;&nbsp; .07&nbsp;&nbsp;
+1.0</p>
+<p align="left">MARVEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .16&nbsp;&nbsp;
+.13&nbsp;&nbsp; .08&nbsp;&nbsp; .05&nbsp;&nbsp; .16&nbsp;&nbsp; .28&nbsp;&nbsp;
+.14&nbsp;&nbsp; 1.0</p>
+<p align="left">SOAPY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .08&nbsp;&nbsp;
+.10&nbsp;&nbsp; .09&nbsp;&nbsp; .10&nbsp;&nbsp; .07&nbsp;&nbsp; .13&nbsp;&nbsp;
+.43&nbsp;&nbsp; 1.0</p>
+<p align="left">&nbsp;</p>
+</font></b>
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Since the table of transition probabilities has no zeroes, we
+know that all states are in a single chain, and are aperiodic. This assures the
+convergence of state probabilities in the theoretical Markov Chain, and assures
+that the simulation will not be trapped in a proper subset of states.</p>
+<p ALIGN="left">1) Run the model for 500 Transactions.</p>
+<p ALIGN="left">2) Determine the market share achieved by each product.</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+<b>
+<font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+</b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+POWDER.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+* *<br>
+* Brand Loyalty by Customers *<br>
+***********************************************************************<br>
+RMULT 98851<br>
+Check TABLE X$Brand,1,1,8<br>
+*<br>
+Transitions MATRIX ,7,7 ;State transition table<br>
+*<br>
+Powder FUNCTION X$Brand,M7 ;Pick brand transition<br>
+1,FN$Suds/2,FN$BrandX/3,FN$Bubbles/4,FN$Clearshine<br>
+5,FN$Cleanplus/6,FN$Marvel/7,FN$Soapy<br>
+*<br>
+*<br>
+Suds FUNCTION RN1,D7 ;Transition from Suds<br>
+<br>
+0.390,1/.510,2/.680,3/.810,4/.910,5/.950,6/1.0,7<br>
+*<br>
+BrandX FUNCTION RN1,D7 ;Transition from BrandX<br>
+0.130,1/.450,2/.550,3/.700,4/.820,5/.910,6/1.0,7<br>
+*<br>
+Bubbles FUNCTION RN1,D7 ;Transition from Bubbles<br>
+0.150,1/.290,2/.540,3/.680,4/.850,5/.930,6/1.0,7<br>
+*<br>
+Clearshine FUNCTION RN1,D7 ;Trans from Clearshine<br>
+0.110,1/.210,2/.300,3/.700,4/.780,5/.870,6/1.0,7<br>
+*<br>
+Cleanplus FUNCTION RN1,D7 ;Transition from Cleanplus<br>
+0.050,1/.170,2/.330,3/.420,4/.790,5/.930,6/1.0,7<br>
+*<br>
+Marvel FUNCTION RN1,D7 ;Transition from Marvel<br>
+0.160,1/.290,2/.370,3/.420,4/.580,5/.860,6/1.0,7<br>
+*<br>
+Soapy FUNCTION RN1,D7 ;Transition from Soapy<br>
+0.080,1/.180,2/.270,3/.370,4/.440,5/.570,6/1.0,7<br>
+*<br>
+Record FUNCTION X$Brand,L7 ;Records numbers<br>
+1,Suds/2,BrandX/3,Bubbles/4,Clearshine/5,Cleanplus/6,Marvel/7,Soapy<br>
+***********************************************************************<br>
+INITIAL X$Brand,1<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;&nbsp;
+1,,,,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;One xact every minute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp;&nbsp; Check<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp; Oldbrand,X$Brand
+;Save old brand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp; Brand,FN$Powder ;Find
+new brand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp; FN$Record+,1 ;Savevalue
+of chosen brand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; up by one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MSAVEVALUE
+Transitions+,X$Oldbrand,X$Brand,1 ;Update<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp; 1</font></p>
+<p align="left"></font>The model is organized into several segments. Transactions
+represent purchases. Each Transaction tabulates the current brand, chooses a new
+brand, and updates the count of purchases for the new brand.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Powder</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">500</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 500 Transactions have entered
+  the TERMINATE 1 Block. This represents 500 purchases.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Powder.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The approximate market shares are given in the Table Check.
+  However, the results include startup effects.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let's now explore the ending condition of the simulation
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box CHECK is already
+  selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This shows the histogram representing market shares. Let 's
+  now remove the statistics dependent on the startup conditions. In the Main
+  Window menu,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / RESET</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, continue the simulation for 100 more Transactions and
+  suppress the Standard Report.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">100,NP</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If we are truly at steady state conditions, you should not
+  see any significant change in the market shares as the simulation runs. This
+  means that although all columns in the histogram are growing, their relative
+  sizes should not change significantly.</p>
+  <p ALIGN="left">Close the Table Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Table Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Now, let’s watch the dynamics of the model. Open a graphics
+window on the state transition matrix.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Matrix Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since TRANSITIONS is already selected in the drop-down
+  box of the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, continue the simulation for 100 more Transactions.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">100,NP</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Each row in the matrix represents transitions out of any
+  single state. Use the slide bar, if necessary, to see additional columns. Each
+  column represents transitions into any single state. Every state change causes
+  a cell in the transition matrix to be incremented.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font><b><font FACE="Arial">
+<p ALIGN="left">&nbsp;</p>
+  </font>
+<h1 align="left"><!--mstheme--><font color="#336666"><a name="19. QTHEORY.GPS"><font face="Arial">19. QTHEORY.GPS</font></a><!--mstheme--></font></h1>
+  
+    <p ALIGN="center">&nbsp;</p>
+  
+    <p ALIGN="center"><font face="Arial" size="4">Simulation of a solvable queuing network.</font></p>
+    <p ALIGN="left">&nbsp;</p>
+    <font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font>
+</b>
+<font FACE="Helvetica" SIZE="2"><font FACE="Arial">
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">When feasible, an analytical solution to queuing systems
+provides a useful means of estimating the performance of simple systems.</p>
+<p ALIGN="left">This program simulates a system for which the queuing
+parameters are calculated using the appropriate Pollaczek and Khintchin (P-K)
+equations. The objective is to verify the results obtained by simulation using
+GPSS World.</p>
+<p ALIGN="left">The program simulates an interarrival time of 5 seconds( 500
+time units), exponentially distributed, and a single service channel. The mean
+service time is 3 seconds( 300 time units). The average utilization of the
+server is consequently 60%.</p>
+<p ALIGN="left">Three modes of service times are investigated.</p>
+<p ALIGN="left">1.&nbsp;Constant service time.</p>
+<p ALIGN="left">2.&nbsp;Exponentially distributed service time.</p>
+<p ALIGN="left">3.&nbsp;Erlang (k=2) service time.</p>
+<b>
+<p ALIGN="left">&nbsp;</p>
+</b>
+<p ALIGN="left">1.&nbsp;Run the simulation for 500 minutes.</p>
+<p ALIGN="left">2.&nbsp;Determine the queue statistics for each type of
+service.</p>
+<p ALIGN="left">3.&nbsp;Compare the simulation results with the predictions
+of queuing theory.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+</b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - QTHEORY.GPS, by Gerard F. Cummings<br>
+**********************************************************************<br>
+* Queuing Theory Verification *<br>
+* Time Unit Is 1/100 Of a Second *<br>
+**********************************************************************<br>
+*<br>
+Transit TABLE M1,250,250,20<br>
+Number TABLE Q$Expon,0,1,20<br>
+Qconstant QTABLE Constant,200,200,20<br>
+Qexpon QTABLE Expon,200,200,20<br>
+Qerlang QTABLE Erlang,200,200,20<br>
+**********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,500)) ;Interarrival 5 seconds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Service constant 3 secs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Constant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+**********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,500)) ;Interarrival 5 seconds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Expon<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Exponential(1,0,300)) ;Service time 3 secs Expon<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Expon<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,500)) ;Interarrival time 5 secs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Erlang<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Exponential(1,0,150)) ;Erlang K=2 Service 3 secs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Exponential(1,0,150))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Erlang<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,6000)) ;Random sample,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; Ave. 1 per minute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+***********************************************************************</font></p>
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The model is organized into several segments. After the
+Storage Entities are defined and Savevalues initialized, there are three model
+segments for Transactions encountering Constant, Exponential and Erlang-2
+service times, respectively.</p>
+<p ALIGN="left">Transactions in the bottom segment take random samples of the
+number of &quot;exponential&quot; Transactions in the system. These Transactions
+time the simulation and decrement the Termination Count once per simulated hour,
+on average.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE &nbsp;&nbsp;&nbsp;<b>File / Open</b></p>
+</font>
+    <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  </font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT<b> &nbsp;&nbsp;&nbsp;</b><b>QTHEORY</b></p>
+</font>
+  
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT<b> &nbsp;&nbsp;&nbsp;</b><b>Open</b></p>
+</font>
+  
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE<b> &nbsp;&nbsp;&nbsp;</b><b>Command / Create Simulation</b></p>
+</font>
+  
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE<b>&nbsp;&nbsp;&nbsp;</b><b>Command / START</b></p>
+</font>
+  
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp; </font><font FACE="Courier New"><b>500</b></p>
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp; <b>OK</b></p>
+</font>
+  
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 500 Transactions have entered
+  the TERMINATE 1 Block. This represents 500 minutes of operation.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Qtheory.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World File / Open
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The mean and standard deviations of queue time, queue
+  length, and waiting time are calculated using the P-K formulae and tabulated
+  below in table 1. Queue time is the sum of waiting time and service time.
+  Results from GPSS World model QTHEORY.GPS are shown in parentheses.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+  <p ALIGN="left"><b>&nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font FACE="Arial">
+Solutions Using Pollaczek and Khintchin Formulae</font></b></p>
+<font FACE="Arial">
+  <font FACE="Courier" SIZE="1">
+  <p ALIGN="left"></font><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Constant&nbsp;&nbsp; Exponential Erlang<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Service&nbsp;&nbsp;&nbsp;&nbsp; Service&nbsp;&nbsp;&nbsp; Service<br>
+  <br>
+  Mean Queue Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  525&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 750&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  637.5<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  (526.7)&nbsp;&nbsp;&nbsp;&nbsp; (757.5)&nbsp;&nbsp; (649.4)</font></p>
+<p ALIGN="left"><font face="Courier New" size="2">Mean Queue Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1.05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1.275<br>
+&nbsp;&nbsp;&nbsp;</font> </font></font><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(1.05)&nbsp;<font FACE="Arial">&nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp; (1.50)&nbsp;<font FACE="Arial">&nbsp;&nbsp;</font>&nbsp;&nbsp;</font><font FACE="Arial"><font face="Courier New" size="2">
+(1.29)</font></p>
+  <p ALIGN="left"><font face="Courier New" size="2">Mean Waiting Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  225&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  337.5<br>
+  (Mean Queue Time -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (226.7)&nbsp;&nbsp;&nbsp;&nbsp;
+  (453.5)&nbsp;&nbsp;&nbsp;&nbsp; (349.7)<br>
+  Mean Service Time)<br>
+  (Facility Ave. Time)</font></p>
+  <p ALIGN="left"><font face="Courier New" size="2">Std Dev Queue Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  319&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 750&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  415<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  (287)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (739.9)&nbsp;&nbsp;&nbsp;&nbsp; (595)</font></p>
+  <p ALIGN="left"><font face="Courier New" size="2">Std Dev Queue Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1.43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1.57</font></p>
+  <p ALIGN="left"><font face="Courier New" size="2">Std Dev Wait Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 276&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  195</font></p>
+    <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">For exponentially distributed service times, the
+  probability of the number of Transactions in the system is calculated using
+  the formula</p>
+  </font>
+  <p ALIGN="center"><font FACE="Arial" size="3">
+  <b>
+  P(n)=(1-<font FACE="Symbol" SIZE="2">l</font><font FACE="Arial" SIZE="2">/</font><font FACE="Symbol" SIZE="2">m</font><font FACE="Arial" SIZE="2">)(</font><font FACE="Symbol" SIZE="2">l</font><font FACE="Arial" SIZE="2">/</font><font FACE="Symbol" SIZE="2">m</font>)^n</b>
+  </font></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">where </font><font FACE="Symbol" SIZE="2">l</font><font FACE="Arial" SIZE="2">
+  is the mean arrival rate, and </font><font FACE="Symbol" SIZE="2">m</font><font FACE="Arial" SIZE="2">
+  is the mean service rate. These probabilities are tabulated in Table 2.
+  Results from the GPSS World model QTHEORY.GPS are shown in parentheses.</p>
+  </font>
+<b>
+  <p ALIGN="left">&nbsp;</p>
+</b>
+  <p ALIGN="left"><font face="Arial" size="3"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Table 2. Cumulative Probability of N Transactions
+  in System</b></font></p>
+  <font FACE="Courier New">
+  <p ALIGN="left">&nbsp;
+  </font><font face="Courier New" size="2">&nbsp;&nbsp; Number in System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ Cumulative&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+QTHEORY.GPS<br>
+  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp; Probability </font>
+ </p>
+<font FACE="Courier New" SIZE="2">
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .4000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.4060)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .6400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.6320)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .7840&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.7740)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .8704&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.8660)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9222&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9160)</p>
+  </font>
+  <p ALIGN="left"><font FACE="Courier New" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9533&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9560)</p>
+  
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9720&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9660)</p>
+  
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9787&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9820)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9828&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9840)</p>
+  <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  .9852&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (.9960)<br>
+  </p>
+  <b>
+  <p ALIGN="left">&nbsp;
+  </p>
+  </b>
+  </font>
+  <p ALIGN="left"><font face="Arial" size="2">As the length of the simulation increases, the simulated
+  values tend to approach the theoretical values. In the present case, we would
+  normally run the simulation much longer to obtain more precision. This would
+  cause our simulated results to converge to the theoretical values.</font></p>
+  <p ALIGN="left"><font face="Arial" size="2">Let’s observe the convergence to the average queue time
+  for the exponential service time distribution. The theoretical value is 750
+  (7.50 seconds).</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</b></p>
+ </font>
+  
+  <p ALIGN="left"><font size="2" face="Arial">and in the drop-down box in the dialog box</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK &nbsp;ON&nbsp; &nbsp;<b>&nbsp;&nbsp;</b><u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<b> </b><u><b>Qexpon</b></p>
+</u>
+<p align="center">SELECT &nbsp;&nbsp;<b>&nbsp;</b><b>OK</b></p>
+</font>
+  
+  <p ALIGN="left"><font face="Arial" size="2">and</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp; <b>Command / Clear</b></p>
+<p align="center">SELECT &nbsp;&nbsp;&nbsp;<b>OK</b></p>
+</font>
+  
+  <p ALIGN="left"><font face="Arial" size="2">and</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE &nbsp;&nbsp;&nbsp;<b>Command / START</b></p>
+</font>
+ 
+    <p ALIGN="left"><font face="Arial" size="2">and in the dialog box, replace the 1.</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE &nbsp;&nbsp;<b>&nbsp;</b></font><font FACE="Courier New"><b>10000,NP</b></p>
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp; <b>OK</b></p>
+</font>
+  
+  <p ALIGN="left"><font face="Arial" size="2">When you are satisfied that the simulated result is
+  converging toward the theoretical value (750), interrupt the simulation.
+  Incidentally, the PLOT Window is useful for observing convergence, and for
+  determining when startup transient effects are no longer significant. In your
+  simulation projects, you will often want to exclude startup effects. Normally,
+  you would enter a RESET Command to start the measurement period after startup
+  effects had subsided.</font></p>
+  <p ALIGN="left"><font face="Arial" size="2">If the simulation is still running, halt it now.</font></p>
+  
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[F4]</b></font></p>
+
+  
+<p ALIGN="left"><font face="Arial" size="2">If you wish to go on to the next lesson, close all windows
+related to this model.</font></p>
+
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON</font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial"><font FACE="Helvetica" SIZE="2"><u>The X-Upper Right of Each Window</p> 
+  </u></font>
+<p ALIGN="left"><font size="2">Otherwise, to end the session</font></p>
+
+<font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font>
+  </font><b>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#20. SUPERMRK.GPS" name="20. SUPERMRK.GPS"><font face="Arial">20. SUPERMRK.GPS</font></a><!--mstheme--></font></h1>
+
+  
+<font FACE="Arial">
+
+  
+    <p ALIGN="left">&nbsp;</p>
+  </font>
+
+  
+    <p ALIGN="center"><font face="Arial" size="4">Simulation of a supermarket.</font></p>
+
+  
+    <p ALIGN="center">&nbsp;</p>
+</b><font FACE="Helvetica" SIZE="2"><b><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Customers arrive by car to shop at a supermarket. The parking
+lot has space for 650 parked cars. If a customer fails to find a parking space,
+that customer leaves immediately without shopping. On average a customer can
+walk to the supermarket from the parking lot in 60 seconds. Shoppers purchase
+between 5 and 100 items, uniformly distributed. A customer buying 10 items or
+less, will generally use a basket (70 provided). A customer buying more than 10
+items will generally use a cart (650 provided).</p>
+<p ALIGN="left">Shopping time per customer depends on the number of items
+purchased (10 seconds per item). Customers select items and then join the
+shortest queue at one of 17 checkouts. Customers purchasing less than 10 items
+may choose the express checkout. Checkout time takes 2 seconds per item
+purchased, plus a time of 25, 30, or 35 seconds. This time depends on the method
+of payment (cash, check or credit card which are assumed equally likely or
+probable). After checking out a customer walks to the car (60 seconds), loads
+goods and leaves the parking lot.</p>
+<p ALIGN="left">The arrival rate of customers is exponentially distributed,
+starting at 600 per hour for half an hour, 900 per hour for one hour, 450 per
+hour for one hour and 300 per hour thereafter.</p>
+<p ALIGN="left">1. Run the simulation for 3 hours.</p>
+<p ALIGN="left">2. Determine the transit time of customers.</p>
+<p ALIGN="left">3. Determine the utilization of the parking lot, carts,
+baskets and checkouts.</p>
+<p ALIGN="left">4. Tabulate the number of customers in the supermarket at one
+minute intervals.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b>
+<font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font>
+</b>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+SUPERMRK.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+* *<br>
+* Supermarket Simulation Model *<br>
+* Time Unit = 1/10 Of a Second *<br>
+***********************************************************************<br>
+RMULT 1187<br>
+First EQU 2<br>
+Last EQU 18<br>
+Qty VARIABLE <a href="mailto:(RN1@96+5">(RN1@96+5</a>)<br>
+Finance VARIABLE <a href="mailto:(RN1@3+1)#50+200">(RN1@3+1)#50+200</a><br>
+Transit TABLE M1,10000,10000,7 ;Time in system<br>
+Items TABLE P$Quantity,10,10,10 ;No. of items bought<br>
+Shoppers TABLE X$Customers,100,50,12 ;No. of shoppers<br>
+Baskt STORAGE 70<br>
+Cart STORAGE 650<br>
+Park STORAGE 650<br>
+Checkout VARIABLE (P$Quantity)#20+P$Payment<br>
+Tshop VARIABLE P$Quantity#100<br>
+INITIAL X$Customers,0<br>
+***********************************************************************<br>
+Beg&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,,Los&nbsp;&nbsp; ;Tries to park
+or leaves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;
+Park&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Park in parking lot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Time to walk from car<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Customers+,1 ;One more
+customer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+Quantity,V$Qty ;Param quantity = No. items bought<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+Payment,V$Finance ;Param payment = Method<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST LE&nbsp;&nbsp;
+P$Quantity,10,Qcart ;Items &gt;10 Get cart<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GATE SNF&nbsp; Baskt,Qcart ;Check
+basket available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;
+Basket&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Queue for a basket<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Baskt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get a basket<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;
+Basket&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Leave queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+Carrier,Baskt ;Param carrier assigned baskt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp;
+,Shop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;OK to shop<br>
+***********************************************************************<br>
+Qcart&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;
+Carts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Queue for a cart<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;
+Cart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Get a cart<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;
+Carts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Depart carts queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Carrier,Cart
+;Param carrier assigned cart<br>
+Shop&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; V$Tshop&nbsp;&nbsp;&nbsp;&nbsp;
+;Shopping time elapses<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST LE&nbsp;&nbsp;
+P$Quantity,10,Norm ;Items &lt; 10 go to express<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COUNT L&nbsp;&nbsp;
+Where,First,Last,1,Q ;Any empty checkouts?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp;
+P$Where,0,Norm ;Some empty checkouts?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Xpress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue at express<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Xpres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get express checkout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Xpress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart express queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; V$Checkout&nbsp;
+;Checkout time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Xpres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free express checkout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;
+P$Carrier&nbsp;&nbsp; ;Leave the basket<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Fin<br>
+***********************************************************************<br>
+Norm&nbsp;&nbsp;&nbsp; SELECT MIN Minque,First,Last,,Q ;Find minimum queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;
+P$Minque&nbsp;&nbsp;&nbsp; ;Join the min queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;
+P$Minque&nbsp;&nbsp;&nbsp; ;Get the checkout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; P$Minque&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; V$Checkout&nbsp;
+;Checkout time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; P$Minque&nbsp;&nbsp;&nbsp;
+;Free the checkout<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;
+P$Carrier&nbsp;&nbsp; ;Leave the cart<br>
+Fin&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;
+;Record transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp;
+Items&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Record items bought<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Customers-,1 ;One customer
+leaves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;
+600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Walk to the car<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;
+Park&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Leave the car park<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+Lost&nbsp;&nbsp;&nbsp;
+TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One customer lost<br>
+***********************************************************************<br>
+* Arrivals for 0 - 30 min.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+(Exponential(1,0,60)),,,300 ;A Customer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; arrives<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Beg<br>
+* Arrivals for 30 - 90 min.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+(Exponential(1,0,40)),,18000,900 ;Arrival rate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; after .5 hours<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Beg<br>
+* Arrivals for 90 - 150 min.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+(Exponential(1,0,80)),,54000,450 ;Arrival rate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; after 1.5 hrs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Beg<br>
+* Arrivals for 150 min +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+(Exponential(1,0,120)),,90000 ;Arrival after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; 2.5 hours<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Beg<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact each minute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp;
+Shoppers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Record number of
+customers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+***********************************************************************
+</font></p>
+<p align="left"><font face="Courier New" size="2"><b><br>
+</b>
+</font><font FACE="Arial" SIZE="2">
+The model is organized into several segments. After the
+Variable Entities and Storage Entities are defined and Savevalues initialized,
+there are three more model segments.</p>
+<p ALIGN="left">Transactions in the top segment represent customers who have
+arrived at the parking lot. If a Transaction finds that the Storage Entity named
+Park is full, the Transaction leaves the simulation. This represents a customer
+leaving without entering the store. Customers who enter the store acquire a cart
+or basket and proceed to shop. If the customer has more than 10 items, he/she
+joins the smallest checkout queue. The TEST Block in the third model segment
+performs this test, and sends any such Transactions to the Block labeled Normal.
+The minimum queue is determined by the SELECT Block in the fourth model segment,
+which puts the appropriate Queue Entity number into the Transaction’s
+parameter named &quot;Minque&quot;.</p>
+<p ALIGN="left">For those Transactions with 10 items, or less, the COUNT
+Block in the third model segment checks GPSS Queue Entities numbered 4 through
+20 for an empty checkout station. If none is found, the Transaction gets into
+line for the express checkout station.</p>
+<p ALIGN="left">The next to last segment contains several GENERATE Blocks
+which turn on and off at the appropriate times to vary the arrival rate. One
+could also use a single GENERATE Block with a function modifier which depends on
+the system clock. The Transactions in the bottom segment time the simulation;
+tabulate the number of customers at the end of each minute; and decrement the
+Termination Count.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b>Supermrk</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">180</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 180 Transactions have entered
+  the TERMINATE 1 Block. This represents 3 hours of operation.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Supermrk.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Discussion of Results</p>
+    </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">From the Table Transit, we see that the average shopping
+  time was 23641 seconds, or 394 minutes. From the Storage Entity subreport we
+  see that the max content never reached the available capacity. Therefore,
+  there were always enough parking places, baskets, and carts. However, a very
+  large number of customers (397) are waiting in the checkout lines. They are,
+  on average, spending more time waiting in line than they are shopping.</p>
+  <p ALIGN="left">The Table Shoppers gives a histogram of customers in the
+  supermarket, sampled at the end of every minute. There were, on average, 398.7
+  shoppers. Nearly all of these were waiting to check out.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let's now explore the ending condition of the
+  simulation which generated the Standard Report above. If you are not at the
+  end of the simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Let’s use the SHOW Command to look at some System Numeric
+  Attributes. These will be expressed in parts per thousand. First, the average
+  utilization of baskets.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">SR$Baskt</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, the utilization of carts.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">SR$Cart</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, the utilization of parking places.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">SR$Park</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">The easiest way to view these utilizations is to open the
+Storages Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This shows the Storage Entities representing the carts,
+  baskets, and parking places. From the maximum in use, we see that none of
+  these resources were exhausted during the simulation. The histogram of
+  shopping times can be viewed next.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TRANSIT</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You can also view the histograms of items purchased and
+  shoppers in the supermarket. Those Tables are named Shoppers and Items.</p>
+  <p ALIGN="left">Let’s take a look at where Transactions are.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Blocks Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Notice that many Transactions are in the QUEUE Block (Block
+  30) following the SELECT Block, waiting to enter a SEIZE Block. Transactions
+  here represent customers trying to check out.</p>
+  <p ALIGN="left">Let’s turn now to the checkout lines.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Use the slide bar on the side of the window to move to the
+  Facility representing the express checkout line or make the window full
+  screen.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_20_1.gif" width="661" height="337"></p>
+  </font><i><font SIZE="2">
+  
+  
+  <p align="center">Figure 20—1. The Facilities Window showing the express checkout</p>
+</font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">Notice that all checkout stations are heavily utilized
+    and have large queues except for the express checkout. Clearly, this
+    situation must be avoided by the management of the supermarket. Before we go
+    on let’s close up the graphics windows that we have opened up until now.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Let’s see if adding 10 more checkout stations will solve
+the problem. Go ahead and change the value of Last to 28. This increases the
+number of checkout lines from 17 to 27.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / Custom</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Last EQU 28</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / CLEAR</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, start the simulation running with the new number of
+  lanes.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">180</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When the simulation ends, look at the important statistics
+  as before. Do you think 10 more checkout lines will suffice? Perhaps fewer
+  would do. Management decisions such as the configuration of checkout lines are
+  complex tradeoffs involving costs, revenues, and customer satisfaction.</p>
+  <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+  this simulation.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.</p>
+</u></font>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="center"><font FACE="Arial" SIZE="2"><a href="tutorial_manual.htm">[Table
+of Contents]</a></font></p>
+
+
+<p align="left">&nbsp;</p>
+<h2 align="left">&nbsp;</h2>
+</font>
+</blockquote>
+</blockquote>
+</font>
+<!--mstheme--></font></body>
+
+</html>

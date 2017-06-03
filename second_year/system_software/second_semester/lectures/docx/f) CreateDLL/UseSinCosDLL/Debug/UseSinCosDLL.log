@@ -1,0 +1,30 @@
+﻿Построение начато 14.03.2016 17:06:25.
+     1>Проект "D:\laboda\vc_2010\console\UseSinCosDLL\UseSinCosDLL.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Создание "Debug\UseSinCosDLL.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\UseSinCosDLL.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt UseSinCosDLL.cpp
+         UseSinCosDLL.cpp
+     1>d:\laboda\vc_2010\console\usesincosdll\usesincosdll.cpp(34): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files\microsoft visual studio 10.0\vc\include\stdio.h(304): см. объявление "scanf"
+       ManifestResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\laboda\vc_2010\console\UseSinCosDLL\Debug\UseSinCosDLL.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\UseSinCosDLL.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\laboda\vc_2010\console\UseSinCosDLL\Debug\UseSinCosDLL.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\laboda\vc_2010\console\UseSinCosDLL\Debug\UseSinCosDLL.lib" /MACHINE:X86 Debug\UseSinCosDLL.exe.embed.manifest.res
+         Debug\stdafx.obj
+         Debug\UseSinCosDLL.obj
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\UseSinCosDLL.exe.embed.manifest" /manifest Debug\UseSinCosDLL.exe.intermediate.manifest
+         Для всех выходных данных обновления не требуется.
+       LinkEmbedManifest:
+         Для всех выходных данных обновления не требуется.
+         UseSinCosDLL.vcxproj -> D:\laboda\vc_2010\console\UseSinCosDLL\Debug\UseSinCosDLL.exe
+       FinalizeBuildStatus:
+         Файл "Debug\UseSinCosDLL.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\UseSinCosDLL.lastbuildstate".
+     1>Построение проекта "D:\laboda\vc_2010\console\UseSinCosDLL\UseSinCosDLL.vcxproj" завершено (целевые объекты build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:02.23

@@ -1,0 +1,936 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Helvetica" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+<blockquote>
+  <blockquote>
+    <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="11">11</a> - Standard Reports<!--mstheme--></font></h1>
+    <p ALIGN="left">GPSS World provides for extensive statistics reporting
+    that often gets you the results you need with no additional effort. The
+    final states of all traditional GPSS Entities are reported in a Standard
+    Report that is created automatically when each simulation terminates.</p>
+    <p ALIGN="left">If you have additional reporting needs, you should
+    consult the discussion of Data Streams in Chapter 4.</p>
+    <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="11.1">11.1</a>. Report
+    Management</h2>
+    <p ALIGN="left">Normally, GPSS World creates a detailed Standard Report
+    of each simulation. Each Report Object is automatically created unless you
+    specify NP as operand B of the START Command. You can also suppress the
+    creation of Standard Reports using Settings. To do so, be sure </font><b>Create
+    Standard Reports</b><font FACE="Helvetica" SIZE="2"> is not checked in the
+    Report page of the Model Settings Notebook.</p>
+    <p ALIGN="left">The REPORT and START Commands are discussed in Chapter 6.</p>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.1.1.
+    Report Windows<!--mstheme--></font></h3>
+  </font><b><font FACE="Helvetica" SIZE="5"></font></b><font FACE="Helvetica" SIZE="2">
+  <p ALIGN="left">\You can cause a Report Object to be opened for each newly
+  created Standard Report. To do so, check </font><b>Create Standard Reports</b><font FACE="Helvetica" SIZE="2">
+  and <b>In Windows</b> in the Report page of the Model Settings Notebook.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.1.2.
+  Controlling Report Contents<!--mstheme--></font></h3>
+  <p ALIGN="left">You can select the contents of a model’s Standard Reports
+  using a set of checkboxes in the Report page of the Model Settings Notebook.
+  This is opened when you select </font><b>Edit / Settings</b><font FACE="Helvetica" SIZE="2">
+  from the Main Menu. This is discussed in Chapter 2.</p>
+  </font><font FACE="Helv" SIZE="2">
+  <p ALIGN="left">Report Windows have full text editing, font, color, and
+  printing capabilities. This is discussed in Chapter 2, under the section
+  entitled, <u>Text Windows.</u></font></p>
+  <font FACE="Helvetica" SIZE="2">
+  <h2 ALIGN="left">&nbsp;</h2>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="11.2">11.2</a>. Sample Report</h2>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.2.1. Model<!--mstheme--></font></h3>
+  <p ALIGN="left">The Model File that follows was used to generate the sample
+  report output in the next section. When this Model File, named SAMPLE9.GPS, is
+  Translated and run, it produces the automatic report named SAMPLE9.001. The
+  model’s only purpose is to display all the various graphics and text windows
+  in the Tutorial Manual in Chapter 1, Lesson 11 and to demonstrate the layout
+  of the report and meanings of the various parts of the report in this chapter.</p>
+  </font>
+  <p align="left"><font face="Courier New" size="2">; GPSS World Sample File - SAMPLE9.GPS Model to demo graphics windows<br>
+  Pool STORAGE 400 ;Define Storage<br>
+  Matrix1 MATRIX ,5,5 ;Define Matrix<br>
+  Transit TABLE M1,200,200,20 ;Transit time in wait ; and process<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,100))&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maingrp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Xact joins grp called ; Maingrp<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Numgrp,9999&nbsp;&nbsp;
+  ;Add 9999 to Numeric<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Addup+,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Total of Transactions<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Param_1,232&nbsp;&nbsp;
+  ;Assign Xact parameter<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Numgrp,P$Param_1 ;Put value in Param1<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOGIC S&nbsp;&nbsp; Switch_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Turn on a logic switch&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MSAVEVALUE Matrix1,2,2,QA$Tot_Process&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Tot_Process&nbsp;&nbsp;
+  ;Queue for process time&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility1&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Own first Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chain1,FIFO,Nxtblk ;Put on Userchain if
+  busy<br>
+  Nxtblk&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility2&nbsp;&nbsp;&nbsp;&nbsp; ;Own a second Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility3&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Own a third Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Process_Time&nbsp;
+  ;Keep track of process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 100,(Exponential(1,0,100))&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART Process_Time ;Record length<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Add wait + process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility1&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 1st Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Delay time for Fac 2&amp;3<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility2&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 2nd Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Extra delay time-Fac 3&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">RELEASE&nbsp;&nbsp; Facility3&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 3rd Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Tot_Process&nbsp;&nbsp;
+  ;Leave Queue<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp; Chain1,Nxtblk ;Take
+  off waiting Xacts&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Pool,100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Place 100 units in the Storage<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOGIC R&nbsp;&nbsp; Switch_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Turn off logic switch&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Pool,50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Take 50 units from Storage<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Collect-,1&nbsp;&nbsp;&nbsp;
+  ;Show negative Savevalue<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REMOVE&nbsp;&nbsp;&nbsp; Maingrp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Remove Xact from group<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 50,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Wait 50(+/-1) time units<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Pool,50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Take 50 units from Storage<br>
+  Finis&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Destroy Xact<br>
+  </font></p>
+  <p align="left">&nbsp;</p>
+  <font FACE="Helvetica" SIZE="2">
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11.2.2. Report<!--mstheme--></font></h3>
+  </font>
+  <p ALIGN="left"><font face="Arial" SIZE="2">
+  This section contains a standard report generated by the
+  program listed in Section 11.2.1. Each item is explained individually in
+  Section 11.3.
+  </font></p>
+  <p ALIGN="left"><font face="Arial" SIZE="2">
+  Let’s now examine the items included in a standard GPSS
+  World Report. This section includes the complete report resulting from the
+  simulation in Section 11.2.1. The individual items are considered separately
+  in Section 11.3.
+  </font></p>
+  <p ALIGN="left">&nbsp;</p>
+  <p align="left"><font face="Courier New" size="2">
+  GPSS World Simulation Report - SAMPLE9.1.1<br>
+  Tuesday June 6, 2000 14:00:59<br>
+  <br>
+  START TIME&nbsp;&nbsp;&nbsp;&nbsp; END TIME&nbsp;&nbsp;&nbsp;&nbsp; BLOCKS&nbsp;&nbsp;&nbsp;&nbsp;
+  FACILITIES&nbsp;&nbsp;&nbsp;&nbsp; STORAGES<br>
+  &nbsp;&nbsp;&nbsp; 0.000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5187.692&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  VALUE<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADDUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10007.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHAIN1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10012.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COLLECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10017.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FACILITY1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10011.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FACILITY2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10014.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FACILITY3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10015.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FINIS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  32.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAINGRP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10005.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MATRIX1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10003.000<br>
+</font><font face="Courier New" size="2">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NUMGRP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10006.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NXTBLK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  12.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PARAM_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10008.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; POOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10002.000<br>
+</font><font face="Courier New" size="2">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PROCESS_TIME&nbsp;&nbsp;&nbsp;&nbsp;
+  10016.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SWITCH_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10009.000<br>
+</font><font face="Courier New" size="2">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TOT_PROCESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10010.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  10004.000<br>
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  LABEL LOC&nbsp;&nbsp; BLOCK TYPE&nbsp;&nbsp; ENTRY COUNT&nbsp;&nbsp; CURRENT COUNT&nbsp;&nbsp;
+  RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; GENERATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; LOGIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; MSAVEVALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  </font><font face="Courier New" size="2">
+  NXTBLK 12&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 17&nbsp;&nbsp;&nbsp; TABULATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 21&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 23&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 26&nbsp;&nbsp;&nbsp; LOGIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 27&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 29&nbsp;&nbsp;&nbsp; REMOVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  FINIS&nbsp; 32&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  FACILITY ENTRIES UTIL. AVE. TIME AVAIL. OWNER PEND INTER RETRY DELAY<br>
+  FACILITY1&nbsp;&nbsp; 51&nbsp; 0.937&nbsp;&nbsp;&nbsp; 95.278&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+  FACILITY2&nbsp;&nbsp; 51&nbsp; 0.853&nbsp;&nbsp;&nbsp; 86.719&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  FACILITY3&nbsp;&nbsp; 51&nbsp; 0.949&nbsp;&nbsp;&nbsp; 96.523&nbsp;&nbsp;&nbsp;
+  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; QUEUE MAX CONT. ENTRY ENTRY(0) AVE.CONT. AVE.TIME AVE.(-0) RETRY<br>
+  TOT_PROCESS 11&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  6.439&nbsp;&nbsp;&nbsp; 556.700 556.700&nbsp;&nbsp;&nbsp; 0<br>
+  PROCESS_TIME 1&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0.660&nbsp;&nbsp;&nbsp;&nbsp; 67.112&nbsp; 67.112&nbsp;&nbsp;&nbsp; 0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  STORAGE CAP. REM. MIN. MAX. ENTRIES AVL. AVE.C. UTIL. RETRY DELAY<br>
+  POOL&nbsp;&nbsp;&nbsp; 400&nbsp; 400&nbsp;&nbsp;&nbsp; 0&nbsp; 150&nbsp;&nbsp;&nbsp;
+  5000&nbsp;&nbsp; 1&nbsp;&nbsp; 23.628 0.059&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+  0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  TABLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MEAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  STD.DEV.&nbsp;&nbsp; RANGE&nbsp;&nbsp;&nbsp; RETRY&nbsp;&nbsp;&nbsp; FREQUENCY CUM.%<br>
+  TRANSIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 553.184&nbsp;&nbsp;&nbsp;&nbsp; 307.992&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">
+  0- 200.000&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  200.000 - 400.000&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  400.000 - 600.000&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  600.000 - 800.000&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 74.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  800.000 - 1000.000 11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 96.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1000.000 - 1200.000 2&nbsp;&nbsp;&nbsp;&nbsp; 100.00
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  USER CHAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp; RETRY&nbsp;&nbsp;&nbsp;
+  AVE.CONT&nbsp;&nbsp; ENTRIES MAX AVE.TIME<br>
+  CHAIN1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.277&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  48&nbsp;&nbsp; 1&nbsp;&nbsp; 29.927
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  XACT GROUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GROUP&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  MAINGRP&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  NUMERIC GROUP&nbsp;&nbsp;&nbsp; GROUP&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp;&nbsp;
+  RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  NUMGRP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  0<br>
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  LOGICSWITCH VALUE RETRY<br>
+  SWITCH_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+</font><font face="Courier New" size="2">
+  SAVEVALUE RETRY VALUE<br>
+  ADDUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 60.000<br>
+  COLLECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 -50.000
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  MATRIX RETRY INDICES NUMERIC VALUE<br>
+  MATRIX1 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intermediate Values are Zero.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  (2,2)&nbsp;&nbsp;&nbsp;&nbsp; 6.413<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intermediate Values are Zero.
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+</font><font face="Courier New" size="2">
+  CEC XN PRI&nbsp;&nbsp;&nbsp; M1&nbsp;&nbsp; ASSEM CURRENT NEXT PARAMETER VALUE<br>
+  &nbsp;&nbsp;&nbsp; 61&nbsp; 0 5187.692&nbsp;&nbsp; 61&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  2
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  FEC XN PRI BDT&nbsp;&nbsp;&nbsp;&nbsp; ASSEM CURRENT NEXT PARAMETER VALUE<br>
+  &nbsp;&nbsp;&nbsp; 51&nbsp; 0 5389.554&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;
+  16<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  PARAM_1 232.000<br>
+  &nbsp;&nbsp;&nbsp; 62&nbsp; 0 5523.253&nbsp;&nbsp; 62&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1<br>
+</font></p>
+  </blockquote>
+  </blockquote>
+<b><font FACE="Courier" SIZE="1">
+</font><font FACE="Helvetica" SIZE="5">
+<blockquote>
+  <blockquote>
+  </font></b>
+<p ALIGN="left"><font face="Arial" SIZE="2">
+This section explains the items in the standard GPSS World
+report.
+</font></p>
+<p ALIGN="left">&nbsp;</p>
+<b><font FACE="Helvetica" SIZE="4">
+<p align="left">Title</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">GPSS World Simulation Report - SAMPLE9.1.1<br>
+Tuesday June 6, 2000 14:00:59<br>
+</font></p>
+<p ALIGN="left">The title line of the standard report is taken from the name
+of the Model File that produced the report. The Date and Time of the running of
+the model is also included.</p>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">General Information</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  START TIME&nbsp;&nbsp;&nbsp;&nbsp; END TIME&nbsp;&nbsp;&nbsp;&nbsp; BLOCKS&nbsp;&nbsp;&nbsp;&nbsp; FACILITIES&nbsp;
+  STORAGES<br>
+  &nbsp;&nbsp;&nbsp; 0.000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5187.692&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">START
+TIME. The absolute system clock at the beginning of the measurement period.
+Utilizations and space-time products are based on the START TIME. The START TIME
+is set equal to the absolute system clock by a RESET or CLEAR statement.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">END
+TIME. The absolute clock time that the termination count became 0.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">BLOCKS.
+The number of Block entities in the simulation at the end of the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">FACILITIES.
+The number of Facility entities in the simulation at the end of the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">STORAGES.
+The </font><font FACE="Helvetica" SIZE="2">number of Storage entities in the
+simulation at the end of the simulation.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Names</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VALUE<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADDUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10007.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHAIN1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10012.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COLLECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10017.000<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FACILITY1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10011.000<br>
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">NAME.
+User assigned names used in your GPSS World model since the last Translation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">VALUE</font><font FACE="Helvetica" SIZE="2">.
+The numeric value assigned to the name. System assigned numbers start at 10000.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Blocks</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  LABEL LOC&nbsp;&nbsp; BLOCK TYPE&nbsp;&nbsp; ENTRY COUNT&nbsp;&nbsp; CURRENT COUNT&nbsp;&nbsp; RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; GENERATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; SAVEVALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">LABEL.
+Alphanumeric name of this Block if given one.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">LOC.
+Numerical position of this Block in the model. &quot;Location&quot;.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">BLOCK
+TYPE. The GPSS Block name.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">· </font><font FACE="Arial" SIZE="2">ENTRY COUNT. The number
+of Transactions to enter this Block since the last RESET or CLEAR statement or
+since the last Translation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CURRENT
+COUNT. The number of Transactions in this Block at the end of the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The</font><font FACE="Helvetica" SIZE="2"> number of Transactions waiting for a
+specific condition depending on the state of this Block entity.
+</font></p>
+<p ALIGN="left">&nbsp;</p>
+</blockquote>
+<b><font FACE="Helvetica" SIZE="4">
+<p align="left">Facilities</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+  FACILITY ENTRIES UTIL. AVE. TIME AVAIL. OWNER PEND INTER RETRY DELAY<br>
+  FACILITY1&nbsp;&nbsp; 51&nbsp; 0.937&nbsp;&nbsp;&nbsp; 95.278&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+  FACILITY2&nbsp;&nbsp; 51&nbsp; 0.853&nbsp;&nbsp;&nbsp; 86.719&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+  FACILITY3&nbsp;&nbsp; 51&nbsp; 0.949&nbsp;&nbsp;&nbsp; 96.523&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+<p ALIGN="left">·<font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">FACILITY.
+Name or number of the Facility entity.</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ENTRIES.
+The number of times the Facility was seized or preempted since last RESET or
+CLEAR command or since the last Translation of the model.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">UTIL.
+The fraction of simulated time in the last measurement period that the Facility
+was owned. A measurement period begins with the Translation of a model or the
+issuing of a RESET or CLEAR command.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.
+TIME. The average time of ownership by individual Transactions during the
+measurement period. A measurement period begins with a Translation of the model,
+or when a RESET or CLEAR command is issued.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVAIL.
+The availability state of the Facility entity at the end of the simulation. 1
+means available, 0 means unavailable.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">OWNER.
+The number of the Transaction which owns the Facility entity. 0 means the
+Facility is not owned.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PEND.
+The number of Transactions waiting to preempt this Facility by entering
+&quot;Interrupt Mode&quot; PREEMPT blocks.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">INTER.
+The number of Transactions currently preempted at this Facility. The count of
+Transactions on the interrupt chain.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific condition depending on the
+state of this Facility entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">DELAY.
+The number of Transactions waiting to SEIZE the Facility. This chain also con</font><font FACE="Helvetica" SIZE="2">tains
+Transactions waiting to preempt the Facility in &quot;Priority Mode&quot;
+PREEMPT blocks.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Queues</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  &nbsp;&nbsp;&nbsp;&nbsp; QUEUE MAX CONT. ENTRY ENTRY(0) AVE.CONT. AVE.TIME AVE.(-0) RETRY<br>
+  TOT_PROCESS 11&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.439&nbsp;&nbsp;&nbsp; 556.700 556.700&nbsp;&nbsp;&nbsp; 0<br>
+  PROCESS_TIME 1&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.660&nbsp;&nbsp;&nbsp;&nbsp; 67.112&nbsp; 67.112&nbsp;&nbsp;&nbsp; 0
+</font></p>
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">QUEUE.
+Name or number of the Queue entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MAX.
+The maximum content of the Queue entity during the measurement period. A
+measurement period begins with the Translation of a model or the issuing of a
+RESET or CLEAR command.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CONT.
+The current content of the Queue entity at the end of the simulation period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ENTRY.
+Entry count. The total count of Queue entries during the measurement period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ENTRY(0).
+&quot;Zero entry&quot; count. The total count of Queue entries with a 0
+residence time.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.CONT.
+The time weighted average of the Queue entity content during the measurement
+period. The space-time product divided by the time duration of the measurement
+period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.TIME.
+The average time per unit of Queue content utilized during the measurement
+period. The space-time product divided by the total entry count.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.(-0).
+The average time per unit of Queue content utilized during the measurement
+period, adjusted for &quot;zero entries&quot;. The space-time product divided by
+(the total entry count less the zero entry count).</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific conditi</font><font FACE="Helvetica" SIZE="2">on
+depending on the state of this Queue entity.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Storages</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">STORAGE CAP. REM. MIN. MAX. ENTRIES AVL. AVE.C. UTIL. RETRY DELAY<br>
+POOL&nbsp;&nbsp;&nbsp; 400&nbsp; 400&nbsp;&nbsp;&nbsp; 0&nbsp; 150&nbsp;&nbsp;&nbsp; 5000&nbsp;&nbsp; 1&nbsp;&nbsp; 23.628 0.059&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">STORAGE.
+Name or number of the Storage entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CAP.
+The Storage capacity of the Storage entity defined in the STORAGE statement.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">REM.
+The number of unused Storage units at the end of the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MIN.
+The minimum number of Storage units in use during the measurement period. A
+measurement period begins with the Translation of a model or the issuing of a
+RESET or CLEAR command.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MAX.
+The maximum number of Storage units in use during the measurement period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ENTRIES.
+The number of &quot;entries&quot; into the Storage entity during the measurement
+period. The total accumulation of operand B of ENTER statements.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVL.
+The availability state of the Storage entity at the end of the simulation. 1
+means available, 0 means unavailable.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.C.
+The time weighted average of the Storage content during the measurement period.
+The space-time product divided by the time duration of the measurement period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">UTIL.
+The fraction of the total space-time product of the Storage entity utilized
+during the measurement period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific condition depending on the
+state of this Storage entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">DELAY.
+The number of Transactions waiting to e</font><font FACE="Helvetica" SIZE="2">nter
+ENTER blocks on behalf of this Storage entity.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Tables and Qtables</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">TABLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MEAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STD.DEV.&nbsp;&nbsp; RANGE&nbsp;&nbsp;&nbsp; RETRY&nbsp;&nbsp;&nbsp; FREQUENCY CUM.%<br>
+TRANSIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 553.184&nbsp;&nbsp;&nbsp;&nbsp; 307.992&nbsp;<br>
+&nbsp;&nbsp;&nbsp;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New" size="2">
+ 0 - 200.000&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  200.000 - 400.000&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  400.000 - 600.000&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  600.000 - 800.000&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 74.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  800.000 - 1000.000 11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 96.00<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  1000.000 - 1200.000 2&nbsp;&nbsp;&nbsp;&nbsp; 100.00
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">TABLE.
+Name or number of the Table or Qtable entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MEAN.
+The weighted arithmetic average of tabulated values.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">STD.DEV.
+The weighted sample standard deviation of tabulated values.</p>
+<p ALIGN="left">S.D.= <b>SQR</b>( (SOS/(COUNT-1)) - (SUM</font><font FACE="Arial" SIZE="1">2</font><font FACE="Arial" SIZE="2">/(COUNT)(COUNT-1))
+)</p>
+<p ALIGN="left">Where SOS is the accumulated sum-of-squares.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RANGE.
+The lower and upper limits of the frequency class being reported. Values of the
+Table argument which are greater than the lower limit and less than or equal to
+the upper limit cause this frequency class to be updated. The B operand of the
+TABULATE statement can be used to provide a weighting factor. Frequency classes
+with accumulations of 0 are not reported.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific condition depending on the
+state of this Table entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">FREQUENCY.
+The total weighted count of tabulated items to fall within this range. The total
+of all TABULATE B operands.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CUM.%
+The cumulative frequency </font><font FACE="Helvetica" SIZE="2">count expressed
+as percent of total count.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Userchains</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">USER CHAIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp; RETRY&nbsp;&nbsp;&nbsp; AVE.CONT&nbsp;&nbsp; ENTRIES MAX AVE.TIME<br>
+CHAIN1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.277&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 48&nbsp;&nbsp; 1&nbsp;&nbsp; 29.927
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">USER
+CHAIN. Name or number of the Userchain entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">SIZE.
+The number of Transactions on the User Chain at the end of the measurement
+period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific condition depending on the
+state of this Userchain entity.</p>
+<p ALIGN="left">· AVE.CONT. The time weighted average of the User Chain
+occupancy count during the measurement period. The space-time product divided by
+the time duration of the measurement period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ENTRIES.
+The total number of Transactions placed on the User Chain during the measurement
+period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MAX.
+The maximum number of Transactions on the User Chain during the measurement
+period.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">AVE.TIME.
+The average time per Transaction on the User Chain during the measurement
+period. The space-time product divided by the total entry count.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Transaction Groups</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  XACT GROUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GROUP&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  MAINGRP&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">XACT
+GROUP. Name or number of the Transaction Group entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">GROUP
+SIZE. The number of Transactions which are members of the group at the end of
+the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transact</font><font FACE="Helvetica" SIZE="2">ions waiting for a
+specific condition depending on the state of this Transaction Group entity.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Numeric Groups</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  NUMERIC GROUP&nbsp;&nbsp;&nbsp; GROUP&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp;&nbsp; RETRY<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  NUMGRP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">NUMERIC
+GROUP. Name or number of the Numeric Group entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">GROUP
+SIZE. The number of numeric values which are members of the group at the end of
+the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+T</font><font FACE="Helvetica" SIZE="2">he number of Transactions waiting for a
+specific condition depending on the state of this Numeric Group entity.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Logicswitches</p>
+</font></b>
+<blockquote>
+<font FACE="Arial" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  LOGICSWITCH VALUE RETRY<br>
+  SWITCH_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 0
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+</font><font FACE="Symbol" SIZE="2">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font>LOGICSWITCH. Name or number of the Logicswitch entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">VALUE.
+The value of the Logicswitch entity at the end of the simulation. 1 denotes
+&quot;set&quot; or &quot;true&quot;, 0 denotes &quot;reset&quot; or
+&quot;false&quot;.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The </font><font FACE="Helvetica" SIZE="2">number of Transactions waiting for a
+specific condition depending on the state of this Logicswitch entity.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">Savevalues</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<font FACE="Arial" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  SAVEVALUE RETRY VALUE<br>
+  ADDUP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 60.000<br>
+  COLLECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 -50.000
+</font></p>
+</font>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">SAVEVALUE.
+Name or number of the Savevalue entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">VALUE.
+The value of the Savevalue entity at the end of the simulation.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The numb</font><font FACE="Helvetica" SIZE="2">er of Transactions waiting for a
+specific condition depending on the state of this Savevalue entity.
+</font></p>
+</blockquote>
+<b><font FACE="Helvetica" SIZE="4">
+<p align="left">Matrix Entities</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left"><font face="Courier New" size="2">
+  MATRIX RETRY INDICES NUMERIC VALUE<br>
+  MATRIX1 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intermediate Values are Zero.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  (2,2)&nbsp;&nbsp;&nbsp;&nbsp; 6.413<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intermediate Values are Zero.
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MATRIX.
+Name or number of the Matrix entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY.
+The number of Transactions waiting for a specific condition depending on the
+state of this Matrix entity.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">INDICES.
+Up to 6 integers that specify the element of the Matrix.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">NUMERIC
+VALUE. The value of this Matrix entity element at the end of the simulation.
+Elements with 0 values are reported in groups.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">The Current Events Chain</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  CEC XN PRI&nbsp;&nbsp;&nbsp; M1&nbsp;&nbsp; ASSEM CURRENT NEXT PARAMETER VALUE<br>
+  &nbsp;&nbsp;&nbsp; 61&nbsp; 0 5187.692&nbsp;&nbsp; 61&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2
+</font></p>
+  <p align="left"><font face="Courier New" size="2">
+  <br>
+</font>·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">XN.
+Transaction number of each Transaction on the Current Events Chain</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PRI.
+Scheduling priority of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">M1.
+Mark time. The time the Transaction, or its earliest ancestor, was GENERATEd, or
+the time the Transaction entered a MARK Block with no operands.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ASSEM.
+The Assembly Set number of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CURRENT.
+The number of the Block where the Transaction existed at the end of the
+simulation or at the time of this report.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">NEXT.
+The number of the next Block scheduled to be entered by the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PARAMETER.
+The names or numbers of parameters of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">VALUE.
+The value of the parameter.</p>
+</blockquote>
+</font><b><font FACE="Helvetica" SIZE="4">
+<p align="left">The Future Events Chain</p>
+</font></b>
+<blockquote>
+<font FACE="Symbol" SIZE="2">
+  <p align="left"><font face="Courier New" size="2">
+  FEC XN PRI BDT&nbsp;&nbsp;&nbsp;&nbsp; ASSEM CURRENT NEXT PARAMETER VALUE<br>
+  &nbsp;&nbsp;&nbsp; 51&nbsp; 0 5389.554&nbsp;&nbsp; 51&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 16<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  PARAM_1 232.000<br>
+  &nbsp;&nbsp;&nbsp; 62&nbsp; 0 5523.253&nbsp;&nbsp; 62&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+</font></p>
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">XN.
+Transaction number of each Transaction on the Future Events Chain.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PRI.
+Scheduling priority of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">BDT.
+Block departure time. The time of the absolute system clock when the Transaction
+is scheduled to leave the Future Events Chain.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ASSEM.
+The Assembly Set number of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">CURRENT.
+The number of the Block where the Transaction existed at the end of the
+simulation or at the time of this report.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">NEXT.
+The number of the next Block scheduled to be entered by the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PARAMETER.
+The names or numbers of parameters of the Transaction.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">VALUE.
+The value of the parameter.
+</font></p>
+<p ALIGN="center">&nbsp;</p>
+<p align="center">
+<a href="reference_manual.htm"><font FACE="Arial" SIZE="2">
+[Table of Contents]</font></a></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

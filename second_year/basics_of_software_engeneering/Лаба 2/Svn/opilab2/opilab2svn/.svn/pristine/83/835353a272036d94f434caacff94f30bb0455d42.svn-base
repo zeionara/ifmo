@@ -1,0 +1,10 @@
+public class F extends null {
+
+    int[] ii();
+
+    void ab();
+
+    public double ee() {
+        return 100.500;
+    }
+}

@@ -1,0 +1,82 @@
+Circuit: * C:\Users\Zerbs\Documents\Study\Shemota\lab4\flash.asc
+
+WARNING: Node FORCE_RED is floating.
+WARNING: Node PRESET is floating.
+WARNING: Node CLEAR is floating.
+WARNING: Node FORCE_GREEN is floating.
+
+WARNING: Less than two connections to node VDD.  This node is used by VDD1.
+WARNING: Less than two connections to node FORCE_GREEN.  This node is used by A20.
+Singular matrix:  Check node force_green
+   Iteration No. 1
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+Gmin = 1.5325e-005
+Gmin = 1.6455e-006
+Gmin = 1.76685e-007
+Gmin = 1.89714e-008
+Gmin = 2.03704e-009
+Gmin = 2.18725e-010
+Gmin = 2.34854e-011
+Gmin = 2.52173e-012
+Gmin = 2.70769e-013
+Singular matrix:  Check node force_green
+   Iteration No. 2
+Gmin = 0
+Singular matrix:  Check node force_green
+   Iteration No. 1
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Singular matrix:  Check node force_green
+   Iteration No. 1
+Singular matrix:  Check node force_green
+   Iteration No. 2
+Could not converge to DC with sources off!
+Starting source stepping with srcstepmethod=1
+Singular matrix:  Check node force_green
+   Iteration No. 1
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
+
+Ignoring empty pin current: Ix(u1:s)
+Ignoring empty pin current: Ix(u1:j)
+Ignoring empty pin current: Ix(u1:c)
+Ignoring empty pin current: Ix(u1:k)
+Ignoring empty pin current: Ix(u1:r)
+Ignoring empty pin current: Ix(u1:q)
+Ignoring empty pin current: Ix(u1:qn)
+Ignoring empty pin current: Ix(u1:vcc)
+Ignoring empty pin current: Ix(u1:vgnd)
+Ignoring empty pin current: Ix(x1:clk)
+Ignoring empty pin current: Ix(x1:q)
+Ignoring empty pin current: Ix(x2:clk)
+Ignoring empty pin current: Ix(x2:q)
+Ignoring empty pin current: Ix(u1:s)
+Ignoring empty pin current: Ix(u1:j)
+Ignoring empty pin current: Ix(u1:c)
+Ignoring empty pin current: Ix(u1:k)
+Ignoring empty pin current: Ix(u1:r)
+Ignoring empty pin current: Ix(u1:q)
+Ignoring empty pin current: Ix(u1:qn)
+Ignoring empty pin current: Ix(u1:vcc)
+Ignoring empty pin current: Ix(u1:vgnd)
+Ignoring empty pin current: Ix(x1:clk)
+Ignoring empty pin current: Ix(x1:q)
+Ignoring empty pin current: Ix(x2:clk)
+Ignoring empty pin current: Ix(x2:q)
+Singular matrix:  Check node clear
+   Iteration No. 1
+Fatal Error: Singular matrix:  check node clear
+   Iteration No. 1
+
+This circuit has floating nodes.

@@ -1,0 +1,439 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><b>
+<blockquote>
+  <blockquote>
+  </b><font FACE="Arial" SIZE="2">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="9">9</a> - Advanced Topics<!--mstheme--></font></h1>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="9.1">9.1</a>. Transaction
+  Chains</h2>
+  <p ALIGN="left">Transactions are temporarily bound to other entities by
+  occupying linked lists called chains. Some entities, such as Facilities, have
+  several chains. Other entities have just a single Retry Chain. Each
+  Transaction may be on any number of chains. However, occupying one kind of
+  chain sometimes precludes occupancy by the same Transaction on another. For
+  example, a Transaction on one or more Interrupt Chains cannot be on the Future
+  Events Chain.</p>
+  <p ALIGN="left">A Transaction can be on no more than one of the following
+  chains:</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Future
+  Events Chain</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Current
+  Events Chain</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Facility
+  or Storage Delay Chain</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Facility
+  Pending Chain</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">User
+  Chain</p>
+  </blockquote>
+  <p ALIGN="left">A Transaction may be waiting for any number of conditions
+  to occur, can be in any number of Transaction Groups, and may be preempted
+  from any number of Facilities at any one time. This means that any single
+  Transaction can be on any number of Interrupt Chains and any number of Group
+  Chains and any number of Retry Chains at the same time.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Current Events Chain<!--mstheme--></font></h3>
+  <p ALIGN="left">The Current Events Chain (CEC) is a linked list of ready
+  Transactions which have Blocks yet to be entered before simulated time
+  advances. Although the CEC is kept in priority order, the Active Transaction
+  is usually returned to the CEC ahead of its peers. For this reason, once a
+  Transaction starts to move in the simulation, it tends to keep moving, unless
+  a higher priority Transaction is reactivated.</p>
+  <p ALIGN="left">When the Active Transaction comes to rest on some
+  Transaction Chain, the highest priority Transaction remaining on the CEC
+  becomes the Active Transaction. If the CEC is empty, the most imminent
+  Transaction on the Future Events Chain is moved to the CEC.</p>
+  </font><b><font FACE="Arial" SIZE="5"></font></b><font FACE="Arial" SIZE="2">
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Future Events Chain<!--mstheme--></font></h3>
+  <p ALIGN="left">The Future Events Chain (FEC) is a time-ordered chain which
+  holds Transactions which must wait for a later simulated time. When all
+  simulation activity for the current clock time is complete, the next
+  Transaction is taken from the FEC. It is this action which causes the system
+  clock to be updated. The value of the system clock is always equal to the
+  scheduled time of the last Transaction to be taken from the FEC.</p>
+  <p ALIGN="left">ADVANCE Blocks and GENERATE Blocks are the only way to
+  place a Transaction on the FEC. These blocks take a time increment as an
+  operand and calculate the absolute time before placing the Transaction on the
+  FEC. When the system clock reaches this absolute time, the Transaction is
+  moved to the CEC so that it may resume its movement in the simulation. In this
+  manner, a duration or inter arrival time can be simulated.</p>
+  <p ALIGN="left">PREEMPT Blocks, and the new DISPLACE Block, can be used to
+  remove Transactions from the FEC. Such Transactions can be rescheduled by
+  entering another ADVANCE Block.</p>
+  <p ALIGN="left">When the scheduler must select a new Active Transaction, if
+  it cannot find one on the CEC, it must take a Transaction from the FEC. This
+  removal of one or more Transactions always causes the system clock to advance.
+  When more than one Transaction resides on the FEC at the next imminent event
+  time, a Time Tie is said to exist. If the Model Settings so dictate, when Time
+  Tied Transactions are moved from the FEC to the CEC, their order is randomized
+  within priorities. This is done to prevent unintentional processing cycles
+  from developing.</p>
+  <p ALIGN="left">A time tie is the occurrence of more than one Transaction
+  with the same time value at the front of the FEC. When a time tie is detected,
+  time tied Transactions are removed from the FEC in random order. For this
+  purpose GPSS World draws pseudo random numbers from the random number
+  generator specified in the Simulate page of the Model Settings Notebook. The
+  removed Transactions are all placed in priority order on the Current Events
+  Chain (CEC). The highest priority Transaction on the CEC then becomes the
+  active Transaction. You can suppress the randomization of time ties by
+  specifying 0 as the associated random number generator.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Retry Chains<!--mstheme--></font></h3>
+  <p ALIGN="left">Transactions which fail all tests required for Block entry
+  are placed on a Retry Chain. These tests occur when a Transaction attempts to
+  enter a GATE, TEST, TRANSFER ALL, or TRANSFER BOTH Block. Each entity has a
+  chain of blocked Transactions, called a Retry Chain. Any Transaction on a
+  Retry Chain is waiting for the value of an SNA to change. When the value of
+  the SNA changes, any Transaction on the Retry Chain of the entity is
+  reactivated. This results in replacement on the CEC. When the Transaction
+  becomes the Active Transaction, the specific condition test is repeated. Since
+  this process often uses computer time without advancing Transactions in the
+  model, an injudicious choice of conditions can lead to an inefficient
+  simulation. The power of GATE and TEST blocks must be exercised with caution.</p>
+  <p ALIGN="left">Transactions on Retry Chains are replaced on the CEC by the
+  process of reactivation. This is discussed below. If, on retry, any test is
+  successful, the Transaction enters its next Block. When a Transaction enters a
+  Block it is removed from all Retry Chains automatically.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Facility Chains<!--mstheme--></font></h3>
+  <p ALIGN="left">Each Facility Entity has four Transaction chains. They are:</p>
+  <blockquote>
+    <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">PENDING
+    CHAIN - A list of Transactions waiting to PREEMPT the Facility in
+    &quot;Interrupt Mode&quot;.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">INTERRUPT
+    CHAIN - A list of Transactions which have been preempted from ownership of
+    this Facility.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">DELAY
+    CHAIN - A priority chain of Transactions waiting for ownership of the
+    Facility.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY
+    CHAIN - A list of Transactions which are waiting for the status of the
+    Facility to change.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">The Pending Chain holds Transactions waiting to enter an
+  Interrupt Mode PREEMPT Block. A Transaction which attempts to enter an
+  Interrupt Mode PREEMPT Block on behalf of a Facility is refused entry to the
+  PREEMPT Block if any preempted Transactions are on the Interrupt Chain of the
+  Facility. A Transaction which is refused entry is placed on the Pending Chain
+  of the Facility. This causes the Transaction to come to rest in the
+  simulation. When a Transaction gives up ownership of the Facility, the first
+  Transaction on the Pending Chain is given ownership and allowed to enter the
+  PREEMPT Block.</p>
+  <p ALIGN="left">The Interrupt Chain is a list of preempted Transactions.
+  When a Transaction enters a PREEMPT Block, and the Facility is currently owned
+  by another Transaction, ownership is given to the new Transaction. The old
+  Transaction is placed on the Interrupt Chain so that its ownership may be
+  restored later. Transactions on one or more Interrupt Chains can still move in
+  the simulation, however, their movement is restricted. Such a Transaction
+  cannot exist on the FEC and cannot leave an ASSEMBLE, GATHER, or MATCH Block
+  where it has been put in a Match Condition. When a Transaction gives up
+  ownership of the Facility, if the Pending Chain is empty, the first
+  Transaction on the Interrupt Chain is given ownership of the Facility.</p>
+  <p ALIGN="left">The Delay Chain holds Transactions waiting for ownership. A
+  Transaction which attempts to enter a SEIZE Block on behalf of a Facility in
+  use is refused entry to the SEIZE Block and is placed on the Delay Chain of
+  the Facility in priority order. Similarly, a Transaction which attempts to
+  enter a Priority Mode PREEMPT Block on behalf of a Facility in use (by a
+  Transaction of equal or higher priority) is refused entry to the PREEMPT Block
+  and is placed on the Delay Chain of the Facility in priority order. This
+  causes the Transaction to come to rest in the active model and a new Active
+  Transaction to be chosen. Then, when a Transaction gives up ownership of the
+  Facility, if the Pending Chain and the Interrupt Chain are empty, the highest
+  priority Transaction on the Delay Chain is given ownership of the Facility.</p>
+  <p ALIGN="left">The Retry Chain is a list of Transactions waiting for a
+  Facility state change. These Transactions are reactivated when the Facility
+  changes from one state to another.</p>
+  <p ALIGN="left">Transactions waiting on a Delay Chain, a Pending Chain, or
+  an Interrupt Chain, or owning a Facility are said to be &quot;in
+  contention&quot; for the Facility. Since a contending Transaction will
+  eventually become the owner of the Facility, contention for a Facility carries
+  the obligation of releasing the Facility. If a Transaction which owns a
+  Facility attempts to leave the simulation by entering a TERMINATE Block or an
+  ASSEMBLE Block, an Error Stop occurs. However, a preempted Transaction is
+  permitted to leave the simulation. Normally, each Transaction remains in
+  contention until it voluntarily enters a RELEASE or RETURN Block on behalf of
+  that Facility. However, PREEMPT and FUNAVAIL blocks have options which can
+  remove other Transactions from contention for a Facility. This removes the
+  obligation to return ownership as well. In fact, a non-contending Transaction
+  which attempts to enter a RETURN or RELEASE Block will cause an Error Stop.</p>
+  <p ALIGN="left">To summarize, when a Facility is freed by an owning
+  Transaction, pending Interrupt Mode PREEMPTs are first to be given Facility
+  ownership, followed by previously preempted Transactions on the Interrupt
+  Chain, followed by Transactions waiting normally in priority order on the
+  Delay Chain. When a new owner is chosen from the Delay Chain or the Pending
+  Chain, it enters the SEIZE or PREEMPT Block immediately, and then is scheduled
+  by being placed on the CEC behind its priority peers.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Storage Entity Chains<!--mstheme--></font></h3>
+  <p ALIGN="left">Each Storage Entity has two Transaction chains. These
+  chains are linked lists of Transactions:</p>
+  <blockquote>
+    <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">DELAY
+    CHAIN - A priority chain of Transactions waiting for storage units.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">RETRY
+    CHAIN - A list of Transactions which are waiting for the status of the
+    Storage Entity to change.</p>
+    <p ALIGN="left">&nbsp;</p>
+    </blockquote>
+  </blockquote>
+  <p ALIGN="left">The Delay Chain holds Transactions waiting for storage
+  units. When a Transaction attempts to enter an ENTER Block on behalf of a
+  Storage Entity, its storage demand is compared to the number of storage units
+  available. The maximum available is defined in a STORAGE Command. If the
+  storage demand cannot be satisfied, the Transaction is refused entry to the
+  ENTER Block and is placed on the Delay Chain of the Storage in priority order.
+  This causes the Transaction to come to rest in the simulation. A new Active
+  Transaction is chosen. Then, when a Transaction gives up storage units, the
+  Delay Chain is scanned in priority order, reactivating Transactions whose
+  storage demands can be satisfied. A &quot;first fit with skip&quot; discipline
+  is used. Each Transaction, in turn, is tested. If its demand can be satisfied
+  it is allowed to enter the ENTER Block and is placed on the CEC behind its
+  priority peers. If its demand cannot be satisfied, it remains on the Storage
+  Entity’s Delay Chain.</p>
+  <p ALIGN="left">The Retry Chain is a list of Transactions waiting for a
+  Storage Entity state change. These Transactions are reactivated when the
+  Storage Entity changes from one state to another.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  </font></b><font FACE="Arial" SIZE="2">
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">User Chains<!--mstheme--></font></h3>
+  <p ALIGN="left">Each Userchain Entity contains a Transaction chain called a
+  User Chain. For a more detailed explanation of the entity type, Userchain,
+  please refer to Chapter 4. Here we discuss the Transaction chain, called the
+  User Chain, which is contained in each Userchain entity.</p>
+  <p ALIGN="left">User chains are linked lists of Transactions which have
+  been removed from the Current Events Chain by a LINK Block. Traditionally,
+  there have been two uses for User Chains.</p>
+  <p ALIGN="left">First, it is possible to implement extremely complex
+  Transaction scheduling disciplines with User Chains. This can be done by
+  assigning a numerical order value to a Transaction Parameter before LINKing
+  the Transaction on a User Chain.</p>
+  <p ALIGN="left">Second, older implementations of GPSS suggest that User
+  Chains be used to avoid scheduling inefficiencies in the GPSS processor. This
+  is less true in GPSS World because blocked Transactions do not remain on the
+  CEC in GPSS World. However, it is still more efficient to avoid testing
+  conditions which cannot possibly result in a successful test. In this case,
+  you can place the blocked Transaction(s) on a User Chain until there is a
+  possibility of success.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="9.2">9.2</a>. The Transaction
+  Scheduler</h2>
+  <p ALIGN="left">It is convenient to think of a GPSS simulation as a set of
+  Transactions which occupy Blocks in a Block Diagram. Both the Block Input
+  Window and the Blocks Window are essentially Block Diagrams. At any one time,
+  every Transaction is in exactly one Block, but most Blocks may contain any
+  number of Transactions. Each Transaction, in turn, gets an opportunity to move
+  according to a prescribed path through the Block Diagram. When a Transaction
+  is refused entry to a Block, it must wait in its current Block until
+  conditions become favorable for its movement. The part of GPSS World that is
+  responsible for this movement is called the Transaction Scheduler. Each Block
+  type has its own routine which is executed when a Transaction attempts to
+  enter that Block type. It is the job of the Transaction Scheduler to call the
+  appropriate routine.</p>
+  <p ALIGN="left">The first thing the Transaction Scheduler does is to
+  identify the &quot;Active Transaction&quot;. If the CEC is not empty, the
+  highest priority, head-of-line, Transaction on the CEC becomes the Active
+  Transaction. If the CEC is empty, the Transaction Scheduler replenishes the
+  CEC with the Transaction(s) from the FEC with the lowest time value. This
+  action also updates the system clock.</p>
+  <p ALIGN="left">The Transaction Scheduler then tries to move the Active
+  Transaction as far as it can in the simulation. In effect, the Transaction
+  Scheduler removes the Active Transaction from the CEC, calls the routine for
+  the next sequential Block (NSB), and unless something extraordinary occurs,
+  replaces the Transaction in front of its peers (i.e. same priority) on the CEC.
+  This gives higher priority Transactions a chance to move in the simulation.
+  The CEC replacement can be modified by PRIORITY and BUFFER blocks. After a
+  Transaction enters a BUFFER Block, it is replaced behind its peers on the CEC.
+  BUFFER blocks are useful if a reactivated Transaction must get ahead of the
+  Transaction which reactivated it. Other blocks can interfere with the
+  replacement of a Transaction on the CEC. For example, ADVANCE(+) (i.e.
+  positive time increment) calculates a scheduled time and places the
+  Transaction on the FEC. Other blocks such as LINK, ENTER, SEIZE, and PREEMPT
+  can cause the Active Transaction to come to rest on a Transaction Chain.</p>
+  <p ALIGN="left">Removal from or replacement to the CEC has no effect on the
+  system clock. The simulated time remains the same until there are no
+  Transactions left on the CEC. Continual replacement of the Active Transaction
+  on the CEC gives newly reactivated higher priority Transactions on the CEC a
+  chance to become the Active Transaction. When the Active Transaction comes to
+  rest on a Delay Chain or cannot move because of some other condition, the
+  Transaction Scheduler chooses another Active Transaction and attempts to move
+  it in the simulation.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">The Movement of Transactions<!--mstheme--></font></h3>
+  <p ALIGN="left">Transactions must be on the CEC in order to move. Even
+  PREEMPTed or DISPLACEd Transaction must become the Active Transaction before
+  they can attempt entry into their new destination Block.</p>
+  <p ALIGN="left">Since a Transaction may be refused entry into a Block, a
+  Transaction scheduling may not lead to a Block entry. For this reason, most
+  simulations have fewer Block entries than Transaction schedulings. On the
+  other hand, EXECUTE blocks can cause additional Block entries.</p>
+  <p ALIGN="left">When the Active Transaction attempts to enter a Block, the
+  Transaction Scheduler calls the Block routine associated with the next Block
+  type. It is the Block routine which decides whether or not the Transaction can
+  enter the Block. Several Block types can refuse to allow the Transaction to
+  enter. These are: ENTER, SEIZE, PREEMPT, GATE, TEST. In addition, if the
+  Transaction has not cleared all its preemptions, it will be refused by
+  ADVANCE(+) Blocks and will not be allowed to leave ASSEMBLE, GATHER, or MATCH
+  Blocks.</p>
+  <p ALIGN="left">When the Active Transaction cannot enter any Block it is
+  said to &quot;come to rest&quot; within the simulation. It is then removed
+  from the CEC and placed on one of the Transaction chains discussed above.
+  Then, a different Transaction is chosen to be the Active Transaction.</p>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Blocking and Reactivation<!--mstheme--></font></h3>
+  <p ALIGN="left">The Active Transaction is &quot;blocked&quot; when it must
+  wait for one or more entities to change state. GATE, TEST, TRANSFER BOTH, and
+  TRANSFER ALL Blocks can require that specific conditions be met at one or more
+  entities before the Active Transaction is allowed to proceed in the model.
+  Each entity has a Retry Chain for Transactions which were blocked while trying
+  to enter one of the above GPSS Blocks. When the state of the entity is changed
+  by some other Transaction, all Transactions on the associated Retry Chain are
+  replaced on the Current Events Chain behind their priority peers.</p>
+  <p ALIGN="left">Reactivation is the movement of blocked Transactions to the
+  CEC. If the Active Transaction changes the state of an entity, it is possible
+  that one or more Transactions will be reactivated before the Active
+  Transaction attempts to enter its next Block. If a higher priority Transaction
+  is reactivated, it will become the Active Transaction. If you wish a newly
+  reactivated Transaction to progress immediately, you must either place the
+  active Transaction on the CEC behind its priority peers (BUFFER or PRIORITY
+  Block, BU option), or you must cause the reactivated Transaction to have a
+  higher priority than the old active Transaction. When a reactivated
+  Transaction becomes the Active Transaction, the original blocking test is
+  retried.</p>
+  <p ALIGN="left">A Transaction is not permitted to be blocked on a test
+  which will never be retried. This will lead to an Error Stop.</p>
+  <p ALIGN="left">If an entity state changes more than once before the system
+  clock is updated, some states may not be detected. This can happen if the
+  entity state is changed twice before the suspended blocked Transaction tests
+  the condition. Usually, this possibility can be excluded by careful use of the
+  BUFFER Block.</p>
+  <p ALIGN="left">Do not use TEST or GATE Blocks in Refuse Mode, or TRANSFER
+  (BOTH or ALL) to Block on User Variables. Transactions cannot be Blocked on
+  Named Values because the latter do not have a Retry Chain. If you need to
+  react to values achieved by an integrated variable, you should associate one
+  or two Transaction generation thresholds with the User Variable. You can do
+  this in the INTEGRATE Command. Otherwise, use a Savevalue Entity instead of a
+  User Variable.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="9.3">9.3</a>. Synchronization</h2>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666">Assembly Sets<!--mstheme--></font></h3>
+  <p ALIGN="left">An Assembly Set is a collection of Transactions.
+  Transactions in the same Assembly Set are said to be related. When each
+  Transaction is created, it is given an integer denoting its Assembly Set.
+  Transactions created by GENERATE Blocks are given distinct integers starting
+  with 1. Transactions created by SPLIT Blocks are given the Assembly Set of
+  their parent.</p>
+  <p ALIGN="left">A Transaction can change its Assembly Set by entering an
+  ADOPT Block.</p>
+  <p ALIGN="left">Assembly Sets are useful for causing synchronization among
+  Transactions. It is easy to create, wait for, and destroy related Transactions
+  in a simulation. This makes it easy to represent processes which at some point
+  must wait for certain events to occur. The following GPSS blocks are used for
+  that purpose:</p>
+  <blockquote>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ADOPT
+  - Set Transaction’s Assembly Set.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">ASSEMBLE
+  - Wait for and destroy related Transactions.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">GATHER
+  - Wait for related Transactions.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">MATCH
+  - Wait for related Transaction to reach conjugate MATCH Block.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Helvetica" SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">SPLIT
+  - Create related Transactions.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <h2 ALIGN="left">&nbsp;&nbsp;&nbsp; <a name="9.4">9.4</a>. Preemption and
+  Displacement</h2>
+  <p ALIGN="left">Preemption is the replacement of one Transaction which owns
+  a Facility by another Transaction. The old Transaction is removed from
+  ownership of the Facility and is placed on the Interrupt Chain of the
+  Facility. The new Transaction becomes the owner of the Facility. Preemption
+  occurs when a Transaction enters a PREEMPT Block, and differs depending on the
+  mode of the PREEMPT Block.</p>
+  <p ALIGN="left">PREEMPT Blocks operate in either &quot;Priority Mode&quot;
+  or &quot;Interrupt Mode&quot;. In either case, if a Transaction is preempted,
+  it is placed on the Interrupt Chain of the Facility and ownership is given to
+  the Active Transaction. However, the behavior of the two modes differs when
+  the Active Transaction cannot gain ownership of the Facility. If the Active
+  Transaction attempts to enter a Priority Mode PREEMPT Block, and the Facility
+  is owned by another Transaction of equal or higher priority, the Active
+  Transaction comes to rest on the Facility’s Delay Chain FIFO (first in,
+  first out) within priority. If the Active Transaction attempts to enter an
+  Interrupt Mode PREEMPT Block, and there already is a Transaction preempted at
+  the Facility, the Active Transaction comes to rest on the Pending Chain of the
+  Facility.</p>
+  <p ALIGN="left">PREEMPT and DISPLACE Blocks are provided to disrupt service
+  periods. It is common to simulate a service time by having a Transaction SEIZE
+  a Facility and then enter an ADVANCE Block with a positive time argument. When
+  a Transaction is PREEMPTed at any Facility, or if it is DISPLACEd, if it is on
+  the FEC it must be removed. This is done without changing the system clock.
+  Since you may choose to continue a service period where you left off, a
+  residual time is saved when a Transaction is removed from the FEC due to a
+  DISPLACE, PREEMPT or FUNAVAIL Block entry. The residual time is the scheduled
+  Transaction time (BDT) minus the current system clock time. This time is saved
+  automatically and, in addition, it may be stored in a Transaction parameter.
+  When the Transaction regains ownership of all Facilities for which it
+  contends, it may be automatically rescheduled on the FEC using the residual
+  time. If you choose, you may control this process explicitly by the options
+  available in PREEMPT and FUNAVAIL statements.</p>
+  <p ALIGN="left">A preempted Transaction cannot exist on the FEC. If a
+  Transaction on the FEC is preempted, it is removed from the FEC and placed on
+  a Facility’s Interrupt Chain. If a preempted Transaction attempts to enter
+  an ADVANCE Block with a positive time increment, it is refused entry. When all
+  preemptions have been cleared for a Transaction, it may then enter an
+  ADVANCE(+) Block. If the PREEMPTed Transaction has been removed from
+  contention for the Facility with the RE option of the PREEMPT Block, the
+  preempted Transaction is not restricted from the FEC.</p>
+  <p ALIGN="left">Preempted Transactions can move through the simulation and
+  can be preempted from any number of Facilities. A Transaction is represented
+  on the Interrupt Chain of each Facility where it has been PREEMPTed. Since a
+  PREEMPTed Transaction may still move through the simulation, a Transaction may
+  be PREEMPTed from any number of Facilities at any one time. However, a
+  Transaction cannot SEIZE or PREEMPT a Facility at which it is currently
+  PREEMPTed.</p>
+  <p ALIGN="left">A Transaction may be displaced from one Block and moved to
+  another. If a Transaction is on the FEC, CEC, a Delay Chain, a Pending Chain,
+  or a User Chain and is PREEMPTed by a PREEMPT Block with a C operand, or is
+  displaced by a DISPLACE Block, it is removed from the original chain,
+  scheduled for a new Block, and placed on the CEC.</p>
+  <p ALIGN="left">A preempted Transaction, which is still in contention for a
+  Facility, cannot enter a TERMINATE Block. Such Transactions must enter a
+  RELEASE or RETURN Block before they are permitted to TERMINATE. Alternately,
+  if you intend to TERMINATE a preempted Transaction, you could remove the
+  Transaction from contention for the Facility using the RE option in the
+  PREEMPT Block.</p>
+  <p ALIGN="center">&nbsp;</p>
+  <p align="center">&nbsp;
+  <a href="reference_manual.htm">[Table of Contents]</a></p>
+  </blockquote>
+</blockquote>
+</font><!--mstheme--></font></body>
+
+</html>

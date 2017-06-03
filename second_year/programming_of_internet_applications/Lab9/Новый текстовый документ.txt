@@ -1,0 +1,300 @@
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/9"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/9"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/10"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/10"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/11"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/11"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/12"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/12"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/13"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/13"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/14"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/14"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/15"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/15"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/16"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/16"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/17"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/17"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/18"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/18"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/pontos"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/pontos"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/pontos/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 17,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+C:\Users\Zerbs\Desktop>curl http://localhost:8080/pontos -v
+*   Trying ::1...
+* Connected to localhost (::1) port 8080 (#0)
+> GET /pontos HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.46.0
+> Accept: */*
+>
+< HTTP/1.1 200
+< X-Application-Context: application
+< Content-Type: application/hal+json;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Sun, 14 May 2017 08:35:57 GMT
+<
+{
+  "_embedded" : {
+    "pontos" : [ {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/1"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/1"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/2"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/2"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/3"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/3"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/5"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/5"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/6"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/6"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/7"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/7"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/8"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/8"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/9"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/9"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/10"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/10"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/11"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/11"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/12"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/12"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/13"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/13"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/14"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/14"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/15"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/15"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/16"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/16"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/17"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/17"
+        }
+      }
+    }, {
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/pontos/18"
+        },
+        "ponto" : {
+          "href" : "http://localhost:8080/pontos/18"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/pontos"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/pontos"
+    },
+    "search" : {
+      "href" : "http://localhost:8080/pontos/search"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 17,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}* Connection #0 to host localhost left intact
+
+C:\Users\Zerbs\Desktop>

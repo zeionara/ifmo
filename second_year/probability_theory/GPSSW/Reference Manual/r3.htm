@@ -1,0 +1,1176 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial" SIZE="2">
+<h1 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chapter <a name="3">3</a>
+- Model Statements<!--mstheme--></font></h1>
+</font>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  <blockquote>
+    <blockquote>
+      <p ALIGN="left">A GPSS World Model is a sequence of Model Statements. A
+      Model Statement may be a GPSS Statement or a PLUS Procedure definition. A
+      GPSS Statement is either a Command or a Block Statement.</p>
+      <p ALIGN="left">PLUS is an acronym for the <u>P</u>rogramming <u>L</u>anguage
+      <u>U</u>nder <u>S</u>imulation, GPSS World’s embedded programming
+      language. PLUS Experiments are a kind of Procedure.</p>
+      <p ALIGN="left">This chapter describes the use of Model Statements in
+      the GPSS World simulation environment. It then discusses the general
+      structure of GPSS Statements. Individual GPSS Commands are discussed in
+      detail in Chapter 6, and Block Statements are in Chapter 7. Of the PLUS
+      Statements, only PROCEDURE and EXPERIMENT are Model Statements. PLUS is
+      described in detail in Chapter 8.</p>
+      <p ALIGN="left">&nbsp;</p>
+</font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.1"></a>3.1.
+      Using Model Statements</font></h2>
+  <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Before you can run a simulation, you must Create a
+      Simulation Object. This is called the Initial Model Translation. It’s
+      easy. You just open a Model Window on the Model Object, and</p>
+      <p ALIGN="center">
+  <font FACE="Helvetica" SIZE="2">
+  CHOOSE</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><b>
+      Command / Create Simulation
+    </b></p>
+      <p ALIGN="left">You will be told if any corrections need to be made, due
+    to syntax errors.</p>
+    <p ALIGN="left">When you have Translated a model successfully, the
+    Simulation Object automatically gets a copy of the Translated Model, and
+    executes any Commands embedded in the Model Files. You can now open any of
+    the online windows upon the simulation. If you have put one or more START
+    Commands into one of the Model Files, the Simulation Object executes them in
+    order with the other Commands, without waiting to be told to.</p>
+    <p ALIGN="left">Any Model Statement can be part of the Initial Model
+    Translation, or can be sent to an existing simulation later, as an
+    Interactive Statement.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.1. Initial Model Translation</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">When a Model is Translated successfully, its Block
+    Structure is created, a Procedure Registration List is created, a Command
+    List is created, and the whole thing is sent to the Simulation Object.</p>
+    <p ALIGN="left">When a model is Translated, the Block sequence is
+    preserved, and separately, the initial Command sequence is preserved. When
+    the Simulation Object receives a Command it either performs it immediately,
+    or places it on the Command Queue to be dealt with in turn.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    </font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.2. Interactive Statements</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">After the Initial Model Translation, you may send any
+    Model Statement to the existing Simulation Object. These statements are
+    called Interactive Statements. They are themselves Translated, and sent to
+    the Simulation Object, which receives and executes them.</p>
+    <p ALIGN="left">What happens depends on what kind of Model Statement is
+    sent. PROCEDURE and EXPERIMENT Statements define or redefine a PLUS
+    Procedure in the simulation. Commands are either executed immediately (SHOW
+    or HALT), or are placed on the simulation’s Command Queue, to be dealt
+    with in sequence.</p>
+    <p ALIGN="left">Interactive Block Statements are executed immediately in
+    Manual Simulation Mode. This means that a temporary Block is created and the
+    Active Transaction attempts to enter it. Then, the Block is destroyed.</p>
+</font>
+    </font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.3. Block Sequence</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The Block structure of the simulation is set when the
+    Model Object is Translated. It is not altered until the next Retranslation.
+    During the Model Translation, as the Translator encounters each Block
+    Statement, it appends a representation of it to the simulation’s Block
+    structure.</p>
+    <p ALIGN="left">After a simulation is STARTed, it is the original
+    sequence of Block Statements that determines the sequence of actions in the
+    simulation. Unless the flow of Transactions is modified, each Active
+    Transaction attempts to enter one Block after the other in the original
+    sequence.</p>
+    <p ALIGN="left">Block Statements received by the simulation after the
+    original Model File was Translated, are NOT incorporated into the Block
+    structure of the simulation. Instead, they cause a temporary block to be
+    created, used, and destroyed in Manual Simulation Mode.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.4. Command Sequence</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Commands are either <i>Immediate </i>or<i> Queued</i>.
+    Only HALT and SHOW are Immediate; all others are Queued. When the Simulation
+    Object receives an Immediate Command it executes it right away. Queued
+    Commands, on the other hand are placed in the Simulation’s Command Queue.
+    The Simulation Object executes one Queued Command after the other,
+    occasionally interrupted by Immediate Commands.</p>
+    <p ALIGN="left">A Command List is created by the Initial Model
+    Translation and sent to the Simulation Object, just as Interactive Commands
+    are sent. As the Translator encounters Commands during the Initial Model
+    Translation, they are placed on the list. When the whole model has been
+    Translated, the Command List is sent to the Simulation Object after the
+    Block structure and the Procedure Registration List.</p>
+    <p ALIGN="left">START, CONTINUE, and CONDUCT are Queued Commands. When
+    the Simulation Object takes one off the Command Queue, the simulation runs
+    until its Termination Count is nonpositive. More Commands may be waiting to
+    be done after that.</p>
+    <p ALIGN="left">The CONDUCT Command is used to run Experiments, which are
+    a special kind of PLUS Procedure. Experiments are registered in a Simulation
+    Object like any other PLUS Procedure, and they can have arguments passed to
+    them by the CONDUCT Command.</p>
+    <p ALIGN="left">The HALT Command is a special case. Not only is it an
+    Immediate Command, but it has the effect of clearing off all Commands from
+    the Command Queue. When you send a HALT Command to the Simulation Object,
+    the simulation is brought to the Halted State, and all activity on behalf of
+    the simulation comes to an end. You are then free to control the simulation
+    as you please.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.5. Procedure Sequence</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">During the Initial Model Translation, when the Translator
+    encounters a Procedure or Experiment Statement, it puts the Translated
+    Procedure on the Procedure Registration List. The Simulation Object
+    registers all the user-defined Procedures when it receives the Translated
+    model.</p>
+    <p ALIGN="left">When the Simulation Object receives an Interactive
+    Procedure Statement, it incorporates the Translated Procedure into the
+    simulation’s Procedure Library, replacing any existing Procedure of the
+    same name.</p>
+    <p ALIGN="left">The invocation of a Procedure occurs when an Expression
+    with a Procedure Call, or a Procedure Call Statement, in a PLUS Procedure is
+    executed. Invocations can be performed interactively, as well, by placing a
+    Procedure invocation in the operand of a SHOW Command.</p>
+    <p ALIGN="left">Experiments can only be invoked by CONDUCT Commands.
+    Procedures invoked during an Experiment invocation have a special property:
+    they may call the DoCommand library procedure. This is discussed in Chapter
+    8.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.1.6. Saving Objects</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">All GPSS World Objects can be saved and opened in a later
+    session. Models, Simulations, Reports, and Text Objects can all be modified
+    and saved at any time. The File / Open Menu Command is available to bring
+    the object back.</p>
+    <p ALIGN="left">A Simulation can be saved at any point in its run for the
+    purposes of debugging, demonstration, replay, or simply to save an
+    intermediate state of the Simulation Object</p>
+    <p ALIGN="left">The act of saving a Simulation or Experiment causes a
+    HALT Command to be sent to the Simulation Object. In the case of an
+    Experiment, you will need to save the state of the completed part of the
+    Experiment in Global Variables and Global Matrices if you don't want to
+    restart the Experiment from the beginning when you reopen it.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.2"></a>3.2.
+    GPSS Statements</font></h2>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">There are two kinds of GPSS Statements: Block Statements,
+    which cause a GPSS Block Entity to be created, and Commands, which do not.
+    Commands either define a non-Block Entity or cause an action to occur. PLUS
+    Statements are not discussed here.</p>
+    <p ALIGN="left">Unlike a PLUS Statement, a GPSS Statement must reside on
+    a single line of text, consisting of up to 250 characters.</p>
+    <p ALIGN="left">GPSS Statements are composed of parts called <i>fields</i>.
+    A field is a variable number of printable characters terminated by white
+    space or a delimiter. Although the exact composition of a Statement varies a
+    little, in general, a Statement is laid out as follows: Line number
+    (optional) | Label (optional) | Verb (required) | Operands (depend on verb)
+    | Comment (optional).</p>
+    <p ALIGN="left">Arbitrary Line numbers are retained for compatibility
+    purposes. If used, they must begin in column 1. However, they are ignored by
+    the Translator. A line number given in an error message is an absolute
+    cardinal number, denoting the place of the line in the Model File, and is
+    not a user-selected line number.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.2.1. GPSS Commands</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The commands are described in detail in Chapter 6. They
+    are:</p>
+    <b>
+    <p align="left">BVARIABLE</b> - Define a Boolean Variable Entity.</p>
+    <b>
+    <p align="left">CLEAR</b> - Reset statistics and remove Transaction.</p>
+    <b>
+    <p align="left">CONDUCT </b>- Execute a registered PLUS Experiment.</p>
+    <b>
+    <p align="left">CONTINUE</b> - Resume the simulation.</p>
+    <b>
+    <p align="left">EQU</b> - Assign a value to a User Variable.</p>
+    <b>
+    <p align="left">EXIT</b> - End the GPSS World Session.</p>
+    <b>
+    <p align="left">FUNCTION</b> - Define a Function Entity.</p>
+    <b>
+    <p align="left">FVARIABLE</b> - Define an Fvariable Entity.</p>
+    <b>
+    <p align="left">HALT</b> - Stop the simulation and delete all Queued Commands.</p>
+    <b>
+    <p align="left">INCLUDE</b> - Read and Translate a secondary Model File.</p>
+    <b>
+    <p align="left">INITIAL</b> - Initialize or modify a Logicswitch, Savevalue, or Matrix
+    Entity.</p>
+    <b>
+    <p align="left">INTEGRATE</b> - Automatically integrate a time differential in a User
+    Variable.</p>
+    <b>
+    <p align="left">MATRIX</b> - Define a Matrix Entity.</p>
+    <b>
+    <p align="left">QTABLE</b> - Define a Qtable Entity.</p>
+    <b>
+    <p align="left">REPORT</b> - Set the name of the Report File or request an immediate
+    report.</p>
+    <b>
+    <p align="left">RESET</b> - Reset the statistics of the simulation.</p>
+    <b>
+    <p align="left">RMULT</b> - Set the seeds of the first 7 Random Number Generators</p>
+    <b>
+    <p align="left">SHOW</b> - Evaluate and display Expression.</p>
+    <b>
+    <p align="left">START</b> - Set the Termination Count and begin a simulation.</p>
+    <b>
+    <p align="left">STEP</b> - Attempt a limited number of Block entries.</p>
+    <b>
+    <p align="left">STOP</b> - Set a stop condition based on Block entry attempts.</p>
+    <b>
+    <p align="left">STORAGE</b> - Define a Storage Entity.</p>
+    <b>
+    <p align="left">TABLE</b> - Define a Table Entity.</p>
+    <b>
+    <p align="left">VARIABLE</b> - Define a Variable Entity.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.2.2. GPSS Block Statements</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">A Block Statement creates a GPSS Block. When a
+    Transaction enters a Block Entity, a special action occurs which is
+    determined by the nature of the Block. Block Statements may be inserted into
+    a Model Object using the fullscreen text editor or using a Block Creation
+    Dialog. It is also possible to use the text editor to place Block Statements
+    into Text Objects that can be referred to by an INCLUDE Statement in the
+    Text Object. The Block structure of the simulation is set when the Model
+    Object is Translated. After a simulation is STARTed, it is the original
+    sequence of Block Statements that determines the sequence of actions in the
+    simulation. Unless the flow of Transactions is modified, each Active
+    Transaction attempts to enter one Block after the other in the original
+    sequence. Block Statements received by the simulation after the original
+    Model File was Translated, are NOT incorporated into the Block structure of
+    the simulation. Instead, they cause a temporary block to be created, used,
+    and destroyed in Manual Simulation Mode, which is discussed above.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">The GPSS Block Statements are described, in detail, in
+    Chapter 7. They are:</p>
+    <b>
+    <p align="left">ADOPT</b> - Change Assembly Set.</p>
+    <b>
+    <p align="left">ADVANCE</b> - Place Transaction on Future Events Chain.</p>
+    <b>
+    <p align="left">ALTER</b> - Test and modify Transactions in a Group.</p>
+    <b>
+    <p align="left">ASSEMBLE</b> - Wait for and destroy related Transactions.</p>
+    <b>
+    <p align="left">ASSIGN</b> - Modify Transaction Parameter.</p>
+    <b>
+    <p align="left">BUFFER</b> - Place Transaction at end of the Current Events Chain.</p>
+    <b>
+    <p align="left">CLOSE</b> - End the Data Stream.</p>
+    <b>
+    <p align="left">COUNT</b> - Place count of entities into a Transaction Parameter.</p>
+    <b>
+    <p align="left">DEPART</b> - Decrement content of a Queue Entity.</p>
+    <b>
+    <p align="left">DISPLACE</b> - Change the Next Sequential Block of a Transaction.</p>
+    <b>
+    <p align="left">ENTER</b> - Occupy or wait for storage units in a Storage Entity.</p>
+    <b>
+    <p align="left">EXAMINE</b> - Test group membership.</p>
+    <b>
+    <p align="left">EXECUTE</b> - Perform action specified by a different Block.</p>
+    <b>
+    <p align="left">FAVAIL</b> - Change status of a Facility Entity to &quot;available&quot;.</p>
+    <b>
+    <p align="left">FUNAVAIL</b> - Change status of a Facility Entity to &quot;not
+    available&quot;.</p>
+    <b>
+    <p align="left">GATE</b> - Test entity and modify Transaction flow.</p>
+    <b>
+    <p align="left">GATHER</b> - Wait for related Transactions.</p>
+    <b>
+    <p align="left">GENERATE</b> - Create Transaction and place on Future Events Chain.</p>
+    <b>
+    <p align="left">INDEX</b> - Modify Transaction Parameter.</p>
+    <b>
+    <p align="left">INTEGRATION</b> - Turn the integration of a User Variable On or Off.</p>
+    <b>
+    <p align="left">JOIN</b> - Place a member into a Numeric or Transaction Group.</p>
+    <b>
+    <p align="left">LEAVE</b> - Release storage units of a Storage Entity.</p>
+    <b>
+    <p align="left">LINK</b> - Move Transaction to Userchain Entity.</p>
+    <b>
+    <p align="left">LOGIC</b> - Modify Logicswitch Entity.</p>
+    <b>
+    <p align="left">LOOP</b> - Decrement Parameter, jump to different Block if result is non
+    zero.</p>
+    <b>
+    <p align="left">MARK</b> - Place value of system clock into Transaction Parameter.</p>
+    <b>
+    <p align="left">MATCH</b> - Wait for related Transaction to reach conjugate MATCH Block.</p>
+    <b>
+    <p align="left">MSAVEVALUE</b> - Assign value to Matrix Entity element.</p>
+    <b>
+    <p align="left">OPEN</b> - Initialize a Data Stream.</p>
+    <b>
+    <p align="left">PLUS</b> - Evaluate PLUS Expression and save result in Parameter.</p>
+    <b>
+    <p align="left">PREEMPT</b> - Displace Facility owner.</p>
+    <b>
+    <p align="left">PRIORITY</b> - Modify Transaction priority.</p>
+    <b>
+    <p align="left">QUEUE</b> - Increment content of a Queue Entity.</p>
+    <b>
+    <p align="left">READ</b> - Bring the next line of data from a Data Stream.</p>
+    <b>
+    <p align="left">RELEASE</b> - Free Facility Entity.</p>
+    <b>
+    <p align="left">REMOVE</b> - Take a member out of Numeric or Transaction Group.</p>
+    <b>
+    <p align="left">RETURN</b> - Free Facility Entity.</p>
+    <b>
+    <p align="left">SAVAIL</b> - Change status of Storage Entity to &quot;available&quot;.</p>
+    <b>
+    <p align="left">SAVEVALUE</b> - Assign a value to Savevalue Entity.</p>
+    <b>
+    <p align="left">SCAN</b> - Test Transaction group, place value in Parameter.</p>
+    <b>
+    <p align="left">SEEK</b> - Change the line pointer in a Data Stream.</p>
+    <b>
+    <p align="left">SEIZE</b> - Assume ownership of or wait for a Facility Entity.</p>
+    <b>
+    <p align="left">SELECT</b> - Place selected entity number into Transaction Parameter.</p>
+    <b>
+    <p align="left">SPLIT</b> - Create related Transaction.</p>
+    <b>
+    <p align="left">SUNAVAIL</b> - Change status of Storage Entity to &quot;not
+    available&quot;.</p>
+    <b>
+    <p align="left">TABULATE</b> - Update Table Entity.</p>
+    <b>
+    <p align="left">TERMINATE</b> - Destroy Transaction, decrement Termination Count.</p>
+    <b>
+    <p align="left">TEST</b> - Test arithmetic condition and modify Transaction flow.</p>
+    <b>
+    <p align="left">TRACE</b> - Set Trace Indicator of the Active Transaction.</p>
+    <b>
+    <p align="left">TRANSFER</b> - Move to specified Block.</p>
+    <b>
+    <p align="left">UNLINK</b> - Remove Transaction from Userchain Entity.</p>
+    <b>
+    <p align="left">UNTRACE</b> - Turn off Trace Indicator in the Active Transaction.</p>
+    <b>
+    <p align="left">WRITE</b> - Send a value to a Data Stream.</p>
+  <font FACE="Arial" SIZE="2">
+    </font>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><!--mstheme--></font></h3>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666">&nbsp;&nbsp;&nbsp;<font face="Arial" size="4">&nbsp;&nbsp;&nbsp;
+    <a name="3.3"></a> 3.3. Fields</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The parts of a GPSS Statement are called fields. GPSS
+    Statements are of free form in the sense that you do not have to worry about
+    lining up fields with column numbers, except for line numbers. The format is
+    much the same for all statements, with some fields being optional for some
+    verbs. In general, the fields of a statement are laid out left-to-right in
+    the following sequence:</p>
+    </font>
+    <blockquote>
+    <font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Line number
+    (optional). Ignored.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Label
+    (variable, depends on verb field).</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Verb
+    (required).</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Operands,
+    including any conditional operator (variable, depends on verb).</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Comment
+    (optional).</p>
+    </font><b><font FACE="Arial" SIZE="5">
+    </blockquote>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+ </font>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.3.1 Line Numbers</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Line numbers are ignored by GPSS World. They are
+    permitted only in GPSS Statements, and if used, they must begin in column 1.
+    They are retained for compatibility purposes.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+ </font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.3.2 Labels</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The label field allows you to name and refer to entities
+    with names of your choosing. A label must obey the rules of name
+    construction described later in this chapter. You may assign your own values
+    to names with EQU Commands and PLUS Assignment Statements. This is useful
+    when you want to experiment with several values of some variable. However,
+    it is easiest to let GPSS World use its own unique internal numbers when you
+    name entities and Transaction Parameters. If you choose to assign your own
+    numbers to entity names, you should assign the value in an EQU statement
+    before you define or refer to the entity by name. If you assign your own
+    values to names, then you are responsible for avoiding reference conflicts.</p>
+    <p ALIGN="left">When GPSS World encounters a new name, it assigns a
+    unique integer to the name. These integers are distinct and contiguous
+    starting at 10,000. You may use the same name to refer to different entity
+    types. For example You may have a Storage Entity and a Table Entity both
+    named Motorpool. However if you use the name Motorpool as a label in a
+    second STORAGE Command, the old Storage Entity will be replaced with a new
+    one. Permanent Block Entities, however, are not replaced in this manner.</p>
+    <p ALIGN="left">Blocks are a special case. An interactive Block Statement
+    is executed as a temporary Block in Manual Simulation Mode. If you need to
+    be able to change the characteristics of a Block in the middle of a
+    simulation, you can redefine the named values used in operands using EQU
+    Statements. You can also use an EXECUTE Block and modify its operand
+    interactively. Blocks cannot be inserted interactively. A change to the
+    permanent Block structure requires a retranslation.</p>
+    <p ALIGN="left">You may not use a number as a name in a Label Field. That
+    would violate naming conventions. If you want to explicitly control the
+    number of an entity, you can assign a value to a name using an EQU statement
+    before using the name as a label.</p>
+    <p ALIGN="left">You may not use an SNA as a Block Label.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.3.3 Verbs</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The Verb Field follows the Label Field and requires a
+    GPSS keyword. It must be one of the GPSS Block names or one of the Commands.
+    A list of valid Verbs is available through the online help facility.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.3.4 Operands</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Most Verbs are followed by one or more operator and
+    operand fields. These fields depend on the verb. Some are required and some
+    are optional. The Online Help facility is always available to show you which
+    syntax is acceptable. When you want to finish or skip an operand, you should
+    press a delimiter key. Traditionally, operands are separated by commas. If
+    all required information in a statement has been provided, you may skip
+    optional fields.</p>
+    <p ALIGN="left">The forms you may use in any given Operand Field are
+    listed with the specific Statement descriptions in Chapters 6 and 7. This
+    information is available as online help, as well.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.3.5 Comments</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">There are two kinds of comment fields. First, by starting
+    a statement with <font FACE="Keycaps" SIZE="4">;</font><font FACE="Arial" SIZE="2">
+    or </font><font FACE="Keycaps" SIZE="4">*</font><font FACE="Arial" SIZE="2">,
+    the whole statement is considered to be a comment. Second, an optional
+    comment field follows the operand field of any statement. Function followers
+    and statements with expression fields do not have comment fields.</p>
+    <p ALIGN="left">When all required operands of a statement have been
+    completed, you can press </font><font FACE="Keycaps" SIZE="4">;</font><font FACE="Arial" SIZE="2">
+    to begin a comment. At this time you can enter a comment of both upper and
+    lower case ASCII characters.
+    </font></p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.4"></a>3.4.
+    Expressions</font></h2>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.4.1. Expressions in GPSS Statements</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Expressions in GPSS World are defined as part of the PLUS
+    Language. You can use them in GPSS Statement Operands and in PLUS
+    Procedures.</p>
+    <p ALIGN="left">Some Block operands permit the use of <b>parenthesized</b>
+    PLUS Expressions. The list of acceptable syntactic variables will then
+    include <i>ParenthesizedExpression</i> as one or the operand’s alternative
+    forms. Some Commands do not need to use the outer parentheses, but if you
+    always parenthesize PLUS Expressions used in GPSS Statements, you will be
+    safe.</p>
+    <p ALIGN="left">It’s easy to go between PLUS and GPSS. Most GPSS
+    Statement Operands allow you to use a PLUS Expression. This means that you
+    can provide a simple factor, a small calculation, or a PLUS Procedure
+    invocation right there in the Operand. On the other hand, by using
+    Expressions containing SNAs, you can access GPSS entity state variables, as
+    well as global User Variables, from within PLUS Procedures.</p>
+    <p ALIGN="left">Section 8.3.2 of this manual tells you how to build PLUS
+    Expressions. All the building blocks except System Numeric Attributes are
+    discussed there. We discuss SNAs in the next section.</p>
+    <p ALIGN="left">&nbsp;</p>
+</font>
+    <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    3.4.2. System Numerical Attributes</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">System Numerical Attributes, or SNAs, are simulation
+    &quot;state variables&quot; that are available for use through a simulation.
+    They return numeric or string values, and may be used in GPSS Statement
+    operands and in Expressions.</p>
+    <p ALIGN="left">Some SNAs are maintained automatically, and others
+    require a calculation when they are called. For example, the accumulated
+    count of entries into a Block is available as an SNA. There are over 50 SNA
+    classes, each of which will contribute to the power of your simulations. It
+    is wise to become familiar with all of them. Many SNAs, such as PR, are
+    evaluated on behalf of the active Transaction. This means that some
+    attribute of a Transaction is necessary in order to evaluate the SNA. Such
+    SNAs cannot be evaluated unless there is an Active Transaction. For example,
+    you cannot refer to Transaction Parameters in the operands of GENERATE
+    Blocks because when a Transaction enters a GENERATE Block for the first
+    time, it has no Parameters. Other SNAs, such as the system clock C1, can be
+    evaluated without referring to a Transaction.</p>
+  <b><font FACE="Arial" SIZE="4">
+    <p align="left">SNA Entity Specifiers</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Most SNAs may be specified in one of many forms,
+    beginning with the SNA class. For example the SNA W22 returns the number of
+    Transactions waiting in Block number 22. The Block identifier in this case
+    is the number 22, but there are several other possibilities. This SNA could
+    have been specified using any of the following entity specifiers:</p>
+    <blockquote>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W</b><i>j</i>&nbsp;-
+    where <i>j</i> is a positive integer, the number of the Block in the
+    simulation.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W$</b><i>Name</i>&nbsp;-
+    where <i>Name</i> is the location of the desired Block.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W*</b><i>j</i>
+    - where <i>j</i> &nbsp;is a positive integer, the number of the Parameter of
+    the active Transaction which contains the number of the desired Block. This
+    is indirect addressing.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W*</b><i>Name</i>&nbsp;-
+    where <i>Name</i> is the name of the Parameter of the Active Transaction
+    which contains the number of the desired Block. This is indirect addressing.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W*$</b><i>Name</i>&nbsp;-
+    where <i>Name</i> is the name of the Parameter of the Active Transaction
+    which contains the number of the desired Block. The $ is not needed and is
+    used only as a separator. Essentially, this is identical to W*<i>Name</i>.
+    This is indirect addressing.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W*</b><i>Parameter</i>&nbsp;-
+    denotes that either the <b>W*</b><i>j</i>, the <b>W*</b><i>Name</i>, or the <b>W*$</b><i>Name</i>
+    may be used.</p>
+    </blockquote>
+    <p ALIGN="left">The Matrix Entity SNA class MX is a special case. It may
+    contain up to 3 indirect addresses. For example the SNA MX*Sales(*Partnumber,*January)
+    locates the Matrix Entity whose number is in the Transaction parameter named
+    Sales, and then retrieves the element whose row and column numbers are in
+    the Parameters named Partnumber and January, respectively. Normally, the
+    Active Transaction would have already passed through three ASSIGN blocks
+    initializing the Parameters Sales, Partnumber, and January with the numbers
+    or name values desired.</p>
+    <p ALIGN="left">Some SNA classes, such as A1, AC1, C1, M1, MP, PR, and
+    TG1, are &quot;atomic&quot; SNAs. Atomic SNAs are complete and do not need
+    an entity name or number to complete the evaluation of the SNA</p>
+    <p ALIGN="left">When you are in any operand field, the valid SNA forms
+    are available in an online help message.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">SNAs Available</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">The following SNAs are available for use in the operand
+    fields and Expressions of commands and statements. In all cases <i>Entnum</i>
+    must be replaced by any entity specifier. The entity specifier could be a
+    name (preceded by a </font><font FACE="Arial" SIZE="4">$</font><font FACE="Arial" SIZE="2">
+    separator) or number, or for indirect addressing, it could be an asterisk,</font><font FACE="Arial" SIZE="4">*</font><font FACE="Arial" SIZE="2">,
+    followed by a name or number. The formal rules for building operands are
+    given in the Appendix.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">Here is a complete list of SNAs available in GPSS World:</p>
+    <blockquote>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>A1</b>&nbsp;-
+    &nbsp;Assembly Set of the Active Transaction. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>AC1</b>&nbsp;- &nbsp;Value
+    of absolute system clock. Simulated time since last CLEAR. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>BV</b><i>Entnum</i>&nbsp;-&nbsp;Result
+    of evaluating Boolean Variable Entity <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>C1</b>&nbsp;- Value of
+    relative system clock. Simulated time since last RESET. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CA</b><i>Entnum</i> &nbsp;-
+    Average Userchain content. The time weighted average number of chained
+    Transactions for Userchain <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CC</b><i>Entnum</i>&nbsp;-
+    Total Userchain entries. The count of all Transactions chained to Userchain <i>Entnum</i>.
+    Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CH</b><i>Entnum</i>&nbsp;-
+    Current Userchain content. The current number of Transactions chained to
+    Userchain <i>Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CM</b><i>Entnum</i>&nbsp;-
+    Maximum Userchain content. The maximum number of Transactions chained to
+    Userchain <i>Entnum</i>. The &quot;high water mark&quot;. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>CT</b><i>Entnum</i>&nbsp;-
+    Average Userchain residence time. The average duration of Transactions at
+    Userchain <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>F</b><i>Entnum</i> -
+    Facility busy. If Facility Entity <i>Entnum</i> is currently busy, F<i>Entnum</i>
+    returns 1. Otherwise F<i>Entnum</i> returns 0. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FC</b><i>Entnum</i> -
+    Facility capture count. The number of times Facility Entity <i>Entnum</i>
+    has been SEIZEd or PREEMPTed by a Transaction. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FI</b><i>Entnum</i>&nbsp;-
+    Facility <i>Entnum</i> interrupted. If Facility Entity <i>Entnum</i> is
+    currently preempted, FI<i>Entnum</i> returns 1. Otherwise FI<i>Entnum</i>
+    returns 0. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FN</b><i>Entnum</i>&nbsp;-
+    Function. Result of evaluating Function Entity <i>Entnum</i> . Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FR</b><i>Entnum</i>&nbsp;-
+    Facility utilization. The fraction of time Facility Entity <i>Entnum</i> has
+    been busy. FR<i>Entnum</i> is expressed in parts-per-thousand and therefore
+    returns a value 0-1000, inclusive. May be nonintegral. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FT</b><i>Entnum</i> &nbsp;-
+    Average Facility holding time. The average time Facility Entity <i>Entnum</i>
+    is owned by a capturing Transaction. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>FV</b><i>Entnum</i> &nbsp;-
+    Facility in available state. FV<i>Entnum</i> returns 1 if Facility Entity <i>Entnum</i>
+    is in the available state, 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>GN</b><i>Entum</i>&nbsp;-
+    Numeric Group count. GN<i>Entnum</i> returns the membership count of Numeric
+    Group <i>Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>GT</b><i>Entnum&nbsp;</i>-
+    Transaction Group count. GT<i>Entnum</i> returns the membership count of
+    Transaction Group <i>Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>LS</b><i>Entnum</i>&nbsp;-
+    Logicswitch set. LS<i>Entnum</i> returns 1 if Logicswitch Entity is in the
+    &quot;set&quot; state, 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>MB</b><i>Entnum</i>&nbsp;-
+    Match at Block. MB<i>Entnum</i> returns a 1 if there is a Transaction at
+    Block<i> Entnum</i> which is in the same Assembly Set as the Active
+    Transaction. MB<i>Entnum</i> returns a 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>MP</b><i>Parameter&nbsp;</i>-
+    Transit Time, Parameter. Current absolute system clock value minus value in
+    Parameter <i>Parameter. </i>Real<i> </i>value<i>.</p>
+    </i></font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>MX</b><i>Entnum</i>(m,n) -
+    Matrix Savevalue. The value in row m, column n of Matrix Entity <i>Entnum</i>
+    is returned. In Matrices of more than 2 dimensions, all other indices are
+    assumed to be 1. Unlike MX class SNAs, PLUS Expressions can refer to any
+    element of a higher dimension matrix.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>M1</b>&nbsp;- Transit time.
+    M1 returns the absolute system clock minus the &quot;Mark Time&quot; of the
+    Transaction. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>N</b><i>Entnum</i>&nbsp;-
+    Block entry count. The total number of Transactions which have entered Block
+    <i>Entnum</i> is returned. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>P</b><i>Parameter</i> or *<i>Parameter</i>&nbsp;-
+    Parameter value. P<i>Parameter</i> or *<i>Parameter</i> returns the value of
+    Parameter <i>Parameter</i> of the Active Transaction. Integer, real, or
+    string value.</p>
+    <p align="left">Indirect addressing uses the notation <i>SNA*Parameter</i>.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>PR</b>&nbsp;- Transaction
+    priority. The value of the priority of the Active Transaction. Integer
+    value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>Q</b><i>Entnum</i>&nbsp;-
+    Current Queue content. The current count value of Queue Entity <i>Entnum</i>.
+    Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QA</b><i>Entnum</i>&nbsp;-
+    Average Queue content. The time weighted average count for Queue Entity <i>Entnum</i>.
+    Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QC</b><i>Entnum</i>&nbsp;-
+    Total Queue entries. The sum of all entry counts for Queue Entity <i>Entnum</i>.
+    Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QM</b><i>Entnum</i>&nbsp;-
+    Maximum Queue content. The maximum count of Queue Entity <i>Entnum</i>. The
+    &quot;high water mark&quot;. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QT</b><i>Entnum</i> &nbsp;-
+    Average Queue residence time. The time weighted average of the count for
+    Queue Entity <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QX</b><i>Entnum</i>&nbsp;-
+    Average Queue residence time excluding zero entries. The time weighted
+    average of the count for Queue Entity <i>Entnum</i> not counting entries
+    with a zero residence time. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>QZ</b><i>Entnum&nbsp;</i> -
+    Queue zero entry count. The number of entries of Queue Entity <i>Entnum</i>
+    with a zero residence time. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>R</b><i>Entnum</i>&nbsp;-
+    Available storage capacity. The storage content (or &quot;tokens&quot;)
+    available for use by entering Transactions at Storage Entity <i>Entnum</i>.
+    Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>RN</b><i>Entnum</i>&nbsp;-
+    Random number. RN<i>Entnum</i> returns a random integer 0-999 from Random
+    Number Generator <i>Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>S</b><i>Entnum</i>&nbsp;-
+    Storage in use. S<i>Entnum</i> returns the amount of storage content (or
+    &quot;tokens&quot;) currently in use by entering Transactions at Storage
+    Entity<i> Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SA</b><i>Entnum</i>&nbsp;-
+    Average storage in use. SA<i>Entnum</i> returns the time weighted average of
+    storage capacity (or &quot;tokens&quot;) in use at Storage Entity <i>Entnum.
+    </i>Real<i> </i>value<i>.</p>
+    </i></font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SC</b><i>Entnum</i>&nbsp;-
+    Storage use count. Total number of storage units that have been acquired
+    from Storage Entity <i>Entnum</i>. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SE</b><i>Entnum</i>&nbsp;-
+    Storage empty. SE<i>Entnum</i> returns 1 if Storage Entity <i>Entnum</i> is
+    completely available, 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SF</b><i>Entnum</i>&nbsp;-
+    Storage full. SF<i>Entnum</i> returns 1 if Storage Entity <i>Entnum</i> is
+    completely used, 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SR</b><i>Entnum</i>&nbsp;-
+    Storage utilization. The fraction of total usage represented by the average
+    storage in use at Storage Entity <i>Entnum</i>. SR<i>Entnum</i> is expressed
+    in parts-per-thousand and therefore returns a value 0-1000, inclusive. May
+    be nonintegral. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SM</b><i>Entnum</i>&nbsp;-
+    Maximum storage in use at Storage Entity <i>Entnum</i>. The &quot;high water
+    mark&quot;. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>ST</b><i>Entnum</i>&nbsp;-
+    Average holding time per unit at Storage Entity <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>SV</b><i>Entnum</i>&nbsp;-
+    Storage in available state. SV<i>Entnum</i> returns 1 if Storage Entity <i>Entnum</i>
+    is in the available state, 0 otherwise. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>TB</b><i>Entnum</i>&nbsp;-
+    Nonweighted average of entries in Table Entity <i>Entnum</i>. Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>TC</b><i>Entnum</i>&nbsp;-
+    Count of nonweighted table entries in Table Entity <i>Entnum. </i>Integer<i>
+    </i>value<i>.</p>
+    </i></font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>TD</b><i>Entnum</i>&nbsp;-
+    Standard deviation of nonweighted table entries in Table Entity <i>Entnum</i>.
+    Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>TG1</b>&nbsp;- Remaining
+    Termination Count. TG1 returns the count that is decremented by TERMINATE
+    Blocks with a positive A operand. This value is initialized by START
+    Statements and indicates completion of the simulation when it is 0. Integer
+    value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>V</b><i>Entnum</i>&nbsp;-
+    Result of evaluating arithmetic or floating point Variable Entity <i>Entnum</i>.
+    Real value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>W</b><i>Entnum</i>&nbsp;-
+    Current Block count. The current number of Transactions in Block Entity <i>Entnum</i>.
+    Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>X</b><i>Entnum</i>&nbsp;-
+    Savevalue. The value of Savevalue Entity <i>Entnum</i> is returned. Integer,
+    real, or string value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>XN1</b> - Active
+    Transaction number. The Transaction number of the Active Transaction is
+    returned. Integer value.</p>
+    </font><font FACE="Symbol" SIZE="2">
+    <p align="left">·</font><font FACE="Arial" SIZE="2">&nbsp;<b>Z1</b> - Free memory. Value
+    returned by the Operating System. Integer value.</p>
+    </blockquote>
+    <p ALIGN="left">Special rules apply when a simulation is run in GPSS/PC
+    Compatibility Mode. This are discussed more fully below.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Operators</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">Operators are used to combine data elements in
+    Expressions. Data are coerced if a specific type is required by the
+    operator. For example, if a numeric operation is to be performed on a
+    variable with a string value, the numeric equivalent derived from the
+    characters in the string is used.</p>
+    <p ALIGN="left">&nbsp;</p>
+    <p ALIGN="left">A Setting is available in the Simulation Page of the
+    Settings Notebook which switches the roles of the [*] operator and the [#]
+    operator.</p>
+    <p ALIGN="left">The operators used in GPSS World are:</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">^&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Exponentiation.
+    A^B returns A raised to the power of B.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left"># (or *)&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Multiplication.
+    A # B returns the numeric product of A and B.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">/&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Division.
+    A / B returns the quotient of A divided by B.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">\&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Integer
+    Division. A \ B returns the result of integer division of A by B.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">@&nbsp;</font></b><font FACE="Arial" SIZE="2">Integer
+    Remainder. A @ B returns the modulo division of A by B.</p>
+    </font><b><font FACE="Arial" SIZE="5">
+    <p ALIGN="left">-&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Subtraction.
+    A - B returns the difference of A and B.</p>
+    </font><b><font FACE="Arial" SIZE="5">
+    <p ALIGN="left">+ </font></b><font FACE="Arial" SIZE="2">Addition. A + B
+    return the sum of A and B.</p>
+    <blockquote>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&gt;=</font><font FACE="Arial" SIZE="2"> </font><font FACE="Arial">‘GE’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Greater
+    Than or Equal To. A &gt;= B returns 1 if A is numerically greater than or
+    equal to B, 0 otherwise.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&lt;=</font><font FACE="Arial" SIZE="2"> </font><font FACE="Arial">‘LE’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Less
+    Than or Equal To. A &lt;= B returns 1 if A is numerically less than or equal
+    to B, 0 otherwise.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&gt;</font><font FACE="Arial" SIZE="2"> </font><font FACE="Arial">‘G’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Greater
+    Than. A &gt; B returns 1 if A is numerically greater than B, 0 otherwise.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&lt; </font><font FACE="Arial">‘L’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Less
+    Than. A &lt; B returns 1 if A is numerically less than B, 0 otherwise.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">= </font><font FACE="Arial">‘E’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Equal
+    A = B returns 1 if A is numerically equal to B, 0 otherwise.</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">!=</font><font FACE="Arial" SIZE="2"> </font><font FACE="Arial">‘NE’</font><font FACE="Arial" SIZE="2">
+    </font></b><font FACE="Arial" SIZE="2">Not Equal. A != B returns 1 if A is
+    numerically different from B, 0 otherwise.</p>
+    </font><b>
+    <p ALIGN="left"><font FACE="Arial" SIZE="4">&amp;</font><font FACE="Arial" SIZE="2">
+    </font><font FACE="Arial">‘AND’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Logical
+    And. A &amp; B returns 1 if and only if both A and B are non zero, 0
+    otherwise.</p>
+    </font><b>
+    <p ALIGN="left"><font FACE="Arial" SIZE="4">| </font><font FACE="Arial">‘OR’</font><font FACE="Arial" SIZE="2">&nbsp;&nbsp;</font></b><font FACE="Arial" SIZE="2">Logical
+    Or. A ‘OR’ B returns 1 if A or B or both are non zero, 0 otherwise.</p>
+    </font><b><font FACE="Arial">
+    <p align="left">Precedence</p>
+    </blockquote>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">When Expressions are evaluated, the precedence of
+    operators determines the order of operations. An operator with a higher
+    precedence is evaluated before an operator with a lower precedence. The
+    precedence of operators is as follows, from highest to lowest:</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">^ </font></b><font FACE="Arial" SIZE="2">Exponentiation</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left"># (or *) / \ </font></b><font FACE="Arial" SIZE="2">Multiplication,
+    Division, Integer Division</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">@</font></b><font FACE="Arial" SIZE="2"> Integer
+    Remainder</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">- +</font><font FACE="Arial" SIZE="5"> </font></b><font FACE="Arial" SIZE="2">Addition,
+    Subtraction</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&gt;= &lt;= &gt; &lt; </font></b><font FACE="Arial" SIZE="2">Comparison
+    Operators</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">= != </font></b><font FACE="Arial" SIZE="2">Equal, Not
+    Equal</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">&amp; </font></b><font FACE="Arial" SIZE="2">Logical And</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p ALIGN="left">| </font></b><font FACE="Arial" SIZE="2">Logical Or</p>
+    </font><b><font FACE="Arial" SIZE="4">
+    <p align="left">Indirect Addressing</p>
+    </font></b><font FACE="Arial" SIZE="2">
+    <p ALIGN="left">All entities have positive entity numbers. When you refer
+    to an entity by name, the value of the name is matched with the entity
+    number of the entity. Indirect addressing means that the entity number is in
+    a Transaction parameter. To use indirect addressing, you must have an
+    asterisk, [*] (or possibly [#] -- see Settings), in the operand. For
+    example, the SNA Q*2 uses the value of parameter 2 as the Queue Entity
+    number. This SNA returns the current content of that Queue Entity.</p>
+    <p ALIGN="left">You must move an entity number (or name value) into a
+    Transaction parameter before the SNA is evaluated.</p>
+    <p ALIGN="left">Indirect addressing uses the notation SNA<i>*Parameter</i>.
+    As another example, to SEIZE the Facility whose number is the value returned
+    by the function whose number is in a parameter named Tellerselector, you
+    would type<font FACE="Arial"> <b>SEIZE FN</b></font><b><font FACE="Courier New" SIZE="4">*</font><font FACE="Arial">Tellerselector
+    .
+  </font></b></p>
+  </font>
+    <p>&nbsp;</p>
+</font>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  3.4.3. Expressions in GPSS/PC Compatibility</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In GPSS World, intermediate results and SNAs are never
+  truncated unless you explicitly do so. However, for compatibility purposes,
+  intermediate result truncations are retained in GPSS/PC Compatibility Mode.
+  When simulations are run this way, SNAs always return truncated integers
+  (unless used as Function Modifiers), and the intermediate results obtained
+  while evaluating Bvariable Entities and Variable Entities, are truncated.</p>
+  <p ALIGN="left">The use of GPSS/PC Compatibility Mode is discussed in
+  Chapter 1.</p>
+  <p ALIGN="left">In Compatibility Mode, when an Expression is used to define
+  an SNA, its result is always truncated to an integer. You should choose the
+  time units of the simulation so that these truncations are not significant.</p>
+  <p ALIGN="left">In Compatibility Mode, the evaluation of an Expression is
+  affected by the Command it is used in.</p>
+  <blockquote>
+  <font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SHOW performs
+  all operations as double precision floating point numbers and display the
+  result in the data window as a double precision floating point number.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;VARIABLE creates
+  a GPSS arithmetic variable which, when evaluated by an SNA call, performs all
+  operations as double precision floating point numbers, then truncates all
+  intermediate results before proceeding to the next operation. Finally it
+  truncates and returns the overall result.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FVARIABLE
+  creates a GPSS &quot;floating point&quot; variable which, when evaluated by an
+  SNA call, performs all operations as double precision floating point numbers,
+  then truncates the result. Fractional values may be considered by an
+  appropriate choice of units, such as &quot;thousandths&quot;. Then an SNA
+  value of 500 is interpreted as the number 1/2.</p>
+  </font><font FACE="Symbol" SIZE="2">
+  <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;BVARIABLE
+  creates a GPSS Boolean variable which, when evaluated by an SNA call, performs
+  all operations as double precision floating point numbers, then returns 1 if
+  the result is non zero, 0 otherwise.</p>
+  <p ALIGN="left">· FUNCTION Commands, of types other than C, evaluate the
+  argument and select a list member based on the result to determine the final
+  value, which is truncated.</p>
+  <p ALIGN="left">· C Type FUNCTION evaluation begins with the evaluation of
+  the argument. The result is always an integer, and it is used to identify the
+  line segment of the Function. The argument is then used in a double precision
+  linear interpolation to arrive at the double precision result of the Function.
+  If the argument is an RN class SNA, a random fraction between 0 and .999999,
+  inclusively, is used. If the Function is not used as a &quot;Function
+  Modifier&quot; the final result is truncated.</p>
+  <p ALIGN="left">· SNAs, except continuous Functions used as Function
+  Modifiers, return an integer.</p>
+  </font><b><font FACE="Arial" SIZE="5">
+  </blockquote>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+</font>
+  <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.5"></a>3.5.
+  Names</font></h2>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You can create names to refer to Blocks, User Variables, or
+  other GPSS Entities. Names must begin with an alphabetic character, and may
+  contain up to 200 alphabetic and numeric characters, and underscores [ _ ].</p>
+  <p ALIGN="left">Your primary tasks in selecting a name are, first, to avoid
+  using a Keyword, System Numeric Attribute, or System Numeric Attribute Class,
+  and second, to use something meaningful that can be remembered.</p>
+  <p ALIGN="left">A name may not be a verb or partial verb, a keyword, or a
+  valid SNA. If you are unsure of which names are illegal, you will be safe if
+  you include an underscore [ _ ] in the names you create. Names beginning with
+  at least 3 letters and then a digit are also safe. In any case, GPSS World
+  will not let you create an invalid name.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left"></font><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  3.5.1. Labels</font></p>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Names used in the Label field of a GPSS Statement are used
+  to refer to GPSS Entities, and are called Entity Labels, or just Labels. Block
+  Labels are also called Locations.</p>
+  <p ALIGN="left">Locations are assigned values corresponding to the Block
+  Entity number. You should not use a Block location name for any other purpose.
+  GPSS World will cause an Error Stop to occur if you attempt to do so. This
+  eliminates the possibility of inadvertently altering which Block is associated
+  with a label.</p>
+  <p ALIGN="left">When a Simulation Object receives a name from a Session, it
+  assigns a unique numeric value to the name. These system-defined numbers start
+  at 10,000. You can assign your own value, of any data type, later.</p>
+  <p ALIGN="left">If you want to force a named entity to have an entity
+  number of your choosing, you must use the name in an EQU Statement before you
+  define (or reference) the entity by name. It is then up to you to avoid
+  different names inadvertently referring to the same entity. You may use a
+  single name to refer to one entity of each entity type. For example, the SNAs
+  Q$BARBER and F$BARBER refer to different entities. The first refers to a Queue
+  Entity, the second to a Facility Entity. There is no confusion when the same
+  name refers to different entity types.</p>
+  <p ALIGN="left">When an entity is created with a label, it takes the
+  current value of the label to keep as its permanent Entity Number. Even if the
+  Named Value is later changed, the Entity Number of the created entity is not.</p>
+  <p ALIGN="left">If it can, the Simulation Object will create a GPSS entity
+  when it first encounters a name reference to that entity type. However,
+  entities that cannot be created without additional information, such as
+  Storage Entities, must be defined by GPSS Commands before they are referenced.
+  The entities which must be defined before they are referenced are listed in
+  Chapter 4.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <b><font FACE="Arial" SIZE="5">
+  <p align="left">&nbsp;</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+ </font>
+</font>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  3.5.2. User Variables</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In addition to using Names as Labels, you can use them to
+  represent your own values. Such variables are called User Variables, and are
+  created by their occurrence in an EQU Command or in a PLUS Assignment
+  Statement. They serve the traditional purpose of programming variables. A user
+  created name which is first assigned a value with an EQU Command, but later
+  appears as an Entity Label, is still known as a Label.</p>
+  <p ALIGN="left">User Variables can be used to hold numeric or string values
+  during a simulation. They can be referenced in PLUS Expressions, and can be
+  altered by an EQU Command or an assignment Statement in a PLUS Procedure. In
+  addition, they can be automatically updated by integration. This is discussed
+  in Chapter 4, under the section <u>Continuous Simulation</u>.</p>
+  <p ALIGN="left">&nbsp;</p>
+</font>
+  <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  3.5.3. The Scope of Names</font><!--mstheme--></font></h3>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Except for temporary names, all user-created names are
+  known throughout the whole model. The exceptions are those names appearing in
+  the TEMPORARY or the TEMPORARY MATRIX Statements of a PLUS Procedure. New
+  instances of temporary Named Values or Matrices are created when the PLUS
+  Procedure is invoked and deleted when the PLUS Procedure exits. These names
+  override any other like-named items in the Model during execution of the PLUS
+  Procedure. Other names used in PLUS Procedures refer to entities known
+  globally throughout the model.</p>
+  <p ALIGN="left">Within an Experiment, you should place the results of
+  simulations into Global Variables and Global Matrices in order to preserve
+  them across simulations. For example, the ANOVA library procedure requires a
+  Global Matrix Entity to be passed as an argument. Also, the DoCommand library
+  procedure is available during an Experiment. Any strings passed to DoCommand
+  should not include the names of TEMPORARY and TEMPORARY MATRIX variables or of
+  procedure arguments, because the string is Translated in a Global Scope where
+  temporary variables are not recognized.</p>
+  <p ALIGN="left">&nbsp;</p>
+</font>
+  <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.6"></a>3.6.
+  Numbers</font></h2>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Numbers may be stored internally in any of three data types,
+  integer, real, and string. Most variables can take on any of these three data
+  types. Since numeric operators coerce their operands into suitable form, all
+  three data types may be used in Expressions,</p>
+  <p ALIGN="left">Integers are stored as 32 bit twos complement numbers. If
+  an integer overflows it is converted into a real value.</p>
+  <p ALIGN="left">Real values are stored as 64 bit double precision floating
+  point numbers. The exponent can range from -308 to 308, whereas the precision
+  is limited to approximately 15 decimal digits.</p>
+  <p ALIGN="left">Strings are stored as an array of ASCII characters of any
+  length, limited by the <b>Max Memory Request </b><font FACE="Arial" SIZE="2">in
+  the Simulation Page of the Simulation Object's Settings. You can view or
+  change the Settings by choosing the <b>Edit / Settings</b> menu item.</p>
+  <p ALIGN="left">System Numerical Attributes now return values that may be
+  either integer, real, or string. You must refer to the definition of the SNA
+  given above to determine the possible data types returned.</p>
+  <p ALIGN="left">Similarly, the system clock is a numeric value which may be
+  either integer or real. This eliminates the need to use large time values to
+  assure fine time granularity.</p>
+  <p ALIGN="left">GPSS function entities are evaluated in double precision
+  form, and the Y values in function follower Statements are, too. This limits
+  precision to approximately 15 decimal digits for the Y value.</p>
+  <p ALIGN="left">SNAs involving GPSS Variable Entities (all types) and those
+  requiring a standard deviation or a division are calculated in double
+  precision floating point format. As a result, these SNAs can experience
+  numeric overflow and/or underflow. Since Expressions are evaluated as double
+  precision floating point numbers, intermediate values are limited to 15
+  decimal digits of precision and 307 decimal digits of magnitude.</p>
+  <p ALIGN="left">If an overflow occurs during the evaluation of an
+  Expression, an Error Stop occurs. Arithmetic exceptions may occur when
+  divisions, standard deviations, or logarithms are evaluated. An invalid
+  argument to the library functions can also cause an Error Stop.</p>
+  <p ALIGN="left">In the printing of report statistics, when a number in the
+  report is too large for its space in the report, the format of the report is
+  disrupted, but the correct value is printed and the report continues.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+</font>
+  <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="3.7"></a>3.7.
+  Using Strings</font></h2>
+  <font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Strings are arrays of ASCII characters. Nearly any variable
+  can take on a string value. Arithmetic operators will coerce string values to
+  their numeric equivalent before executing their operations.</p>
+  <p ALIGN="left">String constants are enclosed in double quote marks. When
+  you input a string, such as the file specification in an INCLUDE Command, or a
+  REPORT Command, you must enclose the sequence of ASCII characters in double
+  quotes. Similarly, string values written in Standard Reports and in response
+  to SHOW commands are shown enclosed in double quotes.</p>
+  <p ALIGN="left">To insert a &quot;string within a string&quot; you should
+  use 4 additional double quote characters around the inner string, which is to
+  be sandwiched by 2 pairs of double quotes. When two double quotes together are
+  encountered by the Translator, a single quote is placed in the target string.</p>
+  <p ALIGN="left">Strings are used when you write out simulation results to a
+  Result File. Strings may also be used to format your own ad hoc simulation
+  reports. The Data Stream Blocks OPEN, CLOSE, READ WRITE, SEEK are available
+  for these purposes, as are the PLUS library procedures of the same names.
+  Strings are also used by the DoCommand library procedure during Experiments.
+  Another use for strings is to create a trace for input to an animation
+  post-processor.</p>
+  <p ALIGN="left">You can create and manipulate strings using the routines in
+  the PLUS Procedure Library. If you want to combine strings, use the Catenate
+  library procedure to join 2, or use the more flexible PolyCatenate to join any
+  number of strings. These, and others, are discussed in detail in Chapter 8.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+</font>
+    </blockquote>
+  </blockquote>
+<font FACE="Arial" SIZE="2">
+<p align="center">&nbsp;&nbsp;
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="reference_manual.htm"><font FACE="Arial" SIZE="2">
+[Table of Contents]</font></a></p>
+  <!--mstheme--></font></body>
+
+</html>

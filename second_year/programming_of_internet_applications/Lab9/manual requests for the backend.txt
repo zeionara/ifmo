@@ -1,0 +1,5 @@
+curl -H "Content-type: application/json" --data "{\"login\":\"dima\",\"password\":\"zacras\"}" http://localhost:8080/login -v
+
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"x\" : \"1,2\",  \"y\" : \"6,6\" }" http://localhost:8080/pontos
+
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"x\" : \"1,2\",  \"y\" : \"6,6\", \"r\" : \"2\" }" http://localhost:8080/addponto

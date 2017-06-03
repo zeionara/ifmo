@@ -1,0 +1,120 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1{
+  color:#455EEA;
+  padding:10px 20px;
+}
+
+.usertext{
+  color:#455EEA;
+  padding:5px;
+}
+
+h2{
+  color:#4594EA;
+  padding:10px 20px;
+}
+
+
+label{
+  color:#45B8EA;
+}
+
+label.after{
+  padding-left:10px;
+  line-height:150%;
+}
+
+form#addnew td{
+  padding-left:20px;
+  padding-top:10px;
+}
+.error{
+  color:red
+}
+
+.notification{
+  color:green;
+}
+
+.error input{
+ border: 1px solid red;
+}
+
+.notification input{
+ border: 1px solid green;
+}
+
+table#cooks, table#cooks td {
+  border: 2px solid #8DC5EA;
+  border-collapse: collapse;
+  padding : 5px;
+}
+
+table#cooks tr:first-child{
+  font-weight: bold;
+  background: #8DC5EA;
+  color:white;
+}
+
+tr.cookinfo{
+  cursor:pointer;
+}
+
+tr.cookinfo:hover{
+  background: #8DC5EA;
+  color: white;
+}
+
+table#cooks{
+  color : #4594EA;
+}
+
+.submit{
+  background:#453EEA;
+  width:180px;
+  border : 1px solid white;
+  height:30px;
+  color:white;
+  margin-left:20px;
+  cursor:pointer;
+}
+
+.submit:hover{
+  background:#5752EA;
+}
+
+.bad_schedule_header{
+  color: red;
+  padding-top : 10px;
+}
+
+.good_schedule_header{
+  color: #5752EA;
+  padding-top : 10px;
+}
+
+#bad_schedule_list, #good_schedule_list{
+  color : blue;
+  padding-left : 20px;
+}
+
+.day_list{
+  padding-left:40px;
+}
+
+.restaurant_list{
+  padding-left:60px;
+}
+
+.kitchen_list{
+  padding-left:80px;
+}
+
+#schedule{
+  padding-left:20px;
+}

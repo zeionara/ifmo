@@ -1,0 +1,33 @@
+$ git config --global user.name "ZeioNara"
+$ git config --global user.email "zeionara@gmail.com"
+
+$ git clone -b Anastasia https://github.com/Bizzonium/ifmo.opi.lab2/
+$ cd ifmo.opi.lab2
+
+$ git add -A
+$ git checkout -b zeio
+$ git commit -m "r5"
+$ git push origin zeio
+
+$ git add -A
+$ git commit -m "r7"
+$ git push origin zeio
+
+$ git add -A
+$ git commit -m "r8"
+$ git push origin zeio
+
+$ git add -A
+$ git commit -m "r10"
+$ git push origin zeio
+
+$ git add -A
+$ git commit -m "r13"
+$ git push origin zeio
+
+$ git add -A
+$ git commit -m "r15"
+$ git push origin zeio
+
+$ git merge origin/petu4
+

@@ -1,0 +1,219 @@
+Zerbs@Lenovo-PC MINGW64 ~
+$ git user.email
+git: 'user.email' is not a git command. See 'git --help'.
+
+Zerbs@Lenovo-PC MINGW64 ~
+$ git --help
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+Zerbs@Lenovo-PC MINGW64 ~
+$ cd opi
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ git hist
+fatal: Not a git repository (or any of the parent directories): .git
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ git config --global user.name "ZeioNara"
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ git config --global user.email "zeionara@gmail.com"
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ git clone -b Anastasia https://github.com/Bizzonium/ifmo.opi.lab2/
+fatal: destination path 'ifmo.opi.lab2' already exists and is not an empty directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ git clone -b Anastasia https://github.com/Bizzonium/ifmo.opi.lab2/
+Cloning into 'ifmo.opi.lab2'...
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 16 (delta 1), reused 16 (delta 1), pack-reused 0
+Unpacking objects: 100% (16/16), done.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi
+$ cd ifmo.opi.lab2
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (Anastasia)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (Anastasia)
+$ git checkout -b zeio
+Switched to a new branch 'zeio'
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r5"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/Bizzonium/ifmo.opi.lab2/
+ * [new branch]      zeio -> zeio
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r7"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Everything up-to-date
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r8"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Everything up-to-date
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r10"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Everything up-to-date
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r13"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Everything up-to-date
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git add -A
+warning: LF will be replaced by CRLF in B.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in C.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in F.java.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in J.java.
+The file will have its original line endings in your working directory.
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git commit -m "r15"
+On branch zeio
+nothing to commit, working tree clean
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git push origin zeio
+Everything up-to-date
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git hist
+* 7f40194 2016-10-16 | r4 (HEAD -> zeio, origin/zeio, origin/Anastasia, Anastasia) [ostaninanastya]
+* 0a8012c 2016-10-16 | r12 (origin/master, origin/HEAD) [Aziz]
+* cd5df48 2016-10-16 | r0 [Aziz]
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$ git hist --graph --all
+* 7f40194 2016-10-16 | r4 (HEAD -> zeio, origin/zeio, origin/Anastasia, Anastasia) [ostaninanastya]
+* 0a8012c 2016-10-16 | r12 (origin/master, origin/HEAD) [Aziz]
+| * 89f01a0 2016-10-16 | r1 (origin/petu4) [petu4]
+|/
+* cd5df48 2016-10-16 | r0 [Aziz]
+
+Zerbs@Lenovo-PC MINGW64 ~/opi/ifmo.opi.lab2 (zeio)
+$

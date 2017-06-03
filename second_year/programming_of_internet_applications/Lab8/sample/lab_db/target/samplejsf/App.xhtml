@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      <h:head>
+        <title>Silhouette checker</title>
+        <link href="#{request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"></link>
+      </h:head>
+      <h:body>
+        <h:outputScript library="primefaces" name="primefaces.js" />
+        <h1>Silhouette checker</h1>
+        <h:outputStylesheet name="styles.css"  />
+        <h:form>
+          <h:inputHidden id="txt2" value="#{pontoBean.actualX}" />
+          <p:panel>
+            <h:panelGrid columns="1">
+              <h:outputText id="outputX" value="X : "/>
+              <p:slider for="txt2" minValue="-2" maxValue="2" step="1" display="outputX" style="width: 200px" displayTemplate="X : {value}" />
+              <h:outputText value="Y : "/>
+              <h:inputText id="ordinate" value="#{pontoBean.actualY}">
+                <f:validator validatorId="ru.jsf.YValidator" />
+              </h:inputText>
+              <h:outputText value="R : "/>
+              <p:spinner id="radius" value="#{pontoBean.actualR}" min="1" max="3" stepFactor="0.5"/>
+            </h:panelGrid>
+            <h:message for="ordinate" style="color:red" />
+            <h:commandButton value="Submit" action="#{pontoBean.checkPonto}" />
+            <h:commandButton styleClass="bigBlueButton" id="back" value="BACK" action="showStart"/>
+          </p:panel>
+        </h:form>
+      </h:body>
+</html>

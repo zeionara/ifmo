@@ -1,0 +1,291 @@
+
+C:\Program Files\PostgreSQL\9.2\bin>createuser
+Пароль:
+createuser: не удалось подключиться к базе postgres: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_config
+BINDIR = C:/PROGRA~1/POSTGR~1/9.2/bin
+DOCDIR = C:/PROGRA~1/POSTGR~1/9.2/doc
+HTMLDIR = C:/PROGRA~1/POSTGR~1/9.2/doc
+INCLUDEDIR = C:/PROGRA~1/POSTGR~1/9.2/include
+PKGINCLUDEDIR = C:/PROGRA~1/POSTGR~1/9.2/include
+INCLUDEDIR-SERVER = C:/PROGRA~1/POSTGR~1/9.2/include/server
+LIBDIR = C:/PROGRA~1/POSTGR~1/9.2/lib
+PKGLIBDIR = C:/PROGRA~1/POSTGR~1/9.2/lib
+LOCALEDIR = C:/PROGRA~1/POSTGR~1/9.2/share/locale
+MANDIR = C:/Program Files/PostgreSQL/9.2/man
+SHAREDIR = C:/PROGRA~1/POSTGR~1/9.2/share
+SYSCONFDIR = C:/Program Files/PostgreSQL/9.2/etc
+PGXS = C:/Program Files/PostgreSQL/9.2/lib/pgxs/src/makefiles/pgxs.mk
+CONFIGURE = --enable-thread-safety --enable-integer-datetimes --enable-nls --with-ldap --with-ossp-uuid --with-libxml --with-libxslt --with-tcl --with-perl --with-python
+VERSION = PostgreSQL 9.2.20
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+pg_ctl: возможно, уже работает другой сервер; всё же пробуем запустить этот сервер
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>2017-04-29 12:21:27 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv6: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:27 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:27 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv4: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:27 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:27 MSK ??????????????:  ?? ??????? ??????? ??????????? ????? ??? "*"
+2017-04-29 12:21:27 MSK ?????:  ?? ??????? ??????? ?????? TCP/IP
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>2017-04-29 12:21:34 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv6: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:34 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:34 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv4: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:34 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:34 MSK ??????????????:  ?? ??????? ??????? ??????????? ????? ??? "*"
+2017-04-29 12:21:34 MSK ?????:  ?? ??????? ??????? ?????? TCP/IP
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>2017-04-29 12:21:42 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv6: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:42 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:42 MSK ?????????:  ?? ??????? ??????????? ? ?????? IPv4: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+
+2017-04-29 12:21:42 MSK ?????????:  ???????? ???? 5432 ????? ?????? ????????? postmaster? ???? ???, ????????? ??????? ????? ????????? ??????.
+2017-04-29 12:21:42 MSK ??????????????:  ?? ??????? ??????? ??????????? ????? ??? "*"
+2017-04-29 12:21:42 MSK ?????:  ?? ??????? ??????? ?????? TCP/IP
+eefd
+"eefd" не является внутренней или внешней
+командой, исполняемой программой или пакетным файлом.
+
+C:\Program Files\PostgreSQL\9.2\bin>eefd
+"eefd" не является внутренней или внешней
+командой, исполняемой программой или пакетным файлом.
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>psql
+Пароль:
+psql: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>psql
+Пароль:
+psql: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres
+Пароль пользователя postgres:
+psql (9.2.20)
+ПРЕДУПРЕЖДЕНИЕ: Кодовая страница консоли (866) отличается от основной
+                страницы Windows (1251).
+                8-битовые (русские) символы могут отображаться некорректно.
+                Подробнее об этом смотрите документацию psql, раздел
+                "Notes for Windows users".
+Введите "help", чтобы получить справку.
+
+postgres=# help
+Вы используете psql - интерфейс командной строки к PostgreSQL.
+Азы:   \copyright - условия распространения
+       \h - справка по операторам SQL
+       \? - справка по командам psql
+       \g или ; в конце строки - выполнение запроса
+       \q - выход
+postgres=# CREATE DATABASE test;
+CREATE DATABASE
+postgres=# SELECT * FROM test
+postgres-# SELECT * FROM pontos
+postgres-# SELECT * FROM pontos;
+ОШИБКА:  ошибка синтаксиса (примерное положение: "SELECT")
+СТРОКА 2: SELECT * FROM pontos
+          ^
+postgres=# -d
+postgres-# -d test;
+ОШИБКА:  ошибка синтаксиса (примерное положение: "-")
+СТРОКА 1: -d
+          ^
+postgres=# exit
+postgres-# \q
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -l
+psql: не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (::1)
+         и принимает TCP-соединения (порт 5432)?
+не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (127.0.0.1)
+         и принимает TCP-соединения (порт 5432)?
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres
+psql: не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (::1)
+         и принимает TCP-соединения (порт 5432)?
+не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (127.0.0.1)
+         и принимает TCP-соединения (порт 5432)?
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -l
+Пароль:
+psql: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres -l
+Пароль пользователя postgres:
+                                          Tяшёюъ срч фрээvї
+    Lь     | TырфхыхЎ | ¦юфшЁютър |     LC_COLLATE      |      LC_CTYPE       |     ¦Ёртр фюёЄєяр
+-----------+----------+-----------+---------------------+---------------------+-----------------------
+ postgres  | postgres | UTF8      | Russian_Russia.1251 | Russian_Russia.1251 |
+ template0 | postgres | UTF8      | Russian_Russia.1251 | Russian_Russia.1251 | =c/postgres          +
+           |          |           |                     |                     | postgres=CTc/postgres
+ template1 | postgres | UTF8      | Russian_Russia.1251 | Russian_Russia.1251 | =c/postgres          +
+           |          |           |                     |                     | postgres=CTc/postgres
+ test      | postgres | UTF8      | Russian_Russia.1251 | Russian_Russia.1251 |
+(4 ёЄЁюъш)
+
+
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres -d test
+Пароль пользователя postgres:
+psql (9.2.20)
+ПРЕДУПРЕЖДЕНИЕ: Кодовая страница консоли (866) отличается от основной
+                страницы Windows (1251).
+                8-битовые (русские) символы могут отображаться некорректно.
+                Подробнее об этом смотрите документацию psql, раздел
+                "Notes for Windows users".
+Введите "help", чтобы получить справку.
+
+test=# SELECT * FROM pontos;
+  x  |  y  |  r  | inside
+-----+-----+-----+--------
+ 1.1 | 1.1 | 2.2 | t
+(1 ёЄЁюър)
+
+
+test=# SELECT x,y FROM pontos;
+  x  |  y
+-----+-----
+ 1.1 | 1.1
+(1 ёЄЁюър)
+
+
+test=# exit
+test-# \q
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres -l
+psql: не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (::1)
+         и принимает TCP-соединения (порт 5432)?
+не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (127.0.0.1)
+         и принимает TCP-соединения (порт 5432)?
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -l
+Пароль:
+psql: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres
+Пароль пользователя postgres:
+psql (9.2.20)
+ПРЕДУПРЕЖДЕНИЕ: Кодовая страница консоли (866) отличается от основной
+                страницы Windows (1251).
+                8-битовые (русские) символы могут отображаться некорректно.
+                Подробнее об этом смотрите документацию psql, раздел
+                "Notes for Windows users".
+Введите "help", чтобы получить справку.
+
+postgres=# -version
+postgres-# \q
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -version
+psql: не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (::1)
+         и принимает TCP-соединения (порт 5432)?
+не удалось подключиться к серверу: Connection refused (0x0000274D/10061)
+        Он действительно работает по адресу "localhost" (127.0.0.1)
+         и принимает TCP-соединения (порт 5432)?
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -D "C:\Program Files\PostgreSQL\9.2\data" start
+сервер запускается
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -version
+Пароль:
+psql: ВАЖНО:  пользователь "Zerbs" не прошёл проверку подлинности (по паролю)
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl -version
+pg_ctl: illegal option -- v
+Для дополнительной информации попробуйте "pg_ctl --help".
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl --help
+pg_ctl - это утилита для инициализации, запуска, остановки и управления сервером PostgreSQL.
+
+Использование:
+  pg_ctl init[db]               [-D КАТАЛОГ-ДАННЫХ] [-s] [-o "ПАРАМЕТРЫ"]
+  pg_ctl start   [-w] [-t СЕК] [-D КАТАЛОГ-ДАННЫХ] [-s] [-l ИМЯ-ФАЙЛА]
+                 [-o "ПАРАМЕТРЫ"]
+  pg_ctl stop    [-W] [-t СЕК] [-D КАТАЛОГ-ДАННЫХ] [-s] [-m РЕЖИМ-ОСТАНОВКИ]
+  pg_ctl restart [-w] [-t СЕК] [-D КАТАЛОГ-ДАННЫХ] [-s] [-m РЕЖИМ-ОСТАНОВКИ]
+                 [-o "ПАРАМЕТРЫ"]
+  pg_ctl reload  [-D КАТАЛОГ-ДАННЫХ] [-s]
+  pg_ctl status  [-D КАТАЛОГ-ДАННЫХ]
+  pg_ctl promote [-D КАТАЛОГ-ДАННЫХ] [-s]
+  pg_ctl kill    СИГНАЛ PID
+  pg_ctl register   [-N ИМЯ-СЛУЖБЫ] [-U ПОЛЬЗОВАТЕЛЬ] [-P ПАРОЛЬ]
+                  [-D КАТАЛОГ-ДАННЫХ] [-S ТИП-ЗАПУСКА] [-w] [-t СЕК]
+                  [-o "ПАРАМЕТРЫ"]
+  pg_ctl unregister [-N ИМЯ-СЛУЖБЫ]
+
+Общие параметры:
+  -D, --pgdata=КАТАЛОГ   расположение хранилища баз данных
+  -s, --silent           выводить только ошибки, без информационных сообщений
+  -t, --timeout=СЕК      время ожидания при использовании параметра -w
+  -V, --version          показать версию и выйти
+  -w                     ждать завершения операции
+  -W                     не ждать завершения операции
+  -?, --help             показать эту справку и выйти
+(По умолчанию ожидание имеет место при остановке, но не при (пере)запуске.)
+
+Если параметр -D опущен, используется переменная окружения PGDATA.
+
+Параметры запуска и перезапуска:
+  -c, --core-files       неприменимо на этой платформе
+  -l, --log=ФАЙЛ         записывать (или добавлять) протокол сервера в ФАЙЛ.
+  -o ПАРАМЕТРЫ           параметры командной строки для postgres
+                         (исполняемого файла сервера PostgreSQL) или initdb
+  -p ПУТЬ-К-POSTGRES     обычно не требуется
+
+Параметры остановки и перезапуска:
+  -m, --mode=РЕЖИМ       может быть "smart", "fast" или "immediate"
+
+Режимы остановки:
+  smart       закончить работу после отключения всех клиентов
+  fast        закончить сразу, в штатном режиме
+  immediate   закончить немедленно, в экстренном режиме; влечёт за собой
+              восстановление при перезапуске
+
+Разрешённые сигналы для команды kill:
+  ABRT HUP INT QUIT TERM USR1 USR2
+
+Параметры для регистрации и удаления:
+  -N ИМЯ-СЛУЖБЫ   имя службы для регистрации сервера PostgreSQL
+  -P ПАРОЛЬ       пароль учётной записи для регистрации сервера PostgreSQL
+  -U ПОЛЬЗОВАТЕЛЬ имя пользователя для регистрации сервера PostgreSQL
+  -S ТИП-ЗАПУСКА  тип запуска службы сервера PostgreSQL
+
+Типы запуска:
+  auto       запускать службу автоматически при старте системы (по умолчанию)
+  demand     запускать службу по требованию
+
+Об ошибках сообщайте по адресу <pgsql-bugs@postgresql.org>.
+
+C:\Program Files\PostgreSQL\9.2\bin>pg_ctl --version
+pg_ctl (PostgreSQL) 9.2.20
+
+C:\Program Files\PostgreSQL\9.2\bin>psql -U postgres
+psql: ВАЖНО:  извините, уже слишком много клиентов
+
+C:\Program Files\PostgreSQL\9.2\bin>

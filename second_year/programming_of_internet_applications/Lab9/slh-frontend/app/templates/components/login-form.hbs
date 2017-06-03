@@ -1,0 +1,20 @@
+{{#if loginFailed}}
+  <div class="alert danger embererror">
+    Invalid login or password
+  </div>
+{{/if}}
+{{#bs-form model=login onSubmit=(action "submit") novalidate=true as |form|}}
+    {{form.element onChange=(action "loginChanged") class="emberinputfield" label="Login" placeholder="Login"}}
+    {{#unless isLoginValid}}
+      <div class="alert danger embererror">
+        Login required
+      </div>
+    {{/unless}}
+    {{form.element onChange=(action "passwordChanged") class="cop emberinputfield" controlType="password" label="Password" placeholder="Password"}}
+    {{#unless isPasswordValid}}
+      <div class="alert danger embererror">
+        Password required
+      </div>
+    {{/unless}}
+    {{bs-button defaultText="Submit" type="primary" buttonType="submit" class="submit embersubmitbutton"}}
+{{/bs-form}}

@@ -1,0 +1,2094 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial" SIZE="2">
+<blockquote>
+  <blockquote>
+<h2 ALIGN="center"><a name="Lesson 11">Lesson 11</a> - The Graphics Windows</h2> 
+    <p ALIGN="JUSTIFY">GPSS World allows you to view, and interact with,
+    simulations through any of 17 graphics windows—many of which have more
+    than one flavor. In addition, there are four windows for input and output.
+    Of the graphics windows, 10 are updated as the simulation runs, and the
+    others are snapshots that allow you to capture a view of the simulation at
+    one point in time. Except for the User Stops Snapshot, the Snapshot Windows
+    are not available in the Student Version. Additional information about the
+    Graphics Windows can be found in Chapter 5 of the GPSS World Reference
+    Manual. When viewing the on-line windows, you are actually viewing the
+    current state of the simulation. The GPSS World graphics windows are:</p>
+    <font SIZE="2">   
+      <blockquote>
+          <b>
+          <p ALIGN="JUSTIFY">The Blocks Window</b> — a view of GPSS Block
+          entities.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Expressions Window</b> — a view of any PLUS
+          Expression that you wish to watch as the simulation runs.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Facilities Window</b> — a view of GPSS
+          Facility Entities.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Logicswitches Window</b> — a view of GPSS
+          Logicswitches.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Matrix Window</b> — a view of a GPSS Matrix
+          Entity.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Plots Window </b>— a view of up to plotted
+          PLUS Expressions.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Queues Window</b> — a view of any Queue
+          Entity in the simulation.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Savevalues Window</b> — a view of any defined
+          Savevalue in the simulation.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Storages Window</b> — a view of GPSS Storage
+          entities.</p>
+          <b>
+          <p ALIGN="JUSTIFY">The Table Window</b> - a view of GPSS Table or
+          Qtable Entity in histogram form.</p>
+         </blockquote>        
+        <p ALIGN="JUSTIFY">In addition to the dynamic windows listed above,
+        there are snapshot capabilities of a single Transaction, the CEC, FEC,
+        Transaction and Numeric Groups, and Userchains.</p>
+        <p ALIGN="JUSTIFY">All graphical windows allow you to interact with the
+        simulation using your mouse. The Snapshot Windows show a view of the
+        simulation at a given point in time and are not updated on-line. They
+        can give you valuable information about a single Transaction, the
+        Transactions on various chains and in groups in your simulation.</p>
+        <p ALIGN="JUSTIFY">In this lesson we will systematically go through the
+        operations possible in the graphical windows. In earlier lessons, we
+        have used the graphical windows for various views of our sample models.
+        In this chapter we will try to look at each of the windows that can be
+        accessed, in their detailed and non detailed states, using the View menu
+        in the Model Window.</p>
+        <p ALIGN="JUSTIFY">Let’s begin. Start by reading a sample file that is
+        designed to show each of the graphical windows. The following is a copy
+        of that model.</p>
+      </font>
+  
+
+  </font><p><font face="Courier New" size="2">; GPSS World Sample File - SAMPLE9.GPS<br>
+  Pool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STORAGE&nbsp;&nbsp; 400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Define Storage<br>
+  Matrix1&nbsp;&nbsp; MATRIX&nbsp;&nbsp;&nbsp; ,5,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Define Matrix<br>
+  Transit&nbsp;&nbsp; TABLE&nbsp;&nbsp;&nbsp;&nbsp; M1,200,200,20 ;Transit time in wait<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">; and process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp;
+  (Exponential(1,0,100)) ;Uses built in<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Exponential dist.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maingrp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Xact joins
+  Maingrp<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Numgrp,9999&nbsp; ;Add 9999 to Numeric group<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Addup+,1&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Total of Transactions<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; in model&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">ASSIGN&nbsp;&nbsp;&nbsp; Param_1,232&nbsp;&nbsp;
+  ;Assign Xact parameter<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Numgrp,P$Param_1 ;Put value in Param1<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; in Numgrp group<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOGIC S&nbsp;&nbsp; Switch_1&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Turn on a logic switch&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">MSAVEVALUE Matrix1,2,2,QA$Tot_Process ;Put avg.
+  queue<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; content in matrix cell<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Tot_Process&nbsp;&nbsp;
+  ;Queue for process time<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;
+  Facility1&nbsp;&nbsp;&nbsp;&nbsp; ;Own first Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Chain1,FIFO,Nxtblk ;Put on Userchain if<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Facility busy<br>
+  Nxtblk&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Facility2&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Own a second Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp;
+  Facility3&nbsp;&nbsp;&nbsp;&nbsp; ;Own a third Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;
+  Process_Time&nbsp; ;Keep track of process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; times<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 100,(Exponential(1,0,50)) ;Uses built in<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Exponential Dist.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;
+  Process_Time&nbsp; ;Record length of<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Add wait + process<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; time to Transit ; Table<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">RELEASE&nbsp;&nbsp; Facility1&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 1st Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Delay time for Fac 2&amp;3<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility2&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 2nd Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Extra delay time-Fac 3&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Facility3&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Give up 3rd
+      Facility<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp;
+  Tot_Process&nbsp;&nbsp; ;Leave Queue<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNLINK&nbsp;&nbsp;&nbsp;
+  Chain1,Nxtblk ;Take all waiting Xacts&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; off Userchain<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;
+  Pool,100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Place 100 units in the<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Storage<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOGIC R&nbsp;&nbsp; Switch_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Turn off logic switch&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font face="Courier New" size="2">LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Pool,50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Take 50 units
+      from<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Storage<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Collect-,1&nbsp;&nbsp;&nbsp;
+  ;Show negative Savevalue&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; in model<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REMOVE&nbsp;&nbsp;&nbsp;
+  Maingrp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Remove Xact from group<br>
+  &nbsp;&nbsp;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New" size="2">
+  ; Maingrp<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Wait 10 time units<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp;
+  Pool,50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Take 50 units from<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ; Storage<br>
+  Finis&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  ;Destroy Xact<br>
+  </font></p>
+  <font FACE="Arial" SIZE="2">
+<font SIZE="2">
+      <p ALIGN="JUSTIFY">Open the model in the Model Window of GPSS World.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b>File / Open</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>SAMPLE9</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;
+</font><font FACE="Arial" SIZE="2"><b>Open</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">then create the simulation.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b>Command / Create Simulation</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Now, in the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b><font FACE="Courier New">Stop 5</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b>OK</p>
+    </b><font SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+    
+      
+        <p ALIGN="left">This will stop Transaction number 5 when it becomes
+        active. Now we are ready to look through the graphical windows.</p>
+      
+      
+        <p ALIGN="JUSTIFY">&nbsp;</p>
+      
+    </font><b><font SIZE="5">
+    <p>The Blocks Window</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Open the Blocks Window</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font><b>Window / Simulation Window / BlocksWindow</p>
+    </b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>View / Entity Details</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+      </font><i><font FACE="Times,Times New Roman" SIZE="2">
+      <p ALIGN="JUSTIFY">&nbsp;</p>
+      <p ALIGN="center"><img border="0" src="../images/T1_11_1.gif" width="593" height="337"></p>
+      <p ALIGN="center">Figure 11—1. The Non-Detailed View of the Blocks
+      Window</p>
+      </font></i><font SIZE="2">
+      <p ALIGN="left">You are looking at the non-detailed View of the Blocks
+      Window. This is a high level overview of the model. When you are debugging
+      a model, a gross view of the Transaction flow may be all you need at
+      first. If not, more details are available by shifting to the detailed
+      view.</p>
+      <p ALIGN="left">Now let’s start the simulation.</p>
+      <p ALIGN="left">From the Main Menu</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / START</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and in the dialog box replace the 1</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">1111111111,NP</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">The simulation will stop when Transaction 5 becomes
+      active. Now, before we continue, let’s step through the simulation.</p>
+      <p ALIGN="left">By using the <b>[F5]</b>
+      key we will be able to watch the Transactions move from Block to Block. As
+      we learned earlier, Function Keys can be set to specific commands in the
+      Function Keys Page of the Model Settings Notebook. The default setting for
+      <b>[F5]</b> is STEP 1.</p>
+      
+    
+</font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+</font></font><font face="Helvetica,Arial" size="2"><b>[F5]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">Did you see Transaction 5 enter the GENERATE Block? Good.
+    The GENERATE Block is now highlighted.</p>
+    <p ALIGN="JUSTIFY">Now let’s send Transaction 5 directly to the TERMINATE
+    Block by using Manual Simulation.</p>
+    <p ALIGN="JUSTIFY">In the Main Window Menu</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">in the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b><font FACE="Courier New">Transfer ,Finis</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Note that if you pressed [Enter]
+      here, the dialog box didn’t close. This is because in the Custom Command
+      dialog box, you can type in multi-line commands. You must Select OK in
+      this dialog box. Now, make sure you can see the final Block in the model
+      labeled Finis, then</p>
+      
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font></font></font><font face="Helvetica,Arial" size="2">
+  <b>[F5]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">Did you see the Transaction enter the TERMINATE Block?
+    During the design and testing phases of model development, the Blocks Window
+    can give you a quick and easy way to discover problems in Transaction flow.
+    You can test alternate paths for Transactions and the effect they have on
+    the simulation’s behavior.</p>
+    <p ALIGN="JUSTIFY">Now that the Stop Condition is removed from the
+    simulation, since Transaction 5 has been TERMINATEd, let’s start the
+    simulation again. First, put a Stop Condition on the ADVANCE Block. Position
+    the mouse pointer over the ADVANCE Block (Block 15) and click mouse button
+    1. The Block is now selected. Now, in the Blocks Window</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Place icon in the Debug Toolbar</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2"><b>
+  [F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">The simulation will run until a Transaction is ready to
+    enter the ADVANCE Block. Now step through the simulation.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2"><b>
+  [F5]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">several times and watch the Transaction move from Block
+    to Block. Now look at the Journal Window and step through a few more Blocks.</p>
+    <p ALIGN="left">First, make the Journal Window the active window</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>Any Part of the Journal Window</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2">
+  <b>[F5]</b></font></p>
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">a few more times. Notice how trace messages are
+        recorded in the Journal Window as you use the STEP Command. Your Journal
+        Window should look something like this.</p>
+        <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_2.gif" width="640" height="319"></p>
+      <p align="center">Figure 11—2. The Journal Window after Stepping.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">Now switch to detailed view in the Blocks Window and
+        look at a history of what has happened so far by examining the Block
+        entry counts. Notice that it gives you all the information that you
+        would see in a Standard Report. Make sure the Blocks Window has the
+        focus. Now, from theMain Menu</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>View / Entity Details</p>
+    </b><i><font SIZE="2">
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_11_3.gif" width="593" height="337"></p>
+    <p align="center">Figure 11—3. Detailed View of the Blocks Window.</p>
+    
+      
+      </font></i><font SIZE="2">
+    <p ALIGN="JUSTIFY">At this time, please refer to Chapter 4 of the <i>GPSS
+    World Reference Manual</i>. Please read the section on GPSS Block Entities.
+    You should identify each item in the Blocks Window on your screen.</p>
+    <p ALIGN="JUSTIFY">Now, before we leave this section, let’s take off all
+    Stops Conditions. In the Main Menu</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>Window / Simulation Snapshot /User Stops</p>
+    </b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The Remove All button</p>
+    </u>
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2">
+  <b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">As the simulation runs, watch it in either view of the
+    Blocks Window. Both forms of the Blocks Window can be useful. Sometimes you
+    will want to see where Transactions are accumulating, other times you will
+    want to have a much more detailed accounting of the number of Transactions
+    in different Blocks.</p>
+    <p ALIGN="JUSTIFY">There are a few other menu items to examine. The File
+    Menu will allow you to save the simulation at any point in time. File /
+    Print from the Main Menu will print the window that has the focus when you
+    issue the command. Let’s try printing the window. You can do this while
+    the simulation is running, but it is best to halt the simulation so you know
+    exactly what you are printing. Make sure your printer is on and ready to
+    print.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font></font></font><font face="Helvetica,Arial" size="2">
+  <b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>File / Print</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Now you have hard copy of the window you selected. Had
+      you chosen to save the simulation at this point in time, you could open it
+      later to print any of the windows related to the current state of the
+      simulation.</p>
+      <p ALIGN="JUSTIFY">Help is found in all the windows. If you have questions
+      about Help, please refer to Lesson 3 in this manual.</p>
+      <p ALIGN="JUSTIFY">If you want to have a window easily available for
+      viewing, you could minimize it using the Windows minimize button. That is
+      the button with the short horizontal line inside it and is found in the
+      upper right of the window. Then, later, you can click on the icon in the
+      lower left of the Main Window to reopen it. You should remember that
+      minimized windows are still updated on-line. This means that although you
+      cannot see the window, the simulation must proceed slowly in order to keep
+      updating it.</p>
+      <p ALIGN="JUSTIFY">Let’s minimize the Blocks Window</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Minimize Button-Upper Right of Window-Button</p>
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_11_4.gif" width="608" height="455"></p>
+    </u></font><i><font SIZE="2">
+    <p align="center">Figure 11—4. The Main Window with Blocks Window minimized.</p>
+    </font></i>
+  
+
+  </font>
+    <p align="center">&nbsp;</p>
+    
+      
+    <p align="center"><font face="Arial" size="2">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;
+    <u>The Minimized Blocks Window Icon-lower left of Main Window
+    
+      
+      </u></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">The Blocks Window is now expanded again. Now let’s
+    close it .</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The X-Upper Right of Blocks Window
+    </u></p>
+    <p align="center">&nbsp;</p>
+  </font><b><font SIZE="5">
+    <p>The Facilities Window</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Now start the simulation running again by using the
+    Continue Command. Remember it is loaded into Function Key <b>[F2]</b>.
+    If you are just starting at this point, you will have to read the SAMPLE9
+    model and Create the Simulation as we did when we were learning about the
+    Blocks Window.</p>
+    <p ALIGN="JUSTIFY">With the simulation running, open the Facilities Window</p>
+    
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Facilities Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+      <i>
+      
+      
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_5.gif" width="617" height="175"></p>
+      <p align="center">Figure 11—5. Facilities Window. Detailed View.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">You will notice that this window opened in the
+        detailed view. You will see that this is true for all the graphical
+        windows. You will find in most of these windows you will need the
+        detailed information when debugging or testing. However, there will be
+        times when you just want a high level view of what is going on.</p>
+        <p ALIGN="JUSTIFY">At this time, please refer to Chapter 4 of the <i>GPSS
+        World Reference Manual</i>, and read the section on Facility Entities.
+        You should identify each item in the Facilities Window on your screen.</p>
+        <p ALIGN="JUSTIFY">Welcome back. Switch to the non-detailed view of the
+        Facilities Window. In the Facilities Window menu</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>View / Entity Details</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">This will toggle the view from detailed to the
+      non-detailed View.</p>
+      <p ALIGN="left">Notice how the simulation causes the state of the
+      Facility to change. In this simple model the Facility symbol changes from
+      gray, when it is not busy, to red, when it is. A small queue shows as a
+      small white bar in the right side of the icon. A larger white bar is
+      displayed when the queue exceeds 10 Transactions in size. You can change
+      it yourself in Manual Simulation mode. The queue that you see in this
+      window is really a count of Transactions on the Facility Delay Chain that
+      are waiting to seize the Facility.</p>
+      <p ALIGN="left">Let’s put the Facility Entity named Facility out of
+      action, but first halt the simulation to see the change more clearly.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2"><b>
+  [F4]</b></font></p>
+  <font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">FUNAVAIL Facility1</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Did you see the Facility Icon turn yellow? Good. Now
+      look at the Detailed View.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>View / Entity Details</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Watch the Delay Chain in the Facilities Window. In the
+      Main Menu</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    </b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b><font FACE="Courier New">STEP 150</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and watch the waiting line of Transactions build up on
+      the Facility Delay Chain.</p>
+      <p ALIGN="JUSTIFY">O.K. Let’s allow the Facility to process the waiting
+      Transactions.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">FAVAIL Facility1</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="left">This makes the Facility available again. Start the
+    simulation running again.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">Do you see the waiting line decrease? Actually, you can
+    use Manual Simulation to manipulate entities in any graphical window.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2"><b>&nbsp;</b>&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">Now it’s time to move on to the Matrix Window, but
+    first, close the Facilities Window.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right of the Facilities Window
+    
+    </u></p>
+    
+    <p align="center">&nbsp;</p>
+    
+  </font><b><font SIZE="5">
+    <p>The Matrix Window</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">If you’re just starting here, you will also need to
+    open SAMPLE9.</p>
+    <p ALIGN="JUSTIFY">Now, open the Matrix Window.</p>
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    
+    
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Window / Simulation Window / Matrix Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">This opens a dialog box that asks for the name of the
+      Matrix.</p>
+      <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+      <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_6.gif" width="390" height="397"></p>
+      <p align="center">Figure 11—6. The Open Matrix Dialog Box.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">Since there is only one Matrix in this model, its
+        name already appears in the drop-down box.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">If you still have the simulation halted from the
+      previous section of this lesson, start it running again by issuing a
+      Continue command--press <b>[F2]</b>.</p>
+      <p ALIGN="JUSTIFY">You’ll now see Matrix1 displayed. Watch the cell at
+      location row 2, column 2 change as Transactions pass through the
+      MSAVEVALUE Block and the Average Queue Content is placed in the Matrix.</p>
+      <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+      
+      
+      <p>&nbsp;</p>
+      
+      
+      <p align="center"><img border="0" src="../images/T1_11_7.gif" width="626" height="250"></font><font FACE="Helvetica,Arial" SIZE="2"></p>
+    </font><i><font SIZE="2">
+    <p align="center">Figure 11—7. The Dynamic Matrix Window.</p>
+    </font></i><font SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">You can adjust your Matrix Window to make all the
+        elements of the default cross section visible. There are scroll bars for
+        viewing larger cross sections. Let’s use Manual Simulation to change
+        one of the cells in the matrix. Now, Halt the simulation.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font></font></font><font face="Helvetica,Arial" size="2">
+  <b>[F4]</b></font></p>
+  <font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and in the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;</font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b><font FACE="Courier">MSAVEVALUE MATRIX1,3,3,1000</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">Make sure that the Matrix Window is large enough for
+      you to see Column 3. Did you see the matrix element, at Row 3, Column 3,
+      receive a new value? Good. You can use Manual Simulation to experiment
+      with values and the effect on your simulation when you are designing your
+      model. Remember, Manual Simulation acts as if the Active Transaction were
+      lifted from the simulation and passed through the Block of your choosing
+      and then put back to take up where it left off.</p>
+      <p ALIGN="left">GPSS World allows Matrices to be defined with up to 6
+      dimensions! When you view such a beast, you must select which cross
+      section you want to view. This is done by using </font><b><font FACE="Times New Roman">View
+      / Cross Section</font></b><font SIZE="2"> in the Matrix Window to open the
+      Cross Section Dialog. Let’s try it.</p>
+      </font><font FACE="Helvetica,Arial" SIZE="2">
+      
+    
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the dialog box</p>
+      </font><font FACE="Helvetica,Arial" SIZE="2">
+      
+    
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>MATRIX2 MATRIX ,2,3,4,2,2,2</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">This will define a 6 dimensional Matrix.</p>
+      </font><font FACE="Helvetica,Arial" SIZE="2">
+      
+    
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Now, open the Matrix Window.</p>
+      </font><font FACE="Helvetica,Arial" SIZE="2">
+      
+    
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Matrix Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">This opens a dialog box that asks for the name of the
+      Matrix.</p>
+      </font>
+      
+    
+    <p align="center"><font FACE="Helvetica,Arial" SIZE="2">
+    CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; </font><u>Matrix2 from the drop-down box</u></p>
+  <font SIZE="2">
+    
+      
+        <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+        <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_8.gif" width="390" height="392"></p>
+      <p align="center">Figure 11—8. The Open Matrix Cross Section Dialog.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">The extent of all dimensions is given under the name
+        of the Matrix. Notice that the default view is to use Dimension 1 across
+        the rows of the cross section, and dimension 2 across the columns. The
+        remaining dimensions are set to the first element in each direction.</p>
+        <p ALIGN="left">If you want to change the visible cross section, here’s
+        what you do. First, choose which dimensions will be used as row and
+        columns in the Matrix Window. Inside the Cross Section Group Box of the
+        Dialog, click in the &quot;Row&quot; column to choose the dimension to
+        be used for rows, and in the &quot;Column&quot; column to choose the
+        dimension to be used across columns. Finally, for each of the remaining
+        dimensions, select the index where the cross section is to cut the
+        respective dimension. Do this by filling in the entry fields in the
+        right most column of the Dialog.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">This brings the selected cross section into view.</p>
+      <p ALIGN="left">Actually, you can open many cross sections of a single
+      Matrix. It’s easy. Just open a new Matrix Window for each cross section.</p>
+      <p ALIGN="left">At this time, please refer to Chapter 4 of the <i>GPSS
+      World Reference Manual</i>. Please read the section on the Matrix
+      Entities.</p>
+      <p ALIGN="left">Welcome back. Now, let’s move to the Storages Window,
+      but first close the Matrix Window.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right Matrix Window</p>
+    </u></font><b><font SIZE="5">
+    
+      <p>&nbsp;</p>
+      
+      <p>The Storages Window</p>
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Begin by starting the simulation again. If you are just
+    starting here, you will have to go back to the Blocks Window description and
+    Open the model, Create the Simulation, and start SAMPLE9 running.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">While the simulation is running, open the Storages Window</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>Window / Simulation Window / Storages Window</p>
+    </b><font SIZE="2">
+    
+      
+        <p ALIGN="JUSTIFY">Your screen should look something like this:</p>
+        <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_9.gif" width="610" height="152"></p>
+      <p align="center">Figure 11—9. The Storages Window.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font></font></font><font face="Helvetica,Arial" size="2">
+  <b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">At this time, please refer to Chapter 4 of the <i>GPSS
+    World Reference Manual</i>. Please read the section on the Storage Entities.
+    You should identify each item in the Storages Window on your screen.</p>
+    <p ALIGN="JUSTIFY">Welcome back. You undoubtedly noticed how the simulation
+    caused the state of the Storage Entity to change. You can change it yourself
+    in Manual Simulation mode.</p>
+    <p ALIGN="JUSTIFY">Let’s put the Storage Entity named Pool out of action.
+    In the Main Menu</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">SUNAVAIL Pool</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">Did you see the Storage Icon turn yellow? Good. Note
+      the content of the Storage Delay Chain and then in the Main Menu,</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and in the dialog box, replace the 1</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Step 150</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">and watch the waiting line of Transactions build up on
+      the Storage Delay Chain..</p>
+      <p ALIGN="JUSTIFY">O.K. Let’s allow the Storage Entity to process the
+      waiting Transactions.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Command / Custom</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the dialog box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">SAVAIL Pool</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">This makes the Storage available again. To prevent other
+    Transactions from bucking the line, GPSS World immediately gives as many
+    Transactions on the Delay Chain the storage space they are requesting, but
+    moves them no further in the simulation until it is their turn. That’s why
+    you see four Transactions go into the ENTER Block and the Delay Chain
+    decrease by 4. Start the simulation running again.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">Do you see the waiting line decrease? You can use Manual
+    Simulation to manipulate entities in any graphical window.</p>
+    <p ALIGN="left">Let’s move now to the Table Window, but first close the
+    Storages Window.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right Storages Window
+    </u></p>
+    <p align="center">&nbsp;</p>
+  </font><b><font SIZE="4">
+    
+      
+        <p>The Table Window</p>
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Begin by starting the simulation again. If you are just
+    starting here, you will have to go back to the Blocks Window description and
+    Open the model, Create the Simulation, and start SAMPLE9 running.</p>
+    <p ALIGN="JUSTIFY">First, let’s halt the simulation</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+  <font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>Window / Simulation Window / Table Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">This opens a dialog box with the Table names in a
+      drop-down box.</p>
+      <i>
+      <p>&nbsp;</p>
+      
+      
+      <p align="center"><img border="0" src="../images/T1_11_10.gif" width="306" height="184"></p>
+      
+      
+      <p align="center">Figure 11—10. The Open Table Dialog.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">Transit is already showing in the drop-down box. This
+        is the only Table in this model, but if there were multiple Tables, you
+        could select the one that you wanted from the drop-down box.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">You’ll now see Table1 displayed, but there is no
+      histogram just an X and Y axis. Let’s start the simulation and watch the
+      histogram develop. Make sure you have the window open to a large enough
+      size so the you can clearly see the bars of the histogram as they grow.
+      The simulation need not be stopped to resize the window if there is a
+      problem with its appearance.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">to start the simulation running again.</p>
+    <p ALIGN="JUSTIFY">Your screen should look something like this.</p>
+    <i>
+    <p>&nbsp;</p>
+    
+    
+    <p align="center"><img border="0" src="../images/T1_11_11.gif" width="598" height="308"></p>
+    
+    
+    <p align="center">Figure 11—11. The Table Window.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">At this time, please refer to Chapter 4 of the <i>GPSS
+        World Reference Manual</i>. Please read the section on GPSS Table
+        Entities. You should identify each item in the Table Window on your
+        screen.</p>
+        <p ALIGN="JUSTIFY">Halt the simulation while you look at the <i>GPSS
+        World Reference Manual</i>.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">Welcome back. When you’re ready to continue,</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><b><font FACE="Helvetica,Arial" SIZE="2">
+  [F2]</font></b></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">Notice how the simulation causes the state of the
+    histogram to change. As the counts in each frequency class are increased,
+    the average and standard deviation change. When the histogram becomes too
+    tall, GPSS World rescales it automatically.</p>
+    <p ALIGN="JUSTIFY">To create a histogram for the Table Window, you need only
+    define it with a TABLE or QTABLE Command. GPSS World will show its state
+    automatically.</p>
+    <p ALIGN="JUSTIFY">Now, on to the Plot Window, but first halt the simulation
+    and close the Table Window.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">and</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right of the Tables Window
+    </u></p>
+    <p align="center">&nbsp;</p>
+  </font><b><font SIZE="5">
+    
+      <p>The Plot Window</p>
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="left">If you are just starting here, you will have to go back
+    to the Blocks Window description and Open the model, Create the Simulation,
+    and start SAMPLE9 running. and immediately halt it by pressing <b>[F4]</b>.</p>
+    <p ALIGN="left">Now, with the simulation halted, we’ll plot a few
+    variables. GPSS World allows you to plot up to eight variables
+    simultaneously in each Plot Window. Note that it is not necessary to halt a
+    simulation in order to define a Plot, but it is probably less distracting to
+    do so.</p>
+    <p ALIGN="left">Now, let’s open the Plot Window. You'll note that the
+    Edit Plot Window has some similarities to the Expression Window. Lesson 2
+    describes the use of the Plot and Memorize buttons. Review them now if you
+    need to.</p>
+    
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Plot Window</p>
+    </b><font SIZE="2">
+    
+      
+        <p ALIGN="JUSTIFY">The Edit Plot Window dialog box will appear as shown
+        below.</p>
+        <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_12.gif" width="536" height="456"></p>
+      <p align="center">Figure 11—12. The Edit Plot Window.</p>
+      
+        
+        </i>
+        <p ALIGN="JUSTIFY">The Edit Plot Window has two purposes. You can use it
+        to do nothing other than set up the axes and other general values, and
+        you can use it to specify each additional Expression to be included in
+        the plot.</p>
+    <p ALIGN="JUSTIFY">To make each entry, you should position the mouse
+        pointer at the beginning of the appropriate line and click once. You can
+        also use the<b> [Tab]</b>
+        to move in a forward direction from box to box. Don’t use <b>[Enter]</b>
+        to jump to the next field in the box since it will close the dialog box,
+        and give you an error. You will use <b>[Enter]</b> or Select OK when all information in the box is completed.</p>
+        <p ALIGN="JUSTIFY">The Label field should contain the Label to be used
+        in the legend at the bottom of the plot.</p>
+      
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Storage in Use</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">in the Label field.</p>
+    <p ALIGN="JUSTIFY">In the Expression box which indicates the first variable
+    to be plotted</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b><font FACE="Courier">S$Pool</font></b><font FACE="Helvetica,Arial" SIZE="2"></p>
+    
+      
+      </font><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the Plot Title field we’ll choose a name that will
+      describe both items that we want to plot, namely the Total_Time queue size
+      and the average time in the queue which will be the total time from
+      generation to termination in this simulation.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b><font FACE="Courier New">Storage in Use &amp; Process Time</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">in the Title box.</p>
+    <p ALIGN="JUSTIFY">The time range for each view of the plot must be added.
+    You will want to make this time duration long enough so that it does not
+    flash by as the simulation runs, but not so long that your plot is jammed
+    together. You may have to experiment once or twice to get the correct value.
+    The Plot Window will page horizontally when it reaches the end of the
+    window.</p>
+    <p ALIGN="JUSTIFY">You should also be aware that a limited number of plot
+    points are saved for redrawing the Plot Window. The default is to save no
+    more than the last 10,000 points for each plotted expression. If you resize
+    the Plot Window and the leftmost part of the plot is not redrawn, you should
+    increase the number of saved plot points in the Model Settings Notebook.
+    Usually, 10,000 points is sufficient to completely restore displayed points.
+    If you refresh or resize your window or do anything that causes the window
+    to refresh automatically such as dragging another window over the top of the
+    Plot Window, only the remembered points can be redisplayed. Of course, the
+    more points you save, the more memory you will use for this purpose. Since
+    GPSS World makes huge amounts of virtual memory available to you, this is
+    usually not a problem.</p>
+    <p ALIGN="JUSTIFY">Now, let’s put in the time range for the X-axis. In the
+    <b>Time Range</b> box</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b><font FACE="Courier New">10000</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Finally, the Y-axis values have defaults of 0 and 100.
+    Let’s change only the Max value to 200.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">200</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The Plot Button</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">If we save this simulation and want to plot these again,
+    these values will be easily available. So</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Memorize Button</p>
+    </u></font><b><font FACE="Courier">
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">Now, let’s enter a second set of values for the same
+    plot,Don’t forget to position the cursor with the mouse and don’t use<b>
+    [Enter]</b>
+    between fields. Drag and hold down the right mouse button over the current
+    Label. For the Label</p>
+    
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Process Time</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">and for the Expression repeat the process and</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;</font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b><font FACE="Courier New">QT$Process_Time</p>
+    </font></b><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The Plot Button</p>
+    </u>
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Memorize Button</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">Good. We're done now.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">The Plot Window should look like this:</p>
+      <p ALIGN="JUSTIFY">&nbsp;</p>
+      
+    
+      <p ALIGN="center"><img border="0" src="../images/T1_11_13.gif" width="661" height="337"></p>
+      
+    
+    <i>
+    <p align="center">Figure 11—13. The Plot Window.</p>
+    </i>
+    <p ALIGN="center">&nbsp;</p>
+    
+      
+        <p ALIGN="center">and then start the simulation running.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="center">Your Plot Window should look something like this. Of
+    course, it will depend where in simulated time you are when you open the
+    Plot.</p>
+    <i>
+    <p align="center">&nbsp;</p>
+    
+    
+    <p align="center"><img border="0" src="../images/T1_11_14.gif" width="661" height="337"></p>
+    
+    
+    <p align="center">Figure 11—14. The Plot Window with two Expressions being plotted.</p>
+    
+      
+      </i>
+      <p ALIGN="JUSTIFY">You can plot up to eight values at one time by
+      repeating the procedure shown above and continue to add Labels and
+      Expressions and then choose to Plot and/or Memorize them.</p>
+      <p ALIGN="JUSTIFY">Now let's Halt the simulation</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">Now , close the Plot Window. Make sure the Journal /
+    Simulation Window has the focus.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>File / Save</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Unless you've done this before, the name chosen will be
+      sample 9.1.Sim.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Save</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Close all open windows.</p>
+      <p ALIGN="JUSTIFY">Now let's bring back the simulation we just saved..</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>File / Open</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">In the drop-down box at the bottom of the window</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The down arrow in the Files of type box</p>
+    </u>
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Simulation</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">for the file type and then</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Sample9.1</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">in the top part of the dialog box.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Open</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">We have now opened the simulation that we saved. let's
+      see if the Plot was saved.</p>
+      
+    
+    <p align="center">CHOOSE<font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font></font><font FACE="Helvetica,Arial"> </font><b>Window / Simulation
+    Window / Plot Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">You'll see the values that we chose to memorize. In the
+      <b>Memorized Expressions</b> box</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The first Label and then Plot</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The second Label and then Plot</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="left">Add the Title &quot;Storage in Use and Process Time&quot;
+    and the time range of 10000. Finally, complete the definition with the Max
+    Value of 200 and the Plot is ready to display information as the simulation
+    continues to run from the point where we saved it.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">to continue running the simulation and when you have
+    observed the Plot for as long as you wish, halt the simulation</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">Before leaving this section, please close the Plot Window
+    or minimize it if you think you may still want to view it in the immediate
+    future. Remember that even a minimized on-line window slows down the
+    simulation.</p>
+    <p ALIGN="left">The next two windows are relatively simple ones, but can
+    be very useful. Let’s look at Logicswitches and Savevalues.</p>
+    </font><b><font SIZE="5">
+    <p>&nbsp;</p>
+    
+    <p>The Logicswitches and the Savevalues Windows</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="left">If you are just starting here, you will have to go back
+    to the Blocks Window description and Open the model, Create the Simulation,
+    and start SAMPLE9 running. and immediately halt it by pressing <b>[F4]</b>.</p>
+    <p ALIGN="left">Open both the Logicswitches and Savevalues Windows. Move
+    them on your screen so you can see both of them completely.</p>
+    
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Logicswitches Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">then</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Savevalues Window</p>
+    </b><font SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">To view all windows without overlap</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Window / Tile</p>
+    </b><i><font SIZE="2">
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_11_15.gif" width="602" height="423"></p>
+    <p align="center">Figure 11—15. The Logicswitches and Savevalues Windows.</p>
+    </font></i><font SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">Now let’s step through the simulation and watch the
+        values change.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2"><b>
+  [F5]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">several times and watch the values change. Move over to
+    non-detailed view. In the menu of either window or both</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>View / Entity Details</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">while each window has the focus.</p>
+      <p ALIGN="left">You’ll see there isn’t really much difference in
+      the Logicswitches Window. In the Savevalues Window you can see the actual
+      value in the detailed view whereas in the non-detailed view, you see only
+      if the Savevalue is positive, negative, or zero. After the simulation
+      begins, we don’t have any Savevalues with a zero value.</p>
+      <p ALIGN="left">Your screen should look like this.</p>
+      <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_16.gif" width="623" height="437"></p>
+      <p align="center">Figure 11—16. The Logicswitches and Savevalues Windows. Non-Detailed
+      View.</p>
+      
+        
+        </i>
+        <p ALIGN="left">Before leaving this section, close the Savevalues and
+        Logicswitches Windows. If you think you may want to view them again in
+        the near future, you can minimize them, instead.</p>
+        <p ALIGN="left">Let’s move on to the Queues Window.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right Savevalues Window</p>
+    </u>
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right Logicswitches Window
+    </u></p>
+    <p align="center">&nbsp;</p>
+  </font><b><font SIZE="5">
+    
+      <p>The Queues Window</p>
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="left">If you are just starting here, you will have to go back
+    to the Blocks Window description and Open the model, Create the Simulation,
+    and start SAMPLE9 running. If you are continuing</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">to start the simulation running again. Then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>Window / Simulation Window / Queues Window</p>
+    </b><i><font FACE="Times,Times New Roman" SIZE="2">
+        <p ALIGN="JUSTIFY">&nbsp;</p>
+        <p ALIGN="center"><img border="0" src="../images/T1_11_17.gif" width="622" height="217"></p>
+        <p ALIGN="center">Figure 11—17. The Queues Window in Detailed View.</p>
+      </font></i><font SIZE="2">
+    <p ALIGN="left">You will see the detailed view of the Queue Entity. In
+    this model a Queue Entity has been used in a slightly different way than
+    usual. We often think of a queue as a waiting line for a resource. In this
+    model we are using the Queue Entity to collect the processing time as well
+    as the wait time. Remember that QUEUE and DEPART Blocks simply gather
+    statistics and do not contain a chain of Transactions. The individual
+    resources like Facilities and Storages have chains that hold Transactions
+    waiting to use them. The QUEUE and DEPART Blocks collect information about
+    time durations and chain lengths when used in conjunction with these
+    resources.</p>
+    <p ALIGN="left">At this time you may wish to halt the simulation and step
+    as we have in the previous windows watching the changes to the Queue. To do
+    this you would</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font><font face="Helvetica,Arial" size="2"><b>
+  [F4]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F5]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="left">several times.</p>
+    <p ALIGN="left">Take some time at this point to look at the description
+    of the information displayed by reading about GPSS Queue Entities in Chapter
+    4 in the <i>GPSS World Reference Manual</i>.</p>
+    <p ALIGN="left">You might also want to study the Queue in the
+    non-detailed view. It shows you if there is a zero Queue content or a small,
+    medium or large queue. The last three states of the Queue are indicated by
+    the white bar that grows in size on the right hand side of the Queue icon.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>View / Entity Details</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">Before going on, don’t forget to close the Queues
+      Window.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right of the Queues Window</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="left">The Expressions Window is next. For former GPSS/PC users,
+    this is the replacement and expansion of Microwindows</font><font SIZE="1">tm</font><font SIZE="2">.
+    You can now view as many values as you wish. Let’s see how it works.
+    
+    </font></p>
+    
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+  <b><font SIZE="5">
+    <p>The Expressions Window</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">If you are just starting here, you will have to go back
+    to the Blocks Window description and Open the model and Create the
+    Simulation. Don't start the simulation running just yet.</p>
+    <p ALIGN="JUSTIFY">Open the Expressions Window</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Expressions Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">The Edit Expressions Window appears and asks you for
+      the Label and Expression you wish to enter. To make each entry, you should
+      position the mouse pointer at the beginning of the appropriate line and
+      click once. Don’t use <b>[Enter]</b>
+      to jump to the next field in the box since it will close the dialog box,
+      and give you an &quot;invalid Expression&quot; error. You can also use the
+      <b>[Tab]</b> to
+      move from box to box in a forward direction. You will use <b>[Enter]</b>
+      or Select OK when all information in the box is completed.</p>
+      <p ALIGN="JUSTIFY">In the dialog box for the Label</p>
+      
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Clock</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">and for the Expression</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">AC1</p>
+    </font></b><font SIZE="2">
+    <i>
+    <p>&nbsp;</p>
+    
+      
+    <p align="center"><img border="0" src="../images/T1_11_18.gif" width="531" height="422"></p>
+    
+      
+    <p align="center">Figure 11—18. The Edit Expressions Window with the first entry.</p>
+    
+      
+      </i>
+      <p ALIGN="left">Just as we did in the Plot Window, you will now choose
+      View and Memorize to display the values with this run of the simulation
+      and also to make them available in future if you save the simulation and
+      want to run it again and be able to view the same Expressions.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The View Button</p>
+    </u>
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Memorize Button</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">Now, as we did in the Edit Plot Window, you will enter
+    the next two labels and expressions by clicking at the end of the current
+    value in the box and holding down the left mouse button and dragging over
+    the current value. You can then type in the new value. Don't forget to click
+    on View and Memorize after each set of values are entered.</p>
+    <p ALIGN="JUSTIFY">In the dialog box for the Label replace the last label</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b><font FACE="Courier New">Active Transaction</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">and replace the last Expression</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">XN1</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The View Button</p>
+    </u>
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The Memorize Button</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">Finally, to add the last Label and Expression</p>
+    <p ALIGN="JUSTIFY">In the box for the Label replace the last label</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Wait + Process</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">and replace the last Expression</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">TYPE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b><font FACE="Courier New">Q$Tot_Process</p>
+    
+      
+      </font></b><font SIZE="2">
+    <p ALIGN="JUSTIFY">then</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The View Button</p>
+    </u>
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The Memorize Button</p>
+    </u>
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">We now will be able to view the Clock, Active
+      Transaction Number, and size of the Tot_Process Queue while the simulation
+      runs.</p>
+      <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_19.gif" width="595" height="192"></p>
+      <p align="center">Figure 11—19. The Expressions Window.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="JUSTIFY">Now start the simulation and watch the values change.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F2]</b></font></p>
+    
+      
+  <font FACE="Arial" SIZE="2"><font SIZE="2">
+    <p ALIGN="JUSTIFY">After you have viewed the Expressions Window, close it.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The X-Upper Right Expressions Window</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="JUSTIFY">Now, reopen the window.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Window / Simulation Window / Expressions Window</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">Notice that in the Edit Expressions Window you can
+      choose the values you wish to now be displayed by clicking on the value
+      and then on the View Button in the Memorized Expressions Box. You may have
+      to click on the up or down arrow to see all the Memorized Expressions in
+      the box.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>Active Transaction</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">then</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The View Button</p>
+    </u>
+    <p align="center">SELECT&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    </font><b>OK</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="JUSTIFY">You now see an Expressions Window that is displaying
+      the value of the active transaction.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">PRESS</font></font><font face="Helvetica,Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+  </font></font><font face="Helvetica,Arial" size="2"><b>[F4]</b></font><font FACE="Arial" SIZE="2"></p>
+    
+      
+  <font SIZE="2">
+    <p ALIGN="JUSTIFY">to halt the simulation.</p>
+    
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The X-Upper Right Expressions Window</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="left">You can also enter values in the Settings Notebook on the
+    Expressions page for any model. Whenever you Create a Simulation, these
+    memorized values will be available when you want to open a new Expressions
+    or Plots Window. Then you can pick and choose which ones you want to view.</p>
+    </font><b><font SIZE="5">
+    <p>&nbsp;</p>
+    
+    <p>The Snapshot Windows</p>
+    
+    </font></b><font SIZE="2">
+    <p ALIGN="left">If you are just starting here, you will have to go back
+    to the Blocks Window description and Open the model, Create the Simulation,
+    and start SAMPLE9 running and halt it by pressing <b>[F4] </b>once it is running. If you are continuing leave the simulation halted.</p>
+    <p ALIGN="left">The Snapshot Windows act like a camera inside your
+    simulation. They preserve a single instant in the life of the simulation.
+    They are not updated on-line like the dynamic windows that we have just
+    studied.</p>
+    <p ALIGN="left">Let’s take a look at a Current Events Chain Snapshot.
+    We will look at this snapshot and then choose a particular Transaction by
+    number, so we can see how the Transaction Snapshot works. With the
+    simulation halted we can use the same Transaction for two different
+    snapshots.</p>
+    
+    
+  </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Window / Simulation Snapshot / CEC Snapshot</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">Your window should look something like this:</p>
+      <i>
+      
+      
+      <p>&nbsp;</p>
+      
+      
+      <p align="center"><img border="0" src="../images/T1_11_20.gif" width="608" height="105"></p>
+      
+      
+      <p align="center">Figure 11—20. The CEC Snapshot.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">In this view, you see transactions grouped by
+        priority.</p>
+        <p ALIGN="left">Wherever you see a plus, you can click for more
+        information and expand the view. The first plus when clicked on will
+        expand to show you the individual Transactions on the chain in the form
+        of flags. The second plus next to the flag will open up the parameters
+        of that Transaction. They are represented by pennants. The Expanded
+        Views are shown below. First, you will see the icon representing the
+        chain. In the next view you will see the Transactions represented as
+        flags, after you have clicked on the + sign. Finally, you will see
+        Transaction parameters for any Transaction with a plus sign which you
+        expanded.</p>
+        <i>
+      <p>&nbsp;</p>
+      <p align="center"><img border="0" src="../images/T1_11_21.gif" width="616" height="113"></p>
+      <p align="center">Figure 11—21. The Expanded View of the CEC Snapshot-Two Views.</p>
+    </i>
+    
+      
+        <p ALIGN="left">Now, pick a Transaction number from the Transactions
+        you see on the Current Events Chain so you can use it to view the
+        Transaction Snapshot Window.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><b>Window / Simulation Snapshot / Transaction Snapshot</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">and in the dialog box, type the Transaction number that
+      you chose from the Current Events Chain. You could get a Transaction
+      number from a trace message or error message. In fact, we are only using
+      the number from the CEC as a convenient source of a Transaction currently
+      in the simulation.</p>
+      <p ALIGN="left">Your dialog box should look something like this:</p>
+      <i>
+      
+      
+      <p>&nbsp;</p>
+      
+      
+      <p align="center"><img border="0" src="../images/T1_11_22.gif" width="246" height="101"></p>
+      
+      
+      <p align="center">Figure 11—22. The Open Transaction Snapshot Dialog</p>
+    </i>
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    </font><i><font SIZE="2">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_11_23.gif" width="595" height="84"></p>
+    <p align="center">Figure 11—23. The Transaction Snapshot in Expanded View.</p>
+    </font></i><font SIZE="2">
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">You will see that the Transaction detail line has
+        information on the current time; priority; current Block; next Block
+        number, type and line number; and Assembly Set number. But what if you
+        need to know about the parameters? They aren’t displayed. To see the
+        Transaction parameters, in the Transaction Snapshot Window</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The + Sign</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="left">You will see the window is similar to the CEC Snapshot.
+    Once again, a click on a plus sign opens up more information. If you click
+    on a minus sign it closes the sub-display.</p>
+    <i>
+    <p>&nbsp;</p>
+    
+    
+    <p align="center"><img border="0" src="../images/T1_11_24.gif" width="595" height="84"></p>
+    
+    
+    <p align="center">Figure 11—24 The Expanded View of the Transaction Snapshot.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">We will leave you at this point to open the FEC
+        Snapshot, Transaction Groups and User Chains. Their format is all
+        basically the same.</p>
+        <p ALIGN="left">Numeric Groups are shown a little differently. Let’s
+        look at the numeric group in this simulation.</p>
+      </font><font FACE="Helvetica,Arial" SIZE="2">
+      
+    
+    <p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font></font><b>Window / Simulation Snapshot / Numeric Group Snapshot</p>
+    
+      
+      </b><font SIZE="2">
+      <p ALIGN="left">You Will see the Numeric Group, &quot;NUMGRP&quot;, but
+      no details.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">&nbsp;</font></font>
+    <u>The </u></font><u><font FACE="Helvetica,Arial" SIZE="4">+</font><font FACE="Helvetica,Arial" SIZE="2">
+    Sign</p>
+    </font></u><font SIZE="2">
+    <i>
+    <p>&nbsp;</p>
+    <p align="center"><img border="0" src="../images/T1_11_25.gif" width="621" height="113"></p>
+    <p align="center">Figure 11—25. The Numeric Groups Window Expanded View.</p>
+    </i>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    
+      
+        <p ALIGN="left">You see that there are two values that we have added
+        to the Numeric Group in our simulation. Usually, you would be adding
+        values from Transaction parameters or setting up some initial values at
+        the start of the simulation to be used in test situations. In this
+        model, every Transaction adds the same two values to the group, but we
+        are only using this to demo the look of the window.</p>
+        <p ALIGN="left">At this time, you may want to study these Chains and
+        Groups in the <i>GPSS World Reference Manual</i> to better understand
+        the meaning of all the values in the vetailed view. Don’t forget to
+        close all the Snapshot Windows that you have opened once you have
+        examined them or printed them.</p>
+        <p ALIGN="left">Well, we have done a lot in this lesson. We have
+        viewed a running simulation through all the graphical windows except for
+        the FEC Snapshot and the Transaction Groups and Userchains Snapshots. We
+        hope you’ll do those on your own. The SAMPLE9.GPS model has all these
+        entities defined so you can easily view them, now or in the future.</p>
+        <p ALIGN="left">Go ahead and end the GPSS World Session.</p>
+      
+    
+    </font><font FACE="Helvetica,Arial" SIZE="2">
+    <p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;<font FACE="Arial" SIZE="2"><font FACE="Helvetica,Arial" SIZE="2">
+    </font></font><u>The X-Upper Right of the Model Window</p>
+    
+      
+      </u></font><font SIZE="2">
+    <p ALIGN="left">and answer the appropriate questions. If asked, you don’t
+    want to save the sample model as we have not made any changes to it that we
+    want to keep.</p>
+    <p ALIGN="left">In the next lesson, we’ll look at the use of Data
+    Streams. They allow a simulation to communicate with the outside world.</p>
+    
+    
+    </font>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<p ALIGN="center"><a href="tutorial_manual.htm">[Table of Contents]</a></p>
+  
+
+  </font>
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

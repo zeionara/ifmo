@@ -1,0 +1,2430 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica">
+<blockquote>
+<blockquote>
+ 
+<b><font FACE="Arial">
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a name="21. SHIPPORT.GPS">21. SHIPPORT.GPS</a><!--mstheme--></font></h1>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="center"><font size="4">Simulation of a port.</font></p>
+
+  
+    <p ALIGN="center">&nbsp;</p>
+<font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  <p align="left"></font></font></b><font FACE="Arial" SIZE="2">A harbor port has three berths 1, 2 and 3. At any given time
+Berth1 can accommodate two small ships, or one medium ship. Berth2 and Berth3
+can each handle one large ship, two medium ships or four small ships.</p>
+<p ALIGN="left">The interarrival time of ships is 26 hours, exponentially
+distributed, and small, medium, and large ships are in the proportions 5:3:2
+respectively. Queuing for berths is on a first come first served basis, except
+that no medium or small ship may go to a berth for which a large ship is
+waiting, and medium ships have a higher priority than small ships.</p>
+<p ALIGN="left">Unloading times for ships are exponentially distributed with
+mean times as follows: small ships, 15 hours; medium ships, 30 hours; and large
+ships, 45 hours. The loading times are as follows:</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Small
+ships 24±6 hours uniformly distributed.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Medium
+ships 36±10 hours uniformly distributed.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Large
+ships 56±12 hours uniformly distributed.</p>
+<p ALIGN="left">The tide must be high for large ships to enter or leave
+Berths 2 and 3. Low tide lasts 3 hours, high tide, 10 hours.</p>
+<p ALIGN="left">1.&nbsp;Run the simulation for 500 days.</p>
+<p ALIGN="left">2.&nbsp;Determine the distribution of transit times of each
+type of ship.</p>
+<p ALIGN="left">3.&nbsp;Determine the utilization of the three berths.</p>
+<p ALIGN="left">&nbsp;</p>
+  <p align="left"></font><b><font face="Arial" size="4">Listing</font></b></p>
+  <p align="left"><font FACE="Courier New" SIZE="1"><font face="Courier New" size="2">; GPSS World Sample File - SHIPPORT.GPS<br>
+; Based on a model by Gerard F. Cummings<br>
+**********************************************************************<br>
+* *<br>
+* Ship and Port Simulation *<br>
+* Time in in Hours *<br>
+**********************************************************************<br>
+Berth1 EQU 1<br>
+Berth2 EQU 2<br>
+Berth3 EQU 3<br>
+Tide EQU 1<br>
+Tsmall EQU 1<br>
+Tmedium EQU 2<br>
+Tlarge EQU 3<br>
+*<br>
+*———Boolean Variables———————————————————————<br>
+Var1 BVARIABLE (R$Berth2’GE’1+R$Berth3’GE’1)#Q3’E’0<br>
+Var2 BVARIABLE R$Berth2’GE’1<br>
+Var3 BVARIABLE R$Berth3’GE’1<br>
+Var4 BVARIABLE SE$Berth1<br>
+Var5 BVARIABLE (R$Berth2’GE’2+R$Berth3’GE’2)#Q3’E’0<br>
+Var6 BVARIABLE R$Berth2’GE’2<br>
+Var7 BVARIABLE R$Berth3’GE’2<br>
+Var8 BVARIABLE SE$Berth3#LS1<br>
+Var9 BVARIABLE SE$Berth2#LS1<br>
+*<br>
+*—Size of Berths in relation to small ships—————————————<br>
+  Berth1 STORAGE 2<br>
+Berth2 STORAGE 4<br>
+Berth3 STORAGE 4<br>
+*<br>
+*————Table Definations——————————————————————<br>
+  Tsmall TABLE M1,30,10,20 ;Small ship transit time<br>
+Tmedium TABLE M1,30,10,20 ;Medium ship transit time<br>
+Tlarge TABLE M1,30,10,20 ;Large ship transit time<br>
+**********************************************************************<br>
+*<br>
+*————Day Timer——————————————————————————<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GENERATE&nbsp; 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One xact each day<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Clock operates once/day<br>
+**********************************************************************<br>
+*<br>
+*————Tide Control————————————————————————<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GENERATE&nbsp; ,,0,1<br>
+Again&nbsp;&nbsp; LOGIC R&nbsp;&nbsp; Tide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Cycling xact models the tide<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Tide is low for 3 hours<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOGIC S&nbsp;&nbsp; Tide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Tide comes in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Tide is high for 10 hrs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Again&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Branch back to ‘Again’<br>
+  **********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,26)) ;A ship every 26 hrs.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; 500,,Inter&nbsp;&nbsp;&nbsp;
+;50 % are small<br>
+*<br>
+*———Characteristics of small ships are assigned to parameters——<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ASSIGN&nbsp;&nbsp;&nbsp; Size,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Type ship small, size=1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Capacity,1&nbsp;&nbsp;&nbsp;
+;Capacity P2=1 Small ship<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Quenum,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue #1 for small ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; M_Unload,15&nbsp;&nbsp;
+;Mean unload time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; M_Load,24&nbsp;&nbsp;&nbsp;&nbsp;
+;Mean load time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Loadsp,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Load time spread<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; P$Quenum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue-small ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,Pier1,Pier2<br>
+*———Assign Berth 1 When Available————————————————<br>
+  Pier1&nbsp;&nbsp; GATE SNF&nbsp; Berth1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,1&nbsp;&nbsp;
+;Berth obtained=Berth1<br>
+*———Move into Berth and Unload and Load—————————————<br>
+  Small&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp;
+P$Berth_num,P$Capacity ;Enter berth using up<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; ship capacity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; P$Quenum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; P$M_Unload,(Exponential(1,0,1)) ;Unload time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; P$M_Load,P$Loadsp ;Loading time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; P$Size,3,Skipit ;A large ship?<br>
+*———When Switch is Set, Tide is High———————————————<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GATE LS&nbsp;&nbsp; Tide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Wait for tide<br>
+Skipit&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; P$Berth_Num,P$Capacity ;Leave berth by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; ship capacity<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; P$Quenum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Tabulate transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; by ship type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Ship sails<br>
+**********************************************************************<br>
+*———Assign Berth 2 or Berth 3 when available(dependent——————<br>
+  * on the ship configuration<br>
+Pier2&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var1,1&nbsp;&nbsp;&nbsp;&nbsp; ;Small ship tries 2 or 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,Bert2,Bert3 ;Try berth2 or berth3<br>
+Bert2&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$VAR2,1&nbsp;&nbsp;&nbsp;&nbsp; ;Berth2 available?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,2&nbsp;&nbsp;
+;Assigned to berth2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Small<br>
+Bert3&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var3,1&nbsp;&nbsp;&nbsp;&nbsp; ;Berth3 available?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,3&nbsp;&nbsp;
+;Assigned to berth3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Small<br>
+*<br>
+*———Characteristics of medium ships are assigned to parameters——<br>
+  Inter&nbsp;&nbsp; TRANSFER&nbsp; 400,,Large&nbsp;&nbsp;&nbsp;
+;20% of all ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; are large<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PRIORITY&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;All medium ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; enter here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Size,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Type ship medium,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; Size=2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Capacity,2&nbsp;&nbsp;&nbsp;
+;Capacity = 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; Medium ship<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Quenum,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue 2 for med ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; M_Unload,30&nbsp;&nbsp;
+;Mean unload time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; M_Load,36&nbsp;&nbsp;&nbsp;&nbsp;
+;Mean load time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Loadsp,10&nbsp;&nbsp;&nbsp;&nbsp;
+;Load time spread<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; P$Quenum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue for small<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,Quay1,Quay2<br>
+Quay1&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var4,1&nbsp;&nbsp;&nbsp;&nbsp;
+;Try for berth1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+Berth_Num,1&nbsp;&nbsp; ;Assigned to berth1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp;
+,Small&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Transfer for processing<br>
+Quay2&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var5,1&nbsp;&nbsp;&nbsp;&nbsp; ;Try for berth 2 or 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,,Quay3&nbsp;&nbsp;
+;Try berth2 first<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var6,1&nbsp;&nbsp;&nbsp;&nbsp;
+;Is berth2 available?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+Berth_Num,2&nbsp;&nbsp; ;Gets berth2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Small&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transfer for processing<br>
+Quay3&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var7,1&nbsp;&nbsp;&nbsp;&nbsp; ;Try for berth3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,3&nbsp;&nbsp;
+;Assigned to berth3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Small&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transfer for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; unload/load<br>
+*<br>
+*———Characteristics of large ships are assigned to parameters——<br>
+  Large&nbsp;&nbsp; PRIORITY&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;All large ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; enter here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Size,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Type ship large, Size=3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Capacity,4&nbsp;&nbsp;&nbsp;
+;Capacity=4 Large ship<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Quenum,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue number 3 for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; large ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; M_Unload,45&nbsp;&nbsp;
+;Mean unload time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+M_Load,56&nbsp;&nbsp;&nbsp;&nbsp; ;Mean load time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Loadsp,12&nbsp;&nbsp;&nbsp;&nbsp;
+;Load time spread<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; P$Quenum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; large ships<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; Both,First,Second ;Try Berth3 and Berth2<br>
+First&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var8,1&nbsp;&nbsp;&nbsp;&nbsp; ;Try Berth3 first<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,3&nbsp;&nbsp;
+;Berth number=3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; Entered Berth3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Small&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transfer for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; unload/load<br>
+Second&nbsp; TEST E&nbsp;&nbsp;&nbsp; BV$Var9,1&nbsp;&nbsp;&nbsp;&nbsp; ;Try berth2 second<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Berth_Num,2&nbsp;&nbsp;
+;Berth number=2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; Entered Berth2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER ,Small ;Transfer for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; unload/load<br>
+**********************************************************************
+</font></p>
+  <b>
+<p align="left">&nbsp;</p>
+  </b>
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">The model is organized into several segments. After the
+non-Block Entities are defined, there are three more model segments.
+Transactions in the top segment time the simulation and decrement the
+Termination Count once per simulated day. A single transaction circulates in the
+middle segment to represent the ebb and flow of the tides. This affects the
+accessibility of the berths. Transactions in the bottom segment represent ships.
+Each is given attributes according to the size of the ship it represents. It
+then waits for a suitable berth, exchanges cargo, and leaves the port.</p>
+<p ALIGN="left">There are 9 Boolean variables, or GPSS Bvariable Entities,
+defined in the beginning of the model. Boolean Variables return a value of 1 or
+0 when evaluated. When the value of the BVARIABLE expression is 0 a 0 result is
+returned, otherwise a value of 1 is returned. They are used to determine the
+state of the port and&nbsp; which actions are possible.</p>
+<p ALIGN="left">The logic of the SHIPPORT.GPS model is depicted below.</p>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+<p ALIGN="center"><img border="0" src="../images/T2_21_1.gif" width="477" height="624"></p>
+  <i>
+  <p align="center">Figure 21—1. The Logic of the Shipport Model.</p>
+  <p align="center">&nbsp;</p>
+</i>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>File / Open</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Shipport</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">500</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 500 transactions have entered
+  the TERMINATE 1 Block. This represents 500 days of operation.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Shipport.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">&nbsp;</p>
+  <p align="left">Discussion of Results</font></p>
+</b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">From the GPSS Tables named &quot;Tsmall&quot;, &quot;Tmedium&quot;
+  and &quot;Tlarge&quot; we see histograms of the transit times for small,
+  medium, and large ships, respectively. The average transit times were about
+  44, 74, and 115 hours.</p>
+  <p ALIGN="left">The Berth utilizations were 52%, 49% and 54% for Berths 1,
+  2, and 3, respectively.</p>
+  <p ALIGN="left">&nbsp;</p>
+  
+
+</font><p ALIGN="left"><b><font face="Arial" size="4">Inside the Simulation</font></b></p>
+<font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let 's now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Storages Window. It gives utilization and
+  queuing information on the Berths. Notice how the color of the icons
+  corresponds to the amount of Storage in use. Look at the histograms of transit
+  times for small, medium, and large ships one after the other. First, for the
+  small ships,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TSMALL</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and for the medium ships</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>TMEDIUM</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and for the large ships</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since TLARGE is already selected in the drop-down box
+  in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Please feel free to modify the parameters and Blocks of
+  this simulation.</p>
+  <p ALIGN="left">When you are done, if you wish to go on to the next lesson,
+  close all windows related to this model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.</p>
+</u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="5">
+<p align="left">&nbsp;</p>
+</font><font FACE="Arial">
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#22. EXCHANGE.GPS" name="22. EXCHANGE.GPS">22. EXCHANGE.GPS</a><!--mstheme--></font></h1>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="center"><font size="4">Simulation of a PBX.</font></p>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+<font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  <p align="left"></font></font></b><font FACE="Arial" SIZE="2">A private automatic branch exchange telephone system has 200
+extensions, 30 internal lines, and 30 external lines, 8 signaling units and one
+operator. Telephone calls last 150 seconds on average, normally distributed with
+a standard deviation of 30 seconds. The interarrival time of external calls
+varies inversely with the number of extensions (2500/number of extensions ),
+exponentially distributed. The interarrival time of internal calls is inversely
+proportional to the number of free extensions (1260/number of free extensions +
+1). The destination of these calls may be internal (66.6%) or external (33.3%).
+The operator is not required for calls which originate internally. A signaling
+unit, and an internal line is required for internal calls, and an external line
+for external calls.</p>
+<p ALIGN="left">Fifteen percent of extensions are engaged when tried, and
+twenty percent are not answered.</p>
+<p ALIGN="left">The time required to signal is 7±2 seconds, and to ring
+through to an extension is 6±2 seconds. A caller waits 4±1 seconds to check an
+engaged tone. The service of an operator takes 9±3 seconds.</p>
+<p ALIGN="left">Simulate the operation of the private branch exchange
+telephone system for 1 hour.</p>
+<p ALIGN="left">1.&nbsp;Determine the utilization of the operator, signaling
+units, internal and external lines, and the extensions.</p>
+<p ALIGN="left">2.&nbsp;Sample the number of internal and external calls
+being processed every minute.</p>
+<p ALIGN="left">3.&nbsp;Are the number of internal and external lines, and
+signaling units sufficient?</p>
+</font><b><font FACE="Courier New" SIZE="1">
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;
+</p>
+  <p align="left"></font>
+</font><font face="Arial" size="4">Listing</font></p>
+</b><font FACE="Courier New" SIZE="1">
+  <p align="left"><font face="Courier New" size="2">; GPSS World Sample File -
+  EXCHANGE.GPS, by Gerard F. Cummings<br>
+**********************************************************************<br>
+* PBX Telephone System Model&nbsp;<br>
+* Time is in seconds&nbsp;<br>
+**********************************************************************<br>
+Transit TABLE M1,20,20,20<br>
+**********************************************************************<br>
+Extensions STORAGE 200<br>
+Extlines STORAGE 30<br>
+Intlines STORAGE 30<br>
+Signals STORAGE 8<br>
+Operator STORAGE 1<br>
+**********************************************************************<br>
+* Define variables<br>
+Internal VARIABLE 1260/(1+R$Extensions)<br>
+External VARIABLE 2500/(R$Extensions+S$Extensions)<br>
+*<br>
+*Tables for number of calls in progress<br>
+Callsint TABLE S$Intlines,2,2,20<br>
+Callsext TABLE S$Extlines,2,2,20<br>
+**********************************************************************<br>
+* Generate calls originating internally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,V$Internal)),0,20 ;Calls origin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; internal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp;
+;An extension is involved<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Inside&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for signal unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Signals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get a signaling unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Inside&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 7,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to signal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Signals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave the signal unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .333,,Intout&nbsp; ;33% are internal to ext<br>
+*<br>
+Intint&nbsp; TEST GE&nbsp;&nbsp; R$Intlines,1,Breakoff ;Test int line available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Intlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get and internal line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 4,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Check if engaged<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .15,,Busy&nbsp;&nbsp;&nbsp;&nbsp;
+;Some extensions engaged<br>
+Aline&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp; ;Another extension involved<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 6,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to ring extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .2,,Nogood&nbsp;&nbsp;&nbsp;
+;20% not answered<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(2,150,30)) ;Call duration<br>
+Nogood&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp; ;Leave extension<br>
+Busy&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Intlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave internal line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Breakoff<br>
+***********************************************************************<br>
+&quot;<br>
+* Model internal to external calls<br>
+Intout&nbsp; TEST GE&nbsp;&nbsp; R$Extlines,1,Breakoff ;Is an ext line available?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Extlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an external line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 4,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to check if engaged<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .200,,Nobody&nbsp; ;20% are engaged<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 6,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to answer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .200,,Nobody&nbsp; ;20% do not answer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(2,150,30)) ;Call duration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record transit time<br>
+Nobody&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Extlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave external line<br>
+Breakoff LEAVE&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp; ;Free the extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+&quot;***********************************************************************<br>
+* Process calls originating externally&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE (Exponential(1,0,V$External)) ;Calls of external<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; origin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST GE&nbsp;&nbsp; R$Extlines,1,Nonefree ;Ext line available?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Extlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an ext line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Outsider&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for operator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Operator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an operator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Outsider&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 9,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Operator service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Operator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave the operator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 4,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Is it engaged?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .15,,Engaged&nbsp; ;Some exts engaged<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp;
+;Get an extension<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 6,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to ring ext<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .200,,Noperson ;20% No answer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(2,150,30)) ;Call time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record transit time<br>
+Noperson LEAVE&nbsp;&nbsp;&nbsp; Extensions&nbsp;&nbsp;&nbsp; ;Leave extension<br>
+Engaged LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Extlines&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Leave external line<br>
+Nonefree TERMINATE<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 3600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Transaction each hr<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Term timer xact<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One xact every min<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Callsint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;No. of int calls<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Callsext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;No. of ext calls<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+***********************************************************************
+</font></p>
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">The model is organized into several segments. After the
+Storages, Tables, and Variables are defined, there are three more model
+segments. Transactions in the top segment represent calls originating
+internally, transactions in the second segment represent calls originating
+externally, and transactions in the bottom segment sample the calls in progress
+every minute, and time the simulation by decrementing the Termination Count once
+per simulated hour.</p>
+<p ALIGN="left">&nbsp;</p>
+
+
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Running the Simulation</font></p>
+</b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+</b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>Exchange</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create
+Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, since we want to use 1 as the
+  Termination Count.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when a transaction has entered the
+  TERMINATE 1 Block. This represents 1 hour of operation.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Exchange.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+<b>
+  <p align="left"><font face="Arial" size="4">Discussion of Results</p>
+</font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The utilizations of the operator, signaling units, internal
+  lines, external lines, and the extensions were 69%, 12%, 31%, 44%, and 15<b>%</b>,
+  respectively.</p>
+  <p ALIGN="left">Sampled every minute, the average internal calls in
+  progress were 9.47, and the average external calls in progress were 13.17.
+  This information is found in the Tables section of the report.</p>
+  <p ALIGN="left">From the utilization data, it would appear that the
+  configuration of lines is sufficient at this level of call traffic. The
+  external lines had the highest utilization, and it would be interesting to see
+  if an increase in external lines would significantly improve the call delay
+  times. In any case, the capacity of the system to handle a significant
+  increase in traffic is in doubt. If such growth is likely, it would be prudent
+  to experiment with the effects of increased call rates, and remedial actions.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+<b>
+  <p align="left"><font face="Arial" size="4">Inside the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Now, let’s open some graphics
+  </font><font FACE="Arial" SIZE="1">
+  </font><font FACE="Arial" SIZE="2">windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>TRANSIT</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Each Table Window gives information on one of the
+  particular Tables or Qtables defined in a model. The GPSS Table named TRANSIT
+  shows the distribution of call completion times. The average was about 174
+  seconds. Let’s look at the next Table.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Down Arrow at the Right End of the Box</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>CALLSINT</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; </font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The GPSS Table named CALLSINT shows the distribution of
+  internally originated calls in progress, sampled every minute. What about
+  external calls?</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box, CALLSEXT is
+  already selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The GPSS Table named Callsext shows the distribution of
+  externally originated calls in progress, sampled every minute.</p>
+  <p ALIGN="left">Now, look at the resource utilizations.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Storages Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The Storages Window shows statistics of the operator,
+  extensions, external lines, internal lines, and signaling units. The set of
+  external lines has the highest utilization of all the equipment. You may have
+  to expand the window to see all of the Storages.</p>
+  <p ALIGN="left">The Storage that represents the operator shows us that
+  she/he was busy over 69<b>%</b> of the time.</p>
+  <p ALIGN="left">Before we run the simulation again, let’s close up the
+  windows that we have opened so far. Remember, it is best to only keep open the
+  graphics</font><font FACE="Arial" SIZE="1"> </font><font FACE="Arial" SIZE="2">windows
+  that you are actively viewing.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Let’s look at how the busy lines change as calls come in.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Blocks Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">We can also view various values as the simulation runs.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Expression Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The Edit Expression Window opens. When you enter the value
+  in the second box in this dialog box, you should place the mouse pointer in
+  the small box and click once. Do not press<b> [Enter]</b>
+  to go from the first to the second box as GPSS World then assumes that all
+  values have been entered. You can, instead, use <b>[Tab]</b>
+  to move from box to box. Now, in the dialog box for the Label field</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Clock</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">AC1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">If we memorize all the expressions, we'll be able to close
+the window and open it again later with easy retrieval of all the values. Also
+if you save the simulation the values in the Expression Window will be saved
+with the simulation if they have been memorized. We're going to close this
+window and reopen it later so please memorize this expression and the ones that
+follow.</p>
+<p ALIGN="left">In the dialog box for the Label field replace the current
+value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Internal Lines</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">S$Intlines</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">In the dialog box for the Label field replace the current
+value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">External Lines</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">S$Extlines</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Finally, let’s keep track of the Extensions.</p>
+<p ALIGN="left">In the dialog box for the Label field, replace the current
+value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Extensions</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">S$Extensions</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we’ll run the simulation and observe the values in
+  the Expression Window as well as the Block entry counts in the Blocks Window.
+  Make sure you have positioned the windows so you can see the appropriate parts
+  of both the Blocks Window and the Expression Window. The best way to do this
+  is to have the Model Window contracted and at the top of the screen. Then, the
+  Expression Window can be placed at the bottom left on top of the Blocks
+  Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">15</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When you have seen enough, halt the simulation.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;&nbsp;&nbsp; <b>[F4]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Please feel free to modify the parameters and Blocks of this
+simulation. The relationship between configuration costs and system behavior
+forms the basis for determining the optimum design. Don’t forget to clear the
+old statistics using either the CLEAR or RESET Commands.</p>
+<p ALIGN="left">When you are done, if you wish to go on to the next lesson,
+close all windows related to this model.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+</font><b><font FACE="Arial">
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#23. FMSMODEL.GPS" name="23. FMSMODEL.GPS">23. FMSMODEL.GPS</a><!--mstheme--></font></h1>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="center"><font size="4">Simulation of a Flexible Manufacturing System.</font></p>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+<font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  <p align="left"></font></font></b><font FACE="Arial" SIZE="2">Two vertical computer numerical control (CNC) machining
+centers, one horizontal CNC machining center, and a 3-dimensional inspection
+machine, are linked to form a flexible manufacturing system (FMS). The machines
+are served by automatically guided vehicles (AGVs) which follow an inductive
+wire embedded in the floor.</p>
+<p ALIGN="left">Components, fitted to an appropriate fixture, arrive at the
+arrival station in random order, equally probable, every 12±1 minutes. Sixteen
+categories of jobs are processed. Each component takes a different machining and
+inspection time given by a Function called ‘Product’ defined in the model
+below and based on the following table.</p>
+<b><font FACE="Arial">
+<p ALIGN="left">Machining Time</p>
+</font></b><font FACE="Courier New" SIZE="2">
+<p align="left">Job Type&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;
+7&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 600&nbsp;&nbsp; 700&nbsp;&nbsp; 800&nbsp;&nbsp;
+900&nbsp;&nbsp; 1000&nbsp; 1100&nbsp; 1200&nbsp; 1300</p>
+<p ALIGN="left">Job Type&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;
+11&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;
+15&nbsp;&nbsp;&nbsp; 16<br>
+Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1400&nbsp; 1500&nbsp; 1600&nbsp; 1700&nbsp;
+1800&nbsp; 1900&nbsp; 2000&nbsp; 2100</p>
+</font>
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left">One robot loads and unloads components and fixtures to and
+from the AGVs at the arrival station and finished parts area. A layout of the The robot, machine tools, and automatically guided vehicles
+are controlled by a central computer.</p>
+<p ALIGN="center"><img border="0" src="../images/T2_23_1.gif" width="701" height="519"></p>
+  <i>
+  <p align="center">Figure 23—1. The AGV System.</p>
+  </i>
+<p ALIGN="left">&nbsp;</p>
+<p ALIGN="left">The robot, machine tools, and automatically guided vehicles
+are controlled by a central computer.</p>
+
+<font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Thirty-five
+percent of components are machined on Machine1.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Forty-five
+percent of components are machined on Machine2.</p>
+</font><font FACE="Symbol" SIZE="2">
+<p ALIGN="left">·</font><font SIZE="2">&nbsp;</font><font FACE="Arial" SIZE="2">Twenty
+percent of components are machined on Machine3.</p>
+
+<p ALIGN="left">However, 15% of Machine1 jobs and 10% of Machine2 jobs are
+subsequently machined on Machine3. Jobs consigned originally to machine 3 are
+machined solely on that machine. Finally, 4% of all components are inspected at
+random on Machine4.</p>
+<p ALIGN="left">The wire in the floor guiding vehicles is divided into
+fifteen 10-meter sections represented by Facilities 1 to 15. The guided vehicles
+travel at an average speed of 0.5 meters per second, including loading and
+unloading times.</p>
+<p ALIGN="left">1.&nbsp;Simulate the operation of the FMS system for 15 days.</p>
+<p ALIGN="left">2.&nbsp;Determine the utilization of the machine tools.</p>
+<p ALIGN="left">3.&nbsp;Find the transit time of components through the
+production system and the in-process storage.</p>
+<p ALIGN="left">4.&nbsp;Determine the appropriate number of AGVs for the
+proposed workload in the FMS.</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Listing</font></p>
+</b><font FACE="Arial" SIZE="2">
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - FMSMODEL.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+*<br>
+* AGV Model in FMS Factory *<br>
+* *<br>
+***********************************************************************<br>
+* Time unit is one second<br>
+</font></p>
+<p align="left"><font face="Courier New" size="2">***********************************************************************<br>
+* P1 =1 Means machine 1 is req’d first<br>
+* P2 =2 Means &quot; 2 &quot; &quot; &quot;<br>
+* P3 =3 Means &quot; 3 &quot; &quot; &quot;<br>
+***********************************************************************<br>
+RMULT 71143<br>
+Transit TABLE M1,4000,4000,8 ;Transit time of jobs<br>
+Type VARIABLE RN1@16+1 ;Categories of jobs processed<br>
+AGV STORAGE 2<br>
+*<br>
+Inspect FUNCTION P4,L16<br>
+1,1200/2,1350/3,1500/4,1650/5,1800/6,1950/7,2100/8,2250/9,2400/10,2550<br>
+11,2700/12,2850/13,3000/14,3150/15,3300/16,3450<br>
+*<br>
+Product FUNCTION P4,L16<br>
+1,600/2,700/3,800/4,900/5,1000/6,1100/7,1200/8,1300/9,1400/10,1500<br>
+11,1600/12,1700/13,1800/14,1900/15,2000/16,2100<br>
+*<br>
+Mach1 FUNCTION RN1,D3<br>
+.35,1/.80,2/1.0,3<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 720,60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Xacts are jobs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Arrival&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Arrival area queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 5,FN$Mach1&nbsp;&nbsp;&nbsp;&nbsp;
+;P5 is and index to machines<br>
+*——Dummy values are put into parameters 1,2, and 3 so that they<br>
+*——will be set up to receive the appropriate value<br>
+*——in ASSIGN P5,P5.<br>
+*——When P1, P2 or P3 are tested in various test Blocks they must<br>
+*——already exist.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 1,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Dummy value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 2,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Dummy value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 3,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Dummy value<br>
+*——The contents of parameter 5 is put into the parameter with the<br>
+*——same number as the contents value(e.g. If parameter 5 has a<br>
+*——value of 3, a 3 is put into parameter 3 indicating processing<br>
+*——should start on machine 3.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; P5,P5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;P1=1, P2=2, or P3=3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 4,V$Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;P4 = Complexity of job<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;GET AN AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Arrival&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart arrival queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot load job on AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 1 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;20 second to move 10 M<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 1 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; P1,1,Skipone&nbsp;&nbsp;
+;Machine 1 req’d?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .10,,Next3&nbsp;&nbsp;&nbsp;&nbsp;
+;10% also go to Machine 3<br>
+First&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 3 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for machine 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 3 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get machine 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Product&nbsp;&nbsp;&nbsp;&nbsp;
+;Machining on vertical CNC<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Machining center<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Wipone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join work-in-progress<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Wipone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart work-in-progress<br>
+***********************************************************************<br>
+Second&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 4 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;10 section to move 10 M<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Release section 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; P2,2,Skiptwo&nbsp;&nbsp;
+;Is machine 2 req’d?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .15,,Next4&nbsp;&nbsp;&nbsp;&nbsp;
+;15% also go to machine 3<br>
+Andthree SEIZE&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 6 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Two&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;JOIN QUEUE TWO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 6 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get machine 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Two&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart queue 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Product&nbsp;&nbsp;&nbsp;&nbsp;
+;Process on horizontal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;CNC machining center<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Wiptwo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue work-in-progress<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time to get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Wiptwo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart work-in-progress<br>
+***********************************************************************<br>
+Third&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; P3,3,Skipthree ;Is machine 3 req’d?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 8 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp;
+Three&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Join queue three<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 8 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get machine 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Three&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart queue three<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Product&nbsp;&nbsp;&nbsp;&nbsp;
+;Process on CNC lathe<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free turning center<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Wipthree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue work in progress<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get an AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time for AGV to arrive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Wipthree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart work-in-progress<br>
+***********************************************************************<br>
+Fourth&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 9 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 9 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .960,,Skipfour&nbsp; ;4% Of components inspected<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 11 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Four&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join queue four<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 11 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get Machine 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Four&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart queue 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; FN$Inspect&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspection on 3D machine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Release machine 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Wipfour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Join work-in-progress<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get and AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time for AGV to arrive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Wipfour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart work-in-progress<br>
+***********************************************************************<br>
+Fifth&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 12 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 12 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get a robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Robot unloads job from AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Robot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free the robot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE P4+,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One job finished<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 13 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Recirculate AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 13 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 14 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 14 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 15 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 15 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; AGV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free AGV<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Destroy xact<br>
+***********************************************************************<br>
+Next3&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 3,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;10% Use machine 1 and 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; First<br>
+Next4&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp;
+3,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;15% Use machine 2 and 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Andthree<br>
+***********************************************************************<br>
+Skipone SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Seize section 2 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 2 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Second<br>
+***********************************************************************<br>
+Skiptwo SEIZE&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 5 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 5 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Third<br>
+***********************************************************************<br>
+Skipthree SEIZE&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 7 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 7 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Fourth<br>
+***********************************************************************<br>
+Skipfour SEIZE&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Get section 10 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Move 10 meters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Free section 10 of track<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp;&nbsp;&nbsp;&nbsp; ,Fifth<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 28800&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact every day<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Destroy timer xact
+</font></p>
+<p ALIGN="left">The model is organized into several segments. After the non
+Block Entities are defined, there are two more model segments. Transactions in
+the top segment represent jobs, those in the bottom segment time the simulation
+by decrementing the Termination Count every simulated day.</p>
+<p ALIGN="left">Transactions representing jobs acquire attributes by passing
+through ASSIGN Blocks, then serially acquire an AGV, sections of track, a robot,
+and other production machines, as needed.</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Fmsmodel</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">15</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 15 transactions have entered
+  the TERMINATE 1 Block. This represents 15 days of operation.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, FMSModel.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+<b>
+  <p align="left"><font face="Arial" size="4">Discussion of Results</font></p>
+  <p align="left"></b><font FACE="Arial" SIZE="2">The Standard Report gives the utilizations of the machine
+  tools. Machine2 had the highest utilization (80<b>%</b>).</p>
+  <p ALIGN="left">The distribution of completion times is given in the GPSS
+  Table named Transit. The average completion time was about 3208.1 seconds,
+  with a standard deviation of 1954.9.</p>
+  <p ALIGN="left">&nbsp;</p>
+  
+
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Inside the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let's now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please translate the model and run it again.</p>
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Storages Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Storages Window. It gives utilization and
+  queuing information on the AGVs. They encountered a 31<b>%</b> utilization. It
+  would appear that there are sufficient AGVs. Later, we will repeat the
+  simulation using 1 AGV instead of 2.</p>
+  <p ALIGN="left">We’ll look at the histogram for completion times.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box, TRANSIT is
+  already selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To see the utilizations and queuing statistics for the
+  machine tools press</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The numbered Facilities represent AGV track segments. If
+  you use the scroll bar to move to the bottom of the window, you will be able
+  to display statistics for the machine tools.</p>
+  <p ALIGN="left">Now, let’s repeat the simulation using a single AGV, but
+  first close up all graphics</font><font FACE="Arial" SIZE="1"> </font><font FACE="Arial" SIZE="2">windows
+  except the Table Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window 
+  </u>&nbsp;&nbsp;&nbsp;&nbsp;</p> 
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, we’ll redefine the Storage size.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Custom</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">AGV Storage 1</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then, we have to clear out the old statistics.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / CLEAR</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, start the simulation, making sure you can observe the
+  Table &quot;Transit&quot; in the Table Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box, replace the 1.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">15</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This result is a bit surprising! The average completion
+  time went up only slightly when we removed an AGV!</p>
+  <p ALIGN="left">We must be careful—we are certainly not yet justified in
+  reporting that 1 AGV performs close to the way that 2 do. Perhaps we are only
+  observing an effect due to random variation. The GPSS World ANOVA Command is
+  provided to test the significance of results such as these. It is discussed in
+  Lesson 13 of this manual and Chapter 6 of the <i>GPSS World Reference Manual</i>.
+  If this result is sustained, it would appear that the use of 2 AGVs under
+  these circumstances may be an unnecessary luxury.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+</u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.
+</u></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+</font><b><font FACE="Arial">
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#24. ETHERNET.GPS" name="24. ETHERNET.GPS">24. ETHERNET.GPS</a><!--mstheme--></font></h1>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+
+  
+<p ALIGN="center"><font size="4">Simulation of an Ethernet.</font></p>
+
+  
+    <p ALIGN="center">&nbsp;</p>
+<font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font>
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">A 10 Mbps Ethernet network is currently running
+satisfactorily with 100 workstations online. It has been determined that network
+traffic is composed of two classes of messages that are generated with the same
+proportion at all nodes.</p>
+<p ALIGN="left">The global message arrival pattern in the peak hour can be
+modeled as a Poisson process, with individual workstations chosen randomly.</p>
+<p ALIGN="left">We are to determine the effect on performance of adding an
+additional 100 workstations to the network.</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Listing</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><font FACE="Courier New" SIZE="1">
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - ETHERNET.GPS<br>
+***********************************************************************<br>
+*<br>
+* 10 Mbps Ethernet Model<br>
+*<br>
+* (c) Copyright 1993, Minuteman Software.<br>
+* All Rights Reserved.<br>
+*<br>
+*<br>
+*<br>
+* Messages arrive exponentially, as one of two types: short<br>
+* or long. A Node is selected and held for the duration of<br>
+* message transmission and any collision backoffs.<br>
+*<br>
+* Each Node on the Ethernet is busy with a single message<br>
+* until it is sent, or after some number of collisions (with<br>
+* transmission attempts from other nodes) a permanent error<br>
+* is declared and the node is released.<br>
+*<br>
+* Time is in units of milliseconds. Nodes are presumed<br>
+* to be 2.5 m. apart. The node ID numbers are used to<br>
+* determine the separation distance when calculating<br>
+* the collision window. The propagation delay to an adjacent<br>
+* node is 0.01 microsecond. Each bit is transmitted in 0.1<br>
+* microsecond. The interframe gap is modelled by having the<br>
+* sender hold the Ethernet for an additional delay after it<br>
+* has sent its message.<br>
+*<br>
+* Messages are represented by GPSS Transactions. Nodes<br>
+* and the Ethernet are represented by GPSS Facilities. An<br>
+* additional Facility is used during jamming to prevent the<br>
+* startup of any new messages.<br>
+*<br>
+* A collision results from multiple transmission attempts<br>
+* at two or more nodes. The signal propagation delay<br>
+* prevents nodes from having simultaneous knowledge of<br>
+* each other, thereby leading to this possibility. The time<br>
+* interval until the signal from the other node can be<br>
+* detected is called the node’s &quot;Collision Window&quot;.<br>
+*<br>
+* Collisions are represented by removing the transmitting<br>
+* Transaction from ownership of the Ethernet and sending it<br>
+* to a backoff routine. The new owner jams the Ethernet<br>
+* briefly and then goes through the backoff, itself. When a<br>
+* Transaction’s message is being sent, the transaction has<br>
+* ownership of the Ethernet Facility at priority 0, and can<br>
+* be PREEMPTed by Transactions which are at priority 1.<br>
+* When a Transaction is jamming, it has ownership of the<br>
+* Ethernet Facility at priority 1, and is never itself<br>
+* PREEMPTed.<br>
+*<br>
+*<br>
+* Arguments:<br>
+* 1. Node_Count Number of Nodes 2.5 m. apart<br>
+* 2. Min_Msg Bits<br>
+* 3. Max_Msg Bits<br>
+* 4. Fraction_Short_Msgs Parts per thousand<br>
+* 5. Intermessage_Time Global Interarrivals<br>
+*<br>
+*<br>
+***********************************************************************<br>
+Node_Count EQU 100 ;Total Ethernet Nodes<br>
+Intermessage_Time EQU 1.0 ;Avg. Global Arrival every msec.<br>
+Min_Msg EQU 512 ;The Shortest Message in bits<br>
+Max_Msg EQU 12144 ;The Longest Message in bits<br>
+Fraction_Short_Msgs EQU 600 ;Short Msgs in parts per<br>
+thousand<br>
+Slot_Time EQU 0.0512 ;512 bit times<br>
+Jam_Time EQU 0.0032 ;32 bit times<br>
+Backoff_Limit EQU 10 ;No more than 10 backoffs<br>
+Interframe_Time EQU 0.0096 ;96 bit times<br>
+***********************************************************************<br>
+*<br>
+* Definitions of GPSS Functions and Variables.<br>
+*<br>
+***********************************************************************<br>
+Backoff_Delay VARIABLE Slot_Time#V$Backrandom ;Calc the<br>
+Backoff Delay<br>
+Backrandom VARIABLE 1+(RN4@((2^V$Backmin)-1))<br>
+Backmin VARIABLE<br>
+(10#(10’L’P$Retries))+(P$Retries#(10’GE’P$Retries))<br>
+Node_Select VARIABLE <a href="mailto:1+(RN3@Node_Count">1+(RN3@Node_Count</a>)<br>
+Collide VARIABLE<br>
+ABS((X$Xmit_Node-P$Node_ID)/100000)’GE’(AC1-X$Xmit_Begin)<br>
+Msgtime VARIABLE (0.0001)#V$Msgrand<br>
+Msgrand VARIABLE<br>
+Min_Msg+(RN1’G’Fraction_Short_Msgs)#(Max_Msg-Min_Msg)<br>
+***********************************************************************<br>
+*<br>
+* The Message Delay Histogram<br>
+*<br>
+***********************************************************************<br>
+Msg_Delays QTABLE Global_Delays,1,1,20<br>
+***********************************************************************<br>
+*<br>
+* Main Body of Model<br>
+*<br>
+***********************************************************************<br>
+*<br>
+***********************************************************************<br>
+* Message Generation<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,Intermessage_Time)) ;Single msg<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; generator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Node_ID,V$Node_Select ;Acquire a Node ID.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Message_Time,V$Msgtime ;Calc and Save XMIT Time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; Retries,0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;No Collisions at start.<br>
+***********************************************************************<br>
+* Wait for the Node to finish any previous work.<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Global_Delays&nbsp;&nbsp;
+;Start timing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; P$Node_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait for, occupy, the Node.<br>
+Try_To_Send PRIORITY 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Don’t Lose Control<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait for any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Jam to end.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; F$Ethernet,1,Start_Xmit ;If Ethernet Free, jump.<br>
+***********************************************************************<br>
+*<br>
+* The Ethernet is busy. We check to see if we are in the<br>
+* Sender’s &quot;Collision Window&quot;. If so, this node would<br>
+* start transmitting anyway, since the carrier would not<br>
+* yet be sensed. In that case, we must initiate a Collision.<br>
+*<br>
+<br>
+&nbsp;If Prop Delay to Sender is &gt;= Xmit Time up till now,<br>
+* collide.<br>
+*<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST E&nbsp;&nbsp;&nbsp; V$Collide,1,Start_Xmit ;No Collision. Go<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait for it.<br>
+* * * * * * * * * * * * Collision * * * * * * * * * * * * *<br>
+Collision PREEMPT Ethernet,PR,Backoff,,RE ;Remove the old owner.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Jam the Ethernet.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; Jam_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Wait the Jam Time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;End the Jam.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Ethernet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Give up the Ethernet.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PRIORITY&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Back to Normal priority.<br>
+Backoff ASSIGN Retries+,1 ;Increment the Backoff Ct.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST LE&nbsp;&nbsp; P$Retries,Backoff_Limit,Xmit_Error ;Limit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;retries.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; V$Backoff_Delay ;Wait to initiate retry.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Try_To_Send&nbsp;&nbsp;&nbsp;
+;Go try again.<br>
+***********************************************************************<br>
+* Get the Ethernet, and start sending.<br>
+***********************************************************************<br>
+Start_Xmit SEIZE&nbsp; Ethernet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Get Ethernet, wait if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; necessary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Xmit_Node,P$Node_ID ;Identify the sender.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Xmit_Begin,AC1&nbsp; ;Mark the start xmit time.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PRIORITY&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Ensure we can be PREEMPTed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; P$Message_Time&nbsp;
+;Wait until Msg. is sent.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; Interframe_Time ;Hold the Ethernet for gap.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Ethernet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Give up the Ethernet.<br>
+Free_Node RELEASE P$Node_ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Give up the node<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Global_Delays&nbsp;&nbsp;
+; to the next msg.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Destroy the Message.<br>
+***********************************************************************<br>
+Xmit_Error SAVEVALUE Error_Count+,1 ;Count the Error.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; ,Free_Node&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; and get out of the way.<br>
+***********************************************************************<br>
+*<br>
+* Timer Segment<br>
+*<br>
+***********************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Each Start Unit is 1 Second.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+*<br>
+***********************************************************************
+</font></p>
+<b>
+<p align="left">&nbsp;</p>
+</b>
+</font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  <p align="left"></font></b><font FACE="Arial" SIZE="2">To run the simulation and create a Standard Report, in the
+Model Window</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>File / Open</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Ethernet</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we open a histogram of message delays,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Table Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box in the dialog box, MSG_DELAYS is
+  already selected.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Adjust the window so you can see both the Journal Window
+  and the histogram in the Table Window at the same time. O.K. Now, let's do
+  some simulating.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box since 1 is the Termination Count we
+  want,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">As the messages pass through the Ethernet, their durations
+  are registered in the Qtable Msg_Delays, and we observe their accumulation in
+  the histogram. The simulation will end when a second of activity has been
+  simulated. From the Table Window we can see that the average message delay
+  time was a little less than 1 millisecond.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Ethernet.1.1.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s take a look at the report, now. Move down to the
+  utilization of the Facility Entity used to represent the Ethernet. Its
+  utilization was a moderate 48%. Now, look at the entry count for the Block
+  labeled Collision. Apparently, there were only 3 collisions during the
+  simulation. This comes out to 0.003 collisions per message. Go ahead and close
+  the Report Window. You do not have to save the Report Object.</p>
+  <p ALIGN="left">It appears that the network is performing satisfactorily.
+  Now let’s predict the effect of adding 100 more workstations.</p>
+  <p ALIGN="left">Go ahead and close the report.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Report Window.</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">then,</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Journal Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">make it a comfortable viewing size and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / CLEAR</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we change the experimental parameters. We’ll do them
+  both in a single Custom Command.</p>
+  <p ALIGN="left">First, the count of workstations.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Custom</b></p>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Node_Count EQU 200</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Next, in the second line, the global message interarrival
+time.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Intermessage_Time EQU 1.0#(100/200)</p>
+</font></b><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we will simulate the new conditions.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box since 1 is the Termination Count we
+  want,</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">As you can see in the Table Window, a large proportion of
+  the messages is experiencing delays due to collision backoffs. The average
+  message delay has skyrocketed to over 14 milliseconds.</p>
+  <p ALIGN="left">In a real study, of course, we would simulate much longer,
+  and we would run an Analysis of Variance to establish statistical
+  significance.</p>
+  <p ALIGN="left">Although there is still another step to take from average
+  message delay to performance as perceived by the end user, we would have to
+  conclude that there appear to be serious performance problems in store for
+  this network, if the projected 100 workstations were brought online.</p>
+  <p ALIGN="left">The next step would be to consider, and simulate, the
+  effects of various remedial actions. Let’s look at the report produced after
+  we altered the model.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Ethernet.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. Since this is the second report, the extension produced by this
+  simulation should be 1.2.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+<b><p align="left"><font face="Arial" size="4">Discussion of Results</font></p>
+  <p align="left"></b><font FACE="Arial" SIZE="2">Let’s look at statistics in the new Standard Report. To
+  shorten the listing, we only used statistics from the first 10 workstations.
+  The other 190 are similar. We see that the Ethernet utilization has grown to
+  98%, and that there were 413 collisions in the simulated time. Many of the
+  transactions experienced multiple collisions.</p>
+  <p ALIGN="left">Clearly, the time spent backing off from collisions was a
+  large component of the additional message delay times.</p>
+  <p ALIGN="left">All this information is available in the online Facilities
+  and Blocks Windows. You should open these windows to be sure you can find the
+  information. Look at both detailed view and non-detailed view in these
+  windows.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+  </font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.</p>
+</u></font><b><font FACE="Arial">
+<p ALIGN="left">&nbsp;</p>
+
+  
+<p ALIGN="left">&nbsp;</p>
+
+  
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#25. PREDATOR.GPS" name="25. PREDATOR.GPS">25. PREDATOR.GPS</a><!--mstheme--></font></h1>
+
+  
+    <p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="center"><font size="4">Predator-Prey Model.</font></p>
+
+  
+    <p ALIGN="center">&nbsp;</p>
+<font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  <p align="left"></font></font></b><font FACE="Arial" SIZE="2">A population of rabbits has grown uncontrollably on a small
+island. The problem is so severe that local farmers expend considerable effort
+just to break even financially. They want to introduce a population of foxes to
+bring the situation under control.</p>
+<p ALIGN="left">The problem is to use the Lotka-Volterra predator prey model
+in PREDATOR.GPS to simulate the phenomenon. What will happen if a population of
+80 foxes is released? How many foxes must be released to eradicate the rabbits?</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Listing</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p align="left"><font face="Courier New" size="2">
+; GPSS World Sample File - PREDATOR.GPS<br>
+******************************************************************<br>
+*&nbsp;<br>
+* Lotka-Volterra Predator-Prey Model&nbsp;<br>
+*&nbsp;<br>
+* Operation:&nbsp;<br>
+* Plot Foxes and Rabbits: X 12000; Y 0-3000&nbsp;<br>
+* START 1&nbsp;<br>
+******************************************************************<br>
+******************************************************************<br>
+*<br>
+* Don’t forget to parenthesize the ODEs.<br>
+*<br>
+******************************************************************<br>
+Foxes INTEGRATE (FoxRate())<br>
+Rabbits INTEGRATE (RabbitRate())<br>
+******************************************************************<br>
+*<br>
+* The Initial Values<br>
+*<br>
+******************************************************************<br>
+Foxes EQU 80<br>
+Rabbits EQU 1000<br>
+******************************************************************<br>
+*<br>
+* The Model Parameters<br>
+*<br>
+******************************************************************<br>
+K_ EQU 0.2000 ;Predator Efficiency<br>
+A_ EQU 0.0080 ;Predator Death Rate<br>
+B_ EQU 0.0002 ;Foray (Grazing) Factor<br>
+C_ EQU 0.0400 ;Prey Birth Rate<br>
+******************************************************************<br>
+*<br>
+* Discrete Simulation Control Segment<br>
+*<br>
+******************************************************************<br>
+GENERATE 10000<br>
+TERMINATE 1<br>
+<br>
+PROCEDURE FoxRate() BEGIN<br>
+&nbsp;&nbsp;&nbsp; /*******************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Growth Rate for the Fox Population<br>
+&nbsp;&nbsp;&nbsp; *******************************************************/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEMPORARY BirthRate, DeathRate,
+TotRate;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Limit the Variable, so we can experiment safely. */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (Foxes &lt; 0) THEN Foxes = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (Foxes &gt; 10e50) THEN Foxes = 10e50 ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BirthRate = K_ # B_ # Foxes # Rabbits;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DeathRate = A_ # Foxes;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TotRate = BirthRate - DeathRate;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETURN TotRate;<br>
+END;<br>
+</font></p>
+<p align="left"><font face="Courier New" size="2">
+PROCEDURE RabbitRate() BEGIN<br>
+&nbsp;&nbsp;&nbsp; /*******************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Growth Rate for the Rabbit Population<br>
+&nbsp;&nbsp;&nbsp; *******************************************************/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEMPORARY BirthRate, DeathRate,
+TotRate;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Limit the Variable, so we can experiment safely. */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (Rabbits &lt; 0) THEN Rabbits = 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF (Rabbits &gt; 10e50) THEN Rabbits = 10e50 ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BirthRate = C_ # Rabbits;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DeathRate = B_ # Foxes # Rabbits ;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TotRate = BirthRate - DeathRate;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETURN TotRate;<br>
+END;<br>
+</font></p>
+<p ALIGN="left">In this model, we use single letters followed by underscores
+to name constants. This ensures that there will be no clashes with PLUS or GPSS
+keywords. Since PLUS Expressions used outside PLUS Procedures should be
+parenthesized, the invocations in Operand A of the INTEGRATE Commands are
+enclosed in outer parentheses.</p>
+<p ALIGN="left">&nbsp;</p>
+</font>
+<b>
+  <p align="left"><font face="Arial" size="4">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Plot, in the Main Window</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Predator</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;<b>OK</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, create the simulation</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we set up a Plot of the fox and rabbit populations, to
+  observe the dynamics.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Plot Window</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then in the Edit Plot Window enter the information as
+  shown, on the next page, in Figure 25--1. You should be looking at a similar
+  dialog box on your screen. We’ll plot the Fox population and Rabbit
+  population on the same plot. Remember to position the mouse pointer at the
+  beginning of each box and click once before you begin to type. Do not press
+  the<b> [Enter]</b> since
+  that is used when all information has been typed in the box. You can, instead,
+  use <b>[Tab]</b>
+  to move from box to box.</p>
+</font><i><font SIZE="2">
+  <p align="center"><img border="0" src="../images/T2_25_1.gif" width="536" height="451"></p>
+  <p align="center">Figure 25—1. The Fox and Rabbit Population Edit Plot Window.</p>
+  <p align="center">&nbsp;</p>
+</font></i><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Plot</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Then enter the Rabbits</p>
+<p ALIGN="left">Next, to Label, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Rabbits</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and for the Expression, replace the current value</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Rabbits</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Plot</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Adjust the Plot Window to a comfortable viewing size. Now,
+  let’s get the simulation started.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 10000 time units have passed.</p>
+  <p ALIGN="left">Your Plot Window should look like this:</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_25_2.gif" width="661" height="337"></p>
+  <i>
+  <p align="center">Figure 25—2. Fox and Rabbit Population Dynamics.</p>
+  </i>
+  
+
+</font>
+<b>
+  <p align="left">&nbsp;</p>
+  <p align="left"><font face="Arial" size="4">Discussion of Results</p>
+</font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">As you can see, the introduction of foxes causes the rabbit
+  population to decline. Eventually the fox population can no longer be
+  supported, and it too decreases. Eventually there are no longer enough foxes
+  to hold the rabbits in check, and population explosion occurs. With abundant
+  prey, the fox population eventually grows to the point where the rabbits are
+  again under control.</p>
+  <p ALIGN="left">Let’s now determine how many foxes, to the nearest
+  thousand, must be introduced to eliminate the rabbits. Although we could do
+  everything interactively, it’s easy to simply change the starting Fox
+  population and retranslate the model.</p>
+  <p ALIGN="left">Close the Plot Window.</p>
+  <p ALIGN="left">In the Model Window change the Foxes initial value from 80
+  to 2000.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Retranslate</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, open a new Plot Window.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Window / Simulation Window / Plot Window</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">We can set up the plot using the Memorized Expressions. In
+  the Memorized Expressions section of the Edit Plot Window</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Foxes</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Plot</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">next</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Rabbits</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Plot</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">You will have to fill in the information in the Window
+Contents section of the Edit Plot Window as you did when you set up the first
+Plot Window.</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / START</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">As we can see, during the simulation the populations
+  oscillated even with such a large number of foxes. Let’s try 3000.</p>
+  <p ALIGN="left">Close the Plot Window.</p>
+  <p ALIGN="left">In the Model Window change the Foxes initial value from
+  2000 to 3000.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;<b>Command / Retranslate</p>
+ </font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Once again, open the Plot Window, as we just did, setting
+  it up in the Edit Plot Window, using the same procedure.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+</font>
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">After 3 oscillations, the rabbit population died out. With
+  all the prey gone, the fox population also collapsed. Take a look at the
+  values of the Foxes and Rabbits User Variables in the Standard Report. They
+  are both 0.</p>
+  <p ALIGN="left">According to this model, 3000 foxes must be introduced to
+  completely eradicate the rabbits. What happens when 4000 foxes are introduced?
+  Does the system still oscillate?</p>
+  <p ALIGN="left">&nbsp;</p>
+  </font>
+<b>
+  <p align="left"><font face="Arial" size="4">Inside the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+  </font><b><font FACE="Arial" SIZE="4">
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The integration of ordinary differential equations is
+  sensitive to the conditions you set up. You can expect to be surprised with
+  floating point overflows and the exceeding of error tolerance during the
+  continuous phase, if you haven’t set the derivatives up correctly. In some
+  cases, if you are willing to accept a little less accuracy, you can increase
+  the Integration Tolerance in the Simulation Page of the Model Settings
+  Notebook. Often, you will need to control the variables explicitly. Notice in
+  the predator prey model how the populations are explicitly kept nonnegative in
+  the PLUS Procedures used to evaluate the derivatives.</p>
+  <p ALIGN="left">In practice, differential equations that cause floating
+  point exceptions are often not realistic. Those that are, can usually be
+  replaced by better behaving equivalents that still are able to model the real
+  system.</p>
+  <p ALIGN="left">If you have moved your Plot Window around during this
+  lesson, and discovered that not all the points were redrawn, you can increase
+  the size of the saved point list. To do so, open the Reports Page of the Model
+  Settings Notebook, and type in the new value in the <b>Saved Plot Points</b>
+  entry field.</p>
+  <p ALIGN="left">Now, if you wish to experiment with other models in this
+  tutorial close all windows related to this model.</p>
+  
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Otherwise, to end the session</p>
+
+
+</font><font FACE="Helvetica" SIZE="2">
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Main Window.</u></p>
+<p align="left">&nbsp;</p>
+<p align="left"></font><font FACE="Arial" SIZE="2">We’ve finished with our tutorial lessons. You may find in
+the future that many of them will serve as good templates for your own models.
+If you have questions, please don’t hesitate to contact us through our web
+site.
+</font></p>
+<p align="left">&nbsp;</p>
+<font FACE="Arial">
+<p ALIGN="center"><a href="http://www.minutemansoftware.com">http://www.minutemansoftware.com</a></p>
+<p align="center">
+<font FACE="Arial" SIZE="2">
+    &nbsp;
+    <a href="tutorial_manual.htm">[Table of Contents]</a>
+</font>
+<p ALIGN="center">&nbsp;</p>
+</font>
+
+
+  
+
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

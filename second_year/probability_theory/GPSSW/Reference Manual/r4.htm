@@ -1,0 +1,1663 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><font FACE="Arial">
+<blockquote>
+  <blockquote>
+  </font><font FACE="Arial" SIZE="2">
+  <h1 ALIGN="left"><!--mstheme--><font color="#336666">Chapter <a name="4">4</a> - GPSS Entities<!--mstheme--></font></h1>
+    </font>
+    <font FACE="Arial">
+    <p ALIGN="left">&nbsp;</p>
+      </font><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS is built around several elementary abstractions
+      called entities. In order for you to be able to create complex simulation,
+      you must acquire an understanding of these entities and of the rules by
+      which they may be manipulated. GPSS entities are abstract objects that
+      exist in a simulation. If you prefer a more concrete notion, you may think
+      of a GPSS Entity as a set of numbers in the memory of your computer. The
+      collection of all the entities is called the simulation. The most
+      prominent entity types are Transactions and Blocks, because simulations,
+      to a large extent, consist of many Transactions moving from one Block into
+      the next. Transactions are the only entity types that can be deleted from
+      the simulation. In all, there are a dozen or so entity types, and a
+      simulation may contain many instances of any entity type. To be effective
+      in creating simulations you must understand the properties of each of the
+      GPSS entities and how to use GPSS Blocks in order to cause interactions
+      among the entities.</p>
+      <p ALIGN="left">GPSS entities are numbered. When you use a name to
+      refer to an entity, the integer value associated with the name is used to
+      find the entity. However you do not normally assign these integer values
+      to names, although the EQU statement enables you to do so. GPSS World
+      normally assigns a unique value greater than or equal to 10,000.</p>
+      <p ALIGN="left">Most GPSS entities are created automatically when
+      needed. For example, a reference to a Facility Entity using the name
+      Barber will cause a Facility to be created if none existed before. This
+      convenience can sometimes cause your simulation to use a lot of virtual
+      memory due to a bug in your GPSS model. Your simulations can be extremely
+      large. The use of virtual memory provides for simulations taking up to
+      half a gigabyte (512 Megabytes).</p>
+      <p ALIGN="left">Some entities must be specifically declared before they
+      can be used. Generally these have an attribute, such as size, which must
+      be made known to the Simulation Object. The name in the label field,
+      called an Entity Label, is then used to refer to the entity.</p>
+      <p ALIGN="left">The following entities must be declared before they can
+      be used:</p>
+      <blockquote>
+        <blockquote>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Storage
+        entities must be declared in STORAGE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Arithmetic
+        Variables must be declared in VARIABLE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;&quot;Floating
+        point&quot; Variables must be declared in FVARIABLE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Boolean
+        Variables must be declared in BVARIABLE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Matrices
+        must be declared in MATRIX Statements, or Temporary Matrix PLUS
+        Declarations.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Tables
+        must be declared in TABLE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Qtables
+        must be declared in QTABLE Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Functions
+        must be declared in FUNCTION and Function Follower Statements.</p>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Transaction
+        Parameters must be declared in ASSIGN, MARK, READ, SELECT, SPLIT, COUNT
+        or TRANSFER SUB Blocks before they are referenced.</p>
+        <p ALIGN="left">&nbsp;</p>
+        </blockquote>
+      </blockquote>
+      <p ALIGN="left">Some entity types bear one or more special
+      relationships to Transactions. Storage and Facility Entities can be
+      partially or wholly owned by Transactions. Other Transactions may then
+      come to rest in the model while they wait for ownership. It is up to you
+      to assure that ownership is eventually released by the original owners, by
+      causing them to enter RELEASE, RETURN, or LEAVE Blocks. Otherwise, the
+      simulation may not complete successfully. Some Blocks such as PREEMPT and
+      FUNAVAIL have options that divert the path of the owning Transaction.
+      However, it is still up to you to provide for the release of the owned
+      entity.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.1"></a>4.1.
+      Transaction Entities</font></h2>
+  <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Transactions move from Block to Block in a simulation
+      in a manner which represents the real-world system you are modeling. Once
+      a Transaction begins to move in the simulation, it continues to enter
+      Blocks as long as it can. During a simulation, the Transaction which is
+      attempting from Block to Block is called the <i>Active Transaction</i>. If
+      a Transaction fails to find favorable conditions when it attempts to enter
+      a Block, it may come to rest. Then, another Transaction is chosen to begin
+      to move through the simulation until it, in turn, comes to rest.</p>
+      <p ALIGN="left">Transactions are numbered sequentially throughout a
+      session starting with 1. A CLEAR statement begins the numbering of
+      Transactions at 1 again.</p>
+      <p ALIGN="left">The behavior of a Transaction is determined somewhat by
+      several state variables called Transaction Attributes. The important
+      attributes of Transactions are:</p>
+      </font>
+      <blockquote>
+      <font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Parameters&nbsp;-
+      Transaction Parameters are a set of values associated with a Transaction.
+      Each Transaction may have any number of Parameters. Each Parameter has a
+      Parameter Number, by which it is referenced, and a value. The Parameter
+      Number is a positive integer. The value of any Parameter of the active
+      Transaction may be returned by the SNA P<i>Parameter</i> where <i>Parameter</i>
+      is the name or number of the Parameter. If a Block operand specifies
+      Parameter name or number as the desired value, P$<i>Parameter</i> or P<i>Parameter</i>
+      should not be used, use only the Parameter Name or Number by itself.</p>
+      <p ALIGN="left">For efficiency, you can allow GPSS World to directly
+      access Parameters by using Parameter Blocks in your simulation. A
+      Parameter Block is an array of contiguous Parameters that are allocated
+      and freed as a single segment of memory. When you create the first
+      Parameter, whose Parameter Number is in range, all the others Parameters
+      in the segment are allocated as well. When you reference a Parameter in a
+      Parameter Block, the Simulation Object can go directly to it, rather than
+      having to check each Parameter individually. This can save a lot of time.
+      All you have to do to use Parameter Blocks is to declare them in the
+      Simulate Page of the Model Settings Notebook. This is discussed in Chapter
+      2.</p>
+      <p ALIGN="left">Parameters are used in GPSS indirect addressing. When
+      the number of the desired GPSS entity is kept as a Parameter value of the
+      Active Transaction, the name or number of the desired GPSS entity
+      specifier can be replaced with an indirect reference to the Transaction
+      Parameter. There is a more detailed description of this in Section 3.4.</p>
+      <p ALIGN="left">Transaction Parameters must be created and assigned
+      values before they can be referenced. ASSIGN, MARK, and TRANSFER SUB,
+      SELECT, SPLIT and COUNT Blocks create a Transaction Parameter if one does
+      not exist.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Priority&nbsp;-
+      the priority of a Transaction determines the preference it receives when
+      it and other Transactions are waiting for the same resource. Transactions
+      with higher priority values receive preference. The most important
+      priority queues in the simulation are the Current Events Chain, Facility
+      Delay Chains, and Storage Delay Chains. The Future Events Chain is not a
+      priority chain. These structures are explained in more detail in Chapter
+      9. The effect of priority is that a Transaction will be chosen ahead of
+      lower priority Transactions when a new Active Transaction, or a new
+      Facility or Storage owner must be chosen. Transactions within a priority
+      are usually scheduled first come, first served.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Mark
+      Time&nbsp;- The absolute clock time that the Transaction first entered the
+      simulation or entered a MARK Block with no A operand.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Assembly
+      Set&nbsp;- A positive integer kept internally in each Transaction.
+      Assembly Sets are used to synchronize Transaction in ASSEMBLE, GATHER, and
+      MATCH Blocks. When a Transaction is created by a GENERATE Block, its
+      Assembly Set is set equal to its Transaction Number. When a Transaction is
+      created by a SPLIT Block, its Assembly Set is set equal to that of the
+      parent Transaction. A Transaction can modify its Assembly Set by entering
+      an ADOPT Block.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Delay
+      Indicator&nbsp; - A flag kept in each Transaction that is set by Block
+      entry refusal, and is reset by entry into TRANSFER SIM Block. It is used
+      by TRANSFER SIM Blocks to redirect Transactions.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Trace
+      indicator&nbsp;- A flag kept in each Transaction that causes a trace
+      message to be generated each time the Transaction enters a Block. The
+      Trace Indicator is set by a TRACE Block and reset by an UNTRACE Block.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Current
+      Block&nbsp;- The Entity Number of the Block which contains the
+      Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Next
+      Block&nbsp;- The Entity Number of the Block which the Transaction will
+      attempt to enter next.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Chains
+      &nbsp;- The state of a Transaction is determined to some degree by the
+      chains on which it resides. Chapter 9 contains a more detailed description
+      of Transaction chains. A Transaction is said to be in exactly one of
+      several states:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ACTIVE&nbsp;-
+      The Transaction is the highest priority Transaction on the Current Events
+      Chain.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SUSPENDED -
+      The Transaction is waiting on the Future Events Chain or the Current
+      Events Chain to become the active Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PASSIVE&nbsp;-
+      The Transaction has come to rest in the simulation on a User Chain, Delay
+      Chain, or Pending Chain.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TERMINATED&nbsp;-
+      The Transaction has been destroyed and no longer exists in the simulation.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </blockquote>
+      </blockquote>
+      <p ALIGN="left">In addition, there is another state which is not
+      mutually exclusive with the others:</p>
+      <blockquote>
+        <blockquote>
+        </font><font FACE="Symbol" SIZE="2">
+        <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PREEMPTED&nbsp;-
+        The Transaction has been preempted at a Facility and is on one or more
+        interrupt Chains.</p>
+        <p ALIGN="left">&nbsp;</p>
+        <p ALIGN="left">&nbsp;</p>
+        </blockquote>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">The Active Transaction</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">At any instant during the discrete phase of a
+      simulation, one specific Transaction is attempting to enter a new GPSS
+      Block. That Transaction is called the Active Transaction. Generally, the
+      active Transaction moves as far as it can through the simulation. When it
+      cannot move further, another Transaction is chosen to be the Active
+      Transaction. There can be no more than one Active Transaction.</p>
+      <p ALIGN="left">More specifically, the Active Transaction is the
+      highest priority Transaction on the Current Events Chain when the last
+      Block scheduling occurred. This is described in more detail in Chapter 9.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Transactions are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;A1&nbsp;-
+      Assembly Set. A1 returns the Assembly Set of the Active Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MB<i>Entnum</i>&nbsp;-
+      Match at Block. MB<i>Entnum</i> returns a 1 if there is a Transaction at
+      Block <i>Entnum</i> which is in the same Assembly Set as the Active
+      Transaction. MB<i>Entnum</i> returns a 0 otherwise. This SNA class should
+      not be used in a Refuse Mode GATE or TEST Block condition test, you should
+      use MATCH Blocks instead.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MP<i>Parameter</i>&nbsp;-
+      Transit Time, Parameter. Current absolute system clock value minus value
+      in Transaction Parameter <i>Parameter</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;M1&nbsp;-
+      Transit Time. M1 returns the absolute system clock minus the &quot;Mark
+      Time&quot; of the Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;P<i>Parameter</i>
+      or *<i>Parameter</i>&nbsp;- Parameter value. P<i>Parameter</i> or *<i>Parameter</i>
+      returns the value of Parameter <i>Parameter</i> of the Active Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PR&nbsp;-
+      Transaction priority. The value of the priority of the Active Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;XN1&nbsp;-
+      Active Transaction. The Transaction Number of the Active Transaction.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.2"></a>4.2.
+      Block Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The GPSS Block entity is the basic structural element
+      of the simulation. It is useful to think of a GPSS model by its Block
+      diagram. This is the connected network of Block symbols which correspond
+      to the positions of Block entities in the simulation. Representations of
+      the Block diagram can be viewed in the Block Input Window or a Blocks
+      Window. Each Transaction in the model is contained in exactly one Block,
+      but most Blocks may contain many Transactions.</p>
+      <p ALIGN="left">The sequence of Blocks encountered by various
+      Transactions determines the nature and much of the outcome of any
+      simulation. Each Transaction enters one Block then the next, until it is
+      TERMINATEd or the simulation ends. Transactions occasionally must wait in
+      a Block until conditions are favorable for entry into the next Block. This
+      may happen in any of several ways, the details of which are better
+      described in Chapter 9.</p>
+      <p ALIGN="left">Each type of Block is associated with an action that
+      transforms other entities in the simulation. These actions are described
+      in Chapter 7 and are supervised by the Transaction Scheduler, described in
+      Chapter 9. In general, a Block first determines if the active Transaction
+      can enter. If so, several Block, Transaction, and system wide statistics
+      are updated. Then the Block-specific action occurs and the Transaction’s
+      next Block is chosen. Usually, the &quot;Next Sequential Block&quot; (NSB)
+      is scheduled.</p>
+      <p ALIGN="left">The permanent Blocks in a simulation are created during
+      the Initial Model Translation from the Block Statements in the model. The
+      order of Blocks in the Translated simulation is the same as the order of
+      Block Statements encountered by the Translator. Line numbers are ignored
+      by GPSS World. The GPSS Block Statements may be created in the Model
+      Object using the fullscreen text editor or through one or more Block
+      Creation Dialogs, accessed through the Edit / Insert Block menu command.</p>
+      <p ALIGN="left">Block Statements sent to an existing simulation create
+      a one-time temporary Block in a mode called &quot;Manual Simulation&quot;.
+      Such interactive Statements cause the active Transaction to attempt a
+      Block entry and then destroy the Block. In this way, Block statements can
+      be used interactively to control the simulation. After the Block action
+      occurs, the active Transaction resumes its old path in the model unless
+      you had entered a TRANSFER statement or some other Block statement with an
+      alternate destination. This is discussed further under manual simulation
+      in Chapter 2.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Blocks are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;N<i>Entnum</i>&nbsp;-
+      Block entry count. The total number of Transactions which have entered
+      Block <i>Entnum</i> is returned.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;W<i>Entnum</i>&nbsp;-
+      Current Block count. The current number of Transactions in Block <i>Entnum</i>
+      is returned.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.3"></a>4.3.
+      Facility Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Facility is an entity which has several attributes,
+      the most important of which is ownership. A Facility may be owned by a
+      single Transaction, in which case it is said to be busy. Or it may not be
+      owned at all, in which case it is said to be idle. Unlike a Storage
+      Entity, a Facility cannot be freed by a Transaction which never owned it.
+      Transactions acquire ownership of a Facility by successfully entering a
+      SEIZE or PREEMPT Block. A PREEMPT Block has the power to displace the
+      existing owner of the Facility. If a Transaction cannot acquire ownership,
+      it comes to rest on a Facility Transaction Chain.</p>
+      <p ALIGN="left">A Facility has several waiting lines for Transactions
+      which are waiting for some Facility-oriented event to occur. Each Facility
+      has a Delay Chain for normally waiting Transactions, a Pending Chain for
+      Interrupt Mode preemptions which were not allowed, and an Interrupt Chain
+      for previously preempted Transactions. Transactions waiting on a Delay
+      Chain, a Pending Chain, or an Interrupt Chain are said to be &quot;in
+      contention&quot; for the Facility. Each Transaction which owns a Facility
+      must eventually give up ownership by entering a RELEASE or a RETURN Block.
+      Since a contending Transaction will generally become the owner of the
+      Facility, contention for a Facility carries the obligation of eventually
+      releasing the Facility.</p>
+      <p ALIGN="left">Those Transactions which fail in their attempt to enter
+      a SEIZE Block come to rest in priority order on the Delay Chain of the
+      Facility. When a Facility is freed by an owning Transaction, the next
+      owner is chosen from occupants of the Facility’s Transaction chains. The
+      pending Interrupt Mode preemptors are chosen first, followed by previously
+      preempted Transactions, followed by Transactions waiting normally in
+      priority order on the Delay Chain.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Entity States</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Facility that is owned by a Transaction is in the
+      &quot;busy&quot; state. If a Facility is not owned by a Transaction, it is
+      in the &quot;idle&quot; state.</p>
+      <p ALIGN="left">A Facility may be available or unavailable. When it is
+      available, Transactions acquire and give up ownership of the Facility
+      normally. When the Facility is unavailable, ownership is not given to
+      newly arriving Transactions. FAVAIL Blocks are used to place a Facility in
+      the available state, and FUNAVAIL Blocks are used to place it in the
+      unavailable state. Any Transactions present at the Facility at the time it
+      was made unavailable are disposed of as specified in the FUNAVAIL Block
+      operands.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are several GPSS Blocks which can be used with
+      Facilities:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SEIZE Blocks
+      attempt to take ownership of a Facility.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;RELEASE
+      Blocks relinquish ownership of a Facility.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;PREEMPT
+      Blocks attempt to take ownership of a Facility, possibly displacing the
+      existing owner.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;RETURN
+      Blocks relinquish ownership of a Facility.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FAVAIL
+      Blocks place a Facility in the available state.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;UNAVAIL
+      Blocks place a Facility in the unavailable state.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Facilities are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;F<i>Entnum</i>&nbsp;-
+      Facility busy. If Facility <i>Entnum</i> is currently busy, F<i>Entnum</i>
+      returns 1. Otherwise F<i>Entnum</i> returns 0.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FC<i>Entnum</i>&nbsp;-
+      Facility capture count. The number of times Facility <i>Entnum</i> has
+      been SEIZEd or PREEMPTed by a Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FI<i>Entnum</i>&nbsp;-
+      Facility <i>Entnum</i> interrupted. If Facility <i>Entnum</i> is currently
+      preempted by a Transaction in an Interrupt Mode PREEMPT Block, FI<i>Entnum</i>
+      returns 1. Otherwise FI<i>Entnum</i> returns 0.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FR<i>Entnum</i>&nbsp;-
+      Facility utilization. The fraction of time Facility <i>Entnum</i> has been
+      busy. FR<i>Entnum</i> is expressed in parts-per-thousand and therefore
+      returns a real value between 0 and 1000.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FT<i>Entnum</i>&nbsp;-
+      Average facility holding time. The average time Facility <i>Entnum</i> is
+      owned by a capturing Transaction.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FV<i>Entnum</i>&nbsp;-
+      Facility in available state. FV<i>Entnum</i> returns 1 if Facility <i>Entnum</i>
+      is in the available state, 0 otherwise.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.4"></a>4.4.
+      Function Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS Function Entities are used to return a value
+      derived from some argument, such as a random number. Actually, any SNA may
+      be used as an argument. A Function is defined by a FUNCTION Command
+      followed by one or more Function Follower Statements. The A operand of the
+      FUNCTION Statement specifies the argument, and the B operand of the
+      FUNCTION statement specifies the Function type and the number of data
+      pairs to appear on the Function Follower Statements. It is the numbers,
+      names, and/or SNAs in the Function Follower Statements that complete the
+      definition of the function entity.</p>
+      <p ALIGN="left">For many purposes, it is more convenient to use PLUS
+      Procedures than Function Entities. The PLUS Language is described in
+      Chapter 1. However, GPSS Functions are well suited for use as list based
+      functions and empirical probability distributions. In addition, a GPSS
+      Function may be much more efficient in terms of computer time than an
+      equivalent Procedure.</p>
+      <p ALIGN="left">There are 5 different types of function entities:</p>
+      </font>
+      <blockquote>
+      <font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Type
+      C&nbsp;- &quot;Continuous&quot; valued Function. Performs a linear
+      interpolation. A random argument is a special case.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Type
+      D&nbsp;- Discrete valued Function. Each argument value or probability mass
+      is assigned an separate value. A random argument is a special case.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Type
+      E&nbsp;- Discrete, &quot;attribute valued&quot; Function. Each argument
+      value or probability mass is assigned an SNA to be evaluated. A random
+      argument is a special case.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Type
+      L&nbsp;- List valued Function. The argument value is used to determine the
+      list position of the value to be returned.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Type
+      M&nbsp;- List valued Function. The argument value is used to determine the
+      list position of the SNA. This SNA is evaluated and returned as the result
+      of the function.</p>
+      </blockquote>
+      <p ALIGN="left">A Function used in operand B of an ADVANCE or GENERATE
+      Block is called a &quot;Function Modifier&quot;. The double precision
+      floating point result of the function is multiplied by the evaluated A
+      operand. The result is then used as the time increment required by the
+      Block.</p>
+      <p ALIGN="left">The values specified in a FUNCTION declaration, i.e. in
+      Function Follower statements, are kept internally as double precision
+      floating point values. These values have a precision limited to
+      approximately 15 decimal digits and a magnitude limited to 306 decimal
+      digits. Linear interpolation when evaluating a random function entity
+      involves a random fraction from 0-.999999 taken from the specified random
+      number generator. This random number is multiplied by the interpolation
+      factor and added to the base of the interval.</p>
+      <p ALIGN="left">The FUNCTION Command is discussed in more detail in
+      Chapter 6</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with functions is:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FN<i>Entnum</i>&nbsp;-
+      Function. Result of evaluating Function <i>Entnum</i>.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.5"></a>4.5.
+      Logicswitch Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Logicswitch Entity is the simplest entity with only
+      two states: &quot;Set&quot; or &quot;Reset&quot;. There are BLOCKS which
+      alter a Logicswitch and SNAs which return the state of a Logicswitch.</p>
+      <p ALIGN="left">Logicswitches are given the value of 0 when created, or
+      when a CLEAR Command (without the OFF option) is sent to the Simulation
+      Object.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Block</p>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LOGIC Blocks
+      set, reset, or invert the state of a Logicswitch Entity.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with Logicswitches is:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LS<i>Entnum</i>&nbsp;-
+      Logicswitch set. LS<i>Entnum</i> returns 1 if Logicswitch is in the
+      &quot;set&quot; state, 0 otherwise.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.6"></a>4.6.
+      Matrix Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Matrix Entity is an array of elements, each of which
+      can take on a value. The size of a Matrix is limited by the Maximum Memory
+      Request in the Simulate page of the Model Settings Notebook. You can
+      adjust this if you need to increase the permitted matrix size.</p>
+      <p ALIGN="left">Matrices can have up to 6 dimensions, and can be global
+      and permanent, or local and temporary. A permanent Matrix Entity is
+      defined by a MATRIX Command in the model, or one sent to an existing
+      simulation. Such Matrix Entities have global scope, and can be referenced
+      anywhere in the model.</p>
+      <p ALIGN="left">The elements of global Matrices are given the value of
+      0 when created, or when a CLEAR Command (without the OFF option) is sent
+      to the Simulation Object. A Matrix Element, or the whole Matrix, may be
+      set in the UNSPECIFIED state by an INITIAL Command.</p>
+      <p ALIGN="left">Temporary Matrices are defined by Temporary Matrix
+      Declarations in PLUS Procedures. They are created when a Procedure is
+      invoked, and destroyed afterward. They have local scope, and can be
+      referenced only within the Procedure in which they are declared. Elements
+      of Temporary Matrices are not initialized. You cannot use one in an
+      Expression until you assign it a value.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Block</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MSAVEVALUE
+      Blocks modify or assign a value to an element of a Matrix Entity.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Command</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;INITIAL
+      Commands assign a value to a matrix element, without the need for an
+      Active Transaction.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related PLUS Statements</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Temporary
+      Matrix Declarations are used to create temporary Matrices in PLUS
+      Procedures.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Assignment
+      Statements can assign a value to any element of any Matrix defined
+      globally or local to the Procedure.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with matrices is:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;MX<i>Entnum</i>(m,n)
+      - Matrix Savevalue. The value in row m, column n of Matrix Entity <i>Entnum</i>
+      is returned. In Matrices of more than 2 dimensions, all other indices are
+      assumed to be 1. Unlike MX class SNAs, PLUS Expressions can refer to any
+      element of a higher dimension matrix.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.7"></a>4.7.
+      Queue Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Queue Entities must not be confused with QUEUE Blocks,
+      which are instances of Block entities. Queue Entities are used primarily
+      for the collection of statistics. An accumulation of current count, total
+      entries, total entries finding a zero current count, the maximum count,
+      and the count-time product. QUEUE and DEPART Blocks are used to update the
+      statistics associated with a Queue Entity. The usual procedure is to
+      &quot;sandwich&quot; a SEIZE, PREEMPT, or ENTER Block between QUEUE and
+      DEPART Blocks. Then the queuing statistics for the associated Facility or
+      Storage Entity are kept and reported automatically. Several basic Queue
+      Entity statistics can be retrieved by SNA calls. Also, frequency
+      distributions can be accumulated by the use of QTABLE Commands.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Entity States</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The most important attribute of a Queue Entity is its
+      content. The content of a Queue Entity changes when QUEUE and DEPART
+      Blocks are entered. It can be thought of as the count of items in a
+      waiting line. Several statistics related to the content are maintained
+      automatically. These are accessible through the SNAs described below.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are several GPSS Blocks which can be used with
+      Queue Entities:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QUEUE Blocks
+      increase the content of a Queue Entity.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;DEPART
+      Blocks reduce the content of a Queue Entity.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Queue Entities are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Q<i>Entnum</i>&nbsp;-
+      Current Queue content. The current count value of Queue <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QA<i>Entnum</i>&nbsp;-
+      Average Queue content. The time weighted average count for Queue <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QC<i>Entnum</i>&nbsp;-
+      Total queue entries. The sum of all Queue entry counts for Queue <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QM<i>Entnum</i>&nbsp;-
+      Maximum Queue contents. The maximum count of Queue <i>Entnum</i>. This is
+      the &quot;high water mark&quot;.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QT<i>Entnum</i>&nbsp;-
+      Average Queue residence time. The time weighted average of the count for
+      Queue <i>Entnum.</p>
+      </i></font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QX<i>Entnum</i>&nbsp;-
+      Average Queue residence time excluding zero entries. The time weighted
+      average of the count for Queue <i>Entnum</i> not counting entries with a
+      zero residence time.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;QZ<i>Entnum</i>&nbsp;-
+      Queue zero entry count. The number of entries of Queue <i>Entnum</i> with
+      a zero residence time.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.8"></a>4.8.
+      Storage Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Storage Entity is associated with a number of storage
+      units which are allocated and returned by Transactions. Storage Entities
+      can be used as &quot;token pools&quot; for controlling the flow of
+      Transactions in the model.</p>
+      <p ALIGN="left">When a Transaction ENTERs a Storage Entity, it utilizes
+      or occupies one or more storage units of the Storage Entity. A Transaction
+      is denied entry into an ENTER Block if its storage demand cannot be met.
+      Such a Transaction comes to rest on the Delay Chain of the Storage Entity.
+      Then it must wait until other Transactions free enough storage by entering
+      LEAVE Blocks.</p>
+      <p ALIGN="left">Storage capacity may be released by any Transaction,
+      even if it had not previously ENTERed the Storage Entity. However, if more
+      capacity is released than was declared in the STORAGE Command an Error
+      Stop occurs.</p>
+      <p ALIGN="left">When a Transaction enters a LEAVE Block and gives up
+      one or more storage units, other Transactions are sought which can have
+      their storage demands satisfied. A &quot;first-fit-with-skip&quot;
+      discipline is used to schedule Transactions which are waiting. This means
+      that each Transaction on the Delay Chain is tested for fit in the Storage
+      Entity, starting with the highest priority. If a fit is found, the
+      Transaction is removed from the Storage Delay Chain, allowed to enter the
+      ENTER Block, and placed on the CEC behind its priority peers. Then the
+      next Transaction on the Storage Delay Chain is tested.</p>
+      <p ALIGN="left">ENTER and LEAVE Blocks are used to update the
+      statistics associated with a Storage Entity and several SNAs are available
+      which return derived statistics.</p>
+      <p ALIGN="left">Storage entities must be defined by a STORAGE Command.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Entity States</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Storage Entity is empty when all storage units are
+      allocatable and full when no storage units are allocatable. A Storage
+      Entity may be neither empty nor full. In addition, a Storage Entity is
+      either available or unavailable. Storage requests are granted only if the
+      Storage Entity is in the available state.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are several GPSS Blocks which can be used with
+      Storage Entities.</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ENTER Blocks
+      attempt to increase the contents of (place tokens in) a Storage Entity.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LEAVE Blocks
+      decrease the contents of (remove tokens from) a Storage Entity.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SAVAIL
+      Blocks place a Storage Entity in the available state.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SUNAVAIL
+      Blocks place a Storage Entity in the unavailable state.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Storage Entities are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;R<i>Entnum</i>&nbsp;-
+      Unused storage capacity. The storage content (or spaces available for use
+      by &quot;tokens&quot;) available for use by entering Transactions at
+      Storage Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;S<i>Entnum</i>&nbsp;-
+      Storage in use. S<i>Entnum</i> returns the amount of storage content (or
+      &quot;token&quot; spaces) currently in use by entering Transactions at
+      Storage Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SA<i>Entnum</i>&nbsp;-
+      Average storage in use. SA<i>Entnum</i> returns the time weighted average
+      of storage capacity (or &quot;token&quot; spaces) in use at Storage Entity
+      <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SC<i>Entnum</i>&nbsp;-
+      Storage use count. Total number of storage units that have been acquired
+      from Storage<i> </i>Entity<i> Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SE<i>Entnum</i>&nbsp;-
+      Storage empty. SE<i>Entnum</i> returns 1 if Storage Entity <i>Entnum</i>
+      is completely unused, 0 otherwise.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SF<i>Entnum</i>&nbsp;-
+      Storage full. SF<i>Entnum</i> returns 1 if Storage Entity <i>Entnum</i> is
+      completely used, 0 otherwise.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SR<i>Entnum</i>&nbsp;-
+      Storage utilization. The fraction of total usage represented by the
+      average storage in use at Storage Entity <i>Entnum</i>. SR<i>Entnum</i> is
+      expressed in parts-per-thousand and therefore returns a real value between
+      0 and 1000, inclusively.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SM<i>Entnum</i>&nbsp;-
+      Maximum storage in use at Storage Entity<i> Entnum</i>. The &quot;high
+      water mark&quot;.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ST<i>Entnum</i>&nbsp;-
+      Average holding time per unit at Storage Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SV<i>Entnum</i>&nbsp;-
+      Storage Entity in available state. SV<i>Entnum</i> returns 1 if Storage
+      Entity <i>Entnum</i> is in the available state, 0 otherwise.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.9"></a>4.9.
+      Savevalue Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Savevalue Entity is associated with a variable that
+      can take on any value. The value may be assigned or modified by Blocks and
+      may be returned by an X class SNA.</p>
+      <p ALIGN="left">Savevalues are given the value of 0 when created, or
+      when a CLEAR Command (without the OFF option) is sent to the Simulation
+      Object. A Savevalue may be set in the UNSPECIFIED state by an INITIAL
+      Command.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Block</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SAVEVALUE
+      Blocks assign or modify the value of a Savevalue Entity.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Command</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;INITIAL
+      Commands assign a value to a Savevalue Entity, without the need for an
+      Active Transaction.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with Savevalue Entities is:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;X<i>Entnum</i>&nbsp;-
+      Savevalue. The value of Savevalue Entity <i>Entnum</i> is returned.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.10"></a>4.10.
+      Table Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Table Entity is a set of integers used to accumulate
+      data for a histogram. Each integer represents a frequency class in a
+      histogram.</p>
+      <p ALIGN="left">A Table Entity is defined by a TABLE Command.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TABULATE
+      Blocks update the histogram data accumulated in a Table Entity.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with tables are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TB<i>Entnum</i>&nbsp;-
+      Nonweighted average of entries in Table Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TC<i>Entnum</i>&nbsp;-
+      Count of nonweighted table entries in Table Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;TD<i>Entnum</i>&nbsp;-
+      Standard deviation of nonweighted table entries in Table Entity <i>Entnum.</p>
+      </i></font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.11"></a>4.11.
+      Userchain Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Userchain Entity contains is a special Transaction
+      Chain, called a User Chain, that can be manipulated by LINK and UNLINK
+      Blocks. Userchains are useful for modeling complex scheduling and queuing
+      algorithms. They provide closer control of Transaction queuing than is
+      available with entity Delay Chains.</p>
+      <p ALIGN="left">A flag called a &quot;Link Indicator&quot; is part of
+      each Userchain Entity. The Link Indicator is useful for using a User Chain
+      to control the queuing of Transactions on a resource. It is discussed in
+      detail with the descriptions of LINK and UNLINK Blocks in Chapter 7.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are two GPSS Blocks which can be used with
+      Userchain Entities:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;LINK Blocks
+      conditionally place a Transaction on a User Chain.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;UNLINK
+      Blocks remove Transactions from a User Chain.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Userchain Entities are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CA<i>Entnum</i>
+      &nbsp;- Average Userchain content. The time weighted average number of
+      chained Transactions for Userchain Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CC<i>Entnum</i>&nbsp;-
+      Total Userchain entries. The count of all Transactions that have been
+      chained to the User Chain of Userchain Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CH<i>Entnum</i>&nbsp;-
+      Current Userchain content. The current number of Transactions chained at
+      Userchain Entity <i>Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CM<i>Entnum</i>&nbsp;-
+      Maximum Userchain content. The maximum number of Transactions chained at
+      Userchain Entity <i>Entnum</i>. The &quot;high water mark&quot;.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;CT<i>Entnum</i>&nbsp;-
+      Average Userchain residence time. The average duration of Transactions at
+      Userchain Entity <i>Entnum</i>.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.12"></a>4.12.
+      Variable Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Variable Entity is a complex expression which can be
+      calculated on demand. All Variable Entities may be defined from
+      Expressions which include constants, SNAs, arithmetic library functions
+      and arithmetic and logical operators. Expressions are discussed in Chapter
+      8.</p>
+      <p ALIGN="left">A variable is defined by a VARIABLE, FVARIABLE, or
+      BVARIABLE Command.</p>
+      </font>
+      <blockquote>
+      <font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;VARIABLE
+      creates a GPSS arithmetic variable entity which, when evaluated by an SNA
+      call, evaluates the Expression and returns the overall result. In GPSS/PC
+      Compatibility Mode, intermediate results are truncated.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;FVARIABLE
+      creates a GPSS &quot;floating point&quot; variable entity which, when
+      evaluated by an SNA call, evaluates the Expression and returns the result.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;BVARIABLE
+      creates a GPSS Boolean variable entity which, when evaluated by an SNA
+      call, evaluates the Expression, then returns 1 if the result is non zero,
+      0 otherwise. BVARIABLES return 1 if true, 0 if false.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with variables are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;BV<i>Entnum</i>&nbsp;-
+      Result of evaluating Boolean Variable Entity<i> Entnum</i>.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;V<i>Entnum</i>&nbsp;-
+      Result of evaluating arithmetic or floating point Variable Entity <i>Entnum</i>.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5"><a name="4.13"></a>4.13.
+      Numeric Group Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Numeric Group Entity is a set of numeric values.
+      Numeric Groups are useful for recording events or for describing the state
+      of a process which you are simulating.</p>
+      <p ALIGN="left">Numeric Group operations are faster for integers than
+      for real values.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are several GPSS Block s which can be used with
+      Numeric Groups Entities:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;JOIN Blocks
+      place a value into a Numeric Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;REMOVE
+      Blocks take a value out of a Numeric Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;EXAMINE
+      Blocks test values in a Numeric Group.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with Numeric Groups is:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;GN<i>Entnum</i>&nbsp;-
+      Numeric Group count. GN<i>Entnum</i> returns the membership count of
+      Numeric Group Entity <i>Entnum</i>.</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.14"></a>4.14.
+      Transaction Group Entities</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Transaction Group is a set of Transactions. There is
+      no limit to the number of Transaction groups you may have, and no limit to
+      the number of groups to which a single Transaction may belong. Transaction
+      Groups are useful for classifying and accessing Transactions. The active
+      Transaction can test the Transaction Parameters of the members of any
+      Transaction Group.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related Blocks</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are several GPSS Blocks which can be used with
+      Transaction Groups:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;JOIN Blocks
+      place the entering Transaction into a Transaction Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;REMOVE
+      Blocks take some group members out of a Transaction Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;EXAMINE
+      Blocks test members of a Transaction Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SCAN Blocks
+      test and/or modify members of a Transaction Group.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;ALTER Blocks
+      test and/or modify members of a Transaction Group.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNA</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNA associated with Transaction Groups is:</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;GT<i>Entnum</i>&nbsp;-
+      Transaction Group count. GT<i>Entnum</i> returns the membership count of
+      Transaction Group <i>Entnum</i>.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.15"></a>4.15.
+      Random Number Generators</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The GPSS World random number streams are generated by a
+      maximal period 32 bit multiplicative congruential algorithm. The period is
+      2</font><font FACE="Arial" SIZE="1">31</font><font FACE="Arial" SIZE="2">-2
+      and does not include 0. You may include any number of random number
+      generators in the simulation without declaring them. The initial seed of
+      the random number generator is the same as the entity number of the random
+      number generator entity. However, only random number generators numbered 1
+      through 7 can be controlled by an RMULT statement.</p>
+      <p ALIGN="left">The GPSS World Pseudo-random number generation
+      algorithm is based on Lehmer’s Multiplicative-Congruential algorithm,
+      with a maximal period. The algorithm produces pseudo-random numbers in the
+      open interval 0 to 2,147,483,647 and it generates 2,147,483,646 unique
+      random numbers before repeating itself. There is an additional shuffling
+      step used by GPSS World. The RN class SNA returns 0-999, inclusively and
+      the evaluation of random functions uses a random number drawn from
+      0-.999999, inclusively.</p>
+      <p ALIGN="left">The important attributes of random number generators
+      are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Seeds.
+      Unless changed by an RMULT statement, the initial seed is equal to the
+      entity number of the random number generator. For example, RN2 starts with
+      a seed of 2.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;System
+      usage. GPSS World uses Random Number Generators in the scheduling of time
+      ties, in Fractional Mode TRANSFER Blocks and to sample random numbers for
+      GENERATE and ADVANCE Blocks. You can select which random number generator
+      number is to be used as the source of the random number. This is set in
+      the &quot;Random&quot; page of the Model Settings Notebook.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;SNA Values.
+      When accessed as an SNA, a random integer value 0-999 is returned. You may
+      build larger random numbers by using Expressions such as 1000#RN2+RN2 to
+      define a new variable entity. The newly defined random numbers are
+      returned by calls to a V class SNA. You may find it more convenient to use
+      the built-in probability distributions in the Procedure Library. They are
+      discussed in Chapter 8.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;Interpolation
+      values. Fractional values 0-.999999 are drawn from the random number
+      stream when used for interpolation in a continuous random Function.</p>
+      </blockquote>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Related SNAs</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SNAs associated with Random Number Generator
+      Entities are:</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;RN<i>Entnum</i>&nbsp;-
+      Random number. RN<i>Entnum</i> returns a random integer 0-999 from Random
+      Number Generator Entity <i>Entnum</i>.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      <p align="left">&nbsp;</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.16"></a>4.16.
+      Data Streams</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Data Stream is a sequence of text lines used by a
+      GPSS World simulation. Each Data Stream is identified by a unique number,
+      so that many can be processed at the same time within in a single
+      simulation. Data Stream numbers are arbitrary positive integers, assigned
+      by you.</p>
+      <p ALIGN="left">You can use a Data Stream to read and write to a file,
+      or to maintain a set of directly accessible data in the memory of your
+      computer. Open, close, read, write and seek operations exist both as GPSS
+      Blocks and as PLUS library procedures. We denote the Blocks in all capital
+      letters, and the Procedures only capitalizing the first letter. You can
+      perform complex file input/output operations within your own PLUS
+      Procedures or by using higher level GPSS Block Entities, and you may mix
+      the two modes. The Blocks are discussed in Chapter 7 and the PLUS
+      Procedures in Chapter 8. For simplicity, we consider only Blocks in the
+      following discussion.</p>
+      <p ALIGN="left">The basic unit of a Data Stream is the <i>text line</i>,
+      which is a string of printable characters, including blanks. The built-in
+      library of string Procedures can be used to manipulate text lines. When a
+      string is used as a text line, unprintable characters encountered by a
+      READ or WRITE operations cause the line to be truncated.</p>
+      <p ALIGN="left">Elementary operations involving Data Streams, such as
+      READ, WRITE, and SEEK each involve a single line of text. Data read from a
+      file is stripped of any terminating CR or LF character before being
+      brought into the simulation. Similarly, a CR/LF sequence is added
+      automatically to any text string written by the simulation. Therefore, you
+      do not need to add control characters within your simulation. You will
+      pass a text string with no CR or LF to a WRITE Block, and you will receive
+      a text string with no CR or LF from a READ Block.</p>
+      <p ALIGN="left">There are two types of Data Streams:</p>
+          <p align="left">1.&nbsp;Input/Output (or just, I/O, or &quot;File&quot;) Streams
+          for accessing files,</p>
+          <p align="left">2.&nbsp;In-Memory Streams for testing, and for direct access of
+          internal data.</p>
+          <p ALIGN="left">&nbsp;</p>
+      <p ALIGN="left">Each Data Stream has a <i>Current Line Position</i>
+      This is a 1-relative index to the next line position to be read or
+      written. For example, if a READ is issued when the Current Line Position
+      is 1, the first text line in the Data Stream is retrieved. The SEEK
+      operation can be used to change the Current Line Position in I/O Streams
+      and In-Memory Streams.</p>
+      <p ALIGN="left">A WRITE to an I/O Stream or to an In-Memory Stream is
+      operated in either <i>Insert Mode</i> or <i>Replace Mode</i>. The Current
+      Line Position is used slightly differently in these two modes.</p>
+      <p ALIGN="left">There are 5 Blocks used to process Data Streams: OPEN
+      and CLOSE, which initialize and complete Data Stream processing,
+      respectively. READ and WRITE, which add to and retrieve text lines from
+      the Data Stream, respectively. SEEK is used to set the Current Line
+      Position in I/O Streams and In-Memory Streams.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.16.1. Data Stream Operations</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Each of the following operations can be performed as a
+      GPSS Block or a PLUS library procedure call. The two methods are
+      equivalent and interchangable, except that Replace Mode is available in
+      the WRITE Block but not the Write() library procedure. In this section we
+      describe primarily the use of GPSS Blocks.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">OPEN</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The OPEN Block initializes the Data Stream and sets the
+      Current Line Position to 1.</p>
+      <p ALIGN="left">You determine which type of Data Stream is to be used
+      by how you specify Operand A of OPEN. This operand requires a string
+      constant to describe the Data Stream. Remember that String constants are
+      PLUS Expressions. You must parenthesize any PLUS Expression when you use
+      it as a GPSS Block Operand.</p>
+      <p ALIGN="left">An I/O Stream is described by a file specification and
+      an In-Memory Stream is described by a null string.</p>
+      <p ALIGN="left">For example, in the OPEN Block Statement, you could
+      specify</p>
+      </font><b><font FACE="Courier New">
+      <p ALIGN="left">OPEN (&quot;MYFILE.TXT&quot;)</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">to open an I/O Stream, or</p>
+      </font><b><font FACE="Courier New">
+      <p ALIGN="left">OPEN (&quot; &quot;)</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">to open an In-Memory Stream.</p>
+      <p ALIGN="left">If, when you create an file type Data Stream, you use a
+      file name without a path, the directory of the Simulation Object is
+      assumed to be the location of the file. When an existing file is found, it
+      is completely loaded into virtual memory during the processing of the OPEN
+      Block. If no file is found, it is assumed that you are creating one, and
+      processing continues.</p>
+      <p ALIGN="left">If the Data Stream has already been opened, the open
+      operation concludes without raising an error condition.</p>
+      <p ALIGN="left">You can issue open operations within your PLUS
+      Procedures by invoking the Open() library procedure.</p>
+      <p ALIGN="left">After the open operation completes, all data is kept as
+      part of the Simulation Object until the Data Stream is closed. Any changes
+      to the data are returned to the file system only when the Data Stream is
+      terminated by a CLOSE Block or a Close() library procedure.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">CLOSE</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The CLOSE Block releases resources used by the Data
+      Stream, and returns the error code. For IO Streams, it writes the data
+      from virtual memory to the disk file.</p>
+      <p ALIGN="left">You can issue close operations within your PLUS
+      Procedures by invoking the Close() library procedure.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">READ</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The READ Block retrieves the next text line. In IO and
+      In-Memory Streams it retrieves the text line at the Current Line Position,
+      and increments the Current Line Position. If no text line is there, the
+      Active Transaction takes the Alternate Destination but does NOT store an
+      error code internally.</p>
+      <p ALIGN="left">You can issue read operations within your PLUS
+      Procedures by invoking the Read() library procedure.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">WRITE</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The WRITE Block passes a line of text to the Data
+      Stream.</p>
+      <p ALIGN="left">The action depends on which mode the WRITE Block
+      operates in. If Operand D of WRITE is ON, Insert Mode is used. This is the
+      default. If Operand D is OFF, Replace Mode is used.</p>
+      <p ALIGN="left">Although you can issue write operations within your
+      PLUS Procedures, Replace Mode is not supported by the Write() library
+      procedure.</p>
+      </font><b><font FACE="Arial">
+      <p ALIGN="left">Insert Mode</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">This is the default mode for WRITE operations.</p>
+      </font><font FACE="Arial">
+      <p ALIGN="left">Action:</p>
+      </font><font FACE="Arial" SIZE="2">
+      <p align="left">1. Move all text lines at, or after, the Current Line Position down one
+      position.</p>
+      <p align="left">2. If the Current Line Position is after the last text line, set it to
+      just after the last text line in the Data Stream.</p>
+      <p align="left">3. Place a copy of the new text line at the Current Line Position.</p>
+      <p align="left">4. Increment the Current Line Position.</p>
+      <blockquote>
+      </font><b><font FACE="Arial">
+      <p align="left">Replace Mode (WRITE Blocks only)</p>
+      </blockquote>
+      </font></b><font FACE="Arial">
+      <p ALIGN="left">Action:</p>
+      </font><font FACE="Arial" SIZE="2">
+      <p align="left">1. If the Current Line Position is after the last text line, fill any
+      intervening line positions with null text lines.</p>
+      <p align="left">2. Delete any text line at the Current Line Position.</p>
+      <p align="left">3. Place a copy of the new text line at the Current Line Position.</p>
+      <p align="left">4. Increment the Current Line Position.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">SEEK</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">The SEEK Block sets the Current Line Position. The
+      Current Line Position is never allowed to be less than 1. Attempts to do
+      so, set it to 1.</p>
+      <p ALIGN="left">You can issue seek operations within your PLUS
+      Procedures by invoking the Seek() library procedure, which returns the
+      previous Line Position that existed before the invocation. This return
+      value is not available when the SEEK Block is used.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.16.2. Using Data Streams</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">You select the type of Data Stream by the way you
+      specify Operand A of OPEN.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">I/O Streams</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">If you specify a file specification in Operand A of
+      OPEN, an I/O Stream is created. If you do not include a file path in the
+      specification, GPSS World assumes you are using the Simulation Object's
+      directory.</p>
+      <p ALIGN="left">In an I/O Stream, when you issue an OPEN, the whole
+      file is brought into the memory of your computer. When you CLOSE, the
+      whole file is written out to disk. Actual file writing only occurs at
+      CLOSE time.</p>
+      <p ALIGN="left">No error occurs if a file cannot be found. In that
+      case, GPSS World assumes you intend to create one. If you need to verify
+      that the file existed, you should issue a READ before continuing.</p>
+      <p ALIGN="left">Here’s a simple example using an I/O Stream. This is
+      a small GPSS model segment that opens a file, reads the first text line
+      from it, issues a SEEK to text line 20, writes a text line there, and
+      closes.</p>
+      <p ALIGN="left"></font><font size="2" face="Courier New">****************************************************************<br>
+      </font><font FACE="Courier New">
+    <font size="2" face="Courier New">*&nbsp;<br>
+    </font><font size="2">* Read and Modify MYFILE.TXT&nbsp;<br>
+    </font><font size="2" face="Courier New">*<br>
+    ****************************************************************<br>
+    </font> </font><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      GENERATE&nbsp; 1,,,1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OPEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (&quot;MYFILE.TXT&quot;),1,Done&nbsp;&nbsp;&nbsp;&nbsp; ;Copy the file to memory<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; READ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Text_Parm,1,Done&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;Place text line in parm<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE Opening_Line,P$Text_Parm&nbsp;
+      ;Text line to safeplace<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEEK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      20,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ;Access text line 20<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WRITE&nbsp;&nbsp;&nbsp;&nbsp; (&quot;New Line 20&quot;),1,Done&nbsp;&nbsp;&nbsp;
+      ;Replace the line<br>
+      Done&nbsp;&nbsp;&nbsp; CLOSE&nbsp;&nbsp;&nbsp;&nbsp; Error_Parm,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ;Copy the file to disk<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAVEVALUE File_Error,P$Error_Parm&nbsp;&nbsp;
+      ;Put in Standard Report<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1
+    </font></p>
+      <font FACE="Arial" SIZE="2">
+    <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">In-Memory Streams</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">If you use a null string in Operand A of OPEN, you
+      create an In-Memory Stream. In an In-Memory Stream, all text lines are
+      kept in memory. When you CLOSE, all lines are deleted.</p>
+      <p ALIGN="left">In operation, an In-Memory Stream works exactly like an
+      I/O Stream, except that no data is in the stream when you start to use it,
+      and the data is not saved when you are done. The simulation must load the
+      Stream with text lines before it can read from it.</p>
+      <p ALIGN="left">In-Memory Streams provide the advantage of direct
+      access to data utilizing the SEEK Block and allow you to test the use of
+      Data Streams without actually accessing a file.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.16.3. How to Test For Errors</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">You can choose to handle Data Stream Errors yourself
+      within the Simulation or you can force the Simulation to Error Stop when
+      one is encountered. Normally no Error Stop occurs. This is controlled by a
+      Setting on the Simulation Page of the Simulation's Settings. To change
+      this setting choose the <b>Edit / Settings</b> menu item, and check the <b>I/O
+      Stream Error Stops</b> checkbox.</p>
+      <p ALIGN="left">Errors and other unexpected conditions cause a Data
+      Stream Error Code to be stored internally, and cause the Active
+      Transaction entering the Block to take the Alternate Block Destination, if
+      any. A CLOSE Block can retrieve the Data Stream’s error code. Only the
+      first non-zero Error Code is remembered. All others are discarded.</p>
+      <p ALIGN="left">An Alternate Destination can be specified as Operand C
+      in OPEN, CLOSE, READ, and WRITE Blocks. The Active Transaction will go to
+      the Alternate Destination Block, instead of the Next Sequential Block, if
+      an error condition occurs. If you do not use these operands, you are
+      essentially ignoring error conditions, for the time being. Normally, you
+      should use the Alternate Destination operands to send the Active
+      Transaction to a CLOSE Block which retrieves the Error Code. You could
+      then place the code in a Savevalue and terminate the simulation.</p>
+      <p ALIGN="left">When the Active Transaction enters a CLOSE Block, the
+      stored Error Code is placed in a Transaction Parameter. In addition, if
+      the error code is non zero, and you have specified CLOSE Operand C, the
+      Alternate Destination will be taken by the Active Transaction.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">End of Data</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A special case occurs when the Active Transaction
+      enters a READ Block, but there is no text line at the Current Line
+      Position. This happens normally when you have read all the text lines in a
+      file. This condition causes the Alternate Destination to be taken by the
+      Active Transaction, but does NOT cause an error code to be stored
+      internally.</p>
+      </font><b><font FACE="Arial" SIZE="4">
+      <p align="left">Error Codes</p>
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;0 - No
+      Errors.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;10 - OPEN
+      Error. Filename too long. Data Stream is not created.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;11 - OPEN
+      Error. Error while reading an external file. Data Stream is not created.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;12 - OPEN
+      Error. Memory request was denied while trying to read an existing file.
+      Data Stream is not created.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp; 21 - READ
+      Error. A memory request was denied while trying to perform a READ.</p>
+      </blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ·</font><font FACE="Arial" SIZE="2">&nbsp;22 - READ
+      Error. Data Stream has not been successfully opened.</p>
+      <blockquote>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;31 - WRITE
+      Error, A memory request was denied while trying to</p>
+      <p ALIGN="left">perform a WRITE.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;32 - WRITE
+      Error. Data Stream has not been successfully opened.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;41 - CLOSE
+      Error. An I/O Error prevented the file from being written to disk.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;43 - CLOSE
+      Error. Data Stream has not been successfully opened.</p>
+      </font><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;51 - SEEK
+      Error. Data Stream has not been successfully opened.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      <p align="left">&nbsp;</p>
+      </blockquote>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h2 ALIGN="left"><font face="Arial" size="5">&nbsp;&nbsp;&nbsp; <a name="4.17"></a>4.17.
+      Continuous Simulation</font></h2>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">GPSS World can automatically integrate systems of
+      ordinary differential equations. Integration of User Variables in GPSS
+      World is extremely easy. One or more INTEGRATE statements, and variable
+      initialization, is all that is needed. Integration is done automatically
+      by a modified variable step 5th order Runge-Kutta-Fehlberg method,
+      RKF4(5).</p>
+      <p ALIGN="left">Systems of ordinary differential equations, of any
+      order, can be simulated. Plot and Epressions Windows are available for
+      online viewing of the states of variables.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.1 How to Set up an Integration</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">There are two things to do in order to set up the
+      automatic integration of a User Variable. You must assert an INTEGRATE
+      Command and you must give the variable an initial value.</p>
+      <p ALIGN="left">Let us assume you have a simple ordinary differential
+      equation of the form</p>
+      <b>
+      <p ALIGN="CENTER">y’ = f(-)</p>
+      </b>
+      <p ALIGN="left">where <b>f(-)</b> is an Expression, possibly involving
+      the System Time, i.e. the AC1 System Numeric Attribute, and other User
+      Variables. <b>f(-)</b> is the derivative of y with respect to time.</p>
+      <p ALIGN="left">First, put the derivative in parentheses and set up the
+      INTEGRATE Command as</p>
+      <b>
+      <p ALIGN="CENTER">Y_ INTEGRATE ( f(-) )</p>
+      </b>
+      <p ALIGN="left">Second, make sure Y_ has a starting value, such as</p>
+      <b>
+      <p ALIGN="CENTER">Y_ EQU 100.3</p>
+      </b>
+      <p ALIGN="left">Then, when the simulation advances the clock, it
+      automatically sees to it that the value of the User Variable Y is kept
+      current.</p>
+      <p ALIGN="left">Since several single letter names clash with SNA
+      classes, here we append an underscore to be sure that the name is unique.
+      All other User Variables involved in the derivative, must be initialized,
+      as well. PLUS Assignment Statements can also be used to assign values to
+      User Variables.</p>
+      <p ALIGN="left">Integrations are automatically begun in the active, or
+      &quot;enabled&quot; state. However, you can turn an integration ON or OFF
+      while a simulation is running by using one or more INTEGRATION Blocks.
+      This is discussed in Chapter 7.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.2 Basic Concepts</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="center">A derivative states how fast a variable is changing.
+      For example, if your inventory is building up at a rate of 2 units an
+      hour, and your simulation is in units of seconds, all you need to do is
+      add</p>
+      <b>
+      <p align="center">Inventory INTEGRATE ( 2.0 / 3600 )</p>
+      </b>
+      <p ALIGN="left">and</p>
+      <b>
+      <p align="center">Inventory EQU 100</p>
+      </b>
+      <p ALIGN="left">or whatever the starting Inventory value is.</p>
+      <p ALIGN="left">The rate of change (the derivative) leads GPSS World to
+      automatically increase the numeric value of Inventory throughout the
+      simulation. When sales occur, you can simply decease the Inventory using a
+      PLUS Procedure. The discrete sales event differs fundamentally in that it
+      occurs with no simulated time duration, reducing the value of Inventory
+      instantly.</p>
+      <p ALIGN="left">Integration takes a lot more computer time than the
+      evaluation of a closed form expression. In an example as simple as this
+      one where the variable can be calculated as a function of time, it is much
+      faster to simply calculate the value of the variable given the simulated
+      time, than to integrate the User Variable. Integration should generally be
+      reserved for those cases where you don’t have the solution of the
+      differential equation.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.3 Thresholds</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Integrated User Variables create Transactions when they
+      cross thresholds. This makes it easy to use a continuously modeled value
+      to trigger discrete events.</p>
+      <p ALIGN="left">Each INTEGRATE Command may have zero, one, or two
+      numeric thresholds. Operands B and C can be used to specify threshold 1,
+      and/or operands D and E can be used to specify threshold 2. In either
+      case, the first operand of the pair determines the value of the threshold,
+      the second indicates the Block which will receive generated Transactions.</p>
+      <p ALIGN="left">During the integration, if the value of the integrated
+      variable crosses the value of a threshold, from either direction, a new
+      Transaction is created. It is given a priority of 0, and is scheduled to
+      enter the Block associated with that threshold in the INTEGRATE Command.
+      The Transaction’s time of entry into the model is estimated by a linear
+      interpolation. To improve accuracy, the integration ministep is decreased
+      when a threshold is imminent.</p>
+      <p ALIGN="left">Thresholds may be constants, parenthesized Expressions,
+      or even Procedure Calls. In addition, the Transactions generated by a
+      threshold crossing may be used to move the threshold.</p>
+      <p ALIGN="left">Both thresholds behave identically; there is no need to
+      specify one as upper and the other as lower. It is the crossing of the
+      threshold (in either direction) that triggers a Transaction arrival. If
+      the direction of crossing is meaningful to your model, you will have to
+      either keep track of the state of the integrated variable, or test for the
+      direction of crossing when the Threshold Event occurs.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.4 Higher Order Equations</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">You must reduce the order of higher order ordinary
+      differential equations. If you have higher order differential equations,
+      before you enter them into GPSS World, you should rewrite them as a system
+      of first order equations. This is relatively easy, and requires that you
+      introduce a new variable for each of the intermediate derivatives.</p>
+      <p ALIGN="left">For example, if you have</p>
+      <b>
+      <p ALIGN="CENTER">25 y’’’ - 6 y’ + y = 0.</p>
+      </b>
+      <p ALIGN="left">Let u = y ‘</p>
+      <b>
+      <p ALIGN="CENTER">v = u ‘ = y’’</p>
+      </b>
+      <p ALIGN="left">For even higher orders, we would continue to introduce
+      variables.</p>
+      <p ALIGN="left">Then, substituting into the original equation and using
+      only one first order derivative, we have</p>
+      <b>
+      <p ALIGN="CENTER">25 v’ - 6 u + y = 0.</p>
+      </b>
+      <p ALIGN="left">&nbsp;</p>
+      <p ALIGN="left">&nbsp;</p>
+      <p ALIGN="left">Now we have the following system of equations:</p>
+      <b>
+      <p ALIGN="CENTER">y’ = u</p>
+      <p ALIGN="CENTER">u’ = v</p>
+      <p ALIGN="CENTER">v’ = 6/25 u - 1/25 y</p>
+      <p ALIGN="left">&nbsp;</p>
+      <p ALIGN="left">&nbsp;</p>
+      </b>
+      <p ALIGN="left">In GPSS World, you could use the following Statements</p>
+      <b>
+      <p ALIGN="left">Y_ INTEGRATE U_</p>
+      <p ALIGN="left">U_ INTEGRATE V_</p>
+      <p ALIGN="left">V_ INTEGRATE ( (6/25) # U_ - (1/25) # Y_)</p>
+      </b>
+      <p ALIGN="left">To these, you must add EQU Statements that initialize
+      U_, V_, and Y_.</p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      <p align="left">&nbsp;</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.5 Continuous Only</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">If you want to do a purely continuous simulation, you
+      still need to create a termination condition by entry into a TERMINATE
+      Block. Therefore, include a GPSS segment such as</p>
+      <p ALIGN="left"><b>GENERATE End_Time</p>
+      <p ALIGN="left">TERMINATE 1</p>
+      </b>
+      <p ALIGN="left">In the model, which is begun by a</p>
+      <p ALIGN="left"><b>START 1</b></p>
+      <p ALIGN="left">&nbsp;</p>
+      </font><b><font FACE="Arial" SIZE="5">
+      <p align="left">&nbsp;</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">&nbsp;</p>
+      </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.6 Phases</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">Simulations run in alternate continuous and discrete
+      phases. At any instant where events are scheduled, the simulation runs in
+      a discrete phase. The clock does not advance within an instant in a
+      discrete phase. Between instants, the simulation runs in a continuous
+      phase, during which the integrations proceed in small time increments
+      called ministeps. Plotted integration variables report intermediate values
+      at the end of ministeps.</p>
+      <p ALIGN="left">When a threshold crossing generates a Transaction, the
+      simulation goes into a discrete phase. In this manner, the continuous and
+      the discrete phases can be closely interrelated. Conversely, User
+      Variables can be assigned new values in a discrete phase even if they are
+      being integrated. You can do so using an EQU Command, or a PLUS Assignment
+      Statement. If you want such assignments to occur within the running of the
+      simulation, you must define a PLUS Procedure that makes the assignment.
+      For example, if you defined a PLUS Procedure as</p>
+      </font><b><font FACE="Courier New">
+      <p ALIGN="left">PROCEDURE SetPop(Pop_Level)Foxes = Pop_Level</font><font FACE="Courier">
+      ;</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">you could reinitialize the FOXES User Variable by
+      entering a PLUS Block, such as</p>
+      </font><b><font FACE="Courier New">
+      <p ALIGN="left">PLUS (SetPop(200))</p>
+      </font></b><font FACE="Arial" SIZE="2">
+      <p ALIGN="left">or by using a parenthesized Expression that invokes
+      SetPop( ) in some other kind of Block.</p>
+      <p ALIGN="left">&nbsp;</p>
+    </font>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font face="Arial" size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.7 Integration Error</font><!--mstheme--></font></h3>
+      <font FACE="Arial" SIZE="2">
+      <p ALIGN="left">A Model Setting called the Integration Tolerance is
+      used to limit the local truncation error of integrations. This setting
+      applies to all integrations performed during the simulation. If you make
+      the tolerance smaller, the integrations will take longer, but will be more
+      accurate. This is set in the Simulate Page of the Model Settings Notebook.</p>
+      <p ALIGN="center"><font FACE="Helvetica" SIZE="2">
+    CHOOSE</font><b> Edit / Settings
+      </b></p>
+      <p ALIGN="left">Then select the
+    </font><b>Simulate </b><font FACE="Arial" SIZE="2">page.
+      Then fill in the desired value in the entry box marked &quot;Integration
+      Tolerance&quot;. The installation default is 10</font><font FACE="Arial" SIZE="1"><sup>-6</sup></font><font FACE="Arial" SIZE="2">.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font size="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4.17.8 Related Command</font><!--mstheme--></font></h3>
+      <b><font FACE="Arial" SIZE="5">
+      <blockquote>
+      </font></b><font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;INTEGRATE
+      Commands set up automatic integrations.
+      </font></p>
+      <p ALIGN="left">&nbsp;</p>
+      <h3 ALIGN="left"><!--mstheme--><font color="#336666"><font size="4" face="Arial">4.17.9 Related Block</font><!--mstheme--></font></h3>
+      <font FACE="Symbol" SIZE="2">
+      <p ALIGN="left">·</font><font FACE="Arial" SIZE="2">&nbsp;INTEGRATION
+      Blocks turn the integration of variables ON or OFF.</p>
+    </blockquote>
+    </font>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+    <p align="center">&nbsp;
+    <a href="reference_manual.htm"><font FACE="Arial" SIZE="2">
+[Table of Contents]</font></a></p>
+    <b><font FACE="Arial" SIZE="6">
+      </blockquote>
+    </blockquote>
+</font></b>
+<p ALIGN="JUSTIFY">&nbsp;</p>
+      <!--mstheme--></font></body>
+
+</html>

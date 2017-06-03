@@ -1,0 +1,44 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+h1{
+  color:red;
+  margin-left: 20px;
+  font-family: fantasy;
+  font-size: 32pt;
+}
+
+h1::first-letter{
+  color : blue;
+  font-size: 40pt;
+}
+
+label{
+  color:blue;
+}
+
+#formtable, #formtable td{
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding : 5px;
+  margin-left: 20px;
+}
+
+.after{
+  margin-right: 1%;
+  margin-left: 0.2%;
+}
+
+input{
+  cursor:pointer;
+}
+
+#formtable td:hover{
+  background: yellow;
+}
+
+.submit{
+  margin : 20px;
+}

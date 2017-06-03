@@ -1,0 +1,3611 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+<meta name="Microsoft Theme" content="canvas 0001">
+</head>
+
+<body background="../_themes/canvas/cnvbkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#0066CC" vlink="#006666" alink="#996699"><!--mstheme--><font face="Arial, Arial, Helvetica"><b><font FACE="Arial">
+<blockquote>
+<blockquote>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a name="1. TURNSTIL.GPS">1. TURNSTIL.GPS</a><!--mstheme--></font></h1>
+  </font></b>
+
+  
+<b><font FACE="Arial">
+
+  
+  <font FACE="Helvetica" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+</font>
+  </font>
+
+  
+    <p ALIGN="CENTER"><font face="Arial" size="4">Simulation of a turnstile at a football stadium.</font></p>
+</b>
+
+  
+  <font FACE="Helvetica" SIZE="2">
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Problem Statement</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Spectators arrive at a turnstile of a football stadium every
+7±7 seconds and queue for admittance. The time to pass through is evenly
+distributed at 5±3 seconds.</p>
+<p ALIGN="left">A model is required to determine the time taken by 300 people
+to pass through the turnstile.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b>
+</font>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - TURNSTIL.GPS, by Gerard F. Cummings<br>
+**************************************************************<br>
+*&nbsp;<br>
+* Turnstile Model&nbsp;<br>
+* Time is in seconds&nbsp;<br>
+**************************************************************<br>
+In_use EQU 5 ;Mean time<br>
+Range EQU 3 ;Half range</font></p>
+<p align="left"><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GENERATE&nbsp; 7,7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;People arrive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Enter queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Acquire turnstile<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; In_use,Range&nbsp;
+;Use turnstile<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave turnstile<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One spectator enters<br>
+<br>
+**************************************************************<br>
+</font></p>
+
+  
+  <font FACE="Helvetica" SIZE="2">
+<b><font FACE="Arial">
+<p align="left">Line by Line Description of Model Function</p>
+
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">GENERATE</font></b><font FACE="Arial" SIZE="2"> - The
+GENERATE Block causes Transactions which represent people to arrive at the
+turnstile every 7±7 seconds.</p>
+<b>
+<p ALIGN="left">QUEUE</b> - The QUEUE Block, with the DEPART Block, collect
+statistics of the waiting line of people who have not yet used the turnstile.
+The associated GPSS Queue Entity is named Turn.</p>
+<b>
+<p ALIGN="left">SEIZE</b> - The SEIZE Block is entered by a single waiting
+Transaction as soon as the turnstile is available. This causes the turnstile to
+become busy, thereby preventing any more Transactions from entering the SEIZE
+Block.</p>
+<b>
+<p ALIGN="left">DEPART</b> - Once a Transaction has SEIZEd the Facility
+representing the turnstile, it enters a DEPART Block in order to collect waiting
+time statistics for the Queue Entity Turn. The waiting time does not include
+time in the turnstile.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block controls the length of
+simulated time that the turnstile is in use by the Transaction that has just
+SEIZEd it. In this case, the turnstile takes 5±3 seconds to admit a person. We
+have used named values for the ADVANCE Block operands to make them easy to
+change as we will see later in this lesson.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - The RELEASE Block gives up possession of the
+turnstile so that a new Transaction can take possession of it by entering the
+SEIZE Block.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The TERMINATE Block removes the Transaction
+from the simulation, after the person has passed through the turnstile.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report, in the
+Main Window</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Turnstil</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, the simulation must be created.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">300</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 300 Transactions have entered
+  the TERMINATE Block. This represents 300 people passing through the turnstile.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Turnstil.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window saving the report, you can reopen it by using the GPSS
+  World <b>File / Open</b> in the Main Menu. Then you should choose Report in
+  the &quot;Files of type&quot; drop down box at the bottom of the window. GPSS
+  World reports are written in a special format. If you wish to edit the report,
+  you will have to copy its contents to the clipboard and from there into a word
+  processor. You will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">From the End Time value in the Standard Report, we see that
+  2134.023 seconds had elapsed when the 300th spectator had passed through the
+  turnstile. Replications of the simulation will yield slightly different values
+  due to random variation.</p>
+  <p ALIGN="left">Notice that the QUEUE and DEPART Blocks do not enclose the
+  ADVANCE Block. This means that Transactions register waiting time, but not
+  time in the turnstile, in the Queue Entity named Turn. Now look in the Queue
+  Entity subreport of the Standard Report. It is found with QUEUE Turn, above.
+  We see that the maximum number of spectators waiting is 3. That’s not too
+  bad. Perhaps we could get away with a slower turnstile. If spectators arrive,
+  on average, only once every 7 seconds, is it not true that we need only a
+  turnstile that can keep up with arrivals? We’ll find out in a little while.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Let’s use the SHOW Command to look at some System Numeric
+  Attributes. Since SNAs are so easy to use, you should be aware of what is
+  available. SNAs are discussed in Chapter 3 of the <i>GPSS World Reference
+  Manual</i>. First, look at the current system clock.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">AC1</p>
+</font></b>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In the status line of the Main Window you should see the
+  current clock time which is 2134.023.</p>
+  <p ALIGN="left">Next the utilization (fractional busy time) of the
+  turnstile, in parts per thousand.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">FR$Turn</p>
+</font></b>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This yields a value of 689.67, the Fractional Busy Time is
+  expressed in parts per thousand.</p>
+  <p ALIGN="left">The number of spectators to arrive at the turnstile.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">N1</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">As we expected, it’s 300.</p>
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Facilities Window. Be sure to expand the window
+  to a comfortable viewing size. Notice that the turnstile was occupied about
+  70% of the time, and that at the end of the simulation, the turnstile is idle.
+  This is apparent because the Facility representing the turnstile is not busy
+  (gray in color), and no Transaction is currently the owner.</p>
+  <p ALIGN="left">Let’s take a look at where Transactions are.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Blocks</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the detailed view of the Blocks Window. Notice that
+  there are no Transactions currently active. That is because Transaction 301 is
+  just about to enter the simulation and Transaction 300 has just been
+  TERMINATEd.</p>
+  <p ALIGN="left">In the detailed view you can see a history of total Block
+  entries during the simulation. This view of the Blocks Window shows the total
+  Block entry counts. In your own simulations you may want to use this form of
+  the Blocks Window to verify that Transactions are going where they should.</p>
+  <p ALIGN="left">Before we go on, let’s close the Blocks Window since we
+  don’t want to have to update extra windows that we are not viewing or
+  planning to view in the immediate future.</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The X-Upper Right of the Blocks Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we will rerun the simulation, viewing the simulation
+  through some other windows. You may also choose to close the Facilities Window
+  at this time. However, we will be utilizing it again in the near future.</p>
+  <p ALIGN="left">Now, let’s get rid of Transactions and reset the
+  statistics accumulators. From the Main Menu</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / Clear</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s begin by setting up an Expression Window.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then in the Expression Window</p>
+  <p ALIGN="left">When you enter the value in the second box in the dialog
+  box, you should place the mouse pointer in the small box and click once. Do
+  not press</font></font><font face="Arial" size="2"> <b>[Enter] </b></font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">to go from the first to the second box as GPSS World then assumes that all
+  values have been entered. You can instead use</font> <b>[Tab]</b></font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+  to move from box to box. Now, in the dialog box for the Label field</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Number of people</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">N7</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">This will let us view the number of spectators that have
+passed through the turnstile. GPSS World makes data collection extremely easy by
+providing over 50 automatic variables which describe the state of GPSS entities.
+The only thing you have to do is spell them correctly!</p>
+
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in this example</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If we memorize all the expressions, we'll be able to close
+  the window and open it again later with easy retrieval of all the values. Also
+  if you save the simulation the values in the Expression Window will be saved
+  with the simulation if they have been memorized.</p>
+  <p ALIGN="left">Let’s also view the current number of customers waiting
+  to enter the turnstile. In the Expression Window</p>
+  <p ALIGN="left">and in the dialog box for the Label field replace the
+  current value</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Q Content</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Q$Turn</p>
+</font></b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Finally, let’s add a third value to view the average
+  waiting time to get into the turnstile.</p>
+  <p ALIGN="left">In the dialog box for the Label field, replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Avg Wait</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">QT$Turn</p>
+</font></b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+</u>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">25,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Did you see the simulation run until 25 customers departed
+  the turnstile? Let’s watch the GPSS Facility that represents the turnstile,
+  but first close the Expression Window since it is best to only have open the
+  windows that you need to watch. Since we have memorized all the Expressions,
+  we can open it again later and easily retrieve the values.</p>
+  </font>
+  <p ALIGN="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><b>
+  </b><u>The X-Upper Right of the Expression
+  Window</u><font FACE="Arial" SIZE="2"></p>
+  <p ALIGN="left">Now, let's take a look at the Facilities Window. If you
+  have closed it,</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise click anywhere on the Facilities Window if it is
+  partially hidden from view. Now, let’s start the simulation running for 25
+  more Transactions and observe the Facilities Window.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">25,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When the simulation completes, close the Facilities Window.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of the Facilities Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s see what would happen if the turnstile took,
+  7±4 seconds, instead of 5±3, to admit a spectator. We’ll use a Custom
+  Command to change the named values that were initially defined in the model.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box on the first line</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">In_use EQU 7</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">then</p>
+
+
+</font>
+<p align="center">PRESS<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;<b>
+[Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Unlike other dialog boxes, pressing the e key will not
+process the information entered in the box. Instead it will advance you to the
+next line where you may enter yet another command to be executed.</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Range EQU 4</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If you wish, you can use the SHOW Command to ensure the
+  changes have been made. Let’s test one of the values to see how that works.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Range</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You should see the value 4 in the Status Line of the Main
+  Window. You'll see it in the Journal Window, as well.</p>
+  <p ALIGN="left">Now let’s see what happens with the new ADVANCE Block.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Clear</p>
+</b>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to reset the statistics accumulators and set the simulation
+  startup to the same conditions when we first ran the simulation.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">300</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Please wait for the simulation to end. Now open the
+  Expression Window.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You should see all three expressions in the Memorized
+  Expressions box</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The Expression</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">for each expression. When all three expressions are in the
+  Window Contents box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Notice that the maximum queue length is quite a bit higher
+  than in the original simulation. Also, the average queuing time is higher.
+  This suggests that the slower turnstile may not be acceptable, even though it
+  could, on average, admit all the spectators.</p>
+  <p ALIGN="left">Before reporting these results, we must establish that they
+  are not due to random noise. Also, we may want to exclude starting conditions
+  from the final statistics using the RESET Command. We could plan a set of
+  experiments, and do an analysis of variance on average queue times based on
+  the two different turnstile rates. The GPSS World ANOVA Command is discussed
+  in Lesson 13 of Chapter 1.</p>
+  <p ALIGN="left">You may stop here or choose to go on to the next model.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font>
+<h1 align="left"><!--mstheme--><font color="#336666">
+      <b>
+        <a href="#2. TELEPHON.GPS" name="2. TELEPHON.GPS"><font face="Arial">2. TELEPHON.GPS</font></a>
+</b>
+<!--mstheme--></font></h1>
+<font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+  </font>
+</font><b>
+  <p ALIGN="CENTER"><font face="Arial" size="4">Simulation of a simple telephone system.</font></p>
+</b><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">&nbsp;</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Problem Statement</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">A simple telephone system has two external lines. Calls,
+  which originate externally, arrive every 100±60 seconds. When the line is
+  occupied, the caller redials after 5±1 minutes have elapsed. Call duration is
+  3±1 minutes. A tabulation of the distribution of the time each caller takes
+  to make a successful call is required. How long will it take for 200 calls to
+  be completed?</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Listing</p>
+  </font></b>
+</font><p align="left"><font face="Courier New" size="2">; GPSS World Sample File - TELEPHON.GPS, by Gerard F. Cummings<br>
+**************************************************************<br>
+*&nbsp;<br>
+* Telephone System Model&nbsp;<br>
+*&nbsp;<br>
+**************************************************************<br>
+* Simple Telephone Simulation&nbsp;<br>
+* Time Unit is one minute&nbsp;<br>
+Sets STORAGE 2<br>
+Transit TABLE M1,.5,1,20 ;Transit times<br>
+GENERATE 1.667,1 ;Calls arrive<br>
+Again GATE SNF Sets,Occupied ;Try for a line<br>
+ENTER Sets ;Connect call<br>
+ADVANCE 3,1 ;Speak for 3+/-1 min<br>
+LEAVE Sets ;Free a line<br>
+TABULATE Transit ;Tabulate transit time<br>
+TERMINATE 1 ;Remove a Transaction<br>
+Occupied ADVANCE 5,1 ;Wait 5 minutes<br>
+TRANSFER ,Again ;Try again<br>
+**************************************************************<br>
+</font></p>
+<font FACE="Helvetica" SIZE="2"><b><font FACE="Courier New" SIZE="1">
+  
+  </font><font FACE="Arial">
+  <p align="left">Line by Line Description of Model Function</p>
+  
+  </font><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">STORAGE</font></b><font FACE="Arial" SIZE="2"> - The
+  Storage Entity Sets, with total capacity of 2, is set up to represent 2
+  external telephone lines.</p>
+  <b>
+  <p ALIGN="left">TABLE</b> - The Table Transit is defined, so that an
+  on-line histogram of call times can be maintained. Just before a Transaction
+  is TERMINATEd, the &quot;time in simulation&quot; SNA, M1, is tabulated. This
+  represents the duration from when the caller first dialed, until he/she
+  finished talking.</p>
+  <b>
+  <p ALIGN="left">GENERATE</b> - A Transaction that represents a call is
+  created every 100±60 seconds.</p>
+  <b>
+  <p ALIGN="left">GATE</b> - A GATE Block sends a Transaction to the Block
+  Occupied when all lines are busy. This occurs when the Storage Entity Sets is
+  full, and represents a caller who must begin waiting before redialing.</p>
+  <b>
+  <p ALIGN="left">ENTER</b> - If either 0 or 1 unit of storage is in use, a
+  Transaction passes through the GATE Block, and into the ENTER Block, thereby
+  using another storage unit. If all storage units are then in use, no more
+  Transactions will be admitted by the GATE Block. Each Transaction passing into
+  the ENTER Block represents a call which has been successfully connected.</p>
+  <b>
+  <p ALIGN="left">ADVANCE</b> - The Transaction then enters an ADVANCE Block,
+  which simulates a call duration of 180±60 seconds. It will remain in this
+  Block until the simulated time has passed.</p>
+  <b>
+  <p ALIGN="left">LEAVE</b> - When a Transaction enters the LEAVE Block, it
+  makes one unit of the Storage Sets available to other Transactions. This
+  represents a newly available external line.</p>
+  <b>
+  <p ALIGN="left">TABULATE</b> - The TABULATE Block adds a call duration to
+  the histogram of call times collected in Table Transit.</p>
+  <b>
+  <p ALIGN="left">TERMINATE</b> - The TERMINATE Block removes the Transaction
+  from the simulation, after the call has been completed.</p>
+  <b>
+  <p ALIGN="left">ADVANCE</b> - A Transaction comes to the ADVANCE Block
+  labeled Occupied when it tried, and failed, to acquire a unit of storage from
+  the Storage Entity Sets. This represents a caller who must wait before
+  redialing.</p>
+  <b>
+  <p ALIGN="left">TRANSFER</b> - The TRANSFER Block sends each Transaction to
+  the GATE Block labeled Again. There, the Transaction will try again to acquire
+  a storage unit from the Storage Entity Sets. In other words, the caller will
+  redial.</p>
+  <p ALIGN="left">Transactions represent calls begun but not completed. If a
+  new caller finds both lines busy, the GATE Block labeled Again sends it to
+  wait in the ADVANCE Block labeled Occupied for 5 minutes, or so. After the
+  delay, the Transaction jumps back up to the GATE Block to try again.
+  Successful callers pass through the GATE Block, encounter a delay which
+  represents the call, and then leave the simulation.</p>
+  <p ALIGN="left">Notice that the number of phone lines is modeled as a
+  Storage Entity with a capacity of 2. Later, it will be very easy to experiment
+  with the effects of adding more lines.</p>
+  <p ALIGN="left">If a call cannot be completed, the corresponding
+  Transaction waits for 5 simulated minutes in the ADVANCE Block labeled
+  Occupied. The number of Transactions here represents the number of callers
+  waiting to redial.</p>
+  <p ALIGN="left">The TABLE statement will produce detailed information on
+  the duration of call attempts. By tabulating the M1 SNA just before each
+  Transaction is TERMINATEd, we will build a histogram of how long callers took
+  to complete their calls.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Running the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">To run the simulation and create a Standard Report,</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box,</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Telephon</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, the simulation must be created.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">200</p>
+</font></b>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 200 Transactions have entered
+  the TERMINATE Block. This represents 200 call completions.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Telephon.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Courier New" SIZE="1">
+  <p align="left">&nbsp;</p>
+  </font><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">From the End Time value in the Standard Report, we see that
+  359.16 minutes had elapsed when the 200th call had been completed.
+  Replications of the simulation will yield slightly different values due to
+  random variation.</p>
+  <p ALIGN="left">The Table named Transit gives detailed information on how
+  long it took callers to complete their calls. Although most calls were
+  completed in less than 9.5 minutes, many took much longer. Perhaps this would
+  be a source of customer dissatisfaction.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let us now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again. If you have a
+  Report Window open, please close it now.</p>
+  <p ALIGN="left">Let’s use the Expression Window to look at some System
+  Numeric Attributes. First, confirm the simulation end time.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The Edit Expression Window opens. When you enter the value
+  in the second box in this dialog box, you should place the mouse pointer in
+  the small box and click once. Do not press</font></font><font face="Arial" size="2">
+<b>[Enter]</b></font><font FACE="Arial" SIZE="2">
+  <font FACE="Helvetica" SIZE="2">
+  to go from the first to the second box as GPSS World then assumes that all
+  values have been entered. You can, instead, use</font><b> [Tab]</b></font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+  to move from box to box. Now, in the dialog box for the Label field</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Time</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">AC1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">This will let us view the current time.</p>
+
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If we memorize all the expressions, we'll be able to close
+  the window and open it again later with easy retrieval of all the values. Also
+  if you save the simulation the values in the Expression Window will be saved
+  with the simulation if they have been memorized. We're going to close this
+  window and reopen it later so please memorize this expression and the ones
+  that follow.</p>
+  <p ALIGN="left">Now, let's look at the utilization (fractional busy time)
+  of the phone lines, in parts per thousand.</p>
+  <p ALIGN="left">In the dialog box for the Label field replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Util</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">SR$Sets</p>
+</font></b>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Finally, let’s add the average time a phone line is held.</p>
+  <p ALIGN="left">In the dialog box for the Label field, replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Avg. Call Time</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">ST$Sets</p>
+</font></b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+</u>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The utilization is expressed in parts per thousand. The
+  lines are utilized at 84%<b> </b>of capacity. Although there is some unused
+  time, the queuing delays may not be acceptable.</p>
+  <p ALIGN="left">Now, close the Expression Window</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of the Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Storages Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Storages Window Detail View. Notice that we can
+  also see the 84% utilization here. From the low and high water marks (Min and
+  Max values) of the storage in use, we see that some time in the simulation, 0,
+  1, or 2 lines were busy. Use the slide bar in the bottom of the window to move
+  to the values we are discussing. The Storages Window is discussed in <b>Chapter
+  5</b> of the <i>GPSS World Reference Manual</i>.</p>
+  <p ALIGN="left">If we open the Table Window, we can see the histogram of
+  call completion times.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since there is only one Table in this model you will
+  see TRANSIT in the drop-down box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Make sure that you size the Table Window so that it is
+  large enough to display the Table correctly. This gives the same information
+  as the Table in the Standard Report. The average talking time is 3 minutes as
+  shown by the ST SNA in the Expression Window, but the average time including
+  redials is 14.27 minutes as seen in the Table Window. Callers are spending an
+  enormous amount of time redialing.</p>
+  <p ALIGN="left">&nbsp;</p>
+  <p ALIGN="left">Let’s take a look at where Transactions are.</p>
+  </font>
+
+
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Blocks Window. Notice that 15 customers are
+  waiting to redial.</p>
+  <p ALIGN="left">Look at the history of Block entries in the Entry Count
+  column.</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_2_1.gif" width="661" height="337"></p>
+  </font><i><font SIZE="2">
+  <p align="center">Figure 2—1. Blocks Window Detailed View Showing TRANSFER Block.</p>
+</font></i><font FACE="Arial" SIZE="2">
+
+  
+    <p ALIGN="left">What’s going on here? Look at how many Transactions
+    have entered the ADVANCE Block meaning that they are waiting to redial! 561!
+    But there have only been 200 calls. Watch the Blocks Window, and using the
+    Function Key</font></font><font face="Arial" size="2"> <b>[F5]</b></font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">.
+    Step through the simulation. Do this 15 or 20 times. Do you see what is
+    happening? Many callers who redial are finding the lines busy, and must wait
+    yet another time to redial.</p>
+    <p ALIGN="left">Now we will rerun the simulation, viewing it through some
+    graphics windows. Begin by closing all of the open windows except the
+    Blocks, Journal and Model Windows.</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let's reopen the Expression Window with the values that we
+  memorized before and add the call number which is also the Active Transaction
+  number.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">in the Edit Expression dialog box for the Label field</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Call no.</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">XN1</p>
+</font></b>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Before we open the Window, we need to bring back the
+  memorized Expressions that we entered the first time we opened the Window. For
+  each expression that was memorized in the memorized box</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>The Expression</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Finally, when all expressions show in the view box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s get rid of Transactions and reset the
+  statistics accumulators. From the Main Menu</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Clear</p>
+</b>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Custom</p>
+</b>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">RMULT 1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">We are resetting Random Number Generator 1 since CLEAR does
+not do so. This is necessary if you want to ensure the starting point of the
+stream. In this way, if you've used other commands, not listed in the Tutorial,
+before the CLEAR, we'll all be seeing the same results during this run. RMULT is
+discussed in more detail in the ANOVA lesson in Chapter 1.</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In the Blocks Window move the mouse pointer over the last
+  Block in the model which is the TRANSFER Block.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The TRANSFER Block</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The Place Icon in the Debug Toolbar</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, size and position the Blocks, Journal and Expression
+  Windows, so you can see each of them.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">1000,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation stops on the first attempt to enter the
+  TRANSFER Block. This indicates that this caller couldn’t get through.
+  Continue the running of the simulation.</p>
+  
+
+</font>
+<p align="center">PRESS<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;<b>
+[F2]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Do this same operation four more times after each time the
+simulation is Halted by the Stop Condition.</p>
+<p ALIGN="left">The simulation will continue to stop every time a caller has
+to wait. You will see the trace messages in the Journal Window that indicate the
+Transaction number of the Stopped Transaction. Since there is only one GENERATE
+Block in this model, you can see by Transaction number how often a caller is
+having to wait and if there are callers waiting for a second time.</p>
+<p ALIGN="left">Now, remove the Stop Condition. In the Blocks Window</p>
+
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The Transfer Block</p>
+</u>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The Remove Icon in the Debug Toolbar</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then, close the Blocks, and Expression Windows.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, we’ll watch the simulation run in the Storages
+  Window non-detailed view.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Storages Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and from the Main Menu</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>View / Entity Details</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">to toggle to the non-detailed view of the window.</p>
+  <p ALIGN="left">Now let’s also watch the call delay histogram as it is
+  being built!</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since there is only one table and its name is already
+  in the drop-down box</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Continue the running of the simulation.</p>
+  
+
+</font>
+<p align="center">PRESS<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F2]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The Table named Transit is, in fact, a dynamic histogram
+which can be viewed at any time. It shows that many customers are not receiving
+service right away. Clearly, the customers finding busy lines won’t be too
+happy. When you have finished watching, close both the Table and Storages
+Windows and let the simulation run to completion.</p>
+<p ALIGN="left">What if we added more lines? Let’s simulate 4 lines instead
+of two.</p>
+<p ALIGN="left">It’s a good idea use the CLEAR Command before you redefine
+an entity.</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / CLEAR</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command /Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Sets Storage 4</p>
+</font></b>
+<p align="center">PRESS&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; <b>[Enter]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">and on the next line</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">RMULT 1</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">That redefines the number of phone lines. You can do this
+  with any window open. This action will be recorded in your Journal for later
+  review if you chose to leave it open.</p>
+  <p ALIGN="left">Now, let’s see what happens.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The utilization of the phone lines is much smaller as seen
+  in the Storages sectionof the report. Now observe the histogram of call
+  durations.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since there is only one table and its name is already
+  in the drop-down box</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">That’s much better. In fact, if you’d like to look in
+  the detailed view of the Blocks Window, you’ll see that the TRANSFER Block
+  was not entered meaning that no callers had to redial. Four lines appear to be
+  much better than two. This would have to be established statistically,
+  possibly using the ANOVA Command.</p>
+  <p ALIGN="left">We now appear to have a solution to the problem, but it may
+  be unnecessarily expensive. Three phone lines would be less expensive than
+  four, and might suffice. Let’s try it.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / CLEAR</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Sets Storage 3</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">to change the number of lines to 3</p>
+
+
+</font>
+<p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp;<b> [Enter]</b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">and on the next line</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">RMULT 1</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s see what happens.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">1000</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">You may want to open the Blocks Window. When you have
+  observed the open graphics windows as long as you want, close them and let the
+  simulation run to completion. It looks like three phone lines is effective. A
+  quick look at the Report reveals that only 57 callers had to redial. In the
+  Report Window's Table statistics, average transit time is only 3.28 minutes.
+  If the load of calls is not expected to increase, this may be satisfactory.</p>
+  <p ALIGN="left">Before reporting these results, we must prove that they are
+  not due to random noise. Also, we may want to exclude starting conditions from
+  the final statistics using the RESET Command. We could plan a set of
+  experiments, and do an analysis of variance on the average transit times based
+  on the different phone line configurations. Treatment 2 would be the 2 phone
+  line configuration, treatment 3 would have 3 lines, and treatment 4 would have
+  4 lines. Each simulation should cover several thousand calls, and each
+  treatment level should have several replications using different random number
+  seeds. The GPSS World RESET, and ANOVA Commands are discussed in Chapter 6 of
+  the <i>GPSS World Reference Manual</i>. The ANOVA Command is studied in Lesson
+  13 of Chapter 1.</p>
+  <p ALIGN="left">You may stop here or choose to go on to the next model.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font>
+<h1 align="left"><!--mstheme--><font color="#336666">
+      <b>
+        <a href="#3. PERIODIC.GPS" name="3. PERIODIC.GPS"><font face="Arial">3. PERIODIC.GPS</font></a>
+</b>
+<!--mstheme--></font></h1>
+<b><font FACE="Arial">
+<font FACE="Helvetica" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+</font>
+  </font>
+
+  
+    <p ALIGN="CENTER"><font face="Arial" size="4">Simulation of inventory with periodic review.</font></p>
+</b><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Problem Statement</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">A finished product inventory is controlled by means of a
+weekly periodic review system. The initial stock is 1000 units. The daily demand
+varies between 40 and 63 units with equal probability. The target inventory is
+1000 units, that is, the order is placed for the difference between the current
+stock and 1000 units. If the current stock is 800 or more, no order is placed
+for that week. The company operates a five-day week. The lead time for delivery
+of an order is one week.</p>
+<p ALIGN="left">Simulate the inventory system for 200 days and determine if
+any stockouts occur.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b>
+</font><p align="left"><font face="Courier New" size="2">; GPSS World Sample File - PERIODIC.GPS, by Gerard F. Cummings<br>
+***********************************************************************<br>
+*&nbsp;<br>
+* Periodic Review Inventory Model&nbsp;<br>
+* Time units are in days&nbsp;<br>
+*<br>
+***********************************************************************<br>
+* Definitions of non Block entities<br>
+RMULT 39941<br>
+Stock STORAGE 10000 ;Warehouse can hold 10000<br>
+Stock TABLE S$Stock,100,100,20 ;Table for inventory amts<br>
+Orderqty VARIABLE Target-S$Stock ;Order quantity<br>
+Demand VARIABLE RN1@24+40 ;Daily demand<br>
+Target EQU 1000 ;Initial stock level<br>
+Reorder EQU 800 ;Reorder point<br>
+***********************************************************************<br>
+* The reorder process<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 5,,,,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Review xact, Priority=1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST L&nbsp;&nbsp;&nbsp; S$Stock,Reorder,Skip ;Is stock &lt; Reorderpt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 2,V$Orderqty ;Parameter 2=Order quantity<br>
+Custwait ADVANCE&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Lead time is 5 days<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Stock,P2&nbsp;&nbsp;&nbsp;&nbsp;
+;Stock increases by P2<br>
+Skip&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Ordering xact is finished<br>
+***********************************************************************<br>
+* The daily demand decrements quantity on hand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Daily demand Transaction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN 1,V$Demand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Parameter 1(P1)=daily demand<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Stock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record daily stock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TEST GE&nbsp;&nbsp; S$Stock,P1,Stockout ;Can order be filled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEAVE&nbsp;&nbsp;&nbsp;&nbsp; Stock,P1&nbsp;&nbsp;&nbsp;&nbsp;
+;Remove demand from stock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Daily timer<br>
+Stockout TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Daily timer<br>
+***********************************************************************<br>
+* Initialize the inventory<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE ,,,1,10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Set initial stock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ENTER&nbsp;&nbsp;&nbsp;&nbsp; Stock,Target ;Set init stock level=target<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Xact is terminated<br>
+**********************************************************************</font></p>
+<p align="left"><font FACE="Helvetica" SIZE="2"><b><font FACE="Arial">Line by Line Description of Model Function</p>
+
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">RMULT</font></b><font FACE="Arial" SIZE="2"> - The seed for
+the random number generator is set. Changing only the seed allows you to measure
+the effects of purely random variation. Replication simulations form the basis
+for using the GPSS World ANOVA Command.</p>
+<b>
+<p ALIGN="left">STORAGE</b> - The Storage Entity Stock is given a capacity of
+10000. This is well above the usual levels of inventory, and represents
+warehouse capacity. We must allow the stock levels to exceed the target level.
+The Storage content in use will be used to represent the current stock level.
+Therefore, the current stock level is available throughout the simulation as the
+SNA S$Stock.</p>
+<b>
+<p ALIGN="left">TABLE</b> - A Table, also named Stock, is set up to
+accumulate a histogram of daily stock levels.</p>
+<b>
+<p ALIGN="left">ORDERQTY</b> - The quantity to be ordered is the target stock
+level, Target, minus the stock on hand.</p>
+<b>
+<p ALIGN="left">DEMAND</b> - The daily demand varies from 40 to 63 units,
+with equal probability. The @ operator denotes modulo arithmetic, reducing a
+random number between 0 and 999, to one between 0 and 23. The final result is
+obtained by adding 40. The resulting random numbers will be retrieved via the
+SNA V$Demand.</p>
+<b>
+<p ALIGN="left">TARGET</b> - The target stock level, Target, is set to 1000.
+The use of a named value makes it easy to experiment with the reorder scheme.</p>
+<b>
+<p ALIGN="left">REORDER</b> - The reorder point, Reorder, is set to 800. The
+use of a named value makes it easy to experiment with the reorder scheme.</p>
+<p ALIGN="left">We now look at statements which define the Blocks to be
+entered by Transactions when the simulation is running.</p>
+<b>
+<p ALIGN="left">GENERATE</b> - This GENERATE Block creates a Transaction once
+every 5 simulated days. From here on, we must consistently use one time unit to
+represent one day. Actually, a high priority initializing Transaction from the
+last GENERATE Block is active before the first Transaction from this GENERATE
+Block. A Transaction leaves this Block once every 5 simulated days for the sole
+purpose of testing the stock level, and reordering only if necessary.</p>
+<b>
+<p ALIGN="left">TEST</b> - The TEST Block determines if a reorder is
+necessary. This occurs if S$Stock is less than Reorder. Otherwise, the entering
+Transaction skips to Skip, and is destroyed without simulating a reorder.</p>
+<b>
+<p ALIGN="left">ASSIGN</b> - If the TEST Block detects the reorder condition,
+the Transaction passes into the ASSIGN Block. This gives parameter number 2 of
+that Transaction the quantity to be reordered.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The Transaction which detects the reorder
+condition waits for 5 simulated days, to represent the order lead time. Notice
+that other Transactions are not prevented from ordering.</p>
+<b>
+<p ALIGN="left">ENTER</b> - When the simulated order arrives, after 5
+simulated days, the Transaction enters the ENTER Block and increases S$Stock by
+the value in its parameter number 2.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - Transactions are destroyed without
+decrementing the Termination Count. (The Termination Count is used to specify
+the simulation’s end condition.)</p>
+<b>
+<p ALIGN="left">GENERATE</b> - A Transaction, representing the daily orders,
+is created once each simulated day.</p>
+<b>
+<p ALIGN="left">ASSIGN</b> - The daily demand is placed in parameter number 1
+of the Transaction.</p>
+<b>
+<p ALIGN="left">TABULATE</b> - The TABULATE Block updates the histogram of
+daily stock levels, before any orders are filled.</p>
+<b>
+<p ALIGN="left">TEST</b> - The TEST Block checks for a stockout. If one is
+detected, the order is not filled, and we merely send the Transaction to the
+Block labeled Stockout. Notice that this model only detects stockout conditions
+without considering their effects. We would have to add more detail to this
+model, if we were concerned with these effects. Here, however, we will conclude
+that the ordering scheme is unsatisfactory if there is a single stockout.</p>
+<b>
+<p ALIGN="left">LEAVE</b> - If the stock level is sufficient, the Transaction
+reduces S$Stock by the amount of the daily order. It does so by entering the
+LEAVE Block specifying parameter number 1 as operand B.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The Transaction is destroyed, and the
+Termination Count is reduced by 1, to indicate another day has been simulated.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The TERMINATE Block labeled Stockout is
+entered only if a daily Transaction detects that its daily order cannot be
+satisfied. The simulation does not attempt to model the effects of backorders,
+or lost orders; it only is designed to detect stockouts. The SNA N$Stockout will
+return the total number of stockouts detected during the measurement period.</p>
+<b>
+<p ALIGN="left">GENERATE</b> - The third GENERATE produces a single
+Transaction at the beginning of the simulation to initialize the stock level. It
+has a high priority to ensure that it will not be superseded by other
+Transactions.</p>
+<b>
+<p ALIGN="left">ENTER</b> - The initializing Transaction uses the ENTER Block
+to set the value of S$Stock to the target level, at the start of the simulation.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The TERMINATE Block destroys the initializing
+Transaction without decrementing Termination Count.</p>
+<p ALIGN="left">Unlike general purpose programming languages, GPSS allows
+many Transactions to exist at different places in the simulation at any one
+time. In this model, Transactions are created at each of three GENERATE Blocks,
+creating three types of Transactions. In the top segment, a Transaction is
+introduced every 5 business days to review the inventory and reorder, if
+necessary. After 5 days the order is received and incorporated into the
+inventory.</p>
+<p ALIGN="left">In the middle segment Transactions represent the daily
+demand. They cause items to be removed from inventory if the demand can be
+filled. Before the demand is been satisfied, the stock level is tabulated in the
+Table Stock.</p>
+<p ALIGN="left">The single Transaction created in the last segment sets the
+initial inventory to 1000 items. This Transaction is given a high priority to
+ensure that it becomes the first Active Transaction.</p>
+<p ALIGN="left">Time units are in days. The current content of the Storage
+Entity named Stock represents the current inventory level. This value is
+available as the SNA S$Stock. The Table named Stock accumulates a histogram of
+daily inventory levels.</p>
+<p ALIGN="left">The named values Target and Reorder represent the two most
+important parameters of this scheme. Target sets the target stock level and
+Reorder sets the stock level which triggers a reorder. By using named values, we
+can easily change these parameters to explore alternate designs.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Periodic</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, the simulation must be created.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">200</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 200 daily orders have been
+  filled.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, Periodic.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The Table Stock shows that the inventory system satisfied
+  all the daily demands, and never suffered an outage. From the Table Stock in
+  the report, we see that there was never a tabulated daily level less than 300.
+  There may be more efficient systems, but the present one was satisfactory in
+  at least this one respect. Replications of the simulation will yield slightly
+  different values due to random variation.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">First, let’s set up an Expression Window to view two
+  values now and to use in the future when we wish to add more variables to
+  observe.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The Edit Expression Window opens. When you enter the value
+  in the second box in this dialog box, you should place the mouse pointer in
+  the small box and click once. Do not press</font></font><font face="Arial" size="2">
+<b>[Enter]</b></font><font FACE="Arial" SIZE="2">
+  <font FACE="Helvetica" SIZE="2">
+  to go from the first to the second box as GPSS World then assumes that all
+  values have been entered. You can, instead, use</font> <b>[Tab]</b></font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+  to move from box to box. Now, in the dialog box for the Label field</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">No. Stockouts</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">N$Stockout</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">This will let us view stock outages.</p>
+
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">If we memorize all the expressions, we'll be able to close
+  the window and open it again later with easy retrieval of all the values. Also
+  if you save the simulation the values in the Expression Window will be saved
+  with the simulation if they have been memorized. We're going to close this
+  window and reopen it later so please memorize this expression and the ones
+  that follow.</p>
+  <p ALIGN="left">Now, let's add the maximum stock level.</p>
+  <p ALIGN="left">In the dialog box for the Label field replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Max Stock</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">SM$Stock</p>
+</font></b>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let's add the current stock level as well.</p>
+  <p ALIGN="left">In the dialog box for the Label field replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Stock</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">S$Stock</p>
+</font><font FACE="Courier">
+<p align="center"></font></b><font FACE="Helvetica" SIZE="2">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp;
+<u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+
+  
+  </u></font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Finally, let's add the day number.</p>
+<p ALIGN="left">In the dialog box for the Label field replace the current
+value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">Day</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field, replace the current value</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">AC1</p>
+</font></b>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>View</p>
+</u>
+<p align="center">CLICK ON&nbsp;&nbsp;&nbsp;&nbsp; <u>Memorize</p>
+</u>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Our system was successful in preventing outages as seen in
+  the value of the number of stockouts.</p>
+  <p ALIGN="left">The Max Stock shows the most items ever in inventory during
+  the simulation. It appears to be higher than one might expect.</p>
+  <p ALIGN="left">The histogram of daily stock levels is easily available.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and since there is only one table in this model, the name
+  already appears in the drop-down box.</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Notice, that the average stock level is 785.45. This
+  represents money tied up in inventory, and is a measure of the cost of the
+  system.</p>
+  <p ALIGN="left">Let’s continue the simulation, observing the Stock table.</p>
+  <p ALIGN="left">Now, we'll also keep track of the day number as we watch
+  the Expression Window. Next we’ll start the simulation and let it run for
+  100 days. You may want to make sure that you can see both the Expression
+  Window and the Table Window before you start the simulation running. You can
+  easily do this by resizing the windows.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1 and use NP to suppress
+  the report.</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">100,NP</p>
+</font><font FACE="Courier">
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">That shows data being accumulated during 100 more days of
+  operation.</p>
+  <p ALIGN="left">The internal operation of the simulation is quite simple.
+  At the beginning, the Transaction in the third model segment initializes the
+  Storage Entity Stock. Then, every day a demand Transaction is created in the
+  middle model segment, and every fifth day a reorder Transaction is created in
+  the top model segment. Reorders are not filled for 5 more days.</p>
+  <p ALIGN="left">Close the Tables and Expression Windows.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s open the Blocks Window in detailed view.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This will show total Transaction entry counts.</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_3_1.gif" width="661" height="337"></p>
+  
+
+</font><i><font SIZE="2">
+<p align="center">Figure 3—1 The Blocks Window in Detailed View..</p>
+</font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">We will observe a running history of the simulation.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / Clear</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">100,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Watch the action in the different parts of the simulation
+  by using the slide bar on the right to move around the window. As you can see,
+  there are three different Transaction types. When you have seen enough, halt
+  the simulation if it hasn’t completed.</p>
+  
+
+</font>
+<p align="center">PRESS <b>[F5]</b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">Perhaps, we could employ a less expensive design with
+satisfactory results. Open the Table Window.</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Table Window</p>
+</b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Use a Custom Command to change the Target and Reorder
+  levels.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>Command / Custom</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Target EQU 800</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">to decrease the target inventory level, and</p>
+
+
+</font>
+<p align="center">PRESS&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b>[Enter]</b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">and on the next line</p>
+
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp; </font><b><font FACE="Courier New">Reorder EQU 600</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">to decrease the reorder point.</p>
+
+
+</font>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / Clear</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">100,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Please wait for the simulation to end. Put the focus on the
+  Blocks Window and look at the detailed view.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Anyplace on the Blocks Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Move the slide bar on the right of the window to view the
+  TERMINATE Block labeled Stockout. None occurred. From the Tables Window, we
+  can see the average stock level was lower at 591.420. From our preliminary
+  results, it looks like this is a sufficient, but less costly design.</p>
+  <p ALIGN="left">If you study a long simulation by viewing through the
+  Tables Window, you will see that this inventory control scheme occasionally
+  triggers a second order. This results in an unnecessarily high stock level
+  when both orders have been received. Perhaps a better scheme would adjust a
+  second order when a prior order is outstanding.</p>
+  <p ALIGN="left">Before reporting these results, we must prove that they are
+  not due to random noise. Also, we may want to exclude starting conditions from
+  the final statistics using the RESET Command. We could plan a set of
+  experiments, and do an analysis of variance on the average stock levels based
+  on the different parameters. At the same time we must be aware of the
+  occurrence of outages. The GPSS World RESET, and ANOVA Commands are discussed
+  in Chapter 6 of the <i>GPSS World Reference Manual</i>. The ANOVA Command is
+  studied in Lesson 13 of Chapter 1.</p>
+  <p ALIGN="left">You may stop here or choose to go on to the next model. If
+  you wish to go on to the next lesson, close all windows related to this model.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;
+</font><u>The X-Upper Right of Main Window.</p>
+</u><b><font FACE="Arial">
+<p ALIGN="left">&nbsp;</p>
+
+  
+<p ALIGN="left">&nbsp;</p>
+
+  
+  </font>
+</font>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#4. TVREPAIR.GPS" name="4. TVREPAIR.GPS"><font face="Arial">4. TVREPAIR.GPS</font></a><!--mstheme--></font></h1>
+
+  
+<font FACE="Arial">
+<font FACE="Helvetica" SIZE="2">
+
+  
+    <p ALIGN="left">&nbsp;</p>
+</font>
+  </font>
+
+  
+    <p ALIGN="CENTER"><font face="Arial" size="4">Simulation of a television repair shop.</font></p>
+</b><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Problem Statement</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">A television shop employs a single repairman to overhaul its
+rented television sets, service customers’ sets and do on-the-spot repairs.
+Overhaul of company owned television sets commences every 40±8 hours and takes
+10±1 hours to complete. On-the-spot repairs, such as fuse replacement, tuning
+and adjustments are done immediately. These arrive every 90±10 minutes and take
+15±5 minutes. Customers’ television sets requiring normal service arrive
+every 5±1 hours and take 120±30 minutes to complete. Normal service of
+television sets has a higher priority than the overhaul of company owned, rented
+sets.</p>
+<p ALIGN="left">1.&nbsp;Simulate the operation of the repair department for
+50 days.</p>
+<p ALIGN="left">2.&nbsp;Determine the utilization of the repairman and the
+delays in the service to customers.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b>
+</font>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - TVREPAIR.GPS, by Gerard F. Cummings<br>
+*****************************************************************<br>
+* Television Maintenance Man Model *<br>
+*****************************************************************<br>
+* Repair of rented sets, one each week *<br>
+* Time unit is one minute *<br>
+*****************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 2400,480,,,1 ;Overhaul of a rented set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Overhaul&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Maintenance&nbsp;
+;Obtain TV repairman<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Overhaul&nbsp;&nbsp;&nbsp;&nbsp;
+;Leave queue for man<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 600,60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Complete job 10+/-1 hours<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Maintenance&nbsp;
+;Free repairman<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Remove one Transaction<br>
+*****************************************************************<br>
+* On the spot repairs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 90,10,,,3&nbsp;&nbsp;&nbsp;
+;On-the-spot repairs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Spot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for spot repairs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PREEMPT&nbsp;&nbsp; Maintenance,PR ;Get the TV repairman<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Spot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the ‘spot’ queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 15,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Time for tuning/fuse/fault<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETURN&nbsp;&nbsp;&nbsp; Maintenance&nbsp;
+;Free maintenance man<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+****************************************************************<br>
+* Normal repairs on customer owned sets<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 300,60,,,2&nbsp;&nbsp;
+;Normal TV Repairs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Queue for service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; QUEUE&nbsp;&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PREEMPT&nbsp;&nbsp; Maintenance,PR ;Preempt maintenance man<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Depart the ‘service’ queue<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPART&nbsp;&nbsp;&nbsp; Alljobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Collect global statistics<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 120,30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Normal service time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETURN&nbsp;&nbsp;&nbsp; Maintenance&nbsp;
+;Release the man<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+*****************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; 480&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;One xact each 8 hr. day<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+* Day counter<br>
+*****************************************************************<br>
+* Tables of queue statistics<br>
+Overhaul QTABLE Overhaul,10,10,20<br>
+Spot QTABLE Spot,10,10,20<br>
+Service QTABLE Service,10,10,20<br>
+Alljobs QTABLE Alljobs,10,10,20<br>
+****************************************************************<br>
+</font></p>
+<font FACE="Helvetica" SIZE="2"><b><font FACE="Arial">
+<p align="left">Line by Line Description of Model Function</p>
+
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">GENERATE</font></b><font FACE="Arial" SIZE="2"> -
+Transactions that represent rental (company owned) sets in need of overhaul are
+generated, on average, every 40 hours. Time units are minutes. These jobs are
+given a relatively low priority, of 1.</p>
+<b>
+<p ALIGN="left">QUEUE</b> - Two QUEUE Blocks are used to keep separate
+statistics. The QUEUE Block for the Queue Entity Overhaul collects start time
+statistics for the rental overhaul jobs. The second QUEUE Block for Queue Entity
+Alljobs is repeated elsewhere in order to capture statistics for the other two
+job types, as well as this one.</p>
+<b>
+<p ALIGN="left">SEIZE</b> - Overhaul jobs wait for, and acquire, a TV
+repairman represented by the GPSS Facility Entity Maintenance.</p>
+<b>
+<p ALIGN="left">DEPART</b> - When an overhaul job Transaction receives
+ownership of the repairman facility, the waiting time is complete. The two
+DEPART Blocks register the waiting time in two separate Queue entities.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - This Block simulates the overhaul time to be
+600 ±60 minutes.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - When an overhaul job is complete, the
+Transaction representing it gives up ownership of the GPSS Facility Entity
+representing the TV repairman. This allows another overhaul job to begin.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The Transaction representing the overhaul job
+is destroyed, but the Termination Count is not decremented.</p>
+<b>
+<p ALIGN="left">GENERATE</b> - Transactions which represent on-the-spot
+repair jobs are created, on average, every 90 minutes. They have higher priority
+than the overhaul jobs.</p>
+<b>
+<p ALIGN="left">QUEUE</b> - Two QUEUE Blocks are used to keep separate
+statistics. The QUEUE Block for the Queue Entity Spot collects start time
+statistics for the on-the-spot jobs. The QUEUE Block for Queue Entity Alljobs is
+repeated elsewhere in order to capture statistics for the other two job types,
+as well as this one.</p>
+<b>
+<p ALIGN="left">PREEMPT</b> - Since on-the-spot jobs can interrupt the other
+two job types, Transactions which represent on-the-spot jobs attempt to enter a
+priority mode PREEMPT Block in order to acquire the repairman. This will
+temporarily displace any overhaul or normal job Transaction.</p>
+<b>
+<p ALIGN="left">DEPART</b> - When an on-the-spot job Transaction receives
+ownership of the repairman Facility, the waiting time is complete. The two
+DEPART Blocks register the waiting time in two separate Queue entities.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block simulates the repair time to
+be 15±5 minutes.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - An on-the-spot repair job is complete, the
+Transaction representing it gives up ownership of the GPSS Facility Entity
+representing the TV repairman. This allows another job to begin.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The Transaction representing the on-the-spot
+job is destroyed, but the Termination Count is not decremented.</p>
+<b>
+<p ALIGN="left">GENERATE-TERMINATE</b> - This segment of the model operates
+in the same way as the last. There is one difference. Whereas on-the-spot jobs
+can interrupt either normal jobs or overhauls, normal jobs can interrupt only
+overhauls. Therefore, we give Transactions representing normal jobs a priority
+(2) between those of the other two job types.</p>
+<b>
+<p ALIGN="left">GENERATE</b> - A Transaction, used to count off one day, is
+created once every 8 simulated hours.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The counting Transaction is destroyed
+immediately. This subtracts 1 from the Termination Count, and allows us to
+control the length of the simulation using operand A of the START Command.</p>
+<b>
+<p ALIGN="left">QTABLE</b> - The QTABLE statements, starting with Overhaul,
+define histograms of the queuing statistics each for display in a Table Window,
+and to be automatically reported in the Standard Report. We do not need to
+insert TABULATE Blocks for Qtables because statistics are registered
+automatically when an associated DEPART Block is entered.</p>
+<p ALIGN="left">The model is organized into several segments. Each segment
+has a different type of Transaction. The top three segments represent overhaul,
+on-the-spot, and normal jobs respectively. All compete for the single Facility
+Entity, named Maintenance, which represents the repair man. The overhaul jobs
+are given a lower priority than the others.</p>
+<p ALIGN="left">The bottom segment times the simulation by causing a
+Transaction to be created and destroyed once each simulated day. The TERMINATE
+Block is the only one to decrement the Termination Count provided in the START
+Command, ending the simulation when the Termination Count (TG1) drops to 0 or
+below..</p>
+<p ALIGN="left">The waiting times for each type of job are accumulated by the
+Queue entities named Overhaul, Spot, and Service. All job delay times are
+accumulated by the Queue Entity Alljobs. These times do not include the repair
+time of the jobs, only the delay until the jobs are started.</p>
+<p ALIGN="left">Qtable entities have been defined for each Queue Entity. This
+is an easy way to get an automatic histogram of waiting times for each category.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>TVrepair</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, the simulation must be created.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">50</p>
+</font></b>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end after 50 Transactions have entered
+  the TERMINATE Block. This represents 50 days of activity.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, TVRepair.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">We see that the repairman was quite busy, with a
+  utilization of 78<b>%.</b> The average waiting times, to the start of the
+  repair, were 25 for overhaul jobs, and 51 for normal service jobs. There was
+  never a delay in starting an on-the-spot job. The overall average waiting time
+  was about 12 minutes. The waiting times do not include the service times
+  because of our placement of the DEPART Blocks.</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let us now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">First, confirm the utilization of the repairman. From the
+  menu in the Model Window.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">FR$Maintenance</p>
+</font></b>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The utilization that you see in the Status line of the Main
+  Window for this SNA is expressed in parts per thousand. It was <b>78%.</p>
+  </b>
+  <p ALIGN="left">To look at the state of the Facility which represents the
+  repairman, open the Facilities Window.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">We’re now looking at the detailed view of this window.
+  The average repair time was about 53 minutes.</p>
+  <p ALIGN="left">If we open the Table Window for the Overhaul Table, we can
+  see the histogram of job wait times.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down dialog box,</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The Down Arrow</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OVERHAUL</p>
+</b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+</b><font FACE="Arial" SIZE="2">
+<p ALIGN="center"><img border="0" src="../images/T2_4_1.gif" width="661" height="337"></p>
+</font><i><font SIZE="2">
+<p align="center">Figure 4—1. The Overhaul Table.</p>
+</font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">This gives the same information as the Overhaul Table in
+    the Standard Report. To view the other Qtable entities, repeat the action
+    above but choose the names, SERVICE, SPOT or ALLJOBS from the drop-down box.
+    We’ll leave you to look at those on your own. Now close the graphics
+    windows that you have opened.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s see what happens when normal jobs arrive every 30
+  minutes. In the Model Window find the third GENERATE Block (in the normal
+  repairs section of the model). Change it so that operands A and B are 30 and 5
+  replacing the operands 300 and 60. To do this you simply have to position the
+  mouse pointer at the start of the 300.</p>
+  
+
+</font>
+<p align="center">CLICK and DRAG&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The Mouse Pointer Over the 300</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and after you release the mouse</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">30</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">The 300 will be replaced by the 30. Repeat this procedure to
+change the 60 to 5. Now, Retranslate the model.</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s set up a Plot before we run the simulation again.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Plot Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then in the Edit Plot Window enter the information as shown
+  below. You should be looking at a similar dialog box on your screen to the one
+  shown below. We’ll plot the service queue and the utilization of the
+  maintenance man on the same plot. Remember to position the mouse pointer at
+  the beginning of each box and click once before you begin to type. You can,
+  instead, use</font></font><font face="Arial" size="2"> <b>[Tab]</b></font><font FACE="Arial" SIZE="2">
+  <font FACE="Helvetica" SIZE="2">
+  to move from box to box.<b>  </b> Do not press the</font><b>  [Enter]</b></font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+  since that is used when all information has been typed in the box.</p>
+  <p ALIGN="center"><img border="0" src="../images/T2_4_2.gif" width="536" height="456"></p>
+  </font><i><font SIZE="2">
+  <p align="center">Figure 4—2. The Edit Plot Window</p>
+  <p align="left">.</p>
+</font></i><font FACE="Arial" SIZE="2">
+<p align="center">CLICK ON</font><font FACE="Helvetica">&nbsp;</font><font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u><font FACE="Arial" SIZE="2">Plot</p>
+</font></u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then enter the second set of values we wish to plot</p>
+  <p ALIGN="left">Next to Label replace the current value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">Maintenance Util</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and for the Expression replace the current value</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">FR$Maintenance</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p align="center">CLICK ON</font><font FACE="Helvetica">&nbsp;</font><font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u><font FACE="Arial" SIZE="2">Plot</p>
+</font></u>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Increase the window to a comfortable viewing size. Now
+  start the simulation.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+</b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+
+  
+    <p ALIGN="left">and in the dialog box, replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">5,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK
+</b></p>
+<p align="center">&nbsp;</p>
+<i><font SIZE="2">
+<p align="center"><img border="0" src="../images/T2_4_3.gif" width="661" height="337"></p>
+<p align="center">Figure 4—3. Plot of Queue and Utilization.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Clearly the shop is becoming congested and the repairman is
+working non-stop. Let’s look at one last window. Now close the Plot Window and
+open the Facilities Window.</p>
+
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Plot Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This window confirms the utilization that we just saw and
+  the icon shows a large queue of waiting jobs—62 to be exact. Next,</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">for each table that you wish to see and choose the
+  appropriate Table name of ALLJOBS, OVERHALL, SERVICE or SPOT from the
+  drop-down box when it appears.</p>
+  <p ALIGN="left">The repairman would certainly need help if jobs came in
+  this fast. Otherwise, the repair shop will probably lose a lot of business.</p>
+  <p ALIGN="left">You may stop here or choose to go on to the next model.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Main Window.
+</u></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+</font><b>
+<h1 ALIGN="left"><!--mstheme--><font color="#336666"><a href="#5. QCONTROL.GPS" name="5. QCONTROL.GPS"><font face="Arial">5. QCONTROL.GPS</font></a><!--mstheme--></font></h1>
+
+  
+<font FACE="Arial">
+<font FACE="Helvetica" SIZE="2">
+
+  
+    <p ALIGN="left">&nbsp;</p>
+</font>
+  </font>
+
+  
+    <p ALIGN="CENTER"><font face="Arial" size="4">Simulation of a quality control system.</font></p>
+</b><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Problem Statement</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">A component is manufactured by a sequence of three processes,
+each followed by a short two minute inspection. The first process requires 20%
+of components to be reworked. The second and third processes require 15% and 5%
+of components reworked, respectively. Sixty percent of components reworked are
+scrapped and the remaining forty percent need reprocessing on the process from
+which they were rejected.</p>
+<p ALIGN="left">Manufacturing of a new component commences on average, every
+30 minutes, exponentially distributed. The time for the first process is given
+by the following table.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p ALIGN="left">Time For First Process</p>
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Frequency&nbsp;&nbsp;&nbsp;</font></b></font><b><font face="Arial" size="2">&nbsp;</font><font FACE="Arial" SIZE="2"><font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;</font>&nbsp;</font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+</font><font FACE="Courier New" SIZE="2">.05&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font face="Courier New" size="2">
+</font><font FACE="Courier New" SIZE="2"><font FACE="Helvetica" SIZE="2">.13&nbsp;&nbsp;&nbsp;&nbsp;</font>
+</font><font FACE="Courier New" SIZE="2"><font FACE="Helvetica" SIZE="2">.16&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<font FACE="Helvetica" SIZE="2">.22&nbsp;&nbsp;&nbsp;&nbsp;</font> </font><font FACE="Courier New" SIZE="2"><font FACE="Helvetica" SIZE="2">.29&nbsp;&nbsp;&nbsp;&nbsp;</font>
+</font><font FACE="Helvetica" SIZE="2"><font FACE="Courier New" SIZE="2">.15<br>
+</font><font FACE="Arial" SIZE="2">
+Process time&nbsp;&nbsp;</font></font><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;</font><font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+</font><font FACE="Courier New" SIZE="2">10&nbsp;&nbsp;&nbsp;&nbsp;</font></font><font face="Courier New" size="2">
+<font FACE="Helvetica" SIZE="2">14</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New" size="2">
+21&nbsp;</font></font><font face="Courier New" size="2">&nbsp; <font face="Helvetica" size="2">32</font></font><font face="Helvetica" size="2">&nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New" size="2">
+38&nbsp;</font></font><font face="Courier New" size="2">&nbsp;&nbsp; <font face="Helvetica" size="2">45</font></font></b></p>
+<font FACE="Helvetica" SIZE="2"><font FACE="Arial" SIZE="2">
+<p ALIGN="left">The second process takes 15±6 minutes and the final process
+time is normally distributed with a mean of 24 minutes and a standard deviation
+of 4 minutes.</p>
+<p ALIGN="left">1.&nbsp;Simulate the manufacturing processes for 100
+completed components.</p>
+<p ALIGN="left">2.&nbsp;Determine the time taken, and the number of
+components rejected.</p>
+<p ALIGN="left">&nbsp;</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Listing</p>
+</font></b></font>
+<p align="left"><font face="Courier New" size="2">; GPSS World Sample File - QCONTROL.GPS, by Gerard F. Cummings<br>
+*****************************************************************<br>
+* *<br>
+* Quality Control Program *<br>
+* *<br>
+*****************************************************************<br>
+RMULT 93211<br>
+* Definitions<br>
+Transit TABLE M1,100,100,20 ;Transit Time<br>
+Process FUNCTION RN1,D7<br>
+0,0/.05,10/.18,14/.34,21/.56,32/.85,38/1.0,45<br>
+*****************************************************************<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENERATE&nbsp; (Exponential(1,0,30))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASSIGN&nbsp;&nbsp;&nbsp; 1,FN$Process&nbsp;&nbsp;&nbsp;
+;Process time in P1<br>
+Stage1&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; P1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Process 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .200,,Rework1&nbsp;&nbsp;
+;20% Need rework<br>
+*****************************************************************<br>
+Stage2&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 15,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Process 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .150,,Rework2&nbsp;&nbsp;
+;15% Need rework<br>
+*****************************************************************<br>
+Stage3&nbsp; SEIZE&nbsp;&nbsp;&nbsp;&nbsp; Machine3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; (Normal(1,24,4)) ;Process 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RELEASE&nbsp;&nbsp; Machine3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADVANCE&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Inspection 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRANSFER&nbsp; .050,,Rework3&nbsp;&nbsp;
+;5% need rework<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABULATE&nbsp; Transit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Record transit time<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE 1<br>
+*****************************************************************<br>
+Rework1 TRANSFER&nbsp; .400,,Stage1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+Rework2 TRANSFER&nbsp; .400,,Stage2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE<br>
+Rework3 TRANSFER&nbsp; .400,,Stage3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TERMINATE</font></p>
+<p align="left">&nbsp;</p>
+<font FACE="Helvetica" SIZE="2"><b><font FACE="Arial">
+<p align="left">Line by Line Description of Model Function</p>
+
+</font><font FACE="Arial" SIZE="2">
+<p ALIGN="left">RMULT</font></b><font FACE="Arial" SIZE="2"> - This sets the
+seed of random number generator number 1. When we do replication runs, we vary
+only the random number seeds.</p>
+<b>
+<p ALIGN="left">TABLE</b> - The Table Transit will accumulate data for a
+histogram which can be viewed on-line.</p>
+<b>
+<p ALIGN="left">FUNCTION</b> - The GPSS function named PROCESS returns a
+value of 10, 14, 21, 32, 38, or 45, according to the specified probabilities.
+Notice that in GPSS Functions, you must use Cumulative Distribution Functions to
+specify probabilities.</p>
+<b>
+<p ALIGN="left">GENERATE</b> - New components are started every 30 minutes,
+on average, exponentially distributed. Here the built-in Exponential
+distribution is used. Chapter 8 of the <i>GPSS World Reference Manual</i>
+discusses the built-in distributions.</p>
+<b>
+<p ALIGN="left">ASSIGN</b> - The process time for stage one of the job is
+placed in Transaction parameter number 1.</p>
+<b>
+<p ALIGN="left">SEIZE</b> - The job acquires, or waits for, the GPSS Facility
+Entity named Machine1.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The job keeps Machine1 busy for the time
+duration stored in parameter 1 of the Transaction representing the job.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - The Transaction representing the job gives up
+Machine1, which can then be acquired by a waiting Transaction, if there is one.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block simulates the inspection
+time.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - The TRANSFER Block will randomly select 20% of
+the Transactions to go to the GPSS Block labeled Rework1. This represents a
+failure of the part resulting from Stage1. The other 80% of the Transactions go
+on to the next stage.</p>
+<b>
+<p ALIGN="left">SEIZE</b> - The Transaction, which has just passed
+inspection, acquires, or waits for, the GPSS Facility Entity named Machine2.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block represents the process time
+for stage 2.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - The Transaction representing the job gives up
+Machine2, which can then be acquired by a waiting Transaction, if there is one.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block simulates the inspection
+time.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - The TRANSFER Block will randomly select 15% of
+the Transactions to go to the GPSS Block labeled Rework2. This represents a
+failure of the part resulting from stage 2. The other 85% of the Transactions go
+on to the next stage.</p>
+<b>
+<p ALIGN="left">SEIZE</b> - The Transaction, which has just passed
+inspection, acquires, or waits for, the GPSS Facility Entity named Machine3.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block represents the process time
+for stage 3. The duration is normally distributed.</p>
+<b>
+<p ALIGN="left">RELEASE</b> - The Transaction representing the job gives up
+Machine3, which can then be acquired by a waiting Transaction, if there is one.</p>
+<b>
+<p ALIGN="left">ADVANCE</b> - The ADVANCE Block simulates the inspection
+time.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - The TRANSFER Block will randomly select 5% of
+the Transactions to go to the GPSS Block labeled Rework3. This represents a
+failure of the part resulting from stage 3. The other 95% of the Transactions
+represent completed parts.</p>
+<b>
+<p ALIGN="left">TABULATE</b> - The TABULATE Block incorporates a completion
+time into the histogram associated with the Table named Transit. Tables are
+written automatically to the Standard Report, and are visible as histograms in
+the individual Table Windows.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The TERMINATE Block destroys the Transaction,
+and decrements the Termination Count. We can simulate a specific number of
+completed parts by using a part count in operand A of the START statement.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - When a Transaction fails the Stage1 part
+inspection, it has a 40% probability of being sent back to Stage1. This
+represents a reworked part.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The remaining Transactions are destroyed
+without decrementing the completed part count. This represents scrapping of the
+parts.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - When a Transaction fails the stage 2 part
+inspection, and is sent to this TRANSFER Block, it has a 40% probability of
+being sent back to stage 2. This represents a reworked part.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The remaining Transactions are destroyed
+without decrementing the completed part count. This represents scrapping of
+these parts.</p>
+<b>
+<p ALIGN="left">TRANSFER</b> - When a Transaction fails the stage 3 part
+inspection, it has a 40% probability of being sent back to stage 3. This
+represents a reworked part.</p>
+<b>
+<p ALIGN="left">TERMINATE</b> - The remaining Transactions are destroyed
+without decrementing the completed part count. This represents scrapping of
+these parts.</p>
+<p ALIGN="left">The model is organized into several segments. After the
+Transit Table, and Process Function are defined, there are three model segments,
+each representing the corresponding manufacturing process. Each Transaction
+represents a component in some stage of completion. Time units are in minutes.
+Each step has a probability of failure, in which case the Transaction is sent to
+the Block labeled Rework1, Rework2, or Rework3, respectively. Reworked items
+have a 60% probability of being scrapped. Otherwise they repeat their last step.</p>
+</font><b><font FACE="Arial" SIZE="4">
+<p align="left">Running the Simulation</p>
+</font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">To run the simulation and create a Standard Report,</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp; <b>File / Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Qcontrol</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and then</p>
+  
+
+</font>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Open</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, the simulation must be created.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / Create Simulation</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font FACE="Courier New">100</p>
+</font></b>
+<p align="center">SELECT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The simulation will end when 100 Transactions have entered
+  the TERMINATE Block. This represents 100 completed components.</p>
+  <p ALIGN="left">When the simulation ends, GPSS World writes a report to the
+  default report file, QControl.1.1. As discussed in Chapter 1, the Report
+  extension will vary depending on saved simulations and previously existing
+  reports. For our purposes, we will assume that this is the first time the
+  simulation has been created and run giving an extension of 1.1.</p>
+  <p ALIGN="left">This report will be automatically displayed in a window. If
+  you close the window, you can reopen it by using the GPSS World <b>File / Open</b>
+  in the Main Menu. Then you should choose Report in the &quot;Files of
+  type&quot; drop down box at the bottom of the window. GPSS World reports are
+  written in a special format. If you wish to edit the report, you will have to
+  copy its contents to the clipboard and from there into a word processor. You
+  will not be able to open the file directly in a word processor.</p>
+  </font><b><font FACE="Courier New" SIZE="1">
+  <p align="left">&nbsp;</p>
+  </font><font FACE="Arial" SIZE="4">
+  <p align="left">Discussion of Results</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">From the End Time in the Standard Report, we see that it
+  took 4153.8 minutes or about 69 hours to complete 100 components.</p>
+  <p ALIGN="left">From the Block entry counts, we can derive the number of
+  rejected components. The total entries into Blocks Rework1, Rework2 and
+  Rework3 show that 22 components failed in Stage1, 14 in stage 2 and 4 in stage
+  3. This is a total of 40 failures. Of these, 21 were scrapped (11+7+3)</p>
+  </font><b><font FACE="Arial" SIZE="4">
+  <p align="left">Inside the Simulation</p>
+  </font></b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s now explore the ending condition of the simulation,
+  which generated the Standard Report above. If you are not at the end of the
+  simulation, please Retranslate the model and run it again.</p>
+  <p ALIGN="left">Let’s use the SHOW Command to look at some System Numeric
+  Attributes. First, confirm the simulation end time.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">AC1</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">In the Status Line, you’ll see that the current time is
+  equal to the end time in the report above.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">N$Rework1</p>
+</font></b>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This value (22), again is the number of components failing
+  in Stage1.</p>
+  <p ALIGN="left">Now, let’s open some graphics windows.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This is the Facilities Window. Notice that the utilization
+  of Machine1 in extremely high, and that there is a large backlog of waiting
+  components. It appears that the failure rate at machine 1 is quite serious,
+  since it is overloading a heavily utilized resource.</p>
+  <p ALIGN="left">The Table Transit is a histogram of completion times. Let’s
+  look at it.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Table Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the drop-down box you will see TRANSIT since it is
+  the only Table in the model.</p>
+  
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Although the average completion time was 321 minutes, some
+  components took over 800 minutes!</p>
+  <p ALIGN="left">Before going on, close the Facilities and Table Windows.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Let’s see where components are. The Blocks Window will
+  give us this information.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Blocks Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Notice that 30 components are waiting for Machine1 in the
+  ASSIGN Block. Now, we will rerun the simulation, viewing the simulation
+  through some of the graphics windows. Let’s begin by opening the Expression
+  Window and loading it with some values that we wish to observe.</p>
+  <p ALIGN="left">Let’s keep open the Blocks Window to view the flow the
+  simulation in just a moment. Let’s also open an Expression Window for a view
+  of selected values while the simulation runs.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Window / Simulation Window / Expression Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Then in the Edit Expression Window for the Label field</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Rework1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">And in the Expression field position the mouse pointer
+anywhere in the Expression box and click once.</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">N$Rework1</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">When we view the Window, this will show us how many parts
+were sent to possibly be reworked. Remember, a portion of them will just be
+scrapped.</p>
+
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Next, look at rework after processing by the second
+  machine. In the Edit Expression Window</p>
+  <p ALIGN="left">in the dialog box for the Label field replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">Rework2</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field replace the current value</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">N$Rework2</p>
+</font></b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Finally, look at rework after processing by the third
+  machine. In the Expression Window</p>
+  <p ALIGN="left">and in the dialog box for the Label field replace the
+  current value</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">Rework3</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field replace the current value</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">N$Rework3</p>
+</font></b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This will let us view the failing components. Also, in the
+  Blocks Window, we will see failed Transactions entering Blocks Rework1,
+  Rework2 and Rework3.</p>
+  <p ALIGN="left">Let’s also view the component number of the Active
+  Transaction.</p>
+  <p ALIGN="left">In the dialog box for the Label field replace the current
+  value</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">Part number</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and in the Expression field replace the current value</p>
+
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">XN1</p>
+</font></b>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>View</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Memorize</p>
+</u>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+</b><i><font SIZE="2">
+<p align="center"><img border="0" src="../images/T2_5_1.gif" width="588" height="441"></p>
+<p align="center">Figure 5—1. Blocks and Expression Windows displayed together.</p>
+
+  
+  </font></i><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Now, let’s run the simulation until 50 more components have
+been completed.</p>
+<p ALIGN="left">Get ready to watch for reworked components. You may have to
+size and manipulate the windows to see all the values. Make the Blocks Window
+active by clicking on it and hide the top of the Expression Window behind it.</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">100,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Observe the windows until you see transactions building up
+  in Block 2, The ASSIGN block. This shows that Stage1 in constantly busy and
+  new components as well as those waiting to be reworked are waiting to get into
+  Stage1. As you can see, from looking at the Rework TRANSFER blocks, most
+  components do not fail. Let’s stop the simulation when the next component
+  fails in Stage1. Halt the simulation.</p>
+  
+
+</font>
+<p align="center">PRESS&nbsp;&nbsp;&nbsp;&nbsp; <b>[F4]</b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">In the detailed view of the Blocks Window, move the mouse
+pointer over the Block labeled Rework1. You may have to increase the size of the
+Loc column in the Blocks Window to see the full label as well as increasine the
+size of the Blocks Window to see both the Stage1 SEIZE block and the Rework1
+TRANSFER block.</p>
+
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The Block</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">then in the Blocks Window</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The Place Icon in the Debug Toolbar</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, continue running the simulation.</p>
+  
+
+</font>
+<p align="center">PRESS&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>[F2]</b></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">The simulation stops when the next Transaction fails in
+Stage1. It is in the TRANSFER Block, ready to enter the Block labeled Rework1.
+Now Step the Transaction twice.</p>
+
+
+</font>
+<p align="center">PRESS<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>
+[F5]</b></font></p>
+
+  
+<font FACE="Arial" SIZE="2">
+<p ALIGN="left">twice. If you didn’t see it move, it’s because it wasn’t
+scrapped, but couldn’t get into Stage1 which is currently busy. It is really
+on the Delay Chain of the Facility, Machine1. Let’s see how much a lower
+failure rate in Stage 1 will help the situation. First, close the Blocks Window.</p>
+
+
+</font>
+<p align="center">CLICK ON&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The X-Upper Right of Blocks Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Remove the Stop from the Rework1 Block</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Snapshot / User Stops</p>
+</b>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>20</p>
+</u>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>Remove</p>
+</u>
+<p align="center">SELECT&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Give the Model Window the focus. In the Transfer Block
+  located just above the Block labeled Stage 2, change the failure rate from
+  .200 to .020.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Search / Go To Line</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">19</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, change the failure rate by replacing the value.</p>
+  
+
+</font>
+<p align="center">CLICK AND DRAG&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><u>The Mouse Pointer Over .200</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">This will highlight this value. Then you can replace it.</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">.020</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">Now, Retranslate the model to incorporate this change.</p>
+
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / Retranslate</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Now, let’s run it one more time and see how the change
+  affects our factory.</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Command / START</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box replace the 1</p>
+  
+
+</font>
+<p align="center">TYPE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b><font FACE="Courier New">100,NP</p>
+
+  
+  </font></b><font FACE="Arial" SIZE="2">
+<p ALIGN="left">and</p>
+
+
+</font>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">When the simulation ends, check the end time.</p>
+  
+
+</font>
+<p align="center">CHOOSE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>Command / SHOW</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">and in the dialog box</p>
+  
+
+</font>
+<p align="center">TYPE<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b><font FACE="Courier New">AC1</p>
+</font></b>
+<p align="center">SELECT<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<b>OK</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">The end time is 3971.49. The original end time when the
+  failure rate was .200 was 4153.89. It appears that the 100 acceptable parts
+  are being made in a shorter time. Look at the Facilities Window</p>
+  
+
+</font>
+<p align="center">CHOOSE&nbsp;<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Window / Simulation Window / Facilities Window</p>
+
+  
+  </b><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">We still have a problem. Machine1 still has a considerable
+  backup even though there has been some improvement. Perhaps we need two
+  machines in the first stage.</p>
+  <p ALIGN="left">Before reporting these results, we must prove that they are
+  not due to random noise. Also, we may want to exclude starting conditions from
+  the final statistics using the RESET Command. We should also be aware that the
+  run time of the simulation we were just examining was extremely short. Longer
+  run times are definitely recommended. We could plan a set of experiments, and
+  do an analysis of variance on the average transit times based on the different
+  failure rates. At the same time we must be aware of the occurrence of outages.
+  The GPSS World ANOVA Command is discussed in Lesson 13 of this manual and in
+  Chapter 6 of the <i>GPSS World Reference Manual</p>
+  </i>
+  <p ALIGN="left">You may stop here or choose to go on to the next model.</p>
+  <p ALIGN="left">If you wish to go on to the next lesson, close all windows
+  related to this model.</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Each Window</p>
+
+  
+  </u><font FACE="Arial" SIZE="2">
+  <p ALIGN="left">Otherwise, to end the session</p>
+  
+
+</font>
+<p align="center">CLICK ON<font FACE="Helvetica" SIZE="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+<u>The X-Upper Right of Main Window.</p>
+</u>
+<p align="left">&nbsp;</p>
+<p align="center"><font FACE="Arial" SIZE="2">
+    <a href="tutorial_manual.htm">[Table of Contents]</a>
+    
+
+</font>
+</font>
+</blockquote>
+</blockquote>
+<!--mstheme--></font></body>
+
+</html>

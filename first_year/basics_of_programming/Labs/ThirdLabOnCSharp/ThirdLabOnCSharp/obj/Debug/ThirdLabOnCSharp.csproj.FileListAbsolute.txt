@@ -1,0 +1,6 @@
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\bin\Debug\ThirdLabOnCSharp.exe.config
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\bin\Debug\ThirdLabOnCSharp.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\bin\Debug\ThirdLabOnCSharp.pdb
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\obj\Debug\ThirdLabOnCSharp.csprojResolveAssemblyReference.cache
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\obj\Debug\ThirdLabOnCSharp.exe
+C:\Users\Zerbs\Desktop\study (2nd semester)\Op\Labs\ThirdLabOnCSharp\ThirdLabOnCSharp\obj\Debug\ThirdLabOnCSharp.pdb

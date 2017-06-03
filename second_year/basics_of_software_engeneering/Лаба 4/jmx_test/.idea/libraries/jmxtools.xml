@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jmxtools">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/jmxtools.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

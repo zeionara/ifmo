@@ -1,0 +1,8 @@
+@L:\BIN\PWBED.EXE  /h 119800 /s "F:\PWB00740.v02" /pwb 2
+=b 0
+=n
+:ABEND
+:pwberror
+@if errorlevel 1 @goto pwberror
+if errorlevel 1 pause
+@if errorlevel 1 @goto pwberror
