@@ -1,0 +1,58 @@
+A51 MACRO ASSEMBLER  MUIA                                                                 10/19/2016 15:15:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.01
+OBJECT MODULE PLACED IN muia.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE muia.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2             
+  REG                  3                  i equ  r0
+  REG                  4            wrk equ r1
+  00F0                 5              sbit Bi=B^0
+                       6     
+----                   7              cseg at 0
+0000                   8     start:  
+0000 A980              9              mov wrk,P0
+0002 E4               10              clr a
+0003 8590F0           11              mov B,P1
+0006 7808             12              mov i,#8
+0008 30F001           13     cikl:   jnb Bi,m1
+000B 29               14             add a,wrk
+000C 13               15      m1:    rrc a
+000D C5F0             16             xch a,B
+000F 13               17             rrc a
+0010 C3               18                     clr c
+0011 C5F0             19             xch a,B
+0013 D8F3             20             djnz i,cikl
+0015 F5A0             21             mov P2,a
+0017 85F0B0           22             mov P3,B
+001A 00               23             nop
+                      24                     end
+A51 MACRO ASSEMBLER  MUIA                                                                 10/19/2016 15:15:04 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BI . . . . . . . .  B ADDR   00F0H.0 A   
+CIKL . . . . . . .  C ADDR   0008H   A   
+I. . . . . . . . .    REG    R0          
+M1 . . . . . . . .  C ADDR   000CH   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+START. . . . . . .  C ADDR   0000H   A   
+WRK. . . . . . . .    REG    R1          
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

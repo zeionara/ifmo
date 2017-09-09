@@ -1,0 +1,24 @@
+
+        
+	     i equ  r0
+       wrk equ r1
+         sbit Bi=B^0
+
+         cseg at 0
+start:  
+         mov wrk,P0
+         clr a
+         mov B,P1
+         mov i,#8
+cikl:   jnb Bi,m1
+        add a,wrk
+ m1:    rrc a
+        xch a,B
+        rrc a
+		clr c
+        xch a,B
+        djnz i,cikl
+        mov P2,a
+        mov P3,B
+        nop
+		end

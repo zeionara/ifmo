@@ -1,0 +1,142 @@
+BL51 BANKED LINKER/LOCATER V6.05                                                        06/12/2010  03:20:45  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE key.obj TO key
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  key.obj (KEY)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (PRINTF)
+  C:\KEIL\C51\LIB\C51S.LIB (_GETKEY)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  key (KEY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0014H     UNIT         _DATA_GROUP_
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     000CH     UNIT         ?DT?KEY
+            IDATA   002EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    035FH     008EH     UNIT         ?C?LIB_CODE
+            CODE    03EDH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0479H     002CH     UNIT         ?PR?MAIN?KEY
+            CODE    04A5H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    04CCH     000AH     UNIT         ?CO?KEY
+            CODE    04D6H     000AH     UNIT         ?PR?_GETKEY?_GETKEY
+            CODE    04E0H     0007H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   key (KEY)
+
+
+SEGMENT                           BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH     START    LENGTH
+------------------------------------------------------------------
+?C_C51STARTUP                  -----    -----      -----    -----
+  +--> ?PR?MAIN?KEY
+  +--> ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/12/2010  03:20:45  PAGE 2
+
+
+
+?PR?MAIN?KEY                   -----    -----      -----    -----
+  +--> ?PR?_GETKEY?_GETKEY
+  +--> ?CO?KEY
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?PRINTF?PRINTF              0020H.0  0001H.1    0008H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  key (KEY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        KEY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0479H         PUBLIC        main
+  D:0022H         PUBLIC        aa
+  D:0027H         PUBLIC        i
+  D:0028H         PUBLIC        x
+  D:0029H         PUBLIC        y
+  D:002AH         PUBLIC        z
+  -------         PROC          MAIN
+  C:0479H         LINE#         6
+  C:0479H         LINE#         7
+  C:0479H         LINE#         8
+  C:047CH         LINE#         9
+  C:0491H         LINE#         10
+  C:04A3H         LINE#         12
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        KEY
+
+  -------         MODULE        PRINTF
+  D:0008H         PUBLIC        ?_PRINTF517?BYTE
+  D:0008H         PUBLIC        ?_PRINTF?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF?BYTE
+  C:0065H         PUBLIC        _PRINTF
+  C:0065H         PUBLIC        _PRINTF517
+  C:005FH         PUBLIC        _SPRINTF
+  C:005FH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        _GETKEY
+  C:04D6H         PUBLIC        _GETKEY
+  -------         ENDMOD        _GETKEY
+
+  -------         MODULE        ?C?CLDPTR
+  C:035FH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0378H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/12/2010  03:20:45  PAGE 3
+
+
+  -------         MODULE        ?C?CSTPTR
+  C:03A5H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:03B7H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:03C7H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:04A5H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=42.1 xdata=0 code=1255
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

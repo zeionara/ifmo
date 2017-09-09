@@ -1,0 +1,121 @@
+BL51 BANKED LINKER/LOCATER V6.05                                                        04/02/2013  19:26:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
+C:\KEIL51\C51\BIN\BL51.EXE maxadc.obj TO maxadc RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  maxadc.obj (MAXADC)
+  C:\KEIL51\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL51\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL51\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  maxadc (MAXADC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         ?DT?MAXADC
+            DATA    000EH     0001H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008BH     UNIT         ?C?LIB_CODE
+            CODE    008EH     0078H     UNIT         ?PR?MAIN?MAXADC
+            CODE    0106H     000DH     UNIT         ?PR?ADC?MAXADC
+            CODE    0113H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   maxadc (MAXADC)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAXADC
+
+?PR?MAIN?MAXADC                -----    -----
+  +--> ?PR?ADC?MAXADC
+
+?PR?ADC?MAXADC                 000EH    0001H
+
+
+
+SYMBOL TABLE OF MODULE:  maxadc (MAXADC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAXADC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.05                                                      04/02/2013  19:26:00  PAGE 2
+
+
+  D:00A0H         PUBLIC        P2
+  B:00B0H.2       PUBLIC        INT0
+  C:008EH         PUBLIC        main
+  D:00DAH         PUBLIC        DAPR
+  C:0106H         PUBLIC        adc
+  D:0089H         PUBLIC        TMOD
+  D:0008H         PUBLIC        min
+  D:0009H         PUBLIC        max
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  D:000AH         PUBLIC        T
+  B:0088H.4       PUBLIC        TR0
+  D:000CH         PUBLIC        mm
+  D:00D9H         PUBLIC        ADDAT
+  B:00D8H.4       PUBLIC        BSY
+  -------         PROC          MAIN
+  C:008EH         LINE#         8
+  C:008EH         LINE#         9
+  C:008EH         LINE#         10
+  C:0094H         LINE#         11
+  C:0097H         LINE#         12
+  C:00A3H         LINE#         13
+  C:00AFH         LINE#         14
+  C:00B1H         LINE#         15
+  C:00C4H         LINE#         16
+  C:00C7H         LINE#         17
+  C:00CCH         LINE#         18
+  C:00CEH         LINE#         19
+  C:00DFH         LINE#         20
+  C:00E1H         LINE#         21
+  C:00F2H         LINE#         22
+  C:00F4H         LINE#         23
+  C:0104H         LINE#         24
+  -------         ENDPROC       MAIN
+  -------         PROC          ADC
+  -------         DO            
+  D:000EH         SYMBOL        x
+  -------         ENDDO         
+  C:0106H         LINE#         27
+  C:0106H         LINE#         28
+  C:0106H         LINE#         29
+  C:0109H         LINE#         30
+  C:010CH         LINE#         31
+  C:0112H         LINE#         32
+  -------         ENDPROC       ADC
+  -------         ENDMOD        MAXADC
+
+  -------         MODULE        ?C?SIDIV
+  C:0003H         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:0039H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=16.0 xdata=0 code=287
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

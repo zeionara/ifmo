@@ -1,0 +1,93 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        10/19/2016  00:38:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE delwhool.obj TO delwhol
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  delwhool.obj (DELWHOOL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  delwhol (DELWHOOL)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?DELWHOOL
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     005DH     UNIT         ?PR?MAIN?DELWHOOL
+            CODE    0060H     0040H     UNIT         ?PR?DIVF?DELWHOOL
+            CODE    00A0H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   delwhol (DELWHOOL)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?DELWHOOL
+
+?PR?MAIN?DELWHOOL
+  +--> ?PR?DIVF?DELWHOOL
+
+
+
+SYMBOL TABLE OF MODULE:  delwhol (DELWHOOL)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DELWHOOL
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        Aa
+  D:000AH         PUBLIC        Bb
+BL51 BANKED LINKER/LOCATER V6.15                                                      10/19/2016  00:38:27  PAGE 2
+
+
+  C:0003H         PUBLIC        main
+  C:0060H         PUBLIC        divf
+  D:000BH         PUBLIC        S
+  D:000DH         PUBLIC        i
+  D:000EH         PUBLIC        j
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          DIVF
+  C:0060H         LINE#         5
+  C:0060H         LINE#         6
+  C:0063H         LINE#         7
+  C:009FH         LINE#         8
+  -------         ENDPROC       DIVF
+  -------         PROC          MAIN
+  C:0003H         LINE#         10
+  C:0003H         LINE#         11
+  C:0003H         LINE#         12
+  C:000BH         LINE#         13
+  C:0013H         LINE#         14
+  C:0016H         LINE#         15
+  C:0018H         LINE#         16
+  C:0029H         LINE#         17
+  C:0039H         LINE#         18
+  C:0047H         LINE#         20
+  C:005EH         LINE#         21
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        DELWHOOL
+
+Program Size: data=16.0 xdata=0 code=172
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,39 @@
+A51 MACRO ASSEMBLER  KURSOV                                                               02/28/2014 17:01:42 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.00d
+OBJECT MODULE PLACED IN kursov.OBJ
+ASSEMBLER INVOKED BY: C:\Keil51\C51\BIN\A51.EXE kursov.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+----                   2     cseg at 0
+0000 020006            3       ljmp start
+0003 32                4       reti
+0004 32                5       reti
+0005                   6     mcal:
+0005 22                7       ret
+0006                   8     start:
+0006 2450              9       add a,#80
+0008 28               10       add a,r0
+0009 82E7             11       anl c,ACC.7
+000B 1105             12       acall mcal
+                      13       end 
+A51 MACRO ASSEMBLER  KURSOV                                                               02/28/2014 17:01:42 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+MCAL . . . . . . .  C ADDR   0005H   A   
+START. . . . . . .  C ADDR   0006H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

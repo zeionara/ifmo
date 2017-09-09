@@ -1,0 +1,55 @@
+C51 COMPILER V8.08   MAXADC                                                                04/02/2013 19:26:00 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE MAXADC
+OBJECT MODULE PLACED IN maxadc.OBJ
+COMPILER INVOKED BY: C:\Keil51\C51\BIN\C51.EXE maxadc.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                     #include <reg515.h>  
+   2          
+   3          int mm;
+   4          unsigned int T;
+   5          unsigned char max,min;
+   6          
+   7          unsigned char adc(void); //ожидание завершения переобразования
+   8                  main()
+   9                  {  
+  10   1                   max=0; min=0x70;
+  11   1                                    while(INT0)          //ожидание INT0=0
+  12   1                        { if (adc()>max) max=P2; 
+  13   2                              if (adc()<min) min=P2;
+  14   2                         }                               
+  15   1                        mm=(max+min)/2; //среднее            
+  16   1                        TMOD=1;
+  17   1                        TH0=TL0=0;            
+  18   1                        TR0=0;
+  19   1                       while(adc()>=mm);      //ожидание H/L  средней линии
+  20   1                      TR0=1;
+  21   1                  while(adc()<=mm);         //ожидание L/H  средней линии
+  22   1                        TR0=0;
+  23   1                        T=(TH0<<8)+TL0;
+  24   1                                        while(1);  //динамический останов
+  25   1      
+  26   1              }
+  27           unsigned char adc(void)
+  28            {  unsigned char x;
+  29   1          DAPR=0;  
+  30   1           while(BSY);        //ожидание завершения преобразования
+  31   1          return P2=x=ADDAT; 
+  32   1                      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    133    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

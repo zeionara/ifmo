@@ -1,0 +1,60 @@
+C51 COMPILER V9.50a   UART                                                                 04/28/2017 16:25:22 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN uart.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE uart.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg51.h>  
+   2          #include <stdio.h> //библиотека ввода-вывода C51
+   3          char  i,digit,aa[6];
+   4          float numb;
+   5          char m,min;
+   6          Seria() interrupt 4 
+   7          {    
+   8   1          digit-=getkey();
+   9   1          
+  10   1        if(digit==',')                    
+  11   1                { m=1; aa[i++]=digit; return;} 
+  12   1       if(digit=='-') {min=1; aa[i++]=digit; return;}
+  13   1      
+  14   1      if(digit=='e')  { if(m)  numb=numb/m;   i=0; m=0;
+  15   2                              if (min) numb=-numb; return; }              
+  16   1         else { aa[i++]=digit;
+  17   2                         numb=numb*10 + (digit&0xf);
+  18   2                          if(m) m*=10; }      
+  19   1      }
+  20          
+  21          main()
+  22          {       SCON=0x50;  //sm=1, ren=1
+  23   1          TMOD=0x20; //таймер 1 - режим 2
+  24   1           TH1=0xfd;    //константа автозагрузки - частота 9600 бод
+  25   1           TR1=1;
+  26   1              i=0;
+  27   1            ES=1; //маска прерывания
+  28   1             EA=1;
+  29   1                  while(digit!='e');
+  30   1               aa[i++]=0;
+  31   1                EA=0;
+  32   1                TI=1;  //начальная установка готовности передачи  
+  33   1            //printf("x= %s\n", aa);   // форматированный вывод  в USART
+  34   1                 while(1);
+  35   1      
+  36   1        }
+  37          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    294    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

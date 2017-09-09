@@ -1,0 +1,59 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/23/2016  16:23:44  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE transa.obj TO transa
+
+
+INPUT MODULES INCLUDED:
+  transa.obj (TRANSA)
+
+
+LINK MAP OF MODULE:  transa (TRANSA)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     001EH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  transa (TRANSA)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TRANSA
+  D:00F0H         SYMBOL        B
+  C:000AH         SYMBOL        CIKL
+  D:0082H         SYMBOL        DPL
+  C:0005H         SYMBOL        START
+  C:0002H         SYMBOL        YY
+  C:0000H         LINE#         6
+  C:0005H         LINE#         8
+  C:0006H         LINE#         9
+  C:0007H         LINE#         10
+  C:000AH         LINE#         11
+  C:000DH         LINE#         12
+  C:000EH         LINE#         13
+  C:0010H         LINE#         14
+  C:0011H         LINE#         15
+  C:0012H         LINE#         16
+  C:0014H         LINE#         17
+  C:0016H         LINE#         18
+  C:0018H         LINE#         19
+  C:0019H         LINE#         20
+  C:001CH         LINE#         21
+  -------         ENDMOD        TRANSA
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001EH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=30
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

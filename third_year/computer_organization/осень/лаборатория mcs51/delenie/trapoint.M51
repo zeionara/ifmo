@@ -1,0 +1,85 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/23/2016  16:33:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE irapoin.obj TO trapoint
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  irapoin.obj (IRAPOIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  trapoint (IRAPOIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         ?DT?IRAPOIN
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0056H     UNIT         ?PR?MAIN?IRAPOIN
+            CODE    08E2H     0005H     UNIT         ?C_INITSEG
+            CODE    08E7H     0004H     UNIT         ?CO?IRAPOIN
+
+
+
+OVERLAY MAP OF MODULE:   trapoint (IRAPOIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?IRAPOIN
+  +--> ?C_INITSEG
+
+?C_INITSEG
+  +--> ?CO?IRAPOIN
+
+
+
+SYMBOL TABLE OF MODULE:  trapoint (IRAPOIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        IRAPOIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:088CH         PUBLIC        main
+  D:0008H         PUBLIC        i
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/23/2016  16:33:22  PAGE 2
+
+
+  D:0009H         PUBLIC        yy
+  D:000BH         PUBLIC        x
+  D:000CH         PUBLIC        y
+  -------         PROC          MAIN
+  C:088CH         LINE#         7
+  C:088CH         LINE#         8
+  C:088FH         LINE#         9
+  C:08B3H         LINE#         10
+  C:08B6H         LINE#         11
+  C:08D2H         LINE#         12
+  C:08D8H         LINE#         13
+  C:08E1H         LINE#         14
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        IRAPOIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005EH BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=15.0 xdata=0 code=238
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

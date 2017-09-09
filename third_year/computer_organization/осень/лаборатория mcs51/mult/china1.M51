@@ -1,0 +1,103 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        10/19/2016  10:31:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE china1.obj TO china1
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  china1.obj (CHINA1)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ULSHR)
+
+
+LINK MAP OF MODULE:  china1 (CHINA1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?CHINA1
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00E1H     UNIT         ?C?LIB_CODE
+            CODE    00E4H     0085H     UNIT         ?PR?MAIN?CHINA1
+            CODE    0169H     0018H     UNIT         ?PR?_F2D?CHINA1
+            CODE    0181H     0017H     UNIT         ?PR?_FD2?CHINA1
+            CODE    0198H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   china1 (CHINA1)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?CHINA1
+
+?PR?MAIN?CHINA1
+  +--> ?PR?_FD2?CHINA1
+  +--> ?PR?_F2D?CHINA1
+
+
+
+SYMBOL TABLE OF MODULE:  china1 (CHINA1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CHINA1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+BL51 BANKED LINKER/LOCATER V6.15                                                      10/19/2016  10:31:09  PAGE 2
+
+
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        Aa
+  C:00E4H         PUBLIC        main
+  D:000AH         PUBLIC        S
+  C:0169H         PUBLIC        _F2d
+  C:0181H         PUBLIC        _Fd2
+  D:000EH         PUBLIC        i
+  -------         PROC          _FD2
+  D:0005H         SYMBOL        x
+  C:0181H         LINE#         6
+  -------         ENDPROC       _FD2
+  -------         PROC          _F2D
+  D:0005H         SYMBOL        x
+  C:0169H         LINE#         7
+  -------         ENDPROC       _F2D
+  -------         PROC          MAIN
+  C:00E4H         LINE#         10
+  C:00E4H         LINE#         11
+  C:00EFH         LINE#         12
+  C:0100H         LINE#         13
+  C:0103H         LINE#         14
+  C:013AH         LINE#         15
+  C:0150H         LINE#         16
+  C:0168H         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        CHINA1
+
+  -------         MODULE        ?C?ULDIV
+  C:003FH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?ULSHR
+  C:00D1H         PUBLIC        ?C?ULSHR
+  -------         ENDMOD        ?C?ULSHR
+
+Program Size: data=16.0 xdata=0 code=420
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

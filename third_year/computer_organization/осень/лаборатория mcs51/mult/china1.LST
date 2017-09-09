@@ -1,0 +1,41 @@
+C51 COMPILER V8.16   CHINA1                                                                10/19/2016 10:31:08 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE CHINA1
+OBJECT MODULE PLACED IN china1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE china1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>  //c вводом-выводом P0*P1-->P2P3
+   2          unsigned char  i;
+   3           typedef  unsigned char uchar;
+   4           typedef  unsigned int  uint;
+   5          typedef  unsigned long ulong;
+   6          Fd2( uchar  x){return (x>>4)*10 + (x&0x0f);}  
+   7          F2d(uchar  x){return  ((x/10)<<4) | (x%10); }
+   8            ulong  S;
+   9           uint Aa;
+  10          main()
+  11          {  Aa=Fd2( P0)<<8;    //Aa=P0<<8;      //ввод и выравнивание форматов
+  12   1         S=Fd2( P1);      //S=P1;             //ввод,  S совмещено с множителем B
+  13   1      for(i=8; i>0; i--)
+  14   1           S= (S&1)?  (S+Aa)>>1 : S>>1;
+  15   1        P2=F2d( S/100);    //вывод старшего байта произведения    
+  16   1        P3=F2d( S%100);  //вывод младшего байта произведения
+  17   1      }
+  18          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    180    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

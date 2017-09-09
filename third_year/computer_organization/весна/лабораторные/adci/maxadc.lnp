@@ -1,0 +1,3 @@
+"maxadc.obj" 
+TO "maxadc" 
+RAMSIZE(256) 

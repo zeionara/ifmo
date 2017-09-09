@@ -1,0 +1,96 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        10/19/2016  16:46:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE div.obj TO div
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  div.obj (DIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SLCMP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LSHL)
+
+
+LINK MAP OF MODULE:  div (DIV)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00B2H     UNIT         ?PR?MAIN?DIV
+            CODE    00B5H     0029H     UNIT         ?C?LIB_CODE
+            CODE    00DEH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   div (DIV)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?DIV
+
+?PR?MAIN?DIV                   0008H    0007H
+
+
+
+SYMBOL TABLE OF MODULE:  div (DIV)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DIV
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00D0H.2       PUBLIC        OV
+BL51 BANKED LINKER/LOCATER V6.15                                                      10/19/2016  16:46:17  PAGE 2
+
+
+  C:0003H         PUBLIC        main
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        Aa
+  D:000AH         SYMBOL        S
+  D:000EH         SYMBOL        i
+  C:00A8H         SYMBOL        out
+  -------         ENDDO         
+  C:0003H         LINE#         2
+  C:0003H         LINE#         3
+  C:0003H         LINE#         6
+  C:0014H         LINE#         7
+  C:001CH         LINE#         8
+  C:0034H         LINE#         9
+  C:0037H         LINE#         10
+  C:00A8H         LINE#         11
+  C:00A8H         LINE#         12
+  C:00ABH         LINE#         13
+  C:00B4H         LINE#         14
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        DIV
+
+  -------         MODULE        ?C?SLCMP
+  C:00B5H         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+  -------         MODULE        ?C?LSHL
+  C:00CBH         PUBLIC        ?C?LSHL
+  -------         ENDMOD        ?C?LSHL
+
+Program Size: data=16.0 xdata=0 code=234
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

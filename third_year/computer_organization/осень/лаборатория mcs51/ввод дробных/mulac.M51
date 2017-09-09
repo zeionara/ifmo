@@ -1,0 +1,80 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        10/14/2016  22:46:35  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE mulac.obj TO mulac
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  mulac.obj (MULAC)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  mulac (MULAC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MULAC
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0034H     UNIT         ?PR?MAIN?MULAC
+            CODE    0037H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   mulac (MULAC)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MULAC
+
+
+
+SYMBOL TABLE OF MODULE:  mulac (MULAC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MULAC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        Aa
+  C:0003H         PUBLIC        main
+  B:00F0H.0       PUBLIC        Bi
+  D:00F0H         PUBLIC        B
+  D:0009H         PUBLIC        i
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V6.15                                                      10/14/2016  22:46:35  PAGE 2
+
+
+  -------         DO            
+  D:0006H         SYMBOL        wrk
+  -------         ENDDO         
+  C:0003H         LINE#         8
+  C:0003H         LINE#         9
+  C:0005H         LINE#         10
+  C:0008H         LINE#         11
+  C:000BH         LINE#         12
+  C:0013H         LINE#         13
+  C:0030H         LINE#         14
+  C:0036H         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MULAC
+
+Program Size: data=11.0 xdata=0 code=67
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

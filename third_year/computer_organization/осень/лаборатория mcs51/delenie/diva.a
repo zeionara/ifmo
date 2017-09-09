@@ -1,0 +1,31 @@
+ i  equ r0
+wrk equ r1
+
+    cseg at 0
+    mov A,P0 ;делимое-старший байт
+    mov B,P1 ;делимое-младший байт  или частное
+     mov wrk,P2  ;делитель
+     subb A,wrk	  ;if(A>=S) {OV=1; goto out;} ;пробное вычитание
+      jc sta		  
+	  setb ov
+	  jmp out
+ sta: mov i,#10 
+ m1:  add a,wrk  ;восстановление остатка
+      clr c  
+cikl: djnz i,m2 ;for (i=0 ; i<8; i++ )
+      jmp out
+      ;A= (((A<<1)-S)>=0) ? (A<<1)-S +1 : B<<1 ;
+m2:   xch a,B
+      rlc A	   	
+      xch a,B	    
+	  rlc A
+	  mov F0,C	 ;старший бит утерян в С
+	  clr c
+	  subb a,wrk		
+	  jb F0,cikl
+	  jc m1
+	  setb c
+	  jmp cikl
+out:     mov P3,B    ;частное 	
+	   sjmp $					
+            end

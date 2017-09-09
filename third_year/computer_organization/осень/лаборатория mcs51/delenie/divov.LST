@@ -1,0 +1,67 @@
+A51 MACRO ASSEMBLER  DIVOV                                                                10/27/2016 17:00:34 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN divov.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE divov.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+  REG                  1               i  equ r0
+  REG                  2         wrk equ r1
+                       3     
+----                   4         cseg at 0
+0000 E580              5         mov A,P0 
+0002 8590F0            6         mov B,P1 
+0005 A9A0              7          mov wrk,P2
+0007 7809              8               mov i,#9  
+0009 99                9          subb A,wrk   
+000A 4004             10           jc sta              
+000C D2D2             11               setb ov
+000E 8006             12               jmp out 
+0010 111E             13      sta: call step
+0012 D8FC             14               djnz i,sta
+0014 80FE             15                sjmp $
+0016 00               16      out: nop 
+0017 C5F0             17     sl: xch a,b
+0019 33               18              rlc a
+001A C5F0             19              xch a,b
+001C 33               20              rlc a
+001D 22               21              ret
+001E 4006             22     step: jc m1 ;(-)
+0020 1117             23           call sl
+0022 C3               24               clr c
+0023 99               25               subb a,wrk
+0024 8004             26               jmp m2 ;c(-)
+0026 C3               27        m1: clr c
+0027 1117             28            call sl
+0029 29               29            add a,wrk ;c(+)
+002A 22               30        m2: ret                                                              
+                      31             end
+A51 MACRO ASSEMBLER  DIVOV                                                                10/27/2016 17:00:34 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+I. . . . . . . . .    REG    R0          
+M1 . . . . . . . .  C ADDR   0026H   A   
+M2 . . . . . . . .  C ADDR   002AH   A   
+OUT. . . . . . . .  C ADDR   0016H   A   
+OV . . . . . . . .  B ADDR   00D0H.2 A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+SL . . . . . . . .  C ADDR   0017H   A   
+STA. . . . . . . .  C ADDR   0010H   A   
+STEP . . . . . . .  C ADDR   001EH   A   
+WRK. . . . . . . .    REG    R1          
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

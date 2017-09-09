@@ -1,0 +1,88 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/11/2015  18:50:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE memc.obj TO memc
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  memc.obj (MEMC)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  memc (MEMC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?MEMC
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0008H     UNIT         ?XD?MEMC
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0057H     UNIT         ?PR?MAIN?MEMC
+            CODE    0857H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0863H     0004H     UNIT         ?CO?MEMC
+
+
+
+OVERLAY MAP OF MODULE:   memc (MEMC)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MEMC
+
+?PR?MAIN?MEMC
+  +--> ?CO?MEMC
+
+
+
+SYMBOL TABLE OF MODULE:  memc (MEMC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MEMC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        main
+  X:0000H         PUBLIC        yy
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/11/2015  18:50:09  PAGE 2
+
+
+  D:0008H         PUBLIC        x
+  C:0863H         PUBLIC        y
+  -------         PROC          MAIN
+  -------         DO            
+  D:0007H         SYMBOL        i
+  -------         ENDDO         
+  C:0800H         LINE#         6
+  C:0800H         LINE#         7
+  C:0800H         LINE#         8
+  C:0803H         LINE#         9
+  C:0804H         LINE#         10
+  C:0826H         LINE#         11
+  C:0828H         LINE#         12
+  C:0845H         LINE#         13
+  C:0855H         LINE#         14
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MEMC
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005BH BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=10.0 xdata=8 code=106
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

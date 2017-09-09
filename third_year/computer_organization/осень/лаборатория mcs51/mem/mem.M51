@@ -1,0 +1,81 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/11/2015  18:29:38  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE mem.obj TO mem
+
+
+INPUT MODULES INCLUDED:
+  mem.obj (MEM)
+
+
+LINK MAP OF MODULE:  mem (MEM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0008H     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     002EH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  mem (MEM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MEM
+  D:00F0H         SYMBOL        B
+  C:000BH         SYMBOL        CIKL
+  D:0082H         SYMBOL        DPL
+  C:0028H         SYMBOL        M1
+  C:001EH         SYMBOL        M2
+  C:0005H         SYMBOL        MAIN
+  C:0002H         SYMBOL        Y
+  X:0000H         SYMBOL        YY
+  C:0000H         LINE#         11
+  C:0005H         LINE#         15
+  C:0006H         LINE#         16
+  C:0007H         LINE#         17
+  C:0008H         LINE#         19
+  C:000BH         LINE#         21
+  C:000CH         LINE#         22
+  C:000FH         LINE#         23
+  C:0010H         LINE#         24
+  C:0011H         LINE#         25
+  C:0012H         LINE#         26
+  C:0013H         LINE#         27
+  C:0015H         LINE#         28
+  C:0016H         LINE#         29
+  C:0017H         LINE#         30
+  C:0018H         LINE#         31
+  C:001BH         LINE#         33
+  C:001EH         LINE#         34
+  C:0020H         LINE#         36
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/11/2015  18:29:38  PAGE 2
+
+
+  C:0021H         LINE#         37
+  C:0022H         LINE#         38
+  C:0023H         LINE#         39
+  C:0025H         LINE#         40
+  C:0027H         LINE#         41
+  C:0028H         LINE#         42
+  C:0029H         LINE#         43
+  C:002BH         LINE#         44
+  C:002DH         LINE#         45
+  -------         ENDMOD        MEM
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 002EH BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=8 code=46
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

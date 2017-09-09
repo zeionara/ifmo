@@ -1,0 +1,18 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\stud\Desktop\Организация ЭВМ  весна\весна\лабораторные\time\time.uvproj
+Project File Date:  02/25/2016
+
+<h2>Output:</h2>
+compiling time.c...
+time.c - 0 Error(s), 0 Warning(s).
+compiling time.c...
+time.c - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+compiling time.c...
+linking...
+Program Size: data=15.0 xdata=0 code=229
+"time" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,17 @@
+
+cseg at 0
+  ljmp start
+  reti
+  reti
+mcal:
+  ret
+cseg at 0x23
+start:
+  add a,#80
+  nop
+  add a,r0
+  anl c,ACC.7
+  acall mcal
+  nop
+  nop
+  end 

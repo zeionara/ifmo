@@ -1,0 +1,51 @@
+A51 MACRO ASSEMBLER  TRANSA                                                               11/23/2016 16:23:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN transa.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE transa.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1       
+                       2       
+                       3       
+  REG                  4              i equ r0 
+----                   5     cseg at 0  ;начало сегмента Code  после сброса 
+0000 8003              6           jmp start   ; команда старта 
+0002 313233            7           yy: db "123"  ;текстовая константа в сегменте
+0005 E4                8     start:  clr a     
+0006 F8                9             mov i,a      
+0007 758202           10             mov dpl,#yy         ;wrdp       
+000A 75F00A           11     cikl:   mov b,#10
+000D A4               12             mul ab                  
+000E F5F0             13                 mov b,a                ;b=ab=a*10
+0010 E4               14                 clr a
+0011 93               15               movc  a,@a+dptr   ;a=rdCode                        
+0012 540F             16               anl a,#0x0f             ;a&0x0f
+0014 25F0             17                   add a,b         ;wra' a= b+ a&0x0f
+0016 F5F0             18               mov b,a
+0018 08               19               inc i
+0019 B803EE           20             cjne  i,#3,cikl       ;for (i=3; i>0; i--)  
+001C 80FE             21               jmp $                    ;a=0xFB =123АИ
+                      22              end
+A51 MACRO ASSEMBLER  TRANSA                                                               11/23/2016 16:23:44 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CIKL . . . . . . .  C ADDR   000AH   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+I. . . . . . . . .    REG    R0          
+START. . . . . . .  C ADDR   0005H   A   
+YY . . . . . . . .  C ADDR   0002H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,82 @@
+A51 MACRO ASSEMBLER  MEM                                                                  12/11/2015 18:29:38 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN mem.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE mem.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1                                                                                          ;for(i
+                             =7;i>=0; i--)
+                       2                  ;char x,i                                                    
+  REG                  3             x  equ r1                                                      
+  REG                  4             i  equ r2   
+                       5                                                                                                
+                                     
+                       6                  ;char  xdata yy[8];                                            
+----                   7             xseg at  0                                                         
+0000                   8            yy:  ds 8                                                     
+                       9             
+----                  10                     cseg at 0                                                     
+0000 8003             11             jmp main                                                             
+0002 313233           12             y: db "123"       ;char  code y[ ]= "123"                    
+                      13                   ; for (i=0; i<3; i++)                                        
+0005                  14          main:                                                              
+0005 E4               15               clr a                                                             
+0006 FA               16               mov  i,a                                                           
+0007 F9               17               mov  x,a   
+                      18                    ; x=x*10+(y[i]&0x0f); 
+0008 758202           19               mov dpl,#y               
+000B                  20            cikl:
+000B E9               21               mov a,x      ; x=x*10
+000C 75F00A           22               mov b,#10
+000F A4               23               mul ab
+0010 F9               24               mov x,a
+0011 EA               25               mov a,i        ; a=(y[i]&0x0f  
+0012 93               26               movc a,@a+dptr
+0013 540F             27               anl a,#0x0f
+0015 29               28               add a,x
+0016 F9               29               mov x, a
+0017 0A               30                       inc i
+0018 BA03F0           31               cjne i,#3,cikl
+                      32                              ;for(i=7;i>=0; i--)
+001B 758207           33                        mov dpl,#(yy+7)    ; dph=0
+001E 1582             34                         m2:  dec dpl
+                      35                             ; yy[i++]= (x&0x01) ? '1' : '0';
+0020 E9               36                             mov a,x
+0021 13               37                             rrc a
+0022 F9               38                             mov x,a  ;x>>1
+0023 7430             39                             mov a,#'0'
+0025 5001             40                             jnc m1
+0027 04               41                             inc a
+0028 F0               42                     m1:     movx @dptr,a    
+0029 E582             43                             mov a, dpl
+002B 70F1             44                             jnz  m2
+002D 00               45                             nop
+                      46                             end
+                                                     
+A51 MACRO ASSEMBLER  MEM                                                                  12/11/2015 18:29:38 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CIKL . . . . . . .  C ADDR   000BH   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+I. . . . . . . . .    REG    R2          
+M1 . . . . . . . .  C ADDR   0028H   A   
+M2 . . . . . . . .  C ADDR   001EH   A   
+MAIN . . . . . . .  C ADDR   0005H   A   
+X. . . . . . . . .    REG    R1          
+Y. . . . . . . . .  C ADDR   0002H   A   
+YY . . . . . . . .  X ADDR   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

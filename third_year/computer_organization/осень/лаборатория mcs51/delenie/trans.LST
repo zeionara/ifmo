@@ -1,0 +1,38 @@
+C51 COMPILER V9.54   TRANS                                                                 11/23/2016 16:16:44 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TRANS
+OBJECT MODULE PLACED IN trans.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE trans.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+*** WARNING C500 IN LINE 1 OF trans.c: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+
+   1          
+   2                #include <reg51.h>
+   3                    char i,x;    //двоичные числа  в памяти Data, 
+   4                char  code y[ ]= "123"; //символьная строка в  памяти Code
+   5                char  xdata yy[8]; 
+   6                    main(){
+   7   1                      {     x=0; 
+   8   2          for (i=0; i<3; i++)     
+   9   2                  x=x*10+(y[i]&0x0f);                    
+  10   2           for(i=7;i>=0; i--)   //преобразование  двоичного числа char x  в ASCII
+  11   2             {  yy[i]= (x&0x01) ?   '1' :  '0' ; x=x>>1;} }
+  12   1                               }
+*** WARNING C290 IN LINE 12 OF trans.c: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     95    ----
+   CONSTANT SIZE    =      4    ----
+   XDATA SIZE       =      8    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

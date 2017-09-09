@@ -1,0 +1,158 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/28/2017  16:25:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE uart.obj TO uart
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  uart.obj (UART)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPADD)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPNEG)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+  C:\KEIL\C51\LIB\C51S.LIB (_GETKEY)
+
+
+LINK MAP OF MODULE:  uart (UART)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000EH     UNIT         ?DT?UART
+            IDATA   0016H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     0345H     UNIT         ?C?LIB_CODE
+            CODE    0B45H     00FFH     UNIT         ?PR?SERIA?UART
+            CODE    0C44H     0027H     UNIT         ?PR?MAIN?UART
+            CODE    0C6BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0C77H     000AH     UNIT         ?PR?_GETKEY?_GETKEY
+
+
+
+OVERLAY MAP OF MODULE:   uart (UART)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?PR?SERIA?UART
+  +--> ?PR?_GETKEY?_GETKEY
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP
+  +--> ?PR?MAIN?UART
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/28/2017  16:25:22  PAGE 2
+
+
+
+
+SYMBOL TABLE OF MODULE:  uart (UART)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        digit
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  C:0C44H         PUBLIC        main
+  D:0009H         PUBLIC        numb
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:000DH         PUBLIC        aa
+  D:0013H         PUBLIC        min
+  D:008DH         PUBLIC        TH1
+  B:0088H.6       PUBLIC        TR1
+  D:0014H         PUBLIC        i
+  D:0015H         PUBLIC        m
+  C:0B45H         PUBLIC        Seria
+  -------         PROC          SERIA
+  C:0B45H         LINE#         6
+  C:0B62H         LINE#         8
+  C:0B6BH         LINE#         10
+  C:0B6EH         LINE#         11
+  C:0B73H         LINE#         12
+  C:0B88H         LINE#         14
+  C:0BC7H         LINE#         15
+  C:0BE0H         LINE#         16
+  C:0BEAH         LINE#         17
+  C:0C1FH         LINE#         18
+  C:0C29H         LINE#         19
+  -------         ENDPROC       SERIA
+  -------         PROC          MAIN
+  C:0C44H         LINE#         21
+  C:0C44H         LINE#         22
+  C:0C47H         LINE#         23
+  C:0C4AH         LINE#         24
+  C:0C4DH         LINE#         25
+  C:0C4FH         LINE#         26
+  C:0C52H         LINE#         27
+  C:0C54H         LINE#         28
+  C:0C56H         LINE#         29
+  C:0C5BH         LINE#         30
+  C:0C65H         LINE#         31
+  C:0C67H         LINE#         32
+  C:0C69H         LINE#         34
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        UART
+
+  -------         MODULE        ?C?FPADD
+  C:0807H         PUBLIC        ?C?FPADD
+  C:0803H         PUBLIC        ?C?FPSUB
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/28/2017  16:25:22  PAGE 3
+
+
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPMUL
+  C:08F8H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+  C:0A01H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FPNEG
+  C:0A9EH         PUBLIC        ?C?FPNEG
+  -------         ENDMOD        ?C?FPNEG
+
+  -------         MODULE        ?C?FCAST
+  C:0AB9H         PUBLIC        ?C?FCASTC
+  C:0AB4H         PUBLIC        ?C?FCASTI
+  C:0AAFH         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?LNEG
+  C:0B37H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        _GETKEY
+  C:0C77H         PUBLIC        _GETKEY
+  -------         ENDMOD        _GETKEY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0129H BYTE (14%) *
+******************************************************************************
+
+Program Size: data=23.0 xdata=0 code=1159
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

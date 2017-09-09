@@ -1,0 +1,15 @@
+
+cseg at 0
+  ljmp start
+  reti
+  reti
+mcal:
+  ret
+start:
+  add a,#80
+  add a,r0
+  anl c,ACC.7
+  acall mcal
+  end 
+
+

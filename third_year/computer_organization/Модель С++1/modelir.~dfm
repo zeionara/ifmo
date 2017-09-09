@@ -1,0 +1,540 @@
+object Form1: TForm1
+  Left = 51
+  Top = 180
+  Width = 800
+  Height = 528
+  Caption = 'ecb'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label3: TLabel
+    Left = 63
+    Top = 96
+    Width = 93
+    Height = 13
+    Caption = '15    PCH. PCL    0 '
+  end
+  object Label4: TLabel
+    Left = 256
+    Top = 99
+    Width = 84
+    Height = 13
+    Caption = 'Ram[ 0xa, @Rj ]  '
+  end
+  object Label6: TLabel
+    Left = 480
+    Top = 75
+    Width = 76
+    Height = 13
+    Caption = '7      Xdata      0'
+  end
+  object Label7: TLabel
+    Left = 376
+    Top = 152
+    Width = 21
+    Height = 13
+    Caption = 'ACC'
+  end
+  object Label8: TLabel
+    Left = 480
+    Top = 125
+    Width = 74
+    Height = 13
+    Caption = '7      Wrk        0'
+  end
+  object Label10: TLabel
+    Left = 54
+    Top = 151
+    Width = 101
+    Height = 13
+    Caption = ' '#1088#1077#1075#1080#1089#1090#1088'  '#1082#1086#1084#1072#1085#1076' IR'
+  end
+  object Label16: TLabel
+    Left = 624
+    Top = 74
+    Width = 77
+    Height = 13
+    Caption = '15  DPH. DPL 0'
+  end
+  object Label17: TLabel
+    Left = 256
+    Top = 152
+    Width = 31
+    Height = 13
+    Caption = 'R0-R7'
+  end
+  object Label18: TLabel
+    Left = 376
+    Top = 256
+    Width = 82
+    Height = 13
+    Caption = 'C,ac,F0,rs,ov,0,P'
+  end
+  object Label19: TLabel
+    Left = 344
+    Top = 272
+    Width = 25
+    Height = 13
+    Caption = 'PSW'
+  end
+  object Label20: TLabel
+    Left = 256
+    Top = 200
+    Width = 28
+    Height = 13
+    Caption = 'Stack'
+  end
+  object Label21: TLabel
+    Left = 61
+    Top = 69
+    Width = 131
+    Height = 13
+    Caption = #1041' '#1051' '#1054' '#1050'   '#1091#1087#1088#1072#1074#1083#1077#1085#1080#1103' (CU)'
+  end
+  object Label22: TLabel
+    Left = 128
+    Top = 232
+    Width = 66
+    Height = 13
+    Caption = #1082#1086#1076#1080#1088#1086#1074#1072#1085#1080#1077
+  end
+  object Label23: TLabel
+    Left = 38
+    Top = 112
+    Width = 14
+    Height = 13
+    Caption = 'PC'
+  end
+  object Label24: TLabel
+    Left = 712
+    Top = 96
+    Width = 30
+    Height = 13
+    Caption = 'DPTR'
+  end
+  object Label1: TLabel
+    Left = 128
+    Top = 248
+    Width = 55
+    Height = 13
+    Caption = #1088#1072#1079#1088#1077#1096#1080#1090#1100
+  end
+  object Port3: TLabel
+    Left = 705
+    Top = 214
+    Width = 25
+    Height = 13
+    Caption = 'Port3'
+  end
+  object Label28: TLabel
+    Left = 584
+    Top = 344
+    Width = 3
+    Height = 13
+  end
+  object Label25: TLabel
+    Left = 608
+    Top = 339
+    Width = 78
+    Height = 13
+    Caption = 'EX1    EX0    EA'
+  end
+  object Label29: TLabel
+    Left = 632
+    Top = 297
+    Width = 44
+    Height = 13
+    Caption = '  IE1  IE0'
+  end
+  object Label12: TLabel
+    Left = 376
+    Top = 99
+    Width = 66
+    Height = 13
+    Caption = #1048#1084#1103' '#1088#1077#1075' SFR'
+  end
+  object Label14: TLabel
+    Left = 560
+    Top = 88
+    Width = 32
+    Height = 13
+    Caption = ' 0x123'
+  end
+  object Label30: TLabel
+    Left = 568
+    Top = 104
+    Width = 21
+    Height = 13
+    Caption = '@Rj'
+  end
+  object Label5: TLabel
+    Left = 576
+    Top = 259
+    Width = 114
+    Height = 13
+    Caption = '7   6   5   4   3    2   1   0'
+  end
+  object Label9: TLabel
+    Left = 705
+    Top = 236
+    Width = 15
+    Height = 13
+    Caption = 'Pin'
+  end
+  object Label27: TLabel
+    Left = 97
+    Top = 288
+    Width = 129
+    Height = 13
+    Caption = ' '#1054#1096#1080#1073#1082#1072'  '#1084#1080#1082#1088#1086#1086#1087#1077#1088#1072#1094#1080#1080
+  end
+  object Label2: TLabel
+    Left = 127
+    Top = 201
+    Width = 100
+    Height = 13
+    Caption = #1079#1072#1074#1077#1088#1096#1077#1085#1080#1077' '#1087#1086' Nop'
+  end
+  object Label11: TLabel
+    Left = 189
+    Top = 330
+    Width = 24
+    Height = 13
+    Caption = #1058#1077#1089#1090
+  end
+  object Label15: TLabel
+    Left = 592
+    Top = 363
+    Width = 54
+    Height = 13
+    Caption = #1057#1086#1089#1090#1086#1103#1085#1080#1077
+  end
+  object Label31: TLabel
+    Left = 592
+    Top = 379
+    Width = 64
+    Height = 13
+    Caption = #1055#1088#1077#1088#1099#1074#1072#1085#1080#1103
+  end
+  object Label13: TLabel
+    Left = 553
+    Top = 325
+    Width = 32
+    Height = 13
+    Caption = #1084#1072#1089#1082#1080
+  end
+  object Label32: TLabel
+    Left = 585
+    Top = 286
+    Width = 38
+    Height = 13
+    Caption = #1079#1072#1087#1088#1089#1099
+  end
+  object Port0: TLabel
+    Left = 704
+    Top = 144
+    Width = 25
+    Height = 13
+    Caption = 'Port0'
+  end
+  object Port1: TLabel
+    Left = 704
+    Top = 168
+    Width = 25
+    Height = 13
+    Caption = 'Port1'
+  end
+  object Port2: TLabel
+    Left = 704
+    Top = 192
+    Width = 25
+    Height = 13
+    Caption = 'Port2'
+  end
+  object ProgCnt: TEdit
+    Left = 63
+    Top = 112
+    Width = 88
+    Height = 21
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 167
+    Top = 106
+    Width = 48
+    Height = 25
+    Caption = 'C'#1073#1088#1086#1089
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object Work: TEdit
+    Left = 480
+    Top = 140
+    Width = 73
+    Height = 21
+    TabOrder = 2
+  end
+  object Instr: TEdit
+    Left = 56
+    Top = 167
+    Width = 97
+    Height = 21
+    TabOrder = 3
+  end
+  object Button2: TButton
+    Left = 167
+    Top = 161
+    Width = 65
+    Height = 25
+    Caption = ' '#1042#1099#1087#1086#1083#1085#1080#1090#1100
+    TabOrder = 4
+    OnClick = Button2Click
+  end
+  object Acu: TEdit
+    Left = 376
+    Top = 168
+    Width = 57
+    Height = 21
+    TabOrder = 5
+  end
+  object Edit15: TEdit
+    Left = 624
+    Top = 89
+    Width = 81
+    Height = 21
+    TabOrder = 6
+  end
+  object ComboBox2: TComboBox
+    Left = 256
+    Top = 168
+    Width = 73
+    Height = 21
+    ItemHeight = 13
+    TabOrder = 7
+    Items.Strings = (
+      '')
+  end
+  object CheckBox1: TCheckBox
+    Left = 98
+    Top = 225
+    Width = 17
+    Height = 25
+    Caption = 'CheckBox1'
+    TabOrder = 8
+    OnClick = CheckBox1Click
+  end
+  object Edit1: TEdit
+    Left = 376
+    Top = 272
+    Width = 81
+    Height = 21
+    TabOrder = 9
+  end
+  object Button7: TButton
+    Left = 254
+    Top = 359
+    Width = 130
+    Height = 25
+    Caption = #1057#1086#1079#1076#1072#1090#1100' '#1092#1072#1081#1083#1099'  MaxPlus'
+    TabOrder = 10
+    OnClick = Button7Click
+  end
+  object Edit2: TEdit
+    Left = 578
+    Top = 213
+    Width = 121
+    Height = 21
+    TabOrder = 11
+    OnDblClick = Edit2DblClick
+  end
+  object Button3: TButton
+    Left = 637
+    Top = 241
+    Width = 7
+    Height = 13
+    TabOrder = 12
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 656
+    Top = 264
+    Width = 10
+    Height = 2
+    TabOrder = 13
+  end
+  object CheckBox2: TCheckBox
+    Left = 608
+    Top = 323
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox2'
+    TabOrder = 14
+    OnClick = CheckBox2Click
+  end
+  object CheckBox3: TCheckBox
+    Left = 640
+    Top = 323
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox3'
+    TabOrder = 15
+    OnClick = CheckBox3Click
+  end
+  object CheckBox4: TCheckBox
+    Left = 672
+    Top = 323
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox4'
+    TabOrder = 16
+    OnClick = CheckBox4Click
+  end
+  object ComboBox6: TComboBox
+    Left = 256
+    Top = 216
+    Width = 73
+    Height = 21
+    ItemHeight = 13
+    TabOrder = 17
+  end
+  object Edit7: TEdit
+    Left = 256
+    Top = 122
+    Width = 65
+    Height = 21
+    TabOrder = 18
+    OnDblClick = Edit7DblClick
+  end
+  object Edit6: TEdit
+    Left = 376
+    Top = 122
+    Width = 65
+    Height = 21
+    TabOrder = 19
+    OnDblClick = Edit6DblClick
+  end
+  object Edit9: TEdit
+    Left = 480
+    Top = 90
+    Width = 73
+    Height = 21
+    TabOrder = 20
+    OnDblClick = Edit9DblClick
+  end
+  object Edit8: TEdit
+    Left = 97
+    Top = 263
+    Width = 129
+    Height = 21
+    TabOrder = 21
+  end
+  object CheckBox5: TCheckBox
+    Left = 656
+    Top = 281
+    Width = 17
+    Height = 17
+    TabOrder = 22
+  end
+  object CheckBox6: TCheckBox
+    Left = 640
+    Top = 281
+    Width = 17
+    Height = 17
+    TabOrder = 23
+  end
+  object Button10: TButton
+    Left = 650
+    Top = 241
+    Width = 7
+    Height = 13
+    TabOrder = 24
+    OnClick = Button10Click
+  end
+  object CheckBox7: TCheckBox
+    Left = 104
+    Top = 201
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox7'
+    TabOrder = 25
+  end
+  object Button13: TButton
+    Left = 63
+    Top = 359
+    Width = 113
+    Height = 25
+    Caption = #1063#1080#1090#1072#1090#1100' '#1092#1072#1081#1083' Code'
+    TabOrder = 26
+    OnClick = Button13Click
+  end
+  object Edit3: TEdit
+    Left = 63
+    Top = 328
+    Width = 113
+    Height = 21
+    TabOrder = 27
+  end
+  object Edit4: TEdit
+    Left = 254
+    Top = 328
+    Width = 130
+    Height = 21
+    TabOrder = 28
+  end
+  object CheckBox8: TCheckBox
+    Left = 190
+    Top = 359
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox8'
+    TabOrder = 29
+  end
+  object CheckBox9: TCheckBox
+    Left = 672
+    Top = 371
+    Width = 17
+    Height = 17
+    Caption = 'CheckBox9'
+    TabOrder = 30
+  end
+  object Edit5: TEdit
+    Left = 608
+    Top = 184
+    Width = 89
+    Height = 21
+    TabOrder = 31
+  end
+  object Edit11: TEdit
+    Left = 608
+    Top = 136
+    Width = 89
+    Height = 21
+    TabOrder = 32
+  end
+  object Edit10: TEdit
+    Left = 608
+    Top = 160
+    Width = 89
+    Height = 21
+    TabOrder = 33
+  end
+  object Button5: TButton
+    Left = 576
+    Top = 176
+    Width = 25
+    Height = 25
+    Caption = 'inp'
+    TabOrder = 34
+    OnClick = Button5Click
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 680
+    Top = 24
+  end
+end

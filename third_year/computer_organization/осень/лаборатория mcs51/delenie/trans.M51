@@ -1,0 +1,84 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/23/2016  16:16:44  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE trans.obj TO trans
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  trans.obj (TRANS)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  trans (TRANS)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?TRANS
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0008H     UNIT         ?XD?TRANS
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     005FH     UNIT         ?PR?MAIN?TRANS
+            CODE    085FH     000CH     UNIT         ?C_C51STARTUP
+            CODE    086BH     0004H     UNIT         ?CO?TRANS
+
+
+
+OVERLAY MAP OF MODULE:   trans (TRANS)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TRANS
+
+?PR?MAIN?TRANS
+  +--> ?CO?TRANS
+
+
+
+SYMBOL TABLE OF MODULE:  trans (TRANS)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TRANS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        main
+  D:0008H         PUBLIC        i
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/23/2016  16:16:44  PAGE 2
+
+
+  X:0000H         PUBLIC        yy
+  D:0009H         PUBLIC        x
+  C:086BH         PUBLIC        y
+  -------         PROC          MAIN
+  C:0800H         LINE#         6
+  C:0800H         LINE#         7
+  C:0803H         LINE#         8
+  C:0805H         LINE#         9
+  C:082BH         LINE#         10
+  C:082EH         LINE#         11
+  C:085EH         LINE#         12
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TRANS
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0063H BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=8 code=114
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,31 @@
+	  i  equ r0
+    wrk equ r1
+
+    cseg at 0
+    mov A,P0 
+    mov B,P1 
+     mov wrk,P2
+	  mov i,#9  
+     subb A,wrk	  
+      jc sta		  
+	  setb ov
+	  jmp out 
+ sta: call step
+  	  djnz i,sta
+	   sjmp $
+ out: nop 
+sl: xch a,b
+	 rlc a
+	 xch a,b
+	 rlc a
+	 ret
+step: jc m1 ;(-)
+      call sl
+	  clr c
+	  subb a,wrk
+	  jmp m2 ;c(-)
+   m1: clr c
+       call sl
+       add a,wrk ;c(+)
+   m2: ret	  	   	  					
+        end

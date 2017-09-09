@@ -1,0 +1,59 @@
+C51 COMPILER V8.16   PWM                                                                   04/10/2017 23:06:52 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE PWM
+OBJECT MODULE PLACED IN pwm.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE pwm.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          #include <reg51.h>
+   3          
+   4          char d[8];   //массив битов-символов
+   5           char count,i,sta;
+   6          unsigned int period,Pi0=0,Pi1; 
+   7          
+   8          intt0() interrupt 0    
+   9          {       TR1=0;
+  10   1            if((TL1==0)&&(sta==0))goto fin;   
+  11   1                 Pi1= (TH1<<8)| TL1;
+  12   1                 TR1=1;
+  13   1                 period=Pi1-Pi0;
+  14   1                 Pi0=Pi1;
+  15   1                 
+  16   1            if(TL0 <110)  //S0=3 ' D=300/3=100
+  17   1                      d[count] = '0';
+  18   1               else d[count] = '1';
+  19   1                              count++;
+  20   1                        if (count==9)  count=0;  
+  21   1      fin:       TL0=0; TH0=0;sta=0;
+  22   1                 TR0=1; 
+  23   1      
+  24   1      }
+  25          
+  26          main(){ 
+  27   1              count = 0;
+  28   1                      TMOD = 0x019; //таймер в режиме Gate
+  29   1              IT0 = 1;
+  30   1                      EX0=1; 
+  31   1                  EA = 1;
+  32   1                      P3=0;
+  33   1                      TL1=0; TH1=0; TL0=0; TH0=0;
+  34   1                      TR0=TR1=1;                      
+  35   1                      while(1);
+  36   1                      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    133    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

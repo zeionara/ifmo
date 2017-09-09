@@ -1,0 +1,3 @@
+"adc.obj" 
+TO "adc" 
+RAMSIZE(256) 

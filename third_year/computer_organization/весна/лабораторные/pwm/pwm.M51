@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.05                                                        05/31/2016  12:25:19  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
+C:\KEIL51\C51\BIN\BL51.EXE pwm.obj TO pwm
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  pwm.obj (PWM)
+  C:\KEIL51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  pwm (PWM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?PWM
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     0055H     UNIT         ?PR?INTT0?PWM
+            CODE    005BH     0019H     UNIT         ?PR?MAIN?PWM
+            CODE    0074H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   pwm (PWM)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?PWM
+
+
+
+SYMBOL TABLE OF MODULE:  pwm (PWM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PWM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        period
+  C:005BH         PUBLIC        main
+  D:000AH         PUBLIC        count
+  D:0089H         PUBLIC        TMOD
+  D:008CH         PUBLIC        TH0
+  B:00A8H.0       PUBLIC        EX0
+BL51 BANKED LINKER/LOCATER V6.05                                                      05/31/2016  12:25:19  PAGE 2
+
+
+  B:0088H.0       PUBLIC        IT0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  D:000BH         PUBLIC        d
+  C:0006H         PUBLIC        intt0
+  -------         PROC          INTT0
+  C:0006H         LINE#         8
+  C:0013H         LINE#         9
+  C:0017H         LINE#         10
+  C:0021H         LINE#         11
+  C:002AH         LINE#         12
+  C:0031H         LINE#         13
+  C:0036H         LINE#         14
+  C:0038H         LINE#         15
+  C:0040H         LINE#         16
+  C:004CH         LINE#         17
+  C:0050H         LINE#         18
+  -------         ENDPROC       INTT0
+  -------         PROC          MAIN
+  C:005BH         LINE#         20
+  C:005EH         LINE#         21
+  C:0061H         LINE#         22
+  C:0064H         LINE#         23
+  C:0066H         LINE#         24
+  C:0068H         LINE#         25
+  C:006AH         LINE#         26
+  C:0072H         LINE#         29
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        PWM
+
+Program Size: data=17.0 xdata=0 code=128
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

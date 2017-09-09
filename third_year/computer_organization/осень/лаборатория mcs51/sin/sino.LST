@@ -1,0 +1,39 @@
+C51 COMPILER V8.08   SINO                                                                  11/21/2016 11:30:21 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE SINO
+OBJECT MODULE PLACED IN sino.OBJ
+COMPILER INVOKED BY: C:\Users\Гость\Desktop\Кейл51\C51\BIN\C51.EXE sino.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          #include <reg51.h>
+   3            typedef   unsigned char uchar;   
+   4             uchar   i,x,y, S,m,R,n;
+   5          uchar Si()
+   6                {   return R=((R*y)>>8)/(i<<1)/((i<<1)+1) ;}
+   7                  main()
+   8          {   m=0xff;    
+   9   1       while(1)
+  10   1        for(x=0; x<m; x++)
+  11   1            {y=(x*x)>>8; S=m; n=4; R=x; 
+  12   2              for(i=1;i<n;i++)
+  13   2               S= (i%2)?  S-Si() : S+Si() ;
+  14   2             P2=S;
+  15   2              }
+  16   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    134    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

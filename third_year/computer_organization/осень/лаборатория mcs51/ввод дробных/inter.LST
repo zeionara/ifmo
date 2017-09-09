@@ -1,0 +1,44 @@
+C51 COMPILER V8.16   INTER                                                                 08/17/2016 22:07:40 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE INTER
+OBJECT MODULE PLACED IN inter.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE inter.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1            #include <reg51.h>
+   2           typedef unsigned int u16;
+   3            typedef unsigned char u8;
+   4            typedef unsigned long u32;
+   5           
+   6           u16 fd2( u16 x){
+   7   1      
+   8   1              return (((x&0xf0)>>4)*10 + (x&0xf));
+   9   1              }
+  10          u8 f2d(u16 x){
+  11   1               return ((x/10)<<4) | (x%10)  ;
+  12   1               }
+  13                  
+  14          u32 trd2()
+  15          {    u16 N; 
+  16   1               //P3=f2d(fd2(P1));
+  17   1               N= fd2(P0)*100 + fd2(P1);
+  18   1               P2= f2d(N/100); 
+  19   1               P3=f2d((N%100));
+  20   1           return N;
+  21   1           }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    144    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

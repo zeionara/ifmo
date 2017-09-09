@@ -1,0 +1,47 @@
+	                                                                             ;for(i=7;i>=0; i--)
+             ;char x,i                                                    
+        x  equ r1                                                      
+        i  equ r2   
+		                                                                                   
+             ;char  xdata yy[8];                                            
+        xseg at  0                                                         
+       yy:  ds 8                                                     
+        
+		cseg at 0                                                     
+        jmp main                                                             
+        y: db "123"       ;char  code y[ ]= "123"                    
+              ; for (i=0; i<3; i++)                                        
+     main:                                                              
+          clr a                                                             
+          mov  i,a                                                           
+          mov  x,a   
+               ; x=x*10+(y[i]&0x0f); 
+     	  mov dpl,#y		   
+       cikl:
+          mov a,x      ; x=x*10
+          mov b,#10
+          mul ab
+          mov x,a
+          mov a,i        ; a=(y[i]&0x0f  
+          movc a,@a+dptr
+          anl a,#0x0f
+          add a,x
+          mov x, a
+		  inc i
+          cjne i,#3,cikl
+		         ;for(i=7;i>=0; i--)
+		   mov dpl,#(yy+7)    ; dph=0
+		    m2:  dec dpl
+			; yy[i++]= (x&0x01) ? '1' : '0';
+			mov a,x
+			rrc a
+			mov x,a	 ;x>>1
+			mov a,#'0'
+			jnc m1
+			inc a
+		m1:	movx @dptr,a	
+			mov a, dpl
+			jnz  m2
+			nop
+			end
+			

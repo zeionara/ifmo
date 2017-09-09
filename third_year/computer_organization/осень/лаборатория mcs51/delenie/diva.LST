@@ -1,0 +1,68 @@
+A51 MACRO ASSEMBLER  DIVA                                                                 10/27/2016 17:51:33 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02c
+OBJECT MODULE PLACED IN diva.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE diva.a SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+  REG                  1                   i  equ r0
+  REG                  2     wrk equ r1
+                       3     
+----                   4         cseg at 0
+0000 E580              5         mov A,P0 ;делимое-старший байт
+0002 8590F0            6         mov B,P1 ;делимое-младший байт  или частное
+0005 A9A0              7          mov wrk,P2  ;делитель
+0007 99                8          subb A,wrk   ;if(A>=S) {OV=1; goto out;} ;пробное вычитание
+0008 4004              9           jc sta              
+000A D2D2             10               setb ov
+000C 801A             11               jmp out
+000E 780A             12      sta: mov i,#10 
+0010 29               13      m1:  add a,wrk  ;восстановление остатка
+0011 C3               14           clr c  
+0012 D802             15     cikl: djnz i,m2 ;for (i=0 ; i<8; i++ )
+0014 8012             16           jmp out
+                      17           ;A= (((A<<1)-S)>=0) ? (A<<1)-S +1 : B<<1 ;
+0016 C5F0             18     m2:   xch a,B
+0018 33               19           rlc A             
+0019 C5F0             20           xch a,B       
+001B 33               21               rlc A
+001C 92D5             22               mov F0,C
+001E C3               23               clr c
+001F 99               24               subb a,wrk            
+0020 20D5EF           25               jb F0,cikl
+0023 40EB             26               jc m1
+0025 D3               27               setb c
+0026 80EA             28               jmp cikl
+0028 85F0B0           29     out:     mov P3,B    ;частное   
+002B 80FE             30                sjmp $                                       
+                      31                 end
+A51 MACRO ASSEMBLER  DIVA                                                                 10/27/2016 17:51:33 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CIKL . . . . . . .  C ADDR   0012H   A   
+F0 . . . . . . . .  B ADDR   00D0H.5 A   
+I. . . . . . . . .    REG    R0          
+M1 . . . . . . . .  C ADDR   0010H   A   
+M2 . . . . . . . .  C ADDR   0016H   A   
+OUT. . . . . . . .  C ADDR   0028H   A   
+OV . . . . . . . .  B ADDR   00D0H.2 A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+STA. . . . . . . .  C ADDR   000EH   A   
+WRK. . . . . . . .    REG    R1          
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

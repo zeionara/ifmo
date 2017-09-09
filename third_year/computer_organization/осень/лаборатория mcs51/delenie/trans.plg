@@ -1,0 +1,30 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+G:\организация  ЭВМ  Кейл51\осень\лаборатория mcs51\delenie\trans.uvproj
+Project File Date:  11/23/2016
+
+<h2>Output:</h2>
+compiling trans.c...
+trans.c(1): warning C500: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+trans.c(4): error C100: unprintable character 0xF1 skipped
+trans.c(4): error C129: missing ';' before 'i'
+trans.c - 2 Error(s), 1 Warning(s).
+compiling trans.c...
+trans.c(1): warning C500: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+trans.c(8): warning C206: 'strlen': missing function-prototype
+trans.c(8): error C267: 'strlen': requires ANSI-style prototype
+trans.c - 1 Error(s), 2 Warning(s).
+compiling trans.c...
+trans.c(1): warning C500: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+trans.c(12): warning C290: missing return value
+trans.c - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling trans.c...
+trans.c(1): warning C500: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+trans.c(12): warning C290: missing return value
+linking...
+Program Size: data=11.0 xdata=8 code=114
+"trans" - 0 Error(s), 2 Warning(s).

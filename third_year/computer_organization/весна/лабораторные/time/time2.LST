@@ -1,0 +1,46 @@
+C51 COMPILER V8.16   TIME2                                                                 04/29/2017 22:21:40 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE TIME2
+OBJECT MODULE PLACED IN time2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE time2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          unsigned    char sec,min;   
+   4          unsigned   int count=0, time;
+   5          intt0() interrupt 1  //счетчик  
+   6          { 
+   7   1        TH0=  (-10000)>>8;
+   8   1        TL0=  (-10000);
+   9   1        count++;  
+  10   1        if(count==100 ) {sec++;count=0;} 
+  11   1        if(sec== 60 ){min++; sec=0;}
+  12   1         }
+  13          main()
+  14          { 
+  15   1        TMOD=1;      
+  16   1        ET0=1;  
+  17   1        TH0=  (-50000)>>8;
+  18   1        TL0=  (-50000);
+  19   1        min=sec=0;     
+  20   1        TR0=1;      
+  21   1        EA=1;     
+  22   1        while(1);    
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     67    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,37 @@
+C51 COMPILER V9.51   SIN1                                                                  11/14/2016 16:12:35 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE SIN1
+OBJECT MODULE PLACED IN sin1.OBJ
+COMPILER INVOKED BY: D:\mcs51\C51\BIN\C51.EXE sin1.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          typedef unsigned char uchar;
+   3              uchar x,y,S,m;
+   4            uchar Si(uchar ai)
+   5            { return S=m-((y/ai*S)>>8) ;}
+   6            main()
+   7            { m=100;
+   8   1        while(1)
+   9   1         for(x=0;x<m;x++)
+  10   1           { y=(x*x)>>8;S=m;
+  11   2            S=Si(42);
+  12   2           S=Si(20);
+  13   2           S=Si(6);
+  14   2           P2=(S*x)>>8;}}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     82    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

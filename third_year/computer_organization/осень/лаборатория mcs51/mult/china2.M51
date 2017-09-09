@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.15                                                        10/19/2016  12:06:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.15, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE china2.obj TO china2
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  china2.obj (CHINA2)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  china2 (CHINA2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?CHINA2
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     004BH     UNIT         ?PR?MAIN?CHINA2
+            CODE    004EH     0018H     UNIT         ?PR?_F2D?CHINA2
+            CODE    0066H     0017H     UNIT         ?PR?_FD2?CHINA2
+            CODE    007DH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   china2 (CHINA2)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?CHINA2
+
+?PR?MAIN?CHINA2
+  +--> ?PR?_FD2?CHINA2
+  +--> ?PR?_F2D?CHINA2
+
+
+
+SYMBOL TABLE OF MODULE:  china2 (CHINA2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CHINA2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.15                                                      10/19/2016  12:06:27  PAGE 2
+
+
+  D:0008H         PUBLIC        Aa
+  C:0003H         PUBLIC        main
+  B:00F0H.0       PUBLIC        Bi
+  D:00F0H         PUBLIC        B
+  C:004EH         PUBLIC        _F2d
+  C:0066H         PUBLIC        _Fd2
+  D:0009H         PUBLIC        i
+  -------         PROC          _FD2
+  D:0005H         SYMBOL        x
+  C:0066H         LINE#         7
+  -------         ENDPROC       _FD2
+  -------         PROC          _F2D
+  D:0005H         SYMBOL        x
+  C:004EH         LINE#         8
+  -------         ENDPROC       _F2D
+  -------         PROC          MAIN
+  -------         DO            
+  D:0003H         SYMBOL        wrk
+  -------         ENDDO         
+  C:0003H         LINE#         13
+  C:0003H         LINE#         14
+  C:000AH         LINE#         15
+  C:000DH         LINE#         16
+  C:0014H         LINE#         17
+  C:0017H         LINE#         18
+  C:0017H         LINE#         19
+  C:001FH         LINE#         20
+  C:002CH         LINE#         21
+  C:003FH         LINE#         22
+  C:004DH         LINE#         23
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        CHINA2
+
+Program Size: data=11.0 xdata=0 code=137
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

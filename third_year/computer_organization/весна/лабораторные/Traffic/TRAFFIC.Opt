@@ -1,0 +1,144 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.a*; *.src)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Demo - Simulator), 0x0000 // Tools: 'MCS-51'
+Target (Simulator), 0x0000 // Tools: 'MCS-51'
+Target (MCB900 - Run), 0x0000 // Tools: 'MCS-51'
+Target (EPM900 - Emulator), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+GRPOPT 2,(Documentation),1,0,0
+
+OPTFFF 1,1,1,1342177281,0,0,0,0,<.\TRAFFIC.C><TRAFFIC.C> 
+OPTFFF 1,2,1,0,0,0,0,0,<.\SERIAL.C><SERIAL.C> 
+OPTFFF 1,3,1,0,0,0,0,0,<.\GETLINE.C><GETLINE.C> 
+OPTFFF 1,4,2,0,0,0,0,0,<.\Conf_tny.A51><Conf_tny.A51> 
+OPTFFF 1,5,2,469762048,0,0,0,0,<.\START900.A51><START900.A51> 
+OPTFFF 2,6,5,335544320,0,0,0,0,<.\ABSTRACT.TXT><ABSTRACT.TXT> 
+
+
+TARGOPT 1, (Demo - Simulator)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,1
+  OPTFL 1,0,1
+  OPTBL 0,(80C51 Family Programmer's Guide)<DATASHTS\PHILIPS\P51_PG.PDF>
+  OPTBL 1,(Data Sheet)<DATASHTS\PHILIPS\P89LPC932_DS.PDF>
+  OPTBL 2,(User's Manual)<DATASHTS\PHILIPS\P89LPC932_UM.PDF>
+  OPTDL (S8051.DLL)()(DLPC.DLL)(-pLPC932)(S8051.DLL)()(TLPC.DLL)(-pLPC932)
+  OPTDBG 131569,0,()()()()(DTraffic.inc)()()()()() (BIN\MON51.DLL)()()()
+  OPTKEY 0,(DLGDLPC)((98=-1,-1,-1,-1,0)(3003=225,189,438,400,0)(3004=1052,210,1265,395,0)(3006=1058,283,1271,448,1)(5019=265,590,472,755,0)(5028=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(5092=-1,-1,-1,-1,0)(5091=-1,-1,-1,-1,0)(5007=-1,-1,-1,-1,0)(5090=-1,-1,-1,-1,0)(5015=-1,-1,-1,-1,0)(3007=-1,-1,-1,-1,0)(5029=-1,-1,-1,-1,0)(5097=-1,-1,-1,-1,0)(2003=-1,-1,-1,-1,0)(5006=201,216,393,438,0)(5004=-1,-1,-1,-1,0))
+  OPTKEY 0,(DLGDP51)((98=-1,-1,-1,-1,0)(82=-1,-1,-1,-1,0)(83=-1,-1,-1,-1,0)(84=-1,-1,-1,-1,0)(85=-1,-1,-1,-1,0)(99=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(94=-1,-1,-1,-1,0)(95=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(2000=-1,-1,-1,-1,0)(7000=-1,-1,-1,-1,0))
+  OPTWA 0,1,(red)
+  OPTWA 1,1,(yellow)
+  OPTWA 2,1,(green)
+  OPTWA 3,1,(stop)
+  OPTWA 4,1,(walk)
+  OPTMM 1,0,(c:0x11b1)
+  OPTMM 2,0,(\measure\save_record)
+  OPTBT 0,(Push for Walk)(push_key ())
+  OPTDF 0xC0008082
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
+TARGOPT 2, (Simulator)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,1
+  OPTFL 1,0,0
+  OPTBL 0,(80C51 Family Programmer's Guide)<DATASHTS\PHILIPS\P51_PG.PDF>
+  OPTBL 1,(Data Sheet)<DATASHTS\PHILIPS\P89LPC932_DS.PDF>
+  OPTBL 2,(User's Manual)<DATASHTS\PHILIPS\P89LPC932_UM.PDF>
+  OPTDL (S8051.DLL)()(DLPC.DLL)(-pLPC932)(S8051.DLL)()(TLPC.DLL)(-pLPC932)
+  OPTDBG 131573,0,()()()()(Traffic.inc)()()()()() (BIN\MON51.DLL)()()()
+  OPTKEY 0,(DLGDLPC)((98=-1,-1,-1,-1,0)(3003=225,189,438,400,0)(3004=1052,210,1265,395,0)(3006=1058,283,1271,448,1)(5019=265,590,472,755,0)(5028=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(5092=-1,-1,-1,-1,0)(5091=-1,-1,-1,-1,0)(5007=-1,-1,-1,-1,0)(5090=-1,-1,-1,-1,0)(5015=-1,-1,-1,-1,0)(3007=-1,-1,-1,-1,0)(5029=-1,-1,-1,-1,0)(5097=-1,-1,-1,-1,0)(2003=-1,-1,-1,-1,0)(5006=201,216,393,438,0)(5004=-1,-1,-1,-1,0))
+  OPTKEY 0,(DLGDP51)((98=-1,-1,-1,-1,0)(82=-1,-1,-1,-1,0)(83=-1,-1,-1,-1,0)(84=-1,-1,-1,-1,0)(85=-1,-1,-1,-1,0)(99=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(94=-1,-1,-1,-1,0)(95=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(2000=-1,-1,-1,-1,0)(7000=-1,-1,-1,-1,0))
+  OPTWA 0,1,(red)
+  OPTWA 1,1,(yellow)
+  OPTWA 2,1,(green)
+  OPTWA 3,1,(stop)
+  OPTWA 4,1,(walk)
+  OPTMM 1,0,(c:0x11b1)
+  OPTMM 2,0,(\measure\save_record)
+  OPTBT 0,(Push for Walk)(push_key ())
+  OPTDF 0x40008082
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
+TARGOPT 3, (MCB900 - Run)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,1
+  OPTFL 1,0,0
+  OPTBL 0,(80C51 Family Programmer's Guide)<DATASHTS\PHILIPS\P51_PG.PDF>
+  OPTBL 1,(Data Sheet)<DATASHTS\PHILIPS\P89LPC932_DS.PDF>
+  OPTBL 2,(User's Manual)<DATASHTS\PHILIPS\P89LPC932_UM.PDF>
+  OPTDL (S8051.DLL)()(DLPC.DLL)(-pLPC932)(S8051.DLL)()(TLPC.DLL)(-pLPC932)
+  OPTDBG 131573,0,()()()()(Traffic.inc)()()()()() (BIN\MON51.DLL)()()()
+  OPTKEY 0,(DLGDLPC)((98=-1,-1,-1,-1,0)(3003=225,189,438,400,0)(3004=1052,210,1265,395,0)(3006=1058,283,1271,448,1)(5019=265,590,472,755,0)(5028=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(5092=-1,-1,-1,-1,0)(5091=-1,-1,-1,-1,0)(5007=-1,-1,-1,-1,0)(5090=-1,-1,-1,-1,0)(5015=-1,-1,-1,-1,0)(3007=-1,-1,-1,-1,0)(5029=-1,-1,-1,-1,0)(5097=-1,-1,-1,-1,0)(2003=-1,-1,-1,-1,0)(5006=201,216,393,438,0)(5004=-1,-1,-1,-1,0))
+  OPTKEY 0,(DLGDP51)((98=-1,-1,-1,-1,0)(82=-1,-1,-1,-1,0)(83=-1,-1,-1,-1,0)(84=-1,-1,-1,-1,0)(85=-1,-1,-1,-1,0)(99=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(94=-1,-1,-1,-1,0)(95=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(2000=-1,-1,-1,-1,0)(7000=-1,-1,-1,-1,0))
+  OPTWA 0,1,(red)
+  OPTWA 1,1,(yellow)
+  OPTWA 2,1,(green)
+  OPTWA 3,1,(stop)
+  OPTWA 4,1,(walk)
+  OPTMM 1,0,(c:0x11b1)
+  OPTMM 2,0,(\measure\save_record)
+  OPTBT 0,(Push for Walk)(push_key ())
+  OPTDF 0x40008082
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
+TARGOPT 4, (EPM900 - Emulator)
+ CLK51=12000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,1
+  OPTFL 1,0,0
+  OPTBL 0,(80C51 Family Programmer's Guide)<DATASHTS\PHILIPS\P51_PG.PDF>
+  OPTBL 1,(Data Sheet)<DATASHTS\PHILIPS\p89lpc933_934_935_936.pdf>
+  OPTBL 2,(User's Manual)<DATASHTS\PHILIPS\P89LPC933_934_935_UM.PDF>
+  OPTDL (S8051.DLL)()(DLPC.DLL)(-pLPC935)(S8051.DLL)()(TLPC.DLL)(-pLPC935)
+  OPTDBG 133110,8,()()()()(Traffic.inc)()()()()() (BIN\LPC2EMP.DLL)()()()
+  OPTKEY 0,(LPC2EMP)(-O464779 -C1667440384 -S0 -T0 -D17)
+  OPTKEY 0,(DLGDLPC)((98=-1,-1,-1,-1,0)(3003=225,189,438,400,0)(3004=1052,210,1265,395,0)(3006=1058,283,1271,422,1)(5019=265,590,472,755,0)(5028=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(5092=-1,-1,-1,-1,0)(5091=-1,-1,-1,-1,0)(5007=-1,-1,-1,-1,0)(5090=-1,-1,-1,-1,0)(5015=-1,-1,-1,-1,0)(5094=-1,-1,-1,-1,0)(5095=-1,-1,-1,-1,0)(3007=-1,-1,-1,-1,0)(5029=-1,-1,-1,-1,0)(5097=-1,-1,-1,-1,0)(2003=-1,-1,-1,-1,0)(5006=201,216,393,438,0)(5004=-1,-1,-1,-1,0))
+  OPTKEY 0,(DLGDP51)((98=-1,-1,-1,-1,0)(82=-1,-1,-1,-1,0)(83=-1,-1,-1,-1,0)(84=-1,-1,-1,-1,0)(85=-1,-1,-1,-1,0)(99=-1,-1,-1,-1,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(94=-1,-1,-1,-1,0)(95=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(2000=-1,-1,-1,-1,0)(7000=-1,-1,-1,-1,0))
+  OPTWA 0,1,(red)
+  OPTWA 1,1,(yellow)
+  OPTWA 2,1,(green)
+  OPTWA 3,1,(stop)
+  OPTWA 4,1,(walk)
+  OPTMM 1,0,(c:0x11b1)
+  OPTMM 2,0,(\measure\save_record)
+  OPTBT 0,(Push for Walk)(push_key ())
+  OPTDF 0x40008082
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

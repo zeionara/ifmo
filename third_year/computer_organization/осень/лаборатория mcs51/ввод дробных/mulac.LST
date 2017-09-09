@@ -1,0 +1,38 @@
+C51 COMPILER V8.16   MULAC                                                                 10/14/2016 22:46:30 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE MULAC
+OBJECT MODULE PLACED IN mulac.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE mulac.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <intrins.h>
+   3          
+   4          sbit Bi=B^0;
+   5          char i;
+   6          char Aa;
+   7          
+   8          main(){
+   9   1      char wrk=P0;
+  10   1       B=P1;
+  11   1      for(i=8;i>0;i--)
+  12   1       {if(Bi) Aa=Aa+wrk;
+  13   2       Aa=_cror_(Aa,1); B=_cror_(B,1);}
+  14   1       P2=Aa; P3=B;
+  15   1       }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

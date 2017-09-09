@@ -1,0 +1,46 @@
+C51 COMPILER V8.16   DELWHOOL                                                              10/19/2016 00:38:26 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE DELWHOOL
+OBJECT MODULE PLACED IN delwhool.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE delwhool.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          char Bb,i,j;
+   3          int S,Aa;
+   4            
+   5          divf()
+   6            {for( j=9 ; j>0; j-- )    
+   7   1            S= (S <Aa) ? S<<1 : ((S-Aa)<<1) +1; 
+   8   1              }
+   9                   
+  10          main()
+  11          {
+  12   1        S=P1<<8;
+  13   1        Aa=P2<<8;
+  14   1              P3=0; 
+  15   1                 for(i=0;i<7;i++)
+  16   1                    if(S>=Aa)
+  17   1                              { Aa<<=1;PSW|=0x40; }
+  18   1                     else divf(); 
+  19   1      
+  20   1        S=S>>i; P0=S;  
+  21   1        while(1); 
+  22   1      }
+  23          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    157    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

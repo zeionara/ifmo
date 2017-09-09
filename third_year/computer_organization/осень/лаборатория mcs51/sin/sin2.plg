@@ -1,0 +1,14 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\организация  ЭВМ  Кейл51\осень\лаборатория mcs51\sin\sin2.uvproj
+Project File Date:  11/14/2016
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling sin2.c...
+linking...
+Program Size: data=13.0 xdata=0 code=104
+"sin2" - 0 Error(s), 0 Warning(s).

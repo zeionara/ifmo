@@ -1,0 +1,85 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/21/2016  12:12:43  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\MCS51\C51\BIN\BL51.EXE sin2.obj TO sin2
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  sin2.obj (SIN2)
+  D:\MCS51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  sin2 (SIN2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?SIN2
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     003EH     UNIT         ?PR?MAIN?SIN2
+            CODE    0041H     001BH     UNIT         ?PR?_SI?SIN2
+            CODE    005CH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   sin2 (SIN2)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?SIN2
+
+?PR?MAIN?SIN2
+  +--> ?PR?_SI?SIN2
+
+
+
+SYMBOL TABLE OF MODULE:  sin2 (SIN2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SIN2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0003H         PUBLIC        main
+  C:0041H         PUBLIC        _Si
+  D:0008H         PUBLIC        S
+  D:0009H         PUBLIC        m
+  D:000AH         PUBLIC        x
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/21/2016  12:12:43  PAGE 2
+
+
+  D:000BH         PUBLIC        y
+  -------         PROC          _SI
+  D:0007H         SYMBOL        ai
+  C:0041H         LINE#         4
+  C:0041H         LINE#         5
+  -------         ENDPROC       _SI
+  -------         PROC          MAIN
+  C:0003H         LINE#         7
+  C:0003H         LINE#         8
+  C:0006H         LINE#         9
+  C:0006H         LINE#         10
+  C:0010H         LINE#         11
+  C:001DH         LINE#         12
+  C:0024H         LINE#         13
+  C:002BH         LINE#         14
+  C:0032H         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        SIN2
+
+Program Size: data=13.0 xdata=0 code=104
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

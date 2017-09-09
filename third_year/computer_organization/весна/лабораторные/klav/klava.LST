@@ -1,0 +1,91 @@
+C51 COMPILER V8.16   KLAVA                                                                 04/17/2015 15:02:15 PAGE 1   
+
+
+C51 COMPILER V8.16, COMPILATION OF MODULE KLAVA
+OBJECT MODULE PLACED IN klava.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE klava.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <intrins.h>  //расширение библиотеки специальных функций mcs51
+   3          
+   4          char x,y,i,
+   5               digit,     //ASCII цифра, символ, вводимые с клавиатуры
+   6               m=0,     //масштаб - 10 (номер цифры после запятой)
+   7               mas[10];  //контрольный массив введенных символов
+   8          float numb,   //формируемое при вводе  числа с естественной запятой
+   9                  numb1; //значение числа при вводе с текущим масштабом
+  10          
+  11          Delay(int t)   //задержка 
+  12            { while(t--); }
+  13          
+  14          void scan(void); //предопределение функции сканирования
+  15          
+  16          main ()
+  17          {   x=0xef;   //начальное значение кода сканирования
+  18   1      while (1)    //цикл сканирования
+  19   1       { 
+  20   2          x= _crol_(x,1);   //код сканирования циклическим сдвигом (_crol( )-в intrins.h)
+  21   2          //P3=x|0x0f;         // код сканирования строки
+  22   2            if((P3&0x0f)!=0x0f)     //контроль нажатой клавиши  
+  23   2                {
+  24   3            Delay(100);  //противодребезговая задержка нажатия клавиши
+  25   3               scan();        //функция ввода
+  26   3           while((P3&0x0f)!=0x0f)
+  27   3              Delay(100);  //противодребезговая задержка нажатия клавиши
+  28   3                 }
+  29   2        }
+  30   1      
+  31   1       }
+  32          
+  33          void scan(void) 
+  34          {         
+  35   1                if(i==0)    //начало ввода
+  36   1                      {numb=0; //сброс значения вводимого числа
+  37   2                           m=0;}     //нет масштаба
+  38   1                   
+  39   1           switch (P3)    //идентификация символа   
+  40   1                       {    case 0xf0:   digit='0'; break; 
+  41   2                              case 0xf1:  digit='1'; break;
+  42   2                              case 0xf2: digit='2'; break;
+  43   2                              case 0xf3: digit='3'; break;
+  44   2                              case 0xf4: digit='4'; break;
+  45   2                              case 0xf5: digit='5'; break;
+  46   2                              case 0xf6: digit='6'; break;
+  47   2                              case 0xf7: digit='7'; break;
+  48   2                              case 0xf8: digit='8'; break;
+  49   2                              case 0xfa: digit='9'; break;
+  50   2                          case 0xfb: digit=','; break;
+  51   2                      case 0xfc: digit='e'; break;
+  52   2                                      default: digit=0xff;            
+  53   2                       }
+  54   1      if(digit==0xFF) goto exit;  //ошибочный код сканирования
+  55   1      if(digit==',')                        //далее формирование масштаба
+C51 COMPILER V8.16   KLAVA                                                                 04/17/2015 15:02:15 PAGE 2   
+
+  56   1                { m=1;mas[i++]=digit; goto exit;}
+  57   1      if(digit=='e')    //конец ввода
+  58   1                 { if(m) numb=numb/m; 
+  59   2                                    i=0;m=0; goto exit; } 
+  60   1         else 
+  61   1             {mas[i++]=digit;numb=numb*10 + (digit&0xf);
+  62   2                                  if(m) m*=10; } // ввод цифры и формирование масштаба
+  63   1      
+  64   1      exit:     digit=0xff;  
+  65   1                      
+  66   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    378    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     23    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,106 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/30/2017  19:13:51  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE time.obj TO time
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  time.obj (TIME)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  time (TIME)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         ?DT?TIME
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0040H     UNIT         ?PR?INTT0?TIME
+            CODE    08CCH     000EH     UNIT         ?PR?MAIN?TIME
+            CODE    08DAH     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   time (TIME)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TIME
+  +--> ?C_INITSEG
+
+
+
+SYMBOL TABLE OF MODULE:  time (TIME)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TIME
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:00A8H.7       PUBLIC        EA
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/30/2017  19:13:51  PAGE 2
+
+
+  C:08CCH         PUBLIC        main
+  D:0008H         PUBLIC        count
+  D:000AH         PUBLIC        time
+  D:0089H         PUBLIC        TMOD
+  D:000CH         PUBLIC        sec
+  D:000DH         PUBLIC        min
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  C:088CH         PUBLIC        intt0
+  -------         PROC          INTT0
+  C:088CH         LINE#         5
+  C:0890H         LINE#         6
+  C:0893H         LINE#         7
+  C:0896H         LINE#         8
+  C:0899H         LINE#         9
+  C:08A1H         LINE#         10
+  C:08ACH         LINE#         11
+  C:08BAH         LINE#         12
+  C:08C4H         LINE#         13
+  C:08C7H         LINE#         14
+  -------         ENDPROC       INTT0
+  -------         PROC          MAIN
+  C:08CCH         LINE#         15
+  C:08CCH         LINE#         16
+  C:08CCH         LINE#         17
+  C:08CFH         LINE#         18
+  C:08D1H         LINE#         19
+  C:08D3H         LINE#         20
+  C:08D5H         LINE#         21
+  C:08D5H         LINE#         22
+  C:08D8H         LINE#         24
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TIME
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0055H BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=15.0 xdata=0 code=229
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

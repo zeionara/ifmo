@@ -1,0 +1,151 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/02/2017  17:49:42  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE adc.obj TO adc RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  adc.obj (ADC)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  adc (ADC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         ?DT?ADC
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     02C7H     UNIT         ?C?LIB_CODE
+            CODE    0AC7H     00ADH     UNIT         ?PR?MAIN?ADC
+            CODE    0B74H     000CH     UNIT         ?PR?ADC?ADC
+            CODE    0B80H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   adc (ADC)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?ADC
+
+?PR?MAIN?ADC
+  +--> ?PR?ADC?ADC
+
+
+
+SYMBOL TABLE OF MODULE:  adc (ADC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/02/2017  17:49:42  PAGE 2
+
+
+
+  -------         MODULE        ADC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00B0H.2       PUBLIC        INT0
+  C:0AC7H         PUBLIC        main
+  D:00DAH         PUBLIC        DAPR
+  C:0B74H         PUBLIC        adc
+  D:0008H         PUBLIC        fmax
+  D:0089H         PUBLIC        TMOD
+  D:000CH         PUBLIC        min
+  D:000DH         PUBLIC        max
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  D:000EH         PUBLIC        T
+  B:0088H.4       PUBLIC        TR0
+  D:0010H         PUBLIC        mm
+  D:00D9H         PUBLIC        ADDAT
+  B:00D8H.4       PUBLIC        BSY
+  D:0012H         PUBLIC        x
+  -------         PROC          MAIN
+  C:0AC7H         LINE#         11
+  C:0AC7H         LINE#         12
+  C:0AC7H         LINE#         14
+  C:0AD0H         LINE#         15
+  C:0AD3H         LINE#         16
+  C:0AD6H         LINE#         17
+  C:0AE0H         LINE#         18
+  C:0AEAH         LINE#         19
+  C:0AECH         LINE#         20
+  C:0AFFH         LINE#         21
+  C:0B02H         LINE#         22
+  C:0B07H         LINE#         23
+  C:0B09H         LINE#         24
+  C:0B1AH         LINE#         25
+  C:0B2BH         LINE#         26
+  C:0B2DH         LINE#         27
+  C:0B3EH         LINE#         28
+  C:0B40H         LINE#         29
+  C:0B50H         LINE#         30
+  C:0B72H         LINE#         31
+  -------         ENDPROC       MAIN
+  -------         PROC          ADC
+  C:0B74H         LINE#         34
+  C:0B74H         LINE#         35
+  C:0B77H         LINE#         36
+  C:0B7AH         LINE#         37
+  C:0B7DH         LINE#         38
+  -------         ENDPROC       ADC
+  -------         ENDMOD        ADC
+
+  -------         MODULE        ?C?FPMUL
+  C:0800H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/02/2017  17:49:42  PAGE 3
+
+
+  C:0909H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FCAST
+  C:09B0H         PUBLIC        ?C?FCASTC
+  C:09ABH         PUBLIC        ?C?FCASTI
+  C:09A6H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?SIDIV
+  C:0A2EH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?LNEG
+  C:0A64H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?UIDIV
+  C:0A72H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00B9H BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=20.0 xdata=0 code=911
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
