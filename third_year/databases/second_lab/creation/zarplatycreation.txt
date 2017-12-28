@@ -1,0 +1,10 @@
+CREATE TABLE зарплаты
+(
+    ид_человека INT NOT NULL,
+    зарплата_за_день INT NOT NULL,
+    отпускные_за_день INT NOT NULL,
+    больничные_за_день INT NOT NULL,
+    командировочные_за_день INT NOT NULL,
+	
+    FOREIGN KEY (ид_человека) REFERENCES таблица_1(ид)
+);

@@ -1,0 +1,232 @@
+SET LINESIZE 160
+SET SERVEROUTPUT ON
+1.
+alter session set NLS_DATE_FORMAT = 'dd.mm.yyyy HH24:mi:ss';
+SELECT * FROM м_яеяяхъ;
+2.
+SELECT DISTINCT мюхлемнбюмхе FROM м_дхяжхокхмш;
+3.
+#select дюрю_пнфдемхъ from м_кчдх where rownum <= 1
+#select DATEDIFF(day, '2017-08-01 00:00:00', '2017-09-01 00:00:00')
+#SELECT TO_DATE('05.07.2007 09:53:01')-TO_DATE('05.08.2007 09:53:01') FROM м_кчдх;
+#SELECT TO_DATE('05.07.2007 09:53:01')-TO_DATE('05.08.2007 09:53:01') AS DIFF FROM м_кчдх where rownum<=1;
+#SELECT TO_DATE('01.09.2017 00:00:00')-(select дюрю_пнфдемхъ from м_кчдх where rownum <= 1) AS DIFF FROM м_кчдх where rownum<=1;
+SELECT TO_DATE('01.09.2017 00:00:00')-(select * from (select дюрю_пнфдемхъ from м_кчдх order by dbms_random.value) where rownum <= 1) AS DIFF FROM м_кчдх where rownum<=1;
+4.
+select тюлхкхъ||' '||SUBSTR(хлъ,1,1)||'.'||SUBSTR(нрвеярбн,1,1)||'.' тюлхкхъ_х_хмхжхюкш from м_кчдх 
+where EXTRACT(month from дюрю_пнфдемхъ) = (select * from (select EXTRACT(month from дюрю_пнфдемхъ) леяъж from м_кчдх order by dbms_random.value) where rownum<=1);
+5.
+SELECT SUBSTR((select * from (select тюлхкхъ from м_кчдх order by dbms_random.value) where rownum<=1),1,2)||'%' FROM м_кчдх;
+select тюлхкхъ||' '||хлъ||' '||нрвеярбн тхн, хд FROM м_кчдх 
+where тюлхкхъ LIKE SUBSTR((select * from (select тюлхкхъ from м_кчдх order by dbms_random.value) where rownum<=1),1,2)||'%' and rownum <= 75 order by тхн DESC;
+6.
+select тюлхкхъ, хлъ, нрвеярбн, хд from м_кчдх where хлъ NOT LIKE 'ю%' and хлъ NOT LIKE 'а%' and хлъ NOT LIKE 'г%' and хлъ NOT LIKE 'й%' and хлъ NOT LIKE 'с%'
+and нрвеярбн NOT LIKE 'ю%' and нрвеярбн NOT LIKE 'а%' and нрвеярбн NOT LIKE 'г%' and нрвеярбн NOT LIKE 'й%' and нрвеярбн NOT LIKE 'с%';
+
+select тюлхкхъ, хлъ, нрвеярбн, хд from м_кчдх where SUBSTR(хлъ,1,1) != 'ю' and SUBSTR(хлъ,1,1) != 'а' 
+and SUBSTR(хлъ,1,1) != 'г' and SUBSTR(хлъ,1,1) != 'й' and SUBSTR(хлъ,1,1) != 'с'
+and нрвеярбн NOT LIKE 'ю%' and нрвеярбн NOT LIKE 'а%' and нрвеярбн NOT LIKE 'г%' and нрвеярбн NOT LIKE 'й%' and нрвеярбн NOT LIKE 'с%';
+7.
+select DISTINCT count(хд) COUNT FROM м_кчдх where хлъ = (select * from (select хлъ from м_кчдх order by dbms_random.value) where rownum<=1);
+8.
+begin
+for marks in (select нжемйю from м_беднлнярх 
+where вкбй_хд = CAST((select * from (select хд from м_кчдх order by dbms_random.value) where rownum<=1) AS INT))
+loop
+if REGEXP_LIKE (marks.нжемйю, '^ГЮВЕР$') then dbms_output.put_line('ДБНИМНИ ГЮВЕР');
+elsif marks.нжемйю not in ('3','4','5') then dbms_output.put_line(marks.нжемйю||'*2');
+else dbms_output.put_line(CAST(marks.нжемйю AS INT)*2);
+end if;
+end loop;
+end;
+/
+9.
+declare
+allmarks INT := 0;
+begin
+for person in (select * from (select хд from м_кчдх order by dbms_random.value) where rownum<=7)
+loop
+for marks in (select нжемйю from м_беднлнярх where вкбй_хд = CAST(person.хд AS INT))
+loop
+if marks.нжемйю in ('3','4','5') then allmarks := allmarks + CAST(marks.нжемйю AS INT);
+end if;
+end loop;
+end loop;
+dbms_output.put_line('яСЛЛЮ : '||TO_CHAR(allmarks));
+end;
+/
+10.
+select м_свеамше_цндю.*, м_нжемйх.*, м_рхош_беднлняреи.*, м_рхош_ярюмдюпрнб.*, м_тнплш_насвемхъ.*, м_рхош_окюмнб.*, м_бхдш_насвемхъ.* 
+from м_свеамше_цндю, м_нжемйх, м_рхош_беднлняреи, м_рхош_ярюмдюпрнб, м_тнплш_насвемхъ, м_рхош_окюмнб, м_бхдш_насвемхъ
+where rownum <= 100;
+11.
+declare
+sumofmarks INT := 0;
+numofmarks INT := 0;
+avmark NUMBER := 0;
+maincounter INT := 0;
+type c_list is varray(5000) of int; 
+namesakesids c_list := c_list(); 
+counter integer :=0; 
+begin
+for person in (select * from (select хд, тюлхкхъ, хлъ, нрвеярбн from м_кчдх order by dbms_random.value))
+loop
+sumofmarks := 0;
+numofmarks := 0;
+counter := 0;
+--dbms_output.put_line('Selected : '||TO_CHAR(person.хд));
+--
+for marks in (select нжемйю from м_беднлнярх where вкбй_хд = CAST(person.хд AS INT))
+loop
+if marks.нжемйю in ('3','4','5') then sumofmarks := sumofmarks + CAST(marks.нжемйю AS INT);
+numofmarks := numofmarks + 1;
+end if;
+end loop;
+if numofmarks = 0 then continue;
+end if;
+avmark := sumofmarks/numofmarks;
+--dbms_output.put_line('Average mark : '||TO_CHAR(avmark));
+--
+--dbms_output.put_line('Checking for : '||person.тюлхкхъ);
+for namesake in (select * from (select хд, тюлхкхъ from м_кчдх) where тюлхкхъ = person.тюлхкхъ)
+loop
+counter := counter + 1;
+namesakesids.extend;
+namesakesids(counter) := namesake.хд;
+end loop;
+--dbms_output.put_line('Found : '||TO_CHAR(counter));
+for lcntr in 1..counter
+loop
+--dbms_output.put_line('OK ');
+--
+sumofmarks := 0;
+numofmarks := 0;
+for marks in (select нжемйю from м_беднлнярх where вкбй_хд = CAST(namesakesids(lcntr) AS INT))
+loop
+if marks.нжемйю in ('3','4','5') then sumofmarks := sumofmarks + CAST(marks.нжемйю AS INT);
+numofmarks := numofmarks + 1;
+end if;
+end loop;
+if numofmarks = 0 then continue;
+end if;
+--dbms_output.put_line('Current average : '||TO_CHAR(sumofmarks/numofmarks)||' comparing to '||TO_CHAR(avmark));
+if sumofmarks/numofmarks > avmark then maincounter := maincounter + 1;
+dbms_output.put_line(person.тюлхкхъ||' '||person.хлъ||' '||person.нрвеярбн||' '||TO_CHAR(avmark));
+exit;
+end if;
+--
+end loop;
+if maincounter >= 7 then exit;
+end if;
+end loop;
+end;
+/
+12.
+select * from м_свеамше_цндю;
+select * from м_беднлнярх;
+declare
+sumofgoodmarks INT := 0;
+numofgoodmarks INT := 0;
+numofz INT := 0;
+counter INT := 0;
+hasthrees BOOLEAN := FALSE;
+hasfours BOOLEAN := FALSE;
+hasfives BOOLEAN := FALSE;
+personcounter INT := 0;
+sumofdistances INT := 0;
+begin
+for marks in (select нжемйю from м_беднлнярх)
+loop
+if marks.нжемйю in ('4','5') then sumofgoodmarks := sumofgoodmarks + CAST(marks.нжемйю AS INT);
+numofgoodmarks := numofgoodmarks + 1;
+end if;
+end loop;
+for year in (select * from (select мювюкн, йнмеж from м_свеамше_цндю order by dbms_random.value) where rownum <= 1)
+loop
+for marks in (select нжемйю from м_беднлнярх where дюрю < year.йнмеж and дюрю > year.мювюкн)
+loop
+if marks.нжемйю = 'ГЮВЕР' then numofz := numofz + 1;
+end if;
+end loop;
+end loop;
+for person in (select * from (select хд, тюлхкхъ, хлъ, нрвеярбн from м_кчдх order by dbms_random.value))
+loop
+hasthrees := FALSE;
+hasfours := FALSE;
+hasfives := FALSE;
+for marks in (select нжемйю from м_беднлнярх where вкбй_хд = CAST(person.хд AS INT))
+loop
+if marks.нжемйю = '3' then hasthrees := TRUE;
+elsif marks.нжемйю = '4' then hasfours := TRUE;
+elsif marks.нжемйю = '5' then hasfives := TRUE;
+end if;
+end loop;
+if hasthrees and hasfours and hasfives then personcounter := personcounter + 1;
+sumofdistances := sumofdistances + UTL_MATCH.EDIT_DISTANCE(person.тюлхкхъ, 'оКЧУХМ');
+end if;
+if personcounter >= 10 then exit;
+end if;
+end loop;
+dbms_output.put_line(chr(9)||chr(9)||chr(9)||chr(9)||chr(9)||'яПЕДМЪЪ НЖЕМЙЮ'||chr(9)||chr(9)||'йНКХВЕЯРБН НЖЕМНЙ');
+dbms_output.put_line('нЖЕМЙХ 4 Х 5 БН БЯЕЛ СМХБЕПЯХРЕРЕ'||chr(9)||chr(9)||TO_CHAR(ROUND(sumofgoodmarks/numofgoodmarks,2))
+||chr(9)||chr(9)||chr(9)||'     '||TO_CHAR(numofgoodmarks));
+dbms_output.put_line('нЖЕМЙХ ''ГЮВЕР'' Б ОПНХГБНКЭМНЛ'||chr(13)||chr(10)||'СВЕАМНЛ ЦНДС БН БЯЕЛ СМХБЕПЯХРЕРЕ'
+||chr(9)||chr(9)||'    '||'-'||chr(9)||chr(9)||chr(9)||chr(9)||TO_CHAR(numofz));
+dbms_output.put_line('пЮЯЯРНЪМХЕ кЕБЕМЬРЮИМЮ ДН БЮЬЕИ'||chr(13)||chr(10)||'ТЮЛХКХХ НР ТЮЛХКХХ 10 ОЕПЯНМ,'||chr(13)||chr(10)||'ХЛЕЧЫХУ НЖЕМЙХ 3, 4, 5'
+||chr(9)||chr(9)||chr(9)||chr(9)||chr(9)||'      '||TO_CHAR(ROUND(sumofdistances/personcounter, 0))||chr(9)||chr(9)||chr(9)||chr(9)||'     '||'-');
+--dbms_output.put_line('Average among 4 and 5: '||TO_CHAR(sumofgoodmarks/numofgoodmarks));
+--dbms_output.put_line('Number of 4 and 5 : '||TO_CHAR(numofgoodmarks));
+--dbms_output.put_line('Number of zachets in random year : '||TO_CHAR(numofz));
+--dbms_output.put_line(TO_CHAR(ROUND(sumofdistances/personcounter, 0)));
+end;
+/
+13.
+declare
+begin
+for person in (select * from (select хд, тюлхкхъ||' '||хлъ||' '||нрвеярбн тхн from м_кчдх order by тхн))
+loop
+for marks in (select нжемйю, дюрю from м_беднлнярх where вкбй_хд = CAST(person.хд AS INT))
+loop
+if marks.нжемйю in ('3', '4') and marks.дюрю > TO_DATE('01.09.2016') and marks.дюрю < TO_DATE('27.07.2017') then dbms_output.put_line(person.тхн);
+exit;
+end if;
+end loop;
+end loop;
+end;
+/
+14.
+declare
+boundsum INT := 0;
+counter INT := 0;
+sumofmarks INT := 0;
+begin
+for person in (select * from (select хд from м_кчдх order by dbms_random.value) where rownum<=1)
+loop
+--dbms_output.put_line(TO_CHAR(person.хд));
+for i in 1..6
+loop
+boundsum := boundsum + CAST(SUBSTR(TO_CHAR(person.хд),i,1) AS INT);
+end loop;
+--dbms_output.put_line(TO_CHAR(boundsum));
+end loop;
+for combination in (select * from (select тхн, COUNT(тхн) онбрнпемхъ from (select тюлхкхъ||' '||хлъ||' '
+||нрвеярбн тхн from м_кчдх) group by тхн order by онбрнпемхъ DESC) where онбрнпемхъ > 1)
+loop
+--dbms_output.put_line(combination.тхн);
+sumofmarks := 0;
+for person in (select хд from м_кчдх where тюлхкхъ||' '||хлъ||' '||нрвеярбн = combination.тхн)
+loop
+sumofmarks := 0;
+for marks in (select нжемйю from м_беднлнярх where вкбй_хд = CAST(person.хд AS INT))
+loop
+if marks.нжемйю in ('3','4','5') then sumofmarks := sumofmarks + CAST(marks.нжемйю AS INT);
+end if;
+end loop;
+--dbms_output.put_line(TO_CHAR(sumofmarks));
+if sumofmarks <= boundsum then dbms_output.put_line(person.хд||' '||combination.тхн);
+end if;
+end loop;
+counter := counter + 1;
+end loop;
+end;
+/

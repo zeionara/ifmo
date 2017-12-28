@@ -1,0 +1,12 @@
+CREATE TABLE таблица_1
+(
+    ид INT PRIMARY KEY AUTO_INCREMENT,
+    фамилия VARCHAR(20) NOT NULL,
+    имя VARCHAR(20) NOT NULL,
+    отчество VARCHAR(20) NOT NULL,
+    дата_рождения DATE NOT NULL,
+    пол VARCHAR(1) NOT NULL CHECK (пол in ('ж','м')),
+    место_рождения VARCHAR(20) NOT NULL,
+    адрес VARCHAR(30) NOT NULL,
+    телефон VARCHAR(20) CHECK (REGEXP_LIKE(телефон, '(\+7|8) (\()([0-9]){3}(\)) ([0-9]){3}-([0-9]){2}-([0-9]){2}'))
+);

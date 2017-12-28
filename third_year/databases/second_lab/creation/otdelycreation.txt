@@ -1,0 +1,5 @@
+CREATE TABLE отделы
+(
+    ид INT PRIMARY KEY AUTO_INCREMENT,
+    название VARCHAR(70) NOT NULL
+);

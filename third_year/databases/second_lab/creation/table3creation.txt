@@ -1,0 +1,10 @@
+CREATE TABLE Таблица_3
+(
+    ид INT PRIMARY KEY AUTO_INCREMENT,
+    наименование_товара VARCHAR(100) NOT NULL,
+    количество INT NOT NULL,
+    ид_человека INT NOT NULL,
+    дата_продажи DATE NOT NULL,
+    цена INT NOT NULL,
+    FOREIGN KEY (ид_человека) REFERENCES таблица_1(ид)
+);

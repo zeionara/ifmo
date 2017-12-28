@@ -1,0 +1,10 @@
+Var a, b, c;
+Begin
+	//Program one
+	a = 5;
+	b = -(a + 8)
+	If (a + b < 12)
+	Begin
+		a = a ** 2
+	End
+End.

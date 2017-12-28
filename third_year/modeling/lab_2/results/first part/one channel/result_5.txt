@@ -1,0 +1,107 @@
+
+
+              GPSS World Simulation Report - Приложение1.76.1
+
+
+                   Saturday, October 21, 2017 15:14:53  
+
+           START TIME           END TIME  BLOCKS  FACILITIES  STORAGES
+                0.000         601541.041    30        2          1
+
+
+              NAME                       VALUE  
+          DROP1                          29.000
+          DROP2                          30.000
+          PRIBOR1                     10001.000
+          PRIBOR2                     10002.000
+          PRIBOR3                     10003.000
+          QUIT                           27.000
+          SMO1                            2.000
+          SMO2                           10.000
+          SMO3                           19.000
+          TU5                         10000.000
+
+
+ LABEL              LOC  BLOCK TYPE     ENTRY COUNT CURRENT COUNT RETRY
+                    1    GENERATE        182902             0       0
+SMO1                2    QUEUE           182902             0       0
+                    3    QUEUE           182902         82898       0
+                    4    ENTER           100004             0       0
+                    5    DEPART          100004             0       0
+                    6    ADVANCE         100004             1       0
+                    7    LEAVE           100003             0       0
+                    8    DEPART          100003             0       0
+                    9    TRANSFER        100003             0       0
+SMO2               10    TEST             46088             0       0
+                   11    QUEUE            44880             0       0
+                   12    QUEUE            44880             0       0
+                   13    SEIZE            44880             0       0
+                   14    DEPART           44880             0       0
+                   15    ADVANCE          44880             1       0
+                   16    RELEASE          44879             0       0
+                   17    DEPART           44879             0       0
+                   18    TRANSFER         44879             0       0
+SMO3               19    TEST             53915             0       0
+                   20    QUEUE            52717             0       0
+                   21    QUEUE            52717             1       0
+                   22    SEIZE            52716             1       0
+                   23    DEPART           52715             0       0
+                   24    ADVANCE          52715             0       0
+                   25    RELEASE          52715             0       0
+                   26    DEPART           52715             0       0
+QUIT               27    TABULATE         97594             0       0
+                   28    TERMINATE        97594             0       0
+DROP1              29    TERMINATE         1208             0       0
+DROP2              30    TERMINATE         1198             0       0
+
+
+FACILITY         ENTRIES  UTIL.   AVE. TIME AVAIL. OWNER PEND INTER RETRY DELAY
+ PRIBOR2          44880    0.451       6.044  1   100003    0    0     0      0
+ PRIBOR3          52716    0.525       5.988  1    99998    0    0     0      1
+
+
+QUEUE              MAX CONT. ENTRY ENTRY(0) AVE.CONT. AVE.TIME   AVE.(-0) RETRY
+ 11               82899 82898 182902      2  41635.139 136932.591 136934.088   0
+ 12               82900 82899 182902      0  41636.139 136935.880 136935.880   0
+ 21                  3    0  44880  25234     0.303      4.057      9.268   0
+ 22                  4    1  44880      0     0.754     10.101     10.101   0
+ 31                  4    2  52717  25646     0.489      5.582     10.871   0
+ 32                  5    2  52717      0     1.014     11.570     11.570   0
+
+
+STORAGE            CAP. REM. MIN. MAX.  ENTRIES AVL.  AVE.C. UTIL. RETRY DELAY
+ PRIBOR1             1    0   0     1   100004   1    1.000  1.000    0 82898
+
+
+TABLE              MEAN    STD.DEV.       RANGE           RETRY FREQUENCY CUM.%
+ TU5            137198.298 78488.441                           0
+                                       _  -      100.000            31     0.03
+                                 100.000  -      200.000            25     0.06
+                                 200.000  -      300.000            28     0.09
+                                 300.000  -      400.000            36     0.12
+                                 400.000  -      500.000            17     0.14
+                                 500.000  -      600.000            42     0.18
+                                 600.000  -      700.000            30     0.21
+                                 700.000  -      800.000            27     0.24
+                                 800.000  -      900.000            36     0.28
+                                 900.000  -     1000.000            26     0.31
+                                1000.000  -     1100.000            30     0.34
+                                1100.000  -     1200.000            26     0.36
+                                1200.000  -     1300.000            33     0.40
+                                1300.000  -     1400.000            59     0.46
+                                1400.000  -     1500.000            19     0.48
+                                1500.000  -     1600.000            27     0.50
+                                1600.000  -     1700.000            25     0.53
+                                1700.000  -     1800.000            25     0.56
+                                1800.000  -     1900.000            28     0.58
+                                1900.000  -  _                   97024   100.00
+
+
+CEC XN   PRI          M1      ASSEM  CURRENT  NEXT  PARAMETER    VALUE
+ 99998    0      328743.558   99998     22     23
+
+
+FEC XN   PRI         BDT      ASSEM  CURRENT  NEXT  PARAMETER    VALUE
+182903    0      601541.578   182903      0      1
+100003    0      601546.908   100003     15     16
+100004    0      601565.583   100004      6      7

@@ -1,0 +1,14 @@
+Var a, b, c;
+Begin
+	a = 1;
+	b = 2;
+	c = 3;
+	If (b > a)
+	Begin
+		If (c == a)
+		Begin
+			c = a * ( - (b - c))
+		End
+		b = c + a
+	End;
+End.

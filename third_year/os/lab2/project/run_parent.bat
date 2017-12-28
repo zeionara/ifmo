@@ -1,0 +1,2 @@
+csc parent.cs
+parent

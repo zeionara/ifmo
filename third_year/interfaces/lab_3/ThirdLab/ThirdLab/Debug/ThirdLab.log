@@ -1,0 +1,4 @@
+﻿  ThirdLab.cpp
+c:\users\zerbs\desktop\interfaces\lab_3\thirdlab\thirdlab\thirdlab.cpp(102): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  ThirdLab.vcxproj -> C:\Users\Zerbs\Desktop\interfaces\lab_3\ThirdLab\Debug\ThirdLab.exe
+  ThirdLab.vcxproj -> C:\Users\Zerbs\Desktop\interfaces\lab_3\ThirdLab\Debug\ThirdLab.pdb (Full PDB)

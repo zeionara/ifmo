@@ -1,0 +1,2 @@
+csc main.cs
+main

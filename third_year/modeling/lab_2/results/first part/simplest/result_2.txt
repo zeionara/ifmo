@@ -1,0 +1,91 @@
+
+
+              GPSS World Simulation Report - Приложение1.66.1
+
+
+                   Saturday, October 21, 2017 14:22:58  
+
+           START TIME           END TIME  BLOCKS  FACILITIES  STORAGES
+                0.000         330752.120    30        2          1
+
+
+              NAME                       VALUE  
+          DROP1                          29.000
+          DROP2                          30.000
+          PRIBOR1                     10001.000
+          PRIBOR2                     10002.000
+          PRIBOR3                     10003.000
+          QUIT                           27.000
+          SMO1                            2.000
+          SMO2                           10.000
+          SMO3                           19.000
+          TU5                         10000.000
+
+
+ LABEL              LOC  BLOCK TYPE     ENTRY COUNT CURRENT COUNT RETRY
+                    1    GENERATE        100006             0       0
+SMO1                2    QUEUE           100006             0       0
+                    3    QUEUE           100006             0       0
+                    4    ENTER           100006             0       0
+                    5    DEPART          100006             0       0
+                    6    ADVANCE         100006             2       0
+                    7    LEAVE           100004             0       0
+                    8    DEPART          100004             0       0
+                    9    TRANSFER        100004             0       0
+SMO2               10    TEST             46088             0       0
+                   11    QUEUE            39700             0       0
+                   12    QUEUE            39700             0       0
+                   13    SEIZE            39700             0       0
+                   14    DEPART           39700             0       0
+                   15    ADVANCE          39700             1       0
+                   16    RELEASE          39699             0       0
+                   17    DEPART           39699             0       0
+                   18    TRANSFER         39699             0       0
+SMO3               19    TEST             53916             0       0
+                   20    QUEUE            45514             0       0
+                   21    QUEUE            45514             2       0
+                   22    SEIZE            45512             1       0
+                   23    DEPART           45511             0       0
+                   24    ADVANCE          45511             0       0
+                   25    RELEASE          45511             0       0
+                   26    DEPART           45511             0       0
+QUIT               27    TABULATE         85210             0       0
+                   28    TERMINATE        85210             0       0
+DROP1              29    TERMINATE         6388             0       0
+DROP2              30    TERMINATE         8402             0       0
+
+
+FACILITY         ENTRIES  UTIL.   AVE. TIME AVAIL. OWNER PEND INTER RETRY DELAY
+ PRIBOR2          39700    0.720       6.002  1   100004    0    0     0      0
+ PRIBOR3          45512    0.825       5.998  1   100000    0    0     0      2
+
+
+QUEUE              MAX CONT. ENTRY ENTRY(0) AVE.CONT. AVE.TIME   AVE.(-0) RETRY
+ 11                 61    0 100006  14106     8.016     26.510     30.863   0
+ 12                 63    2 100006      0     9.826     32.498     32.498   0
+ 21                  3    0  39700  12704     0.925      7.704     11.329   0
+ 22                  4    1  39700      0     1.645     13.706     13.706   0
+ 31                  4    3  45514   9482     1.608     11.685     14.759   0
+ 32                  5    3  45514      0     2.433     17.682     17.682   0
+
+
+STORAGE            CAP. REM. MIN. MAX.  ENTRIES AVL.  AVE.C. UTIL. RETRY DELAY
+ PRIBOR1             2    0   0     2   100006   1    1.811  0.905    0    0
+
+
+TABLE              MEAN    STD.DEV.       RANGE           RETRY FREQUENCY CUM.%
+ TU5              48.292   31.668                           0
+                                       _  -      100.000         78858    92.55
+                                 100.000  -      200.000          6317    99.96
+                                 200.000  -      300.000            35   100.00
+
+
+CEC XN   PRI          M1      ASSEM  CURRENT  NEXT  PARAMETER    VALUE
+100000    0      330724.339   100000     22     23
+
+
+FEC XN   PRI         BDT      ASSEM  CURRENT  NEXT  PARAMETER    VALUE
+100004    0      330752.603   100004     15     16
+100007    0      330752.706   100007      0      1
+100005    0      330752.858   100005      6      7
+100006    0      330754.111   100006      6      7

@@ -1,0 +1,1 @@
+select ид, фамилия, имя, отчество, lab2_db.calculate_salary(ид) зарплата from таблица_1;

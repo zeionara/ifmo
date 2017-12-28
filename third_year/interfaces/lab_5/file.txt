@@ -1,0 +1,246 @@
+Found 212 loaded modules
+Module C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+Module C:\WINDOWS\SYSTEM32\ntdll.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+	C:\Users\Zerbs\Desktop\interfaces\lab_5\main.exe
+Module C:\WINDOWS\System32\KERNEL32.DLL is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+	C:\Users\Zerbs\Desktop\interfaces\lab_5\main.exe
+Module C:\WINDOWS\System32\KERNELBASE.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+	C:\Users\Zerbs\Desktop\interfaces\lab_5\main.exe
+Module C:\WINDOWS\System32\USER32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\win32u.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\GDI32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\SYSTEM32\VERSION.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\gdi32full.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\msvcrt.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\msvcp_win.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\ucrtbase.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\ADVAPI32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+Module C:\WINDOWS\System32\sechost.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\RPCRT4.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\SspiCli.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\CRYPTBASE.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\bcryptPrimitives.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\SYSTEM32\WINSPOOL.DRV is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\combase.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\SHELL32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\cfgmgr32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\shcore.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\windows.storage.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\SYSTEM32\bcrypt.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\shlwapi.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+Module C:\WINDOWS\System32\kernel.appcore.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\powrprof.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\profapi.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\System32\IMM32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+Module C:\WINDOWS\System32\COMDLG32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.15063.413_none_55bc94a37c2a2854\COMCTL32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+Module C:\WINDOWS\System32\ole32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\SYSTEM32\OLEACC.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+Module C:\WINDOWS\System32\OLEAUT32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Jumpstart\jswtrayutil.exe
+	C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+	C:\Program Files\Lenovo\Lenovo Solution Center\LSCNotify.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\VsHub.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Microsoft.VsHub.Server.HttpHost.exe
+	C:\Program Files (x86)\Common Files\Adobe\ARM\1.0\AdobeARM.exe
+Module C:\WINDOWS\SYSTEM32\MSIMG32.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+Module C:\WINDOWS\WinSxS\x86_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.15063.608_none_9e9d5d4256d15def\gdiplus.dll is used by
+	C:\Program Files (x86)\Adobe\Acrobat 11.0\Acrobat\acrotray.exe
+	C:\Program Files (x86)\Common Files\Microsoft Shared\VsHub\1.0.0.0\Micro
